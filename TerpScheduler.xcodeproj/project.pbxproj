@@ -16,6 +16,8 @@
 		D408FD911A432E45004F0B83 /* TerpSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */; };
 		D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9A1A432EF3004F0B83 /* DailyTask.swift */; };
 		D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */; };
+		D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497CDD11A448B6B006709A3 /* WeekViewController.swift */; };
+		D497CDD41A44916C006709A3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497CDD31A44916C006709A3 /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerpSchedulerTests.swift; sourceTree = "<group>"; };
 		D408FD9A1A432EF3004F0B83 /* DailyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTask.swift; sourceTree = "<group>"; };
 		D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPeriodViewController.swift; sourceTree = "<group>"; };
+		D497CDD11A448B6B006709A3 /* WeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekViewController.swift; path = ../WeekViewController.swift; sourceTree = "<group>"; };
+		D497CDD31A44916C006709A3 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		D408FD741A432E45004F0B83 /* TerpScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				D497CDD11A448B6B006709A3 /* WeekViewController.swift */,
 				D408FD771A432E45004F0B83 /* AppDelegate.swift */,
 				D408FD7C1A432E45004F0B83 /* MainViewController.swift */,
 				D408FD7E1A432E45004F0B83 /* Main.storyboard */,
@@ -92,6 +97,7 @@
 				D408FD9A1A432EF3004F0B83 /* DailyTask.swift */,
 				D408FD751A432E45004F0B83 /* Supporting Files */,
 				D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */,
+				D497CDD31A44916C006709A3 /* TaskViewController.swift */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -221,11 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */,
 				D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,
 				D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
+				D497CDD41A44916C006709A3 /* TaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,52 +16,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aGQ-kB-98w">
-                                <rect key="frame" x="178" y="20" width="422" height="80"/>
-                                <connections>
-                                    <segue destination="M7l-mQ-qua" kind="embed" id="czD-Ix-vIR"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugs-Wv-R7L">
-                                <rect key="frame" x="0.0" y="536" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="534" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="9Qm-nA-afa"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Zj-z0-VUD">
-                                <rect key="frame" x="0.0" y="464" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="462" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="ZKu-3m-RTV"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Bs-TG-BaC">
-                                <rect key="frame" x="0.0" y="392" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="390" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="rJV-UK-lrW"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDq-jN-aRR">
-                                <rect key="frame" x="0.0" y="320" width="180" height="64"/>
-                                <connections>
-                                    <segue destination="nyJ-Co-e0l" kind="embed" id="CbI-6v-SPM"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vbv-v3-ENG">
-                                <rect key="frame" x="0.0" y="176" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="174" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="408-Fy-ig6"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7T2-55-wOt">
-                                <rect key="frame" x="0.0" y="104" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="102" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="l9m-DP-PvT"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVf-4h-eVY">
-                                <rect key="frame" x="0.0" y="248" width="180" height="64"/>
+                                <rect key="frame" x="0.0" y="246" width="180" height="64"/>
                                 <connections>
                                     <segue destination="nyJ-Co-e0l" kind="embed" id="7Bb-FC-Ewe"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nYq-sy-ibt">
+                                <rect key="frame" x="188" y="20" width="410" height="580"/>
+                                <connections>
+                                    <segue destination="18e-om-vVd" kind="embed" id="qyI-97-JeL"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDq-jN-aRR">
+                                <rect key="frame" x="0.0" y="318" width="180" height="64"/>
+                                <connections>
+                                    <segue destination="nyJ-Co-e0l" kind="embed" id="CbI-6v-SPM"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -78,32 +78,6 @@
                         <action selector="SwipeRecognizer:" destination="BYZ-38-t0r" id="i7y-vf-Crg"/>
                     </connections>
                 </swipeGestureRecognizer>
-            </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Aii-y4-2qj">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="M7l-mQ-qua" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dMD-JJ-K6c"/>
-                        <viewControllerLayoutGuide type="bottom" id="7kU-I4-aUU"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YG6-Zw-fW7">
-                        <rect key="frame" x="0.0" y="0.0" width="422" height="80"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMe-ba-jCc">
-                                <rect key="frame" x="0.0" y="0.0" width="422" height="80"/>
-                                <state key="normal" title="GNDN">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vDh-zO-OKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
         <!--Class Period View Controller-->
@@ -163,9 +137,345 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="209" y="231"/>
+        </scene>
+        <!--Week View Controller-->
+        <scene sceneID="z0H-Bq-HIA">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="18e-om-vVd" customClass="WeekViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HGg-vx-LoP"/>
+                        <viewControllerLayoutGuide type="bottom" id="8jW-P1-sL1"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TzU-5q-wTn">
+                        <rect key="frame" x="0.0" y="0.0" width="410" height="580"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lvY-hs-SV8">
+                                <rect key="frame" x="0.0" y="6" width="74" height="70"/>
+                                <connections>
+                                    <segue destination="mD6-A6-FeV" kind="embed" id="Unh-xN-5Jl"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q26-Ax-eSG">
+                                <rect key="frame" x="82" y="6" width="74" height="70"/>
+                                <connections>
+                                    <segue destination="mD6-A6-FeV" kind="embed" id="awy-Vn-1fo"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFX-3C-jOm">
+                                <rect key="frame" x="164" y="6" width="74" height="70"/>
+                                <connections>
+                                    <segue destination="mD6-A6-FeV" kind="embed" id="yeL-sd-gSA"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7i-lE-SUW">
+                                <rect key="frame" x="246" y="6" width="74" height="70"/>
+                                <connections>
+                                    <segue destination="mD6-A6-FeV" kind="embed" id="Qay-uW-6Ck"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b4n-Rz-XSm">
+                                <rect key="frame" x="328" y="6" width="74" height="70"/>
+                                <connections>
+                                    <segue destination="mD6-A6-FeV" kind="embed" id="DPF-Tm-2gI"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-oa-Qs8">
+                                <rect key="frame" x="0.0" y="84" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="4Ww-ds-y9l"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ar-54-UoN">
+                                <rect key="frame" x="82" y="84" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="2PR-H7-Erj"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6sx-cl-m3g">
+                                <rect key="frame" x="164" y="84" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="shF-Xq-Lwc"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBA-3T-Zgc">
+                                <rect key="frame" x="246" y="84" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="su7-Ra-blE"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuo-HP-HSD">
+                                <rect key="frame" x="328" y="84" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="yhn-eM-2Wy"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PyW-8J-Z4s">
+                                <rect key="frame" x="0.0" y="156" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="fhN-JQ-DvO"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j57-29-YTW">
+                                <rect key="frame" x="82" y="156" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="yQW-cq-XB6"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nxA-BV-HVR">
+                                <rect key="frame" x="164" y="156" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="k5s-jM-CON"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1gq-3O-Lem">
+                                <rect key="frame" x="246" y="156" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="qYi-f6-JMR"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GA4-S8-xv6">
+                                <rect key="frame" x="328" y="156" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="2Yp-RH-07l"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqf-Xx-IJT">
+                                <rect key="frame" x="0.0" y="228" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="PxK-5F-dQM"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAD-db-4sD">
+                                <rect key="frame" x="82" y="228" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="Uof-5h-efD"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29v-Oq-Yb8">
+                                <rect key="frame" x="164" y="228" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="T13-1R-UMb"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lrw-XG-HAD">
+                                <rect key="frame" x="246" y="228" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="ASz-66-nq1"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1W-Vr-tDn">
+                                <rect key="frame" x="328" y="228" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="4PZ-zc-AUo"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bd9-ww-asU">
+                                <rect key="frame" x="0.0" y="300" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="kBP-wj-giN"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3an-Nd-17j">
+                                <rect key="frame" x="82" y="300" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="16H-7o-sq8"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0nv-qT-b37">
+                                <rect key="frame" x="164" y="300" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="KxO-xJ-KJu"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vdu-fa-3lD">
+                                <rect key="frame" x="246" y="300" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="nzP-Yj-RU1"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h9h-1f-6wP">
+                                <rect key="frame" x="328" y="300" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="C1l-MJ-ikm"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MvO-OP-mez">
+                                <rect key="frame" x="0.0" y="372" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="9fc-KZ-6SF"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Kq-ZV-6D4">
+                                <rect key="frame" x="164" y="372" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="Kg2-K2-fsk"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hE-o3-Hx6">
+                                <rect key="frame" x="246" y="372" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="bsZ-Ec-ygA"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H5t-6Z-KBx">
+                                <rect key="frame" x="328" y="372" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="JBT-Hp-J0h"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="elv-MF-20P">
+                                <rect key="frame" x="0.0" y="444" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="HOv-4f-MTx"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjx-Om-Lri">
+                                <rect key="frame" x="82" y="444" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="Pis-tB-wka"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-qQ-FtE">
+                                <rect key="frame" x="164" y="444" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="dRd-uS-tcS"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCx-SB-mRj">
+                                <rect key="frame" x="246" y="444" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="J6L-ML-ndJ"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rd8-7p-qZH">
+                                <rect key="frame" x="328" y="444" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="X3l-Mw-nKO"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMh-ia-jG4">
+                                <rect key="frame" x="0.0" y="516" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="dbd-f5-che"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bxq-LH-1zs">
+                                <rect key="frame" x="82" y="516" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="Nsm-NU-Zux"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ups-Em-GL4">
+                                <rect key="frame" x="164" y="516" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="x21-BX-ZeJ"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yf-qD-TW0">
+                                <rect key="frame" x="246" y="516" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="PHa-2I-VLq"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSu-dm-SNe">
+                                <rect key="frame" x="328" y="516" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="ohO-4A-1NN"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xW-w2-Xff">
+                                <rect key="frame" x="82" y="372" width="74" height="64"/>
+                                <connections>
+                                    <segue destination="XaO-rM-4JI" kind="embed" id="ATz-bD-y3p"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0U0-lP-mKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226" y="468"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jZZ-7z-vde">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mD6-A6-FeV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mea-L0-oLS"/>
+                        <viewControllerLayoutGuide type="bottom" id="o3Y-2Z-87Y"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="HnZ-lZ-oJo">
+                        <rect key="frame" x="0.0" y="0.0" width="74" height="70"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oO2-5m-bum">
+                                <rect key="frame" x="16" y="41" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LES-wk-GFB">
+                                <rect key="frame" x="16" y="8" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GRY-Gd-kVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="355" y="897"/>
+        </scene>
+        <!--Task View Controller-->
+        <scene sceneID="Ut4-5O-5e1">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="XaO-rM-4JI" customClass="TaskViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HhH-xT-DTW"/>
+                        <viewControllerLayoutGuide type="bottom" id="OPz-r1-2UH"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cIf-7h-htR">
+                        <rect key="frame" x="0.0" y="0.0" width="74" height="64"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWQ-mk-hfK">
+                                <rect key="frame" x="16" y="43" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qm5-7V-EDz">
+                                <rect key="frame" x="16" y="0.0" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cbs-De-2qt" appends="YES" id="IVU-B3-HAR"/>
+                        </connections>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="sFm-B1-WW8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5xS-Ld-FWK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cbs-De-2qt"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="458"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKu-3m-RTV"/>
+        <segue reference="l9m-DP-PvT"/>
+        <segue reference="Unh-xN-5Jl"/>
+        <segue reference="4Ww-ds-y9l"/>
     </inferredMetricsTieBreakers>
 </document>
