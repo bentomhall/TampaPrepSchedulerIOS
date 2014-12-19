@@ -1,5 +1,5 @@
 //
-//  ClassPeriodViewController.swift
+//  ClassPeriodView.swift
 //  TerpScheduler
 //
 //  Created by Ben Hall on 12/18/14.
@@ -8,15 +8,27 @@
 
 import UIKit
 
-class ClassPeriodViewController : UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+//@IBDesignable
+class ClassPeriodViewController: UIViewController {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet var TeacherLabel: UILabel?
+    @IBOutlet var PeriodLabel: UILabel?
+    @IBOutlet var ClassName: UILabel?
+    
+    @IBAction func TapRecognizer(recognizer: UIGestureRecognizer){
+        self.TeacherLabel?.text = "Test Teacher"
+        return
     }
+
+    /*
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func drawRect(rect: CGRect) {
+        // Drawing code
+    }
+    */
 
 }

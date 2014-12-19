@@ -19,6 +19,28 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
+        let direction = recognizer.direction
+        switch (direction)
+        {
+            case UISwipeGestureRecognizerDirection.Left:
+                break
+                //open side pane
+            case UISwipeGestureRecognizerDirection.Right:
+                break
+                //close side pane if open
+            case UISwipeGestureRecognizerDirection.Up:
+                //previous week
+                break
+            case UISwipeGestureRecognizerDirection.Down:
+                //next week
+                break
+            default:
+                //do nothing
+                break
+        }
+    }
 
 
 }
