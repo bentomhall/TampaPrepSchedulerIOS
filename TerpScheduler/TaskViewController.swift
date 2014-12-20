@@ -9,7 +9,23 @@
 import Foundation
 import UIKit
 
-class TaskViewController: UIViewController
-{
+class TaskViewController: UIViewController {
+    @IBOutlet var HighestPriorityTaskTitleLabel: UILabel!
+    @IBOutlet var OtherTasksCountLabel: UILabel!
+    @IBAction func TapGestureRecognizer(recognizer: UITapGestureRecognizer){
+        self.SetHighestPriorityTaskTitle("Dummy!")
+        self.SetOtherTasksCount(12)
+    }
     
+    
+    func SetHighestPriorityTaskTitle(title: NSString){
+        HighestPriorityTaskTitleLabel.text = title
+        HighestPriorityTaskTitleLabel.textColor = UIColor.redColor()
+    }
+    
+    func SetOtherTasksCount(count: Int){
+        OtherTasksCountLabel.text = "+\(count) other tasks"
+        
+    
+    }
 }
