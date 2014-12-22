@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4079CA21A45DCF200BC333C /* DayLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA11A45DCF200BC333C /* DayLabelViewController.swift */; };
+		D4079CA21A45DCF200BC333C /* DayLabelViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */; };
+		D4079CA81A47BC0400BC333C /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA71A47BC0400BC333C /* RootNavigationController.swift */; };
+		D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA91A47C31100BC333C /* DayLabel.swift */; };
 		D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD771A432E45004F0B83 /* AppDelegate.swift */; };
 		D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */; };
 		D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD7C1A432E45004F0B83 /* MainViewController.swift */; };
@@ -32,7 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D4079CA11A45DCF200BC333C /* DayLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabelViewController.swift; sourceTree = "<group>"; };
+		D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabelViewBlock.swift; sourceTree = "<group>"; };
+		D4079CA71A47BC0400BC333C /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		D4079CA91A47C31100BC333C /* DayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		D408FD721A432E45004F0B83 /* TerpScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerpScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408FD761A432E45004F0B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D408FD771A432E45004F0B83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +104,9 @@
 				D408FD751A432E45004F0B83 /* Supporting Files */,
 				D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */,
 				D497CDD31A44916C006709A3 /* TaskViewController.swift */,
-				D4079CA11A45DCF200BC333C /* DayLabelViewController.swift */,
+				D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */,
+				D4079CA71A47BC0400BC333C /* RootNavigationController.swift */,
+				D4079CA91A47C31100BC333C /* DayLabel.swift */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -232,10 +238,12 @@
 			files = (
 				D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */,
 				D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */,
+				D4079CA81A47BC0400BC333C /* RootNavigationController.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,
-				D4079CA21A45DCF200BC333C /* DayLabelViewController.swift in Sources */,
+				D4079CA21A45DCF200BC333C /* DayLabelViewBlock.swift in Sources */,
 				D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */,
+				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
 				D497CDD41A44916C006709A3 /* TaskViewController.swift in Sources */,
 			);
@@ -362,10 +370,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TerpScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -374,10 +385,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TerpScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
