@@ -30,16 +30,15 @@ class DayLabelViewBlock: UIView {
     convenience init(date: NSDate, schedules: [String]){
         self.init()
         self.ScheduleTypes = schedules
-        SetDates(date)
+        SetDates(date, schedule: ScheduleTypes)
     }
     
-    func SetDates(date : NSDate){
-        println("I have \(self.DayLabels!.count) subviews!")
+    func SetDates(date : NSDate, schedule : [String]){
         var offset = NSDateComponents()
         for (index, day) in enumerate(DayLabels!){
             offset.day = index
             let today = NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: NSCalendarOptions.allZeros)
-            day.SetContents(date: today!, scheduleType: ScheduleTypes[index])
+            day.SetContents(date: today!, scheduleType: schedule[index])
         }
         
     }

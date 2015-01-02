@@ -19,6 +19,7 @@
 		D408FD911A432E45004F0B83 /* TerpSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */; };
 		D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9A1A432EF3004F0B83 /* DailyTask.swift */; };
 		D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */; };
+		D4463B121A571A6F0026E270 /* winter2015.json in Resources */ = {isa = PBXBuildFile; fileRef = D4463B111A571A6F0026E270 /* winter2015.json */; };
 		D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497CDD11A448B6B006709A3 /* WeekViewController.swift */; };
 		D497CDD41A44916C006709A3 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497CDD31A44916C006709A3 /* TaskViewController.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerpSchedulerTests.swift; sourceTree = "<group>"; };
 		D408FD9A1A432EF3004F0B83 /* DailyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTask.swift; sourceTree = "<group>"; };
 		D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPeriodViewController.swift; sourceTree = "<group>"; };
+		D4463B111A571A6F0026E270 /* winter2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = winter2015.json; path = TerpScheduler/winter2015.json; sourceTree = "<group>"; };
 		D497CDD11A448B6B006709A3 /* WeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekViewController.swift; path = ../WeekViewController.swift; sourceTree = "<group>"; };
 		D497CDD31A44916C006709A3 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 		D408FD691A432E45004F0B83 = {
 			isa = PBXGroup;
 			children = (
+				D4463B111A571A6F0026E270 /* winter2015.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
 				D408FD8D1A432E45004F0B83 /* TerpSchedulerTests */,
 				D408FD731A432E45004F0B83 /* Products */,
@@ -216,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4463B121A571A6F0026E270 /* winter2015.json in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D408FD851A432E45004F0B83 /* LaunchScreen.xib in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,

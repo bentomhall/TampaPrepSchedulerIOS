@@ -35,15 +35,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTI-Qq-zW6">
-                                <rect key="frame" x="0.0" y="64" width="600" height="588"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="156" y="72" width="432" height="708"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="UbB-Lp-gRN" kind="embed" id="Nh8-g7-548"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcj-Bu-Weu">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
@@ -53,8 +44,18 @@
                                     <segue destination="kRo-nJ-iml" kind="embed" id="8ew-Fy-LdU"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTI-Qq-zW6">
+                                <rect key="frame" x="0.0" y="64" width="600" height="588"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="156" y="72" width="432" height="708"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="UbB-Lp-gRN" kind="embed" id="Nh8-g7-548"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="fcj-Bu-Weu"/>
@@ -65,10 +66,18 @@
                                 <include reference="fcj-Bu-Weu"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="d24-Dx-DUD" appends="YES" id="NC2-gV-HSr"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="I6m-aZ-4Pt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13h-R3-u7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="d24-Dx-DUD">
+                    <connections>
+                        <action selector="SwipeRecognizer:" destination="aF1-4L-6ib" id="fiM-M1-sNI"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="457" y="-210"/>
         </scene>
