@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
     func SerializeSchedule(schedule: [String])->String{
         return " ".join(schedule)
     }
+
     
     @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
         let direction = recognizer.direction

@@ -22,9 +22,8 @@ class WeekViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate! = UIApplication.sharedApplication().delegate as AppDelegate
-        managedObjectContext! = delegate!.managedObjectContext!
-        //actually, load this based on the week id
+        delegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        managedObjectContext = delegate!.managedObjectContext!
         LoadCurrentWeek()
     }
     
@@ -56,9 +55,10 @@ class WeekViewController: UIViewController
             let today = NSDate()
             weekID = FetchWeekID(today) //focus on current week
         }
-        let firstDay = WeekData.valueForKey("firstWeekDay") as NSDate
-        let scheduleString = WeekData.valueForKey("weekSchedules") as String
-        let scheduleArray = scheduleString.componentsSeparatedByString(" ")
+        //let firstDay = WeekData.valueForKey("firstWeekDay") as NSDate
+        //let scheduleString = WeekData.valueForKey("weekSchedules") as String
+        let firstDay = NSDate()
+        let scheduleArray = ["A", "B", "C", "D", "E"]//scheduleString.componentsSeparatedByString(" ")
         DayLabelBlock!.SetDates(firstDay, schedule: scheduleArray)
         return
     }
