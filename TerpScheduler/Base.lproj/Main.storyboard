@@ -35,15 +35,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcj-Bu-Weu">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="8" y="72" width="140" height="708"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="kRo-nJ-iml" kind="embed" id="8ew-Fy-LdU"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTI-Qq-zW6">
                                 <rect key="frame" x="0.0" y="64" width="600" height="588"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
@@ -53,17 +44,529 @@
                                     <segue destination="UbB-Lp-gRN" kind="embed" id="Nh8-g7-548"/>
                                 </connections>
                             </containerView>
+                            <view tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-0t-jrl" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsJ-Dr-Jq3">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHw-s3-v5y">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4I-Zu-6do">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SIh-hl-ahe">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="lsJ-Dr-Jq3"/>
+                                        <exclude reference="hHw-s3-v5y"/>
+                                        <exclude reference="d4I-Zu-6do"/>
+                                        <exclude reference="SIh-hl-ahe"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="691" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="lsJ-Dr-Jq3"/>
+                                        <include reference="hHw-s3-v5y"/>
+                                        <include reference="d4I-Zu-6do"/>
+                                        <include reference="SIh-hl-ahe"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="SIh-hl-ahe" id="zAG-tU-wCu"/>
+                                    <outlet property="ClassPeriodLabel" destination="lsJ-Dr-Jq3" id="cez-d7-PSU"/>
+                                    <outlet property="TeacherNameLabel" destination="d4I-Zu-6do" id="GIz-vO-n1d"/>
+                                </connections>
+                            </view>
+                            <view tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xuj-Sf-lOy" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVB-pO-igO">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k91-ea-36r">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xgO-wW-Hp5">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05o-8u-mt8">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="RVB-pO-igO"/>
+                                        <exclude reference="k91-ea-36r"/>
+                                        <exclude reference="xgO-wW-Hp5"/>
+                                        <exclude reference="05o-8u-mt8"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="602" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="RVB-pO-igO"/>
+                                        <include reference="k91-ea-36r"/>
+                                        <include reference="xgO-wW-Hp5"/>
+                                        <include reference="05o-8u-mt8"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="05o-8u-mt8" id="Vxj-FB-RgH"/>
+                                    <outlet property="ClassPeriodLabel" destination="RVB-pO-igO" id="sfI-fm-8y9"/>
+                                    <outlet property="TeacherNameLabel" destination="xgO-wW-Hp5" id="gKu-Uh-fpv"/>
+                                </connections>
+                            </view>
+                            <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGU-zr-1aa" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5H-Vg-Ey4">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWW-dY-ofr">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3e-L3-XWg">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfq-D2-7Bi">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="t5H-Vg-Ey4"/>
+                                        <exclude reference="xWW-dY-ofr"/>
+                                        <exclude reference="U3e-L3-XWg"/>
+                                        <exclude reference="qfq-D2-7Bi"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="514" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="t5H-Vg-Ey4"/>
+                                        <include reference="xWW-dY-ofr"/>
+                                        <include reference="U3e-L3-XWg"/>
+                                        <include reference="qfq-D2-7Bi"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="U3e-L3-XWg" id="9K6-TH-ibw"/>
+                                    <outlet property="ClassPeriodLabel" destination="t5H-Vg-Ey4" id="SAC-6D-7w3"/>
+                                    <outlet property="TeacherNameLabel" destination="qfq-D2-7Bi" id="SVg-Ov-7TE"/>
+                                </connections>
+                            </view>
+                            <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSM-0z-KnO" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgF-MJ-St1">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyl-TD-mbS">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DVT-o8-eY1">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-ga-yDT">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="qgF-MJ-St1"/>
+                                        <exclude reference="pyl-TD-mbS"/>
+                                        <exclude reference="DVT-o8-eY1"/>
+                                        <exclude reference="cIg-ga-yDT"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="424" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="qgF-MJ-St1"/>
+                                        <include reference="pyl-TD-mbS"/>
+                                        <include reference="DVT-o8-eY1"/>
+                                        <include reference="cIg-ga-yDT"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="cIg-ga-yDT" id="I4G-Ct-I5n"/>
+                                    <outlet property="ClassPeriodLabel" destination="qgF-MJ-St1" id="RD9-Dl-2ZT"/>
+                                    <outlet property="TeacherNameLabel" destination="DVT-o8-eY1" id="a00-2U-HBc"/>
+                                </connections>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oku-SF-JNv" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ2-qc-9AL">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZf-FE-JIr">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRo-1V-hYL">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8M-Oo-3PO">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="ZJ2-qc-9AL"/>
+                                        <exclude reference="yZf-FE-JIr"/>
+                                        <exclude reference="LRo-1V-hYL"/>
+                                        <exclude reference="U8M-Oo-3PO"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="246" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="ZJ2-qc-9AL"/>
+                                        <include reference="yZf-FE-JIr"/>
+                                        <include reference="LRo-1V-hYL"/>
+                                        <include reference="U8M-Oo-3PO"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="LRo-1V-hYL" id="Cl2-K6-Wcm"/>
+                                    <outlet property="ClassPeriodLabel" destination="ZJ2-qc-9AL" id="KkV-Ox-q7p"/>
+                                    <outlet property="TeacherNameLabel" destination="U8M-Oo-3PO" id="QWI-dI-NiR"/>
+                                    <outletCollection property="gestureRecognizers" destination="YFz-FE-Wct" appends="YES" id="Xkn-1P-mHE"/>
+                                </connections>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hg8-P4-7mD" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xih-eS-Qs5">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-Rz-z1s">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qT4-iE-1eF">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="571-HA-M9k">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="xih-eS-Qs5"/>
+                                        <exclude reference="aeP-Rz-z1s"/>
+                                        <exclude reference="qT4-iE-1eF"/>
+                                        <exclude reference="571-HA-M9k"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="157" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="xih-eS-Qs5"/>
+                                        <include reference="aeP-Rz-z1s"/>
+                                        <include reference="qT4-iE-1eF"/>
+                                        <include reference="571-HA-M9k"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="571-HA-M9k" id="CsL-l2-iho"/>
+                                    <outlet property="ClassPeriodLabel" destination="xih-eS-Qs5" id="Tnh-rS-4Bm"/>
+                                    <outlet property="TeacherNameLabel" destination="qT4-iE-1eF" id="7ZH-l7-pYa"/>
+                                    <outletCollection property="gestureRecognizers" destination="JXY-tT-gYz" appends="YES" id="vnp-jC-6Fs"/>
+                                </connections>
+                            </view>
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zuj-7d-wqL" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yV9-gL-Wse">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="90" y="8" width="42" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Period:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1G-Vx-r4q">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="64" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xrp-qP-OfJ">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="59" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTv-ka-drU">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="30" width="124" height="21"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="yV9-gL-Wse"/>
+                                        <exclude reference="l1G-Vx-r4q"/>
+                                        <exclude reference="xrp-qP-OfJ"/>
+                                        <exclude reference="aTv-ka-drU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="8" y="335" width="140" height="81"/>
+                                    <mask key="subviews">
+                                        <include reference="yV9-gL-Wse"/>
+                                        <include reference="l1G-Vx-r4q"/>
+                                        <include reference="xrp-qP-OfJ"/>
+                                        <include reference="aTv-ka-drU"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="LRo-1V-hYL" id="uHI-oQ-nXI"/>
+                                    <outlet property="ClassPeriodLabel" destination="yV9-gL-Wse" id="OGk-aP-bib"/>
+                                    <outlet property="TeacherNameLabel" destination="xrp-qP-OfJ" id="2wj-Ty-I42"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="fcj-Bu-Weu"/>
+                                <exclude reference="mnh-0t-jrl"/>
+                                <exclude reference="Xuj-Sf-lOy"/>
+                                <exclude reference="NGU-zr-1aa"/>
+                                <exclude reference="kSM-0z-KnO"/>
+                                <exclude reference="oku-SF-JNv"/>
+                                <exclude reference="hg8-P4-7mD"/>
+                                <exclude reference="Zuj-7d-wqL"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="fcj-Bu-Weu"/>
+                                <include reference="mnh-0t-jrl"/>
+                                <include reference="Xuj-Sf-lOy"/>
+                                <include reference="NGU-zr-1aa"/>
+                                <include reference="kSM-0z-KnO"/>
+                                <include reference="oku-SF-JNv"/>
+                                <include reference="hg8-P4-7mD"/>
+                                <include reference="Zuj-7d-wqL"/>
                             </mask>
                         </variation>
                         <connections>
@@ -71,13 +574,32 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="I6m-aZ-4Pt"/>
+                    <connections>
+                        <outletCollection property="SchoolClassPeriodViews" destination="hg8-P4-7mD" collectionClass="NSMutableArray" id="JwY-Hk-Klf"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="oku-SF-JNv" collectionClass="NSMutableArray" id="ukI-Bc-lLs"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="Zuj-7d-wqL" collectionClass="NSMutableArray" id="X0h-sk-Qzr"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="kSM-0z-KnO" collectionClass="NSMutableArray" id="NUm-eW-4FI"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="NGU-zr-1aa" collectionClass="NSMutableArray" id="YbV-iz-i6M"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="Xuj-Sf-lOy" collectionClass="NSMutableArray" id="LKc-29-J8Z"/>
+                        <outletCollection property="SchoolClassPeriodViews" destination="mnh-0t-jrl" collectionClass="NSMutableArray" id="KGd-Pq-kMh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13h-R3-u7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="d24-Dx-DUD">
                     <connections>
-                        <action selector="SwipeRecognizer:" destination="aF1-4L-6ib" id="fiM-M1-sNI"/>
+                        <action selector="SwipeRecognizer:" destination="13h-R3-u7O" id="bwU-h3-cQa"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer id="JXY-tT-gYz">
+                    <connections>
+                        <action selector="TapGestureHandler:" destination="hg8-P4-7mD" id="yQQ-8B-nHL"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="YFz-FE-Wct">
+                    <connections>
+                        <action selector="TapGestureHandler:" destination="oku-SF-JNv" id="8lU-Dd-wL3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="457" y="-210"/>
         </scene>
@@ -93,6 +615,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="588"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia9-vb-QHt">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="85" width="432" height="623"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="IZA-BS-WJm" kind="embed" id="dYn-cy-r7C"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2R3-z4-VPX" customClass="DayLabelViewBlock" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
@@ -330,27 +861,18 @@
                                     <outletCollection property="DayLabels" destination="CVe-Ks-xTu" collectionClass="NSMutableArray" id="DEK-wl-Ib7"/>
                                 </connections>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia9-vb-QHt">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="85" width="432" height="623"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="IZA-BS-WJm" kind="embed" id="dYn-cy-r7C"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="2R3-z4-VPX"/>
                                 <exclude reference="ia9-vb-QHt"/>
+                                <exclude reference="2R3-z4-VPX"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="2R3-z4-VPX"/>
                                 <include reference="ia9-vb-QHt"/>
+                                <include reference="2R3-z4-VPX"/>
                             </mask>
                         </variation>
                     </view>
@@ -386,111 +908,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-        </scene>
-        <!--Class Period View Controller-->
-        <scene sceneID="u4R-WO-0t3">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kRo-nJ-iml" customClass="ClassPeriodViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2mp-JT-u4j"/>
-                        <viewControllerLayoutGuide type="bottom" id="5oD-Bk-apd"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="feg-52-rCy">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dC-HB-iZW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="140" height="77"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnh-0t-jrl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="619" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2E-Du-Mnq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="530" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-Kb-8hq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="441" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ri3-qg-Ms2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="352" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V6V-to-ev6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="263" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="meu-Kz-3ms">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="174" width="140" height="81"/>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSF-zW-8aD">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="85" width="140" height="81"/>
-                                </variation>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Ai7-7a-HCN" appends="YES" id="8R5-le-FRE"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="7dC-HB-iZW"/>
-                                <exclude reference="mnh-0t-jrl"/>
-                                <exclude reference="B2E-Du-Mnq"/>
-                                <exclude reference="lO8-Kb-8hq"/>
-                                <exclude reference="Ri3-qg-Ms2"/>
-                                <exclude reference="V6V-to-ev6"/>
-                                <exclude reference="meu-Kz-3ms"/>
-                                <exclude reference="xSF-zW-8aD"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular">
-                            <mask key="subviews">
-                                <include reference="7dC-HB-iZW"/>
-                                <include reference="mnh-0t-jrl"/>
-                                <include reference="B2E-Du-Mnq"/>
-                                <include reference="lO8-Kb-8hq"/>
-                                <include reference="Ri3-qg-Ms2"/>
-                                <include reference="V6V-to-ev6"/>
-                                <include reference="meu-Kz-3ms"/>
-                                <include reference="xSF-zW-8aD"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <toolbarItems/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fM9-Uy-sIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Ai7-7a-HCN"/>
-            </objects>
+            <point key="canvasLocation" x="-134" y="149.25"/>
         </scene>
         <!--Task View Controller-->
         <scene sceneID="ohf-6F-86K">

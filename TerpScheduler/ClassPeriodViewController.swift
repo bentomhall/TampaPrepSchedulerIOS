@@ -8,27 +8,11 @@
 
 import UIKit
 
-//@IBDesignable
 class ClassPeriodViewController: UIViewController {
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    var ClassPeriodViews : [SchoolClassView] = []
     
-    @IBOutlet var TeacherLabel: UILabel?
-    @IBOutlet var PeriodLabel: UILabel?
-    @IBOutlet var ClassName: UILabel?
-    
-    @IBAction func TapRecognizer(recognizer: UIGestureRecognizer){
-        self.TeacherLabel?.text = "Test Teacher"
-        return
+    override func viewDidLoad() {
+        
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
