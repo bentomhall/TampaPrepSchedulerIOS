@@ -16,7 +16,7 @@ class WeekViewController: UIViewController
     @IBOutlet weak var DayLabelBlock: DayLabelViewBlock?
     
     var weekID: Int = -1
-    var WeekData = NSManagedObject()
+    var WeekData : NSManagedObject?
     var delegate : AppDelegate?
     var managedObjectContext : NSManagedObjectContext?
     
@@ -55,11 +55,20 @@ class WeekViewController: UIViewController
             let today = NSDate()
             weekID = FetchWeekID(today) //focus on current week
         }
-        //let firstDay = WeekData.valueForKey("firstWeekDay") as NSDate
-        //let scheduleString = WeekData.valueForKey("weekSchedules") as String
-        let firstDay = NSDate()
-        let scheduleArray = ["A", "B", "C", "D", "E"]//scheduleString.componentsSeparatedByString(" ")
-        DayLabelBlock!.SetDates(firstDay, schedule: scheduleArray)
+        var fetchRequest = NSFetchRequest(entityName: "Week")
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
+        var error : NSError?
+        if let results = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject]{
+            WeekData = results[0]
+            let firstDayString = WeekData!.valueForKey("firstWeekDay") as String
+            let scheduleString = WeekData!.valueForKey("weekSchedules") as String
+            let scheduleArray = scheduleString.componentsSeparatedByString(" ")
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "M/dd/yyyy"
+            let firstDay = dateFormatter.dateFromString(firstDayString)
+            DayLabelBlock!.SetDates(firstDay!, schedule: scheduleArray)
+        }
         return
     }
     

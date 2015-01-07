@@ -14,20 +14,7 @@ class SchoolClassView: UIView {
     @IBOutlet var ClassPeriodLabel : UILabel?
     @IBOutlet var ClassNameLabel : UILabel?
     @IBOutlet var TeacherNameLabel : UILabel?
-    @IBAction func TapGestureHandler(recognizer: UITapGestureRecognizer){
-        if isScheduleSet {
-            UIApplication.sharedApplication().openURL(HaikuURL!)
-        }
-        else {
-            ClassPeriodLabel!.text! = "1"
-            ClassNameLabel!.text! = "Test Class"
-            TeacherNameLabel!.text! = "Test Teacher"
-            HaikuURL = NSURL(string: "http://www.google.com")
-            isScheduleSet = true
-        }
-        //dummy
-        return
-    }
+
     
     var isScheduleSet: Bool = false
     var HaikuURL : NSURL?

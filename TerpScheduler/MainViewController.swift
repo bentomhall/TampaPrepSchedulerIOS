@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Tampa Preparatory School. All rights reserved.
 //
 import CoreData
+import Foundation
 import UIKit
 
 class MainViewController: UIViewController {
@@ -22,6 +23,7 @@ class MainViewController: UIViewController {
         delegate = UIApplication.sharedApplication().delegate as? AppDelegate
         context = delegate!.managedObjectContext
         WeekController = self.childViewControllers[0] as? WeekViewController
+        //SemesterScheduleLoader(context: context!, withJSONFile: "winter2015.json")
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,8 +31,18 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
+    @IBAction func TapGestureHandler(recognizer: UITapGestureRecognizer){
+        let location = recognizer.locationInView(self.view)
+        for subview in self.view.subviews {
+            if subview.frame.contains(location) {
+                println("Hit Object at \(location.x), \(location.y)")
+                performSegueWithIdentifier("ClassesDetailPopup", sender: subview)
+            }
+            
+        }
+        //dummy
+        return
+    }
     
     @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
         let direction = recognizer.direction
