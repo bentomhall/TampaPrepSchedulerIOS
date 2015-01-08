@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         delegate = UIApplication.sharedApplication().delegate as? AppDelegate
         context = delegate!.managedObjectContext
         WeekController = self.childViewControllers[0] as? WeekViewController
-        //SemesterScheduleLoader(context: context!, withJSONFile: "winter2015.json")
+        
     }
 
     override func didReceiveMemoryWarning() {

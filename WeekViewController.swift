@@ -19,12 +19,16 @@ class WeekViewController: UIViewController
     var WeekData : NSManagedObject?
     var delegate : AppDelegate?
     var managedObjectContext : NSManagedObjectContext?
+    var childrenTableViewControllers : [DailyTasksTableViewController] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = UIApplication.sharedApplication().delegate as? AppDelegate
         managedObjectContext = delegate!.managedObjectContext!
         LoadCurrentWeek()
+        childrenTableViewControllers = self.childViewControllers as [DailyTasksTableViewController]
     }
     
     func FetchWeekID(today: NSDate) ->Int {

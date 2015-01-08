@@ -22,11 +22,6 @@ class DayLabel: UIView {
 
     @IBOutlet var DateLabel: UILabel?
     @IBOutlet var ScheduleLabel: UILabel?
-    @IBAction func TapGestureHandler(recognizer: UITapGestureRecognizer){
-        //let today = NSDate()
-        //SetContents(date: today, scheduleType: "A")
-        return
-    }
     
     func SetContents(date day: NSDate, scheduleType: String){
         var formatter = NSDateFormatter()

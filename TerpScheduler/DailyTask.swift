@@ -11,11 +11,12 @@ import CoreData
 
 class DailyTask: NSManagedObject {
 
-    @NSManaged var due: NSDate
+    @NSManaged var due: String
     @NSManaged var classPeriod: NSNumber
     @NSManaged var shortTitle: String
     @NSManaged var details: String
     @NSManaged var isHaikuAssignment: NSNumber
     @NSManaged var isCompleted: NSNumber
+    @NSManaged var priority: NSNumber
 
 }
