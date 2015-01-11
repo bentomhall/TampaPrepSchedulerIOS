@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
 
     var delegate : AppDelegate?
     var context : NSManagedObjectContext?
-    weak var WeekController : WeekViewController?
+    weak var dataSource = TaskCollectionDataSource()
     
     @IBOutlet var SchoolClassPeriodViews: [SchoolClassView]?
     

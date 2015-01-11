@@ -26,30 +26,35 @@ class SemesterScheduleLoader{
             }
     }
     
-    func LoadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]{
+    func LoadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
         var error: NSError?
-        let pathName = NSBundle.mainBundle().pathsForResourcesOfType("json", inDirectory: nil)[0] as String
-        let data = NSData(contentsOfFile: pathName)
-        let jsonData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
-        var weeks = [] as [NSManagedObject]
-        for (key, value) in jsonData {
-            let weekLabel = key as String
-            let weekInformation = value as NSArray
-            let weekSchedule = weekInformation[0] as [String]
+        //let pathName = NSBundle.mainBundle().pathsForResourcesOfType("json", inDirectory: nil)[0] as String
+        //let data = NSData(contentsOfFile: pathName)
+        if let path = NSBundle.mainBundle().pathForResource(jsonFileName, ofType: "json"){
+            let data = NSData(contentsOfFile: path, options: NSDataReadingOptions.allZeros, error: &error)
+            let jsonData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+            var weeks = [] as [NSManagedObject]
+            for (key, value) in jsonData {
+                let weekLabel = key as String
+                let weekInformation = value as NSArray
+                let weekSchedule = weekInformation[0] as [String]
+                
+                let firstDay = weekInformation[1] as String
+                
+                let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
+                
+                var managedWeek = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
+                managedWeek.setValue(weekLabel.toInt(), forKey: "weekID")
+                managedWeek.setValue(SerializeSchedule(weekSchedule), forKey: "weekSchedules")
+                managedWeek.setValue(firstDay, forKey: "firstWeekDay")
+                weeks.append(managedWeek)
+            }
             
-            let firstDay = weekInformation[1] as String
-            
-            let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
-            
-            var managedWeek = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
-            managedWeek.setValue(weekLabel.toInt(), forKey: "weekID")
-            managedWeek.setValue(SerializeSchedule(weekSchedule), forKey: "weekSchedules")
-            managedWeek.setValue(firstDay, forKey: "firstWeekDay")
-            weeks.append(managedWeek)
+            return weeks
         }
-        
-        return weeks
-        
+        else{
+            return nil
+        }
     }
 
     

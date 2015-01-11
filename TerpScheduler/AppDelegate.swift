@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         if let context = managedObjectContext{
-            SemesterScheduleLoader(context: context, withJSONFile: "winter2015.json")
+            SemesterScheduleLoader(context: context, withJSONFile: "winter2015")
         }
         return true
     }
