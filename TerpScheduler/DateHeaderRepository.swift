@@ -64,16 +64,14 @@ class DateHeaderRepository: NSObject {
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
         var error : NSError?
-        if let results = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject]{
+        if let results = managedContext.executeFetchRequest(fetchRequest, error: nil) as? [WeekModel]{
             var weekData = results[0]
-            let firstDayString = weekData.valueForKey("firstWeekDay") as String
-            let scheduleString = weekData.valueForKey("weekSchedules") as String
+            let firstDay = weekData.firstWeekDay
+            let scheduleString = weekData.weekSchedules
             let scheduleArray = scheduleString.componentsSeparatedByString(" ")
             var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "M/dd/yyyy"
-            let firstDate = dateFormatter.dateFromString(firstDayString)!
             for (index, schedule) in enumerate(scheduleArray) {
-                let date = GetDateByOffset(firstDate, byOffset: index)
+                let date = GetDateByOffset(firstDay, byOffset: index)
                 dates.append(SchoolDate(Date: date, Schedule: schedule))
             }
         }

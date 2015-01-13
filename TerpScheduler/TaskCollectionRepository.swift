@@ -37,40 +37,32 @@ class TaskCollectionRepository: NSObject {
     }
     
     func taskSummariesForDateAndPeriod(date: NSDate, period: Int) -> TaskSummaryData?{
-        //hack
-        if true {
-            return TaskSummaryData(shortTitle: "No Tasks!", remainingTasks: 0, priority: Priorities.Completed)
-        }
-        else {
-            var answer : TaskSummaryData?
-            var error : NSError?
-            var fetchRequest = NSFetchRequest(entityName: "DailyTask")
-            var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "m/dd/yyyy"
-            let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
-            fetchRequest.sortDescriptors = [sortByPriority]
-            let datePredicate = NSPredicate(format: "date = %@", dateFormatter.stringFromDate(date))
-            let periodPredicate = NSPredicate(format: "classPeriod.classPeriod = %i", period)
-            fetchRequest.predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [datePredicate!, periodPredicate!])
-            if let result = context.executeFetchRequest(fetchRequest, error: &error){
-                if error != nil {
-                    NSLog("Error was: %@", error!)
-                }
-                if result.count == 0{
-                    answer = TaskSummaryData(shortTitle: "No Tasks!", remainingTasks: 0, priority: Priorities.Completed)
-                }
-                else {
-                    let topPriorityItem = result[0] as DailyTask
-                    let remaining = result.count - 1
-                    let shortTitle = topPriorityItem.shortTitle
-                    let priority = Priorities(rawValue: Int(topPriorityItem.priority))
-                    answer = TaskSummaryData(shortTitle: shortTitle, remainingTasks: remaining, priority: priority!)
-                }
-            } else {
-                answer = nil
+        var answer : TaskSummaryData?
+        var error : NSError?
+        var fetchRequest = NSFetchRequest(entityName: "TaskSummary")
+        let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
+        fetchRequest.sortDescriptors = [sortByPriority]
+        let datePredicate = NSPredicate(format: "dateDue = %@", date)
+        let periodPredicate = NSPredicate(format: "forPeriod = %i", period)
+        fetchRequest.predicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [datePredicate!, periodPredicate!])
+        if let result = context.executeFetchRequest(fetchRequest, error: &error) as? [TaskSummaryModel]{
+            if error != nil {
+                NSLog("Error was: %@", error!)
             }
-            return answer
+            if result.count == 0{
+                answer = TaskSummaryData(shortTitle: "No Tasks!", remainingTasks: 0, priority: Priorities.Completed)
+            }
+            else {
+                let model = result[0]
+                let shortTitle = model.shortTitle
+                let remaining = Int(model.remainingTasks)
+                let priority = Priorities(rawValue: Int(model.priority))
+                answer = TaskSummaryData(shortTitle: shortTitle, remainingTasks: remaining, priority: priority!)
+            }
+        } else {
+            answer = nil
         }
+        return answer
     }
     
 }

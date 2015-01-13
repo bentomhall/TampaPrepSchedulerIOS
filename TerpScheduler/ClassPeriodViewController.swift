@@ -9,10 +9,14 @@
 import UIKit
 
 class ClassPeriodViewController: UIViewController {
-    var ClassPeriodViews : [SchoolClassView] = []
+    var classData : ClassPeriodData?
     
     override func viewDidLoad() {
         
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let classView = sender as? SchoolClassView{
+        }
+    }
 }

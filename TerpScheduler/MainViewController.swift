@@ -22,6 +22,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
     
     var taskRepository: TaskCollectionRepository?
     var dateRepository: DateHeaderRepository?
+    var classRepository: SchoolClassesRepository?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         context = delegate!.managedObjectContext
         taskRepository = TaskCollectionRepository(context: context!)
         dateRepository = DateHeaderRepository(context: context!)
+        classRepository = SchoolClassesRepository(context: context!)
         taskSummaries = taskRepository!.taskSummariesForDates(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        for (index, period) in enumerate(classPeriods!){
+            let classData = classRepository!.GetClassDataByPeriod(index)
+            period.classData = classData
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,8 +74,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         let location = recognizer.locationInView(self.view)
         for subview in self.view.subviews {
             if subview.frame.contains(location) {
-                println("Hit Object at \(location.x), \(location.y)")
-                performSegueWithIdentifier("ClassesDetailPopup", sender: subview)
+                NSLog("Hit Object at %f, %f", [location.x, location.y])
+                performSegueWithIdentifier("ClassDetailPopup", sender: subview)
             }
             
         }

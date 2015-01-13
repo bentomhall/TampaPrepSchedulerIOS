@@ -14,20 +14,24 @@ class SchoolClassView: UIView {
     @IBOutlet var ClassPeriodLabel : UILabel?
     @IBOutlet var ClassNameLabel : UILabel?
     @IBOutlet var TeacherNameLabel : UILabel?
+    var _classData : ClassPeriodData?
+    var classData : ClassPeriodData {
+        get { return _classData! }
+        set(data) {
+            _classData = data
+            SetContentLabels(data)
+        }
+    }
 
     
     var isScheduleSet: Bool = false
     var HaikuURL : NSURL?
     
-    func SetContentLabels(model: SchoolClassesModel){
-        ClassPeriodLabel!.text! = String(model.ClassPeriod)
-        ClassNameLabel!.text! = model.Subject
-        TeacherNameLabel!.text! = model.TeacherName
-        let url = model.HaikuURL
-        if url != "" {
-            HaikuURL = NSURL(string: url)
-        }
-        
+    func SetContentLabels(data: ClassPeriodData){
+        //ClassPeriodLabel!.text! = String(model.ClassPeriod)
+        ClassNameLabel!.text! = data.Subject
+        TeacherNameLabel!.text! = data.TeacherName
+        HaikuURL = data.HaikuURL
     }
     
     /*

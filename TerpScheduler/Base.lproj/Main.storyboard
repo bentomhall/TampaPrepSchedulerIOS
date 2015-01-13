@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xt1-N6-vps">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aF1-4L-6ib">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Root Navigation Controller-->
-        <scene sceneID="QK9-cC-7zf">
-            <objects>
-                <navigationController id="Xt1-N6-vps" customClass="RootNavigationController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gy3-rR-m7r">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="F1s-Y8-8FY">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="aF1-4L-6ib" kind="relationship" relationship="rootViewController" id="xEh-TO-a6M"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgf-hd-AK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-241" y="-214"/>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="HvU-h8-WgQ">
             <objects>
@@ -53,15 +34,26 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="0.0" y="8" width="120" height="21"/>
+                                            <rect key="frame" x="0.0" y="29" width="120" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN3-PT-N1l">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="39" y="8" width="42" height="21"/>
                                         </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="Ofc-mY-DxT"/>
                                         <exclude reference="yuG-GP-GqX"/>
+                                        <exclude reference="aN3-PT-N1l"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -69,8 +61,14 @@
                                     <mask key="subviews">
                                         <include reference="Ofc-mY-DxT"/>
                                         <include reference="yuG-GP-GqX"/>
+                                        <include reference="aN3-PT-N1l"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="yuG-GP-GqX" id="cR7-8x-x1u"/>
+                                    <outlet property="TeacherNameLabel" destination="Ofc-mY-DxT" id="Z8p-29-Kgu"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="SUr-zX-DaX"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QQ-OE-Yn3" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -95,6 +93,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="hGm-EV-Rye"/>
@@ -108,6 +107,11 @@
                                         <include reference="tiD-nT-SOF"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="tiD-nT-SOF" id="vyN-FE-rsU"/>
+                                    <outlet property="TeacherNameLabel" destination="hGm-EV-Rye" id="Xt1-jA-KR8"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="8HX-Jv-b4E"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biv-TM-Zsf" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -132,6 +136,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="Vzt-YK-Ub5"/>
@@ -145,6 +150,11 @@
                                         <include reference="JBu-Ri-1uJ"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="JBu-Ri-1uJ" id="Irl-bC-ibI"/>
+                                    <outlet property="TeacherNameLabel" destination="Vzt-YK-Ub5" id="Hb2-Ux-DbO"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="NDZ-1p-ujk"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psg-Ze-mng" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -169,6 +179,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="UaO-Lq-rAf"/>
@@ -182,6 +193,11 @@
                                         <include reference="kMv-HC-rNu"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="lm2-lP-jSK"/>
+                                    <outlet property="TeacherNameLabel" destination="UaO-Lq-rAf" id="tqv-Oc-gDt"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="IQh-gA-Nh0"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuC-rf-4yo" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -206,6 +222,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="ZLd-3o-FaU"/>
@@ -219,6 +236,11 @@
                                         <include reference="Jo0-WK-rH7"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="yaQ-7U-DiB"/>
+                                    <outlet property="TeacherNameLabel" destination="ZLd-3o-FaU" id="9sk-fG-kLs"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="VPy-PE-sJQ"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeQ-6S-9El" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -243,6 +265,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="9Up-Ck-3Dm"/>
@@ -256,6 +279,11 @@
                                         <include reference="Xdm-zZ-vXU"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="Xdm-zZ-vXU" id="VQh-o1-ICF"/>
+                                    <outlet property="TeacherNameLabel" destination="9Up-Ck-3Dm" id="bay-9Z-uu7"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="rUh-6Q-oRC"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBd-2P-ddL" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -280,6 +308,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="Qd7-82-5ce"/>
@@ -293,6 +322,11 @@
                                         <include reference="hMq-Yk-muL"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="ClassNameLabel" destination="hMq-Yk-muL" id="EQo-RD-7pQ"/>
+                                    <outlet property="TeacherNameLabel" destination="Qd7-82-5ce" id="j9Q-xz-nxV"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="r6J-iR-ovn"/>
+                                </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="map-jt-s0O">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -326,7 +360,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="14" y="8" width="112" height="45"/>
+                                                        <rect key="frame" x="8" y="8" width="112" height="45"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -347,7 +381,6 @@
                                         <connections>
                                             <outlet property="RemainingTasksLabel" destination="vSY-r5-YuX" id="mxy-1N-AaP"/>
                                             <outlet property="TopTaskLabel" destination="EsW-zz-BvF" id="pMP-yb-rmd"/>
-                                            <segue destination="aOo-lv-eTq" kind="show" id="Xce-F4-uhc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -672,7 +705,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="I6m-aZ-4Pt"/>
                     <connections>
                         <outlet property="collectionView" destination="map-jt-s0O" id="r1b-TT-kWd"/>
                         <outletCollection property="classPeriods" destination="6RZ-mE-XAJ" collectionClass="NSMutableArray" id="yoH-Kk-pAB"/>
@@ -685,100 +717,35 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13h-R3-u7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="m2n-0U-Bdk">
+                    <connections>
+                        <segue destination="UOb-T5-8sr" kind="popoverPresentation" identifier="ClassDetailPopup" popoverAnchorView="psg-Ze-mng" id="dXH-AO-kJH">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                            <popoverPassthroughViews>
+                                <collectionView reference="map-jt-s0O"/>
+                            </popoverPassthroughViews>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="435" y="-199.5"/>
+            <point key="canvasLocation" x="424.5" y="-214.5"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="uFH-c4-hTV">
+        <scene sceneID="CdD-ZS-ygX">
             <objects>
-                <viewController id="gbY-ZK-Q7O" sceneMemberID="viewController">
+                <viewController id="UOb-T5-8sr" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bxR-tO-EtO"/>
-                        <viewControllerLayoutGuide type="bottom" id="873-Jd-GNR"/>
+                        <viewControllerLayoutGuide type="top" id="mjr-M7-GLn"/>
+                        <viewControllerLayoutGuide type="bottom" id="5fw-vb-05T"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B2h-GU-JUE">
+                    <view key="view" contentMode="scaleToFill" id="ZFu-hj-1yx">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0s0-0j-ebD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="txa-8B-Oyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1630.5" y="-155.25"/>
-        </scene>
-        <!--Root View Controller-->
-        <scene sceneID="N9r-zm-dhi">
-            <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="o99-Sh-0Xc" customClass="DailyTasksTableViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VAQ-Qe-iQx">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskDetail" textLabel="kpJ-Tn-uos" detailTextLabel="2QM-Zu-QWK" style="IBUITableViewCellStyleSubtitle" id="gTP-0M-N3p">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gTP-0M-N3p" id="pAk-Aj-Ain">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kpJ-Tn-uos">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2QM-Zu-QWK">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=regular">
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            </variation>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="o99-Sh-0Xc" id="cSL-Zr-yrz"/>
-                            <outlet property="delegate" destination="o99-Sh-0Xc" id="e5t-uh-uSO"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="rmY-gV-Evw"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dph-I2-K4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1650" y="-824.25"/>
-        </scene>
-        <!--Tasks-->
-        <scene sceneID="Pjd-fA-z3y">
-            <objects>
-                <navigationController title="Tasks" id="mTa-mz-dSP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z0Y-Gh-K4E">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="o99-Sh-0Xc" kind="relationship" relationship="rootViewController" id="Mty-MR-X6h"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wVp-aG-MLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1306.5" y="-837.75"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="CYT-vW-UdN">
-            <objects>
-                <splitViewController id="aOo-lv-eTq" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="mTa-mz-dSP" kind="relationship" relationship="masterViewController" id="Ccd-DY-ITQ"/>
-                        <segue destination="gbY-ZK-Q7O" kind="relationship" relationship="detailViewController" id="GDj-Nv-OTM"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="etc-w6-QFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1177.5" y="-433.5"/>
+            <point key="canvasLocation" x="1195.5" y="-246"/>
         </scene>
     </scenes>
 </document>

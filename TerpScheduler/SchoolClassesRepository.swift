@@ -20,21 +20,23 @@ struct ClassPeriodData {
 
 class SchoolClassesRepository: NSObject {
     var managedContext : NSManagedObjectContext
+    let defaultClassPeriod = ClassPeriodData(ClassPeriod: 1, TeacherName: "No Teacher Selected", HaikuURL: nil, IsStudyHall: false, Subject: "No Subject Selected")
+    
     
     init(context: NSManagedObjectContext){
         managedContext = context
     }
     
-    func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData?{
+    func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData{
         let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
-        let predicate = NSPredicate(format: "classPeriod = @i", classPeriod)
+        let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
         fetchRequest.predicate = predicate!
         if let results = managedContext.executeFetchRequest(fetchRequest, error: nil){
             if results.count == 1 {
                 return ExtractClassDataFromModel(results[0] as SchoolClassesModel)
             }
         }
-        return nil
+        return defaultClassPeriod
     }
     
     func ExtractClassDataFromModel(model : SchoolClassesModel)->ClassPeriodData{
