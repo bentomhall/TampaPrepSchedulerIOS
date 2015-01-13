@@ -9,15 +9,12 @@
 import UIKit
 
 @IBDesignable
-class dateHeaderView: UICollectionReusableView {
+class DateHeaderView: UICollectionReusableView {
     @IBOutlet var dayLabels : [DayLabel]?
     
-    func SetDates(date : NSDate, schedule : [String]){
-        var offset = NSDateComponents()
-        for (index, day) in enumerate(dayLabels!){
-            offset.day = index
-            let today = NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: NSCalendarOptions.allZeros)
-            day.SetContents(date: today!, scheduleType: schedule[index])
+    func SetDates(dates : [SchoolDate]){
+        for (index, date) in enumerate(dates) {
+            dayLabels![index].SetContents(date: date.Date, scheduleType: date.Schedule)
         }
     }
 }

@@ -14,12 +14,17 @@ struct SchoolDate {
     var Schedule : String
 }
 
-class DailyTasksCollection: NSObject {
+class DateHeaderRepository: NSObject {
     var managedContext : NSManagedObjectContext
     var allTasks = Dictionary<Int, [DailyTask]>()
     var weekID = -1
     var dates : [SchoolDate] = []
-    
+    var firstDate : NSDate {
+        get { return dates[0].Date }
+    }
+    var lastDate : NSDate {
+        get { return dates[dates.count - 1 ].Date }
+    }
     
     init(context: NSManagedObjectContext){
         managedContext = context

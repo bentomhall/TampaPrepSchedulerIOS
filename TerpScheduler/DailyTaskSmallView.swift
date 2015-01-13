@@ -9,18 +9,18 @@
 import UIKit
 
 @IBDesignable
-class DailyTaskSmallView: UIView {
+class DailyTaskSmallView: UICollectionViewCell {
 
     @IBOutlet var TopTaskLabel : UILabel?
     @IBOutlet var RemainingTasksLabel : UILabel?
     
+    override func prepareForReuse() {
+        TopTaskLabel!.text = ""
+        RemainingTasksLabel!.text = ""
+    }
+    
     func setTopTaskLabel(taskTitle: String){
-        if taskTitle != "" {
-            TopTaskLabel!.text! = taskTitle
-        }
-        else {
-            TopTaskLabel!.text! = "No Tasks!"
-        }
+        TopTaskLabel!.text = taskTitle
     }
     
     func setRemainingTasksLabel(tasksRemaining: Int){
@@ -40,14 +40,5 @@ class DailyTaskSmallView: UIView {
 
     }
     
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-        
-    }
-    */
 
 }

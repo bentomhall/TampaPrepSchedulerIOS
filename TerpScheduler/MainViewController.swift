@@ -9,26 +9,55 @@ import CoreData
 import Foundation
 import UIKit
 
-class MainViewController: UIViewController {
+@IBDesignable
+class MainViewController: UIViewController, UICollectionViewDataSource,
+        UICollectionViewDelegate {
 
     var delegate : AppDelegate?
     var context : NSManagedObjectContext?
-    weak var dataSource = TaskCollectionDataSource()
+    @IBOutlet weak var dataSource : TaskCollectionDataSource?
+    @IBOutlet weak var collectionView : UICollectionView?
+    @IBOutlet var classPeriods : [SchoolClassView]?
+    var taskSummaries : [TaskSummaryData]?
     
-    @IBOutlet var SchoolClassPeriodViews: [SchoolClassView]?
+    var taskRepository: TaskCollectionRepository?
+    var dateRepository: DateHeaderRepository?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         delegate = UIApplication.sharedApplication().delegate as? AppDelegate
         context = delegate!.managedObjectContext
-        WeekController = self.childViewControllers[0] as? WeekViewController
-        
+        taskRepository = TaskCollectionRepository(context: context!)
+        dateRepository = DateHeaderRepository(context: context!)
+        taskSummaries = taskRepository!.taskSummariesForDates(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 35
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
+        let summary = taskSummaries![0]// hack [indexPath.row]
+        cell.setTopTaskLabel(summary.shortTitle)
+        cell.setRemainingTasksLabel(summary.remainingTasks)
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as DateHeaderView
+        header.SetDates(dateRepository!.dates)
+        return header
     }
     
     @IBAction func TapGestureHandler(recognizer: UITapGestureRecognizer){
@@ -50,17 +79,11 @@ class MainViewController: UIViewController {
         {
             case UISwipeGestureRecognizerDirection.Left:
                 break
-                //open side pane
             case UISwipeGestureRecognizerDirection.Right:
                 break
-                //close side pane if open
             case UISwipeGestureRecognizerDirection.Up:
-                //next week
-                WeekController!.LoadNextWeek()
                 break
             case UISwipeGestureRecognizerDirection.Down:
-                //previous week
-                WeekController!.LoadPreviousWeek()
                 break
             default:
                 //do nothing

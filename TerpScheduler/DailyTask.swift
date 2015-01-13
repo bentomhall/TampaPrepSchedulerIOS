@@ -9,6 +9,24 @@
 import Foundation
 import CoreData
 
+enum Priorities: Int {
+    case Highest = 0
+    case High = 1
+    case Medium = 2
+    case Low = 3
+    case Lowest = 4
+    case Completed = 5
+}
+
+struct DailyTaskData {
+    let due : NSDate
+    let shortTitle : String
+    let details : String
+    let isHaikuAssignment : Bool
+    let isCompleted : Bool
+    let priority : Priorities
+}
+
 class DailyTask: NSManagedObject {
 
     @NSManaged var due: String

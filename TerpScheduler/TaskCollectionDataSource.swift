@@ -9,38 +9,43 @@
 import UIKit
 import CoreData
 
-class TaskCollectionDataSource: NSObject, UICollectionViewDataSource,
+class TaskCollectionDataSource: UICollectionViewController, UICollectionViewDataSource,
     UICollectionViewDelegate {
     
-    @IBOutlet var dateHeader : dateHeaderView?
-    var taskRepository : DailyTasksCollection
-    var classPeriods : SchoolClassesRepository
-    var indexesForClassPeriods : [NSIndexPath] = []
+    var taskRepository : TaskCollectionRepository?
+    var taskSummaries : [TaskSummaryData] = []
+    var dateRepository : DateHeaderRepository?
     
-    init(taskRepository taskRepo: DailyTasksCollection, withClassRepository classRepo: SchoolClassesRepository){
+    func setRepositories(taskRepository taskRepo: TaskCollectionRepository, withDateHeaderRepository dateRepo: DateHeaderRepository){
         taskRepository = taskRepo
-        classPeriods = classRepo
-        for indx in 0...41{
-            if indx % 7 == 0 {
-                indexesForClassPeriods.append(NSIndexPath(forItem: indx, inSection: 0))
-            }
-        }
+        dateRepository = dateRepo
+        taskSummaries = taskRepo.taskSummariesForDates(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 42
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
+        let summary = taskSummaries[indexPath.row]
+        cell.setTopTaskLabel(summary.shortTitle)
+        cell.setRemainingTasksLabel(summary.remainingTasks)
+        return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        return UICollectionReusableView()
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "DateHeaderBlock", forIndexPath: indexPath) as DateHeaderView
+        header.SetDates(dateRepository!.dates)
+        return header
     }
     
     

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class TaskTableViewCell: UITableViewCell {
+class TaskTableViewCell: UICollectionViewCell {
     @IBOutlet weak var TopPriorityTaskLabel : UILabel?
     @IBOutlet weak var RemainingTasksLabel : UILabel?
     
@@ -43,12 +43,5 @@ class TaskTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-
 }
