@@ -16,11 +16,13 @@ struct ClassPeriodData {
     var IsStudyHall : Bool
     var Subject : String
     
+    static func Default()->ClassPeriodData{
+        return ClassPeriodData(ClassPeriod: 1, TeacherName: "No Teacher Selected", HaikuURL: nil, IsStudyHall: false, Subject: "No Subject Selected")
+    }
 }
 
 class SchoolClassesRepository: NSObject {
     var managedContext : NSManagedObjectContext
-    let defaultClassPeriod = ClassPeriodData(ClassPeriod: 1, TeacherName: "No Teacher Selected", HaikuURL: nil, IsStudyHall: false, Subject: "No Subject Selected")
     
     
     init(context: NSManagedObjectContext){
@@ -36,7 +38,7 @@ class SchoolClassesRepository: NSObject {
                 return ExtractClassDataFromModel(results[0] as SchoolClassesModel)
             }
         }
-        return defaultClassPeriod
+        return ClassPeriodData.Default()
     }
     
     func ExtractClassDataFromModel(model : SchoolClassesModel)->ClassPeriodData{

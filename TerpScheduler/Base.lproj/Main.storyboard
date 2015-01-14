@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aF1-4L-6ib">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -19,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6RZ-mE-XAJ" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofc-mY-DxT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ofc-mY-DxT">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,7 +29,7 @@
                                             <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuG-GP-GqX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yuG-GP-GqX">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -67,7 +68,7 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="yuG-GP-GqX" id="cR7-8x-x1u"/>
                                     <outlet property="TeacherNameLabel" destination="Ofc-mY-DxT" id="Z8p-29-Kgu"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="SUr-zX-DaX"/>
+                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="jJp-kw-MUa"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QQ-OE-Yn3" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -110,7 +111,7 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="tiD-nT-SOF" id="vyN-FE-rsU"/>
                                     <outlet property="TeacherNameLabel" destination="hGm-EV-Rye" id="Xt1-jA-KR8"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="8HX-Jv-b4E"/>
+                                    <outletCollection property="gestureRecognizers" destination="xAA-dR-MVF" appends="YES" id="IiP-IC-FNO"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biv-TM-Zsf" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -153,7 +154,7 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="JBu-Ri-1uJ" id="Irl-bC-ibI"/>
                                     <outlet property="TeacherNameLabel" destination="Vzt-YK-Ub5" id="Hb2-Ux-DbO"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="NDZ-1p-ujk"/>
+                                    <outletCollection property="gestureRecognizers" destination="iZ9-an-6tr" appends="YES" id="9Ds-YY-th7"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psg-Ze-mng" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -196,7 +197,6 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="lm2-lP-jSK"/>
                                     <outlet property="TeacherNameLabel" destination="UaO-Lq-rAf" id="tqv-Oc-gDt"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="IQh-gA-Nh0"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuC-rf-4yo" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -237,9 +237,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="yaQ-7U-DiB"/>
+                                    <outlet property="ClassNameLabel" destination="Jo0-WK-rH7" id="bQz-7M-sgF"/>
                                     <outlet property="TeacherNameLabel" destination="ZLd-3o-FaU" id="9sk-fG-kLs"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="VPy-PE-sJQ"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeQ-6S-9El" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -282,7 +281,6 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="Xdm-zZ-vXU" id="VQh-o1-ICF"/>
                                     <outlet property="TeacherNameLabel" destination="9Up-Ck-3Dm" id="bay-9Z-uu7"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="rUh-6Q-oRC"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBd-2P-ddL" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
@@ -325,7 +323,6 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="hMq-Yk-muL" id="EQo-RD-7pQ"/>
                                     <outlet property="TeacherNameLabel" destination="Qd7-82-5ce" id="j9Q-xz-nxV"/>
-                                    <outletCollection property="gestureRecognizers" destination="m2n-0U-Bdk" appends="YES" id="r6J-iR-ovn"/>
                                 </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="map-jt-s0O">
@@ -714,38 +711,161 @@
                         <outletCollection property="classPeriods" destination="VuC-rf-4yo" collectionClass="NSMutableArray" id="jDF-Ru-nBt"/>
                         <outletCollection property="classPeriods" destination="AeQ-6S-9El" collectionClass="NSMutableArray" id="uNe-Fe-pO6"/>
                         <outletCollection property="classPeriods" destination="hBd-2P-ddL" collectionClass="NSMutableArray" id="jKc-3W-qhQ"/>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_0" popoverAnchorView="6RZ-mE-XAJ" id="dAO-P8-gHR">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13h-R3-u7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="m2n-0U-Bdk">
                     <connections>
-                        <segue destination="UOb-T5-8sr" kind="popoverPresentation" identifier="ClassDetailPopup" popoverAnchorView="psg-Ze-mng" id="dXH-AO-kJH">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                            <popoverPassthroughViews>
-                                <collectionView reference="map-jt-s0O"/>
-                            </popoverPassthroughViews>
-                        </segue>
+                        <action selector="TapRecognizer:" destination="aF1-4L-6ib" id="luq-V4-6hE"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="xAA-dR-MVF"/>
+                <tapGestureRecognizer id="iZ9-an-6tr"/>
             </objects>
-            <point key="canvasLocation" x="424.5" y="-214.5"/>
+            <point key="canvasLocation" x="442.5" y="-246"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="CdD-ZS-ygX">
+        <!--Class Period View Controller-->
+        <scene sceneID="0Bb-Es-IsO">
             <objects>
-                <viewController id="UOb-T5-8sr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClassDetailPopover" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qa0-r1-yDb" customClass="ClassPeriodViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mjr-M7-GLn"/>
-                        <viewControllerLayoutGuide type="bottom" id="5fw-vb-05T"/>
+                        <viewControllerLayoutGuide type="top" id="gKP-NF-TEq"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Hy-et-8b5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZFu-hj-1yx">
+                    <view key="view" contentMode="scaleToFill" id="TqG-gn-vu2" customClass="ClassPopupView" customModule="TerpScheduler" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufk-BQ-GWp">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lbA-XW-mXk">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="49" width="97" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqT-VU-KuE">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="86" y="53" width="42" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-47-wNt">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="87" width="97" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57h-d7-CRs">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="86" y="91" width="42" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJC-PB-GeV">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="125" width="97" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHU-QA-Kzm">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="86" y="129" width="42" height="21"/>
+                                </variation>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bI-GY-Nft">
+                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="176" y="246" width="51" height="31"/>
+                                </variation>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Fh-Y9T">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="210" width="42" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ufk-BQ-GWp" firstAttribute="top" secondItem="TqG-gn-vu2" secondAttribute="topMargin" constant="8" id="D1o-dz-vwZ"/>
+                            <constraint firstItem="ufk-BQ-GWp" firstAttribute="leading" secondItem="TqG-gn-vu2" secondAttribute="leadingMargin" constant="163" id="Tuj-vX-Qh1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ufk-BQ-GWp" secondAttribute="trailing" constant="163" id="v4E-XY-1VW"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ufk-BQ-GWp"/>
+                                <exclude reference="lbA-XW-mXk"/>
+                                <exclude reference="OqT-VU-KuE"/>
+                                <exclude reference="Wah-47-wNt"/>
+                                <exclude reference="57h-d7-CRs"/>
+                                <exclude reference="xJC-PB-GeV"/>
+                                <exclude reference="CHU-QA-Kzm"/>
+                                <exclude reference="1bI-GY-Nft"/>
+                                <exclude reference="zQa-Fh-Y9T"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="D1o-dz-vwZ"/>
+                                <exclude reference="Tuj-vX-Qh1"/>
+                                <exclude reference="v4E-XY-1VW"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="ufk-BQ-GWp"/>
+                                <include reference="lbA-XW-mXk"/>
+                                <include reference="OqT-VU-KuE"/>
+                                <include reference="Wah-47-wNt"/>
+                                <include reference="57h-d7-CRs"/>
+                                <include reference="xJC-PB-GeV"/>
+                                <include reference="CHU-QA-Kzm"/>
+                                <include reference="1bI-GY-Nft"/>
+                                <include reference="zQa-Fh-Y9T"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="D1o-dz-vwZ"/>
+                                <include reference="Tuj-vX-Qh1"/>
+                                <include reference="v4E-XY-1VW"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="HaikuURLInput" destination="xJC-PB-GeV" id="PSV-0H-f6D"/>
+                            <outlet property="SubjectNameInput" destination="lbA-XW-mXk" id="CH9-SD-HfR"/>
+                            <outlet property="TeacherNameInput" destination="Wah-47-wNt" id="maR-aX-Ece"/>
+                            <outlet property="TitleLabel" destination="ufk-BQ-GWp" id="C4u-B6-yD0"/>
+                            <outlet property="isStudyHall" destination="1bI-GY-Nft" id="aq7-I2-Qn7"/>
+                        </connections>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="txa-8B-Oyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sv6-Hq-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195.5" y="-246"/>
+            <point key="canvasLocation" x="1122.75" y="-238.5"/>
         </scene>
     </scenes>
 </document>

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4079CA21A45DCF200BC333C /* DayLabelViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */; };
-		D4079CA81A47BC0400BC333C /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA71A47BC0400BC333C /* RootNavigationController.swift */; };
 		D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA91A47C31100BC333C /* DayLabel.swift */; };
 		D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD771A432E45004F0B83 /* AppDelegate.swift */; };
 		D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */; };
@@ -27,15 +25,14 @@
 		D481CCCF1A65809000648CFE /* WeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekModel.swift */; };
 		D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */; };
 		D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */; };
-		D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497CDD11A448B6B006709A3 /* WeekViewController.swift */; };
 		D49CDF661A5E012C00AEB36B /* DailyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
 		D49CDF6C1A5E075700AEB36B /* DailyTasksForPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF6B1A5E075700AEB36B /* DailyTasksForPeriod.swift */; };
 		D49CDF711A5E1E8400AEB36B /* DateHeaderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */; };
 		D49CDF731A5E267900AEB36B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF721A5E267900AEB36B /* TaskTableViewCell.swift */; };
 		D49CDF741A5E2C5300AEB36B /* winter2015.json in Resources */ = {isa = PBXBuildFile; fileRef = D4463B111A571A6F0026E270 /* winter2015.json */; };
+		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
 		D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */; };
-		D4E9B3FE1A63192E00C46B29 /* FlowWithHeaderAndSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FD1A63192E00C46B29 /* FlowWithHeaderAndSidebar.swift */; };
 		D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */; };
 		D4E9B4021A632DE000C46B29 /* TaskCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4011A632DE000C46B29 /* TaskCollectionDataSource.swift */; };
 		D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */; };
@@ -52,8 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabelViewBlock.swift; sourceTree = "<group>"; };
-		D4079CA71A47BC0400BC333C /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		D4079CA91A47C31100BC333C /* DayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		D408FD721A432E45004F0B83 /* TerpScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerpScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408FD761A432E45004F0B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,14 +70,13 @@
 		D481CCCE1A65809000648CFE /* WeekModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekModel.swift; sourceTree = SOURCE_ROOT; };
 		D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSummaryModel.swift; sourceTree = "<group>"; };
 		D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionRepository.swift; sourceTree = "<group>"; };
-		D497CDD11A448B6B006709A3 /* WeekViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeekViewController.swift; path = ../WeekViewController.swift; sourceTree = "<group>"; };
 		D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTasksViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
 		D49CDF6B1A5E075700AEB36B /* DailyTasksForPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTasksForPeriod.swift; sourceTree = "<group>"; };
 		D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderRepository.swift; sourceTree = "<group>"; };
 		D49CDF721A5E267900AEB36B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
 		D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassView.swift; sourceTree = "<group>"; };
-		D4E9B3FD1A63192E00C46B29 /* FlowWithHeaderAndSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowWithHeaderAndSidebar.swift; sourceTree = "<group>"; };
 		D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateHeaderView.swift; sourceTree = "<group>"; };
 		D4E9B4011A632DE000C46B29 /* TaskCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionDataSource.swift; sourceTree = "<group>"; };
 		D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesRepository.swift; sourceTree = "<group>"; };
@@ -171,12 +165,11 @@
 			isa = PBXGroup;
 			children = (
 				D4079CA91A47C31100BC333C /* DayLabel.swift */,
-				D4079CA11A45DCF200BC333C /* DayLabelViewBlock.swift */,
 				D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */,
 				D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */,
 				D49CDF721A5E267900AEB36B /* TaskTableViewCell.swift */,
-				D4E9B3FD1A63192E00C46B29 /* FlowWithHeaderAndSidebar.swift */,
 				D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */,
+				D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -184,8 +177,6 @@
 		D49CDF6E1A5E19BD00AEB36B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D4079CA71A47BC0400BC333C /* RootNavigationController.swift */,
-				D497CDD11A448B6B006709A3 /* WeekViewController.swift */,
 				D408FD7C1A432E45004F0B83 /* MainViewController.swift */,
 				D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */,
 				D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */,
@@ -312,18 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D481CCCF1A65809000648CFE /* WeekModel.swift in Sources */,
-				D497CDD21A448B6B006709A3 /* WeekViewController.swift in Sources */,
 				D481CCCD1A65809000648CFE /* AppData.swift in Sources */,
 				D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */,
 				D49CDF6C1A5E075700AEB36B /* DailyTasksForPeriod.swift in Sources */,
-				D4079CA81A47BC0400BC333C /* RootNavigationController.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,
-				D4079CA21A45DCF200BC333C /* DayLabelViewBlock.swift in Sources */,
 				D4E9B4021A632DE000C46B29 /* TaskCollectionDataSource.swift in Sources */,
 				D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */,
 				D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */,
 				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
+				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
 				D49CDF711A5E1E8400AEB36B /* DateHeaderRepository.swift in Sources */,
 				D49CDF731A5E267900AEB36B /* TaskTableViewCell.swift in Sources */,
@@ -332,7 +321,6 @@
 				D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */,
 				D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */,
 				D49CDF661A5E012C00AEB36B /* DailyTasksViewController.swift in Sources */,
-				D4E9B3FE1A63192E00C46B29 /* FlowWithHeaderAndSidebar.swift in Sources */,
 				D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,

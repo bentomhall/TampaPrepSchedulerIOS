@@ -8,15 +8,30 @@
 
 import UIKit
 
+@IBDesignable
 class ClassPeriodViewController: UIViewController {
-    var classData : ClassPeriodData?
-    
-    override func viewDidLoad() {
-        
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let classView = sender as? SchoolClassView{
+    var receivedClassData : ClassPeriodData?
+    var outputClassData : ClassPeriodData?
+    var _classView : SchoolClassView?
+    var classView : SchoolClassView? {
+        get { return _classView }
+        set(value) {
+            _classView = value
+            if value != nil {
+                receivedClassData = value!.classData
+            }
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let v = self.view as ClassPopupView
+        println("\(v.subviews)")
+        v.setContent(receivedClassData!)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        let v = self.view as ClassPopupView
+        outputClassData = v.getContent()
+        classView!.classData = outputClassData!
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 
 @IBDesignable
 class MainViewController: UIViewController, UICollectionViewDataSource,
-        UICollectionViewDelegate {
+        UICollectionViewDelegate, UIPopoverPresentationControllerDelegate{
 
     var delegate : AppDelegate?
     var context : NSManagedObjectContext?
@@ -70,18 +70,21 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         return header
     }
     
-    @IBAction func TapGestureHandler(recognizer: UITapGestureRecognizer){
-        let location = recognizer.locationInView(self.view)
-        for subview in self.view.subviews {
-            if subview.frame.contains(location) {
-                NSLog("Hit Object at %f, %f", [location.x, location.y])
-                performSegueWithIdentifier("ClassDetailPopup", sender: subview)
-            }
-            
-        }
-        //dummy
-        return
+    @IBAction func TapRecognizer(recognizer: UITapGestureRecognizer){
+        performSegueWithIdentifier("ClassDetail_0", sender: self)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (true){//segue.identifier!.hasPrefix("ClassDetail"){
+            let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
+            var receivingController = segue.destinationViewController as ClassPeriodViewController
+            var popoverController = UIPopoverPresentationController(presentedViewController: receivingController, presentingViewController: self)
+
+            receivingController.classView = classPeriods![index!]
+        }
+    }
+
+
     
     @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
         let direction = recognizer.direction
