@@ -25,7 +25,6 @@
 		D481CCCF1A65809000648CFE /* WeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekModel.swift */; };
 		D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */; };
 		D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */; };
-		D49CDF661A5E012C00AEB36B /* DailyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
 		D49CDF6C1A5E075700AEB36B /* DailyTasksForPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF6B1A5E075700AEB36B /* DailyTasksForPeriod.swift */; };
 		D49CDF711A5E1E8400AEB36B /* DateHeaderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */; };
@@ -70,7 +69,6 @@
 		D481CCCE1A65809000648CFE /* WeekModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekModel.swift; sourceTree = SOURCE_ROOT; };
 		D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSummaryModel.swift; sourceTree = "<group>"; };
 		D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionRepository.swift; sourceTree = "<group>"; };
-		D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTasksViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
 		D49CDF6B1A5E075700AEB36B /* DailyTasksForPeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTasksForPeriod.swift; sourceTree = "<group>"; };
 		D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderRepository.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 			children = (
 				D408FD7C1A432E45004F0B83 /* MainViewController.swift */,
 				D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */,
-				D49CDF651A5E012C00AEB36B /* DailyTasksViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,
 				D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */,
 				D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */,
-				D49CDF661A5E012C00AEB36B /* DailyTasksViewController.swift in Sources */,
 				D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,

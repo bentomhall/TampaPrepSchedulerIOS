@@ -10,7 +10,7 @@ import UIKit
 
 protocol ClassPeriodDataSource {
     func getClassData(period: Int)->ClassPeriodData
-    func setClassData(data:ClassPeriodData)
+    func setClassData(data:ClassPeriodData, forIndex index:Int)
 }
 
 @IBDesignable
@@ -18,10 +18,12 @@ class ClassPeriodViewController: UIViewController {
     var receivedClassData : ClassPeriodData?
     var outputClassData : ClassPeriodData?
     var delegate : ClassPeriodDataSource?
-    var period : Int? {
-        get { return receivedClassData?.ClassPeriod }
+    var _index: Int = -1
+    var index : Int {
+        get { return _index }
         set(value) {
-            receivedClassData = self.delegate?.getClassData(value!)
+            _index = value
+            receivedClassData = delegate!.getClassData(index)
         }
     }
     
@@ -39,6 +41,6 @@ class ClassPeriodViewController: UIViewController {
         super.viewWillDisappear(animated)
         let v = self.view as ClassPopupView
         outputClassData = v.getContent()
-        delegate!.setClassData(outputClassData!)
+        delegate!.setClassData(outputClassData!, forIndex: index)
     }
 }

@@ -28,7 +28,6 @@ class SchoolClassView: UIView {
     var HaikuURL : NSURL?
     
     func SetContentLabels(data: ClassPeriodData){
-        //ClassPeriodLabel!.text! = String(model.ClassPeriod)
         ClassNameLabel!.text! = data.Subject
         TeacherNameLabel!.text! = data.TeacherName
         HaikuURL = data.HaikuURL

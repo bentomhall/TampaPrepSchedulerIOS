@@ -49,13 +49,13 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3QQ-OE-Yn3" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="243" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGm-EV-Rye">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGm-EV-Rye">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiD-nT-SOF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tiD-nT-SOF">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -67,18 +67,19 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="tiD-nT-SOF" id="vyN-FE-rsU"/>
                                     <outlet property="TeacherNameLabel" destination="hGm-EV-Rye" id="Xt1-jA-KR8"/>
+                                    <outletCollection property="gestureRecognizers" destination="dN6-G6-p3X" appends="YES" id="2Hh-TU-Sqt"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="biv-TM-Zsf" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="333" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vzt-YK-Ub5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vzt-YK-Ub5">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-Ri-1uJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-Ri-1uJ">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -90,18 +91,19 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="JBu-Ri-1uJ" id="Irl-bC-ibI"/>
                                     <outlet property="TeacherNameLabel" destination="Vzt-YK-Ub5" id="Hb2-Ux-DbO"/>
+                                    <outletCollection property="gestureRecognizers" destination="c9n-Vi-J1B" appends="YES" id="o3W-J7-6Cs"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psg-Ze-mng" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="423" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaO-Lq-rAf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UaO-Lq-rAf">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMv-HC-rNu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kMv-HC-rNu">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -113,18 +115,19 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="lm2-lP-jSK"/>
                                     <outlet property="TeacherNameLabel" destination="UaO-Lq-rAf" id="tqv-Oc-gDt"/>
+                                    <outletCollection property="gestureRecognizers" destination="fwD-Y8-yKr" appends="YES" id="xEw-7G-cPg"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VuC-rf-4yo" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="513" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLd-3o-FaU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLd-3o-FaU">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jo0-WK-rH7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jo0-WK-rH7">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -136,18 +139,19 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="Jo0-WK-rH7" id="bQz-7M-sgF"/>
                                     <outlet property="TeacherNameLabel" destination="ZLd-3o-FaU" id="9sk-fG-kLs"/>
+                                    <outletCollection property="gestureRecognizers" destination="jOM-g1-4fV" appends="YES" id="vlx-kn-ffE"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AeQ-6S-9El" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="603" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Up-Ck-3Dm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Up-Ck-3Dm">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xdm-zZ-vXU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xdm-zZ-vXU">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -159,18 +163,19 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="Xdm-zZ-vXU" id="VQh-o1-ICF"/>
                                     <outlet property="TeacherNameLabel" destination="9Up-Ck-3Dm" id="bay-9Z-uu7"/>
+                                    <outletCollection property="gestureRecognizers" destination="BxL-yn-KEJ" appends="YES" id="Sww-Pz-2om"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBd-2P-ddL" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
                                 <rect key="frame" x="16" y="693" width="120" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-82-5ce">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qd7-82-5ce">
                                         <rect key="frame" x="0.0" y="51" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-Yk-muL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-Yk-muL">
                                         <rect key="frame" x="0.0" y="8" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -182,11 +187,13 @@
                                 <connections>
                                     <outlet property="ClassNameLabel" destination="hMq-Yk-muL" id="EQo-RD-7pQ"/>
                                     <outlet property="TeacherNameLabel" destination="Qd7-82-5ce" id="j9Q-xz-nxV"/>
+                                    <outletCollection property="gestureRecognizers" destination="1gA-g9-k2C" appends="YES" id="Ed9-Bt-DD2"/>
                                 </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="map-jt-s0O">
-                                <rect key="frame" x="144" y="81" width="650" height="854"/>
+                                <rect key="frame" x="144" y="80" width="650" height="854"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vth-JN-QOF">
                                     <size key="itemSize" width="118" height="80"/>
                                     <size key="headerReferenceSize" width="50" height="81"/>
@@ -370,11 +377,15 @@
                                 <connections>
                                     <outlet property="dataSource" destination="aF1-4L-6ib" id="3Dr-rY-yjf"/>
                                     <outlet property="delegate" destination="aF1-4L-6ib" id="RdM-XU-lXN"/>
+                                    <outletCollection property="gestureRecognizers" destination="5hJ-cW-jvB" appends="YES" id="sgL-oc-maA"/>
                                 </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="48s-gk-k2p" appends="YES" id="9xX-2Y-Nsy"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="map-jt-s0O" id="r1b-TT-kWd"/>
@@ -395,6 +406,58 @@
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="dN6-G6-p3X">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_1" popoverAnchorView="3QQ-OE-Yn3" id="HWp-xe-E6E">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="c9n-Vi-J1B">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_2" popoverAnchorView="biv-TM-Zsf" id="cN1-cS-3on">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="fwD-Y8-yKr">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_3" popoverAnchorView="psg-Ze-mng" id="VNS-rl-OMq">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="jOM-g1-4fV">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_4" popoverAnchorView="VuC-rf-4yo" id="yeF-UX-YYp">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BxL-yn-KEJ">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_5" popoverAnchorView="AeQ-6S-9El" id="IUv-pO-TA9">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="1gA-g9-k2C">
+                    <connections>
+                        <segue destination="Qa0-r1-yDb" kind="popoverPresentation" identifier="ClassDetail_6" popoverAnchorView="hBd-2P-ddL" id="5MS-uU-hh9">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="48s-gk-k2p">
+                    <connections>
+                        <action selector="SwipeRecognizer:" destination="aF1-4L-6ib" id="05F-lM-cdw"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="5hJ-cW-jvB">
+                    <connections>
+                        <action selector="SwipeRecognizer:" destination="aF1-4L-6ib" id="aRd-hr-Ch1"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="442.5" y="-246.00000000000003"/>
         </scene>
@@ -445,6 +508,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1bI-GY-Nft">
                                 <rect key="frame" x="126" y="218" width="51" height="31"/>
+                                <connections>
+                                    <action selector="ToggleStudyHall:" destination="TqG-gn-vu2" eventType="valueChanged" id="6A7-Nd-vYN"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Study Hall?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Fh-Y9T">
                                 <rect key="frame" x="103" y="182" width="94" height="21"/>
@@ -471,7 +537,7 @@
                             <outlet property="HaikuURLInput" destination="xJC-PB-GeV" id="PSV-0H-f6D"/>
                             <outlet property="SubjectNameInput" destination="lbA-XW-mXk" id="CH9-SD-HfR"/>
                             <outlet property="TeacherNameInput" destination="Wah-47-wNt" id="maR-aX-Ece"/>
-                            <outlet property="TitleLabel" destination="ufk-BQ-GWp" id="C4u-B6-yD0"/>
+                            <outlet property="TitleLabel" destination="ufk-BQ-GWp" id="cUh-28-yJl"/>
                             <outlet property="isStudyHall" destination="1bI-GY-Nft" id="aq7-I2-Qn7"/>
                         </connections>
                     </view>
@@ -484,4 +550,7 @@
             <point key="canvasLocation" x="1046" y="-301"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="HWp-xe-E6E"/>
+    </inferredMetricsTieBreakers>
 </document>

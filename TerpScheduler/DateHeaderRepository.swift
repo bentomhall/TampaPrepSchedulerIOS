@@ -70,6 +70,7 @@ class DateHeaderRepository: NSObject {
             let scheduleString = weekData.weekSchedules
             let scheduleArray = scheduleString.componentsSeparatedByString(" ")
             var dateFormatter = NSDateFormatter()
+            dates = []
             for (index, schedule) in enumerate(scheduleArray) {
                 let date = GetDateByOffset(firstDay, byOffset: index)
                 dates.append(SchoolDate(Date: date, Schedule: schedule))

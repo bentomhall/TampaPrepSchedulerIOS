@@ -16,8 +16,8 @@ struct ClassPeriodData {
     var IsStudyHall : Bool
     var Subject : String
     
-    static func Default()->ClassPeriodData{
-        return ClassPeriodData(ClassPeriod: 1, TeacherName: "No Teacher Selected", HaikuURL: nil, IsStudyHall: false, Subject: "No Subject Selected")
+    static func DefaultForPeriod(period: Int)->ClassPeriodData{
+        return ClassPeriodData(ClassPeriod: period, TeacherName: "No Teacher Selected", HaikuURL: nil, IsStudyHall: false, Subject: "No Subject Selected")
     }
 }
 
@@ -42,11 +42,10 @@ class SchoolClassesRepository: NSObject {
 
     
     func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData{
-        if let model = FetchModel(classPeriod + 1) {
-            println("\(model)")
+        if let model = FetchModel(classPeriod) {
             return ExtractClassDataFromModel(model)
         }
-        return ClassPeriodData.Default()
+        return ClassPeriodData.DefaultForPeriod(classPeriod)
     }
     
     func ExtractClassDataFromModel(model : SchoolClassesModel)->ClassPeriodData{

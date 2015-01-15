@@ -15,21 +15,38 @@ class ClassPopupView: UIView {
     @IBOutlet var TeacherNameInput : UITextField?
     @IBOutlet var SubjectNameInput : UITextField?
     @IBOutlet var HaikuURLInput : UITextField?
+    @IBAction func ToggleStudyHall(sender : UIView){
+        if let s = sender as? UISwitch {
+            if s.on {
+                TeacherNameInput!.enabled = false
+                SubjectNameInput!.text! = "Study Hall"
+                SubjectNameInput!.enabled = false
+                TeacherNameInput!.text = ""
+            }
+            else {
+                TeacherNameInput!.enabled = true
+                SubjectNameInput!.enabled = true
+                TeacherNameInput!.text! = ""
+                SubjectNameInput!.text! = ""
+            }
+        }
+    }
     
     var classPeriod = -1
     
     func setContent(data:ClassPeriodData){
         classPeriod = data.ClassPeriod
         TitleLabel!.text! = "Period \(classPeriod)"
-        println("Hello from period \(classPeriod)")
-        println("I have subviews \(self.subviews)")
-        TeacherNameInput!.text! = data.TeacherName
-        SubjectNameInput!.text! = data.Subject
         if data.IsStudyHall {
-        isStudyHall!.setOn(true, animated: false)
+            isStudyHall!.setOn(true, animated: false)
+            TeacherNameInput!.enabled = false
+            SubjectNameInput!.text! = "Study Hall"
+            SubjectNameInput!.enabled = false
         }
         else {
-        isStudyHall!.setOn(false, animated: false)
+            isStudyHall!.setOn(false, animated: false)
+            TeacherNameInput!.text! = data.TeacherName
+            SubjectNameInput!.text! = data.Subject
         }
         if let url = data.HaikuURL? {
         HaikuURLInput!.text! = url.description
