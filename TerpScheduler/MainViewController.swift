@@ -11,7 +11,7 @@ import UIKit
 
 @IBDesignable
 class MainViewController: UIViewController, UICollectionViewDataSource,
-        UICollectionViewDelegate, UIPopoverPresentationControllerDelegate{
+        UICollectionViewDelegate, UIPopoverPresentationControllerDelegate, ClassPeriodDataSource{
 
     var delegate : AppDelegate?
     var context : NSManagedObjectContext?
@@ -31,16 +31,16 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         context = delegate!.managedObjectContext
         taskRepository = TaskCollectionRepository(context: context!)
         dateRepository = DateHeaderRepository(context: context!)
-        classRepository = SchoolClassesRepository(context: context!)
+        classRepository = SchoolClassesRepository(appDelegate: delegate!)
         taskSummaries = taskRepository!.taskSummariesForDates(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
     }
     
     override func viewDidAppear(animated: Bool) {
-        
         for (index, period) in enumerate(classPeriods!){
             let classData = classRepository!.GetClassDataByPeriod(index)
             period.classData = classData
         }
+        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +48,30 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier!.hasPrefix("ClassDetail") {
+            let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
+            var receivingController = segue.destinationViewController as ClassPeriodViewController
+            receivingController.modalPresentationStyle = .Popover
+            receivingController.popoverPresentationController?.delegate = self
+            receivingController.preferredContentSize = CGSize(width: 300, height: 500)
+            receivingController.delegate = self
+            receivingController.period = index
+        }
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
+    func setClassData(data: ClassPeriodData){
+        let index = data.ClassPeriod - 1
+        classPeriods![index].classData = data
+        classRepository!.SetClassModelFromData(data)
+    }
+    
+    func getClassData(period: Int)->ClassPeriodData{
+        return classPeriods![period].classData
+    }
+    
+    //MARK -- UICollectionViewDataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -70,22 +94,10 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         return header
     }
     
-    @IBAction func TapRecognizer(recognizer: UITapGestureRecognizer){
-        performSegueWithIdentifier("ClassDetail_0", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (true){//segue.identifier!.hasPrefix("ClassDetail"){
-            let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
-            var receivingController = segue.destinationViewController as ClassPeriodViewController
-            var popoverController = UIPopoverPresentationController(presentedViewController: receivingController, presentingViewController: self)
-
-            receivingController.classView = classPeriods![index!]
-        }
-    }
-
 
     
+    
+
     @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
         let direction = recognizer.direction
         switch (direction)

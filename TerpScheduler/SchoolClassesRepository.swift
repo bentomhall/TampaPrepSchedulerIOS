@@ -23,20 +23,28 @@ struct ClassPeriodData {
 
 class SchoolClassesRepository: NSObject {
     var managedContext : NSManagedObjectContext
+    let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
     
-    
-    init(context: NSManagedObjectContext){
-        managedContext = context
+    init(appDelegate: AppDelegate){
+        managedContext = appDelegate.managedObjectContext!
     }
     
-    func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData{
-        let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
+    func FetchModel(classPeriod: Int) -> SchoolClassesModel? {
         let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
         fetchRequest.predicate = predicate!
         if let results = managedContext.executeFetchRequest(fetchRequest, error: nil){
             if results.count == 1 {
-                return ExtractClassDataFromModel(results[0] as SchoolClassesModel)
+                return (results[0] as SchoolClassesModel)
             }
+        }
+        return nil
+    }
+
+    
+    func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData{
+        if let model = FetchModel(classPeriod + 1) {
+            println("\(model)")
+            return ExtractClassDataFromModel(model)
         }
         return ClassPeriodData.Default()
     }
@@ -51,16 +59,25 @@ class SchoolClassesRepository: NSObject {
     }
     
     func SetClassModelFromData(classData : ClassPeriodData){
-        let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: managedContext)
-        var data = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        data.setValue(classData.ClassPeriod, forKey: "classPeriod")
-        data.setValue(classData.TeacherName, forKey: "teacherName")
-        data.setValue(classData.IsStudyHall, forKey: "isStudyHall")
-        data.setValue(classData.Subject, forKey: "subject")
-        if let url = classData.HaikuURL {
-            data.setValue(url.absoluteString, forKey: "haikuURL")
-        } else {
-            data.setValue(nil, forKey: "haikuURL")
+        func setModelContents(model: SchoolClassesModel, fromData classData : ClassPeriodData){
+            model.classPeriod = classData.ClassPeriod
+            model.subject = classData.Subject
+            model.isStudyHall = classData.IsStudyHall
+            model.teacherName = classData.TeacherName
+            if let url = classData.HaikuURL {
+                model.haikuURL = url.absoluteString!
+            } else {
+                model.haikuURL = ""
+            }
+        }
+        
+        if let model = FetchModel(classData.ClassPeriod){
+            setModelContents(model, fromData: classData)
+        }
+        else {
+            let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: managedContext)
+            var model = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext) as SchoolClassesModel
+            setModelContents(model, fromData: classData)
         }
         managedContext.save(nil)
     }

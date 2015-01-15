@@ -8,30 +8,37 @@
 
 import UIKit
 
+protocol ClassPeriodDataSource {
+    func getClassData(period: Int)->ClassPeriodData
+    func setClassData(data:ClassPeriodData)
+}
+
 @IBDesignable
 class ClassPeriodViewController: UIViewController {
     var receivedClassData : ClassPeriodData?
     var outputClassData : ClassPeriodData?
-    var _classView : SchoolClassView?
-    var classView : SchoolClassView? {
-        get { return _classView }
+    var delegate : ClassPeriodDataSource?
+    var period : Int? {
+        get { return receivedClassData?.ClassPeriod }
         set(value) {
-            _classView = value
-            if value != nil {
-                receivedClassData = value!.classData
-            }
+            receivedClassData = self.delegate?.getClassData(value!)
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let v = self.view as ClassPopupView
-        println("\(v.subviews)")
         v.setContent(receivedClassData!)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         let v = self.view as ClassPopupView
         outputClassData = v.getContent()
-        classView!.classData = outputClassData!
+        delegate!.setClassData(outputClassData!)
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 class SchoolClassesModel: NSManagedObject {
-    @NSManaged var ClassPeriod : Int
-    @NSManaged var TeacherName : String
-    @NSManaged var HaikuURL : String
+    @NSManaged var classPeriod : Int
+    @NSManaged var teacherName : String
+    @NSManaged var haikuURL : String
     @NSManaged var isStudyHall : Bool
-    @NSManaged var Subject: String
+    @NSManaged var subject: String
     
 }
