@@ -27,6 +27,13 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         taskSummaries = taskRepository!.taskSummariesForDates(startDate, stopDate: stopDate)
     }
     
+    func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
+        let days = 5
+        let dayIndex = row % days
+        let periodIndex = Int(Double(row)/Double(days)) + 1 //ugly
+        return (day: dayIndex, period: periodIndex)
+    }
+    
     //Mark - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +93,14 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
-        let summary = taskSummaries![0]// hack [indexPath.row]
+        cell.backgroundColor = UIColor.whiteColor()
+        let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
+        if let missedClasses = dateRepository!.missedClassesForDay(selectedDayIndexes.day){
+            if contains(missedClasses, selectedDayIndexes.period){
+                cell.backgroundColor = UIColor.lightGrayColor()
+            }
+        }
+        let summary = taskSummaries![indexPath.row]// hack [indexPath.row]
         cell.setTopTaskLabel(summary.shortTitle)
         cell.setRemainingTasksLabel(summary.remainingTasks)
         return cell
@@ -108,12 +122,12 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
         let direction = recognizer.direction
         switch (direction)
         {
-            case UISwipeGestureRecognizerDirection.Left:
+            case UISwipeGestureRecognizerDirection.Right:
                 dateRepository!.LoadPreviousWeek()
                 getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
                 reloadCollectionView()
                 break
-            case UISwipeGestureRecognizerDirection.Right:
+            case UISwipeGestureRecognizerDirection.Left:
                 dateRepository!.LoadNextWeek()
                 getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
                 reloadCollectionView()

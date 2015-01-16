@@ -12,6 +12,15 @@ import CoreData
 struct SchoolDate {
     var Date : NSDate
     var Schedule : String
+    static let _possibleSchedules : [String:[Int]] = ["A": [6], "B": [5,7], "C": [4],
+                                               "D": [2], "E": [1,3],
+                                               "X": [1, 2, 3, 4, 5, 6, 7],
+                                               "Y": [], "A*": [4, 5, 6, 7],
+                                               "A**": [1, 2, 3]]
+    
+    var ClassesMissed : [Int]? {
+        get { return SchoolDate._possibleSchedules[Schedule] }
+    }
 }
 
 class DateHeaderRepository: NSObject {
@@ -24,6 +33,10 @@ class DateHeaderRepository: NSObject {
     }
     var lastDate : NSDate {
         get { return dates[dates.count - 1 ].Date }
+    }
+    
+    func missedClassesForDay(index:Int)->[Int]?{
+        return dates[index].ClassesMissed
     }
     
     init(context: NSManagedObjectContext){

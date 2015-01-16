@@ -24,9 +24,10 @@ class TaskCollectionRepository: NSObject {
     
     func taskSummariesForDates(startDate: NSDate, stopDate : NSDate) -> [TaskSummaryData]{
         var answer : [TaskSummaryData] = []
-        var currentDate = startDate
         for period in 1...7{
-            while (currentDate.compare(stopDate) == NSComparisonResult.OrderedAscending ){
+            var currentDate = startDate
+            while (currentDate.compare(stopDate) == NSComparisonResult.OrderedAscending ||
+                currentDate.compare(stopDate) == NSComparisonResult.OrderedSame){
                 if let summary = taskSummariesForDateAndPeriod(startDate, period: period){
                     answer.append(summary)
                 }
