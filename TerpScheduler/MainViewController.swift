@@ -10,13 +10,32 @@ import Foundation
 import UIKit
 
 @IBDesignable
-class MainViewController: UIViewController, UICollectionViewDataSource,
-        UICollectionViewDelegate, UIPopoverPresentationControllerDelegate, ClassPeriodDataSource{
+class MainViewController: UIViewController {
 
     var appDelegate : AppDelegate?
     var context : NSManagedObjectContext?
     @IBOutlet weak var collectionView : UICollectionView?
     @IBOutlet var classPeriods : [SchoolClassView]?
+    @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
+        let direction = recognizer.direction
+        switch (direction)
+        {
+        case UISwipeGestureRecognizerDirection.Right:
+            dateRepository!.LoadPreviousWeek()
+            getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+            reloadCollectionView()
+            break
+        case UISwipeGestureRecognizerDirection.Left:
+            dateRepository!.LoadNextWeek()
+            getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+            reloadCollectionView()
+            break
+        default:
+            //do nothing
+            break
+        }
+    }
+
     var taskSummaries : [TaskSummaryData]?
     
     var taskRepository: TaskCollectionRepository?
@@ -65,24 +84,38 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
             var receivingController = segue.destinationViewController as ClassPeriodViewController
             receivingController.modalPresentationStyle = .Popover
             receivingController.popoverPresentationController?.delegate = self
-            receivingController.preferredContentSize = CGSize(width: 300, height: 500)
+            receivingController.preferredContentSize = CGSize(width: 300, height: 300)
             receivingController.delegate = self
             receivingController.index = index!
-        }
+        } else if segue.identifier!.hasPrefix("Day"){
+          let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
+          var receivingController = segue.destinationViewController as ScheduleOverrideController
+          receivingController.modalPresentationStyle = .Popover
+          receivingController.popoverPresentationController?.delegate = self
+          receivingController.preferredContentSize = CGSize(width: 500, height: 200)
+          receivingController.delegate = self
+          receivingController.index = index!
+          receivingController.date = dateRepository!.dateStringByIndex(index!)
+          receivingController.previousSchedule = dateRepository!.ScheduleForDateByIndex(index!)
+          
+      }
         super.prepareForSegue(segue, sender: sender)
     }
+
+}
+
+//MARK - UIPopoverPresentationControllerDelegate
+extension MainViewController: UIPopoverPresentationControllerDelegate{
     
-    //MARK - ClassPeriodDataSource compliance
-    func setClassData(data: ClassPeriodData, forIndex index:Int){
-        classPeriods![index].classData = data
-        classRepository!.SetClassModelFromData(data)
-    }
+}
+
+//MARK - UICollectionViewDelegate
+extension MainViewController: UICollectionViewDelegate {
     
-    func getClassData(period: Int)->ClassPeriodData{
-        return classPeriods![period].classData
-    }
-    
-    //MARK - UICollectionViewDataSource
+}
+
+//MARK - UICollectionViewDataSource
+extension MainViewController: UICollectionViewDataSource {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -115,33 +148,25 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
     func reloadCollectionView(){
         collectionView!.reloadData()
     }
-    
-    
-    
-    @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
-        let direction = recognizer.direction
-        switch (direction)
-        {
-            case UISwipeGestureRecognizerDirection.Right:
-                dateRepository!.LoadPreviousWeek()
-                getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-                reloadCollectionView()
-                break
-            case UISwipeGestureRecognizerDirection.Left:
-                dateRepository!.LoadNextWeek()
-                getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-                reloadCollectionView()
-                break
-            case UISwipeGestureRecognizerDirection.Up:
-                break
-            case UISwipeGestureRecognizerDirection.Down:
-                break
-            default:
-                //do nothing
-                break
-        }
+}
+
+//MARK - ClassPeriodDataSource compliance
+extension MainViewController: ClassPeriodDataSource {
+    func setClassData(data: ClassPeriodData, forIndex index:Int){
+        classPeriods![index].classData = data
+        classRepository!.SetClassModelFromData(data)
     }
 
-
+    func getClassData(period: Int)->ClassPeriodData{
+        return classPeriods![period].classData
+    }
 }
+
+extension MainViewController: ScheduleOverrideDelegate{
+  func updateScheduleForIndex(index: Int, withSchedule schedule: String){
+    dateRepository!.setScheduleForDateByIndex(index, newSchedule: schedule)
+    reloadCollectionView()
+  }
+}
+
 
