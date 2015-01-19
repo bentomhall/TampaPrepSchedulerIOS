@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="aF1-4L-6ib">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="rsH-ps-hLA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="ZZz-9G-KRo">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="OLM-A4-8v2" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Trz-fd-Dhf">
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskListView" id="Txc-ZT-fs2">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txc-ZT-fs2" id="4Ka-fc-Ac3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OLM-A4-8v2" id="eYz-u5-jKR"/>
+                            <outlet property="delegate" destination="OLM-A4-8v2" id="pVC-Fr-XA7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="bw0-na-Ph0"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kp-sw-4NH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-584" y="-2174"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Z5t-vu-qfW">
+            <objects>
+                <viewController id="uTZ-yI-WtI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uUY-rX-cVg">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="z36-Bc-7k9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZfY-lo-o1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-6" y="-2174"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dRI-d8-8zI">
+            <objects>
+                <navigationController id="fo3-T9-fWg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lyV-eG-UiT">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OLM-A4-8v2" kind="relationship" relationship="rootViewController" id="JqR-oN-sZa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dNU-Uz-JLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1112" y="-2174"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="ALh-z2-S2E">
+            <objects>
+                <splitViewController id="rsH-ps-hLA" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="fo3-T9-fWg" kind="relationship" relationship="masterViewController" id="ZyK-Ee-fAT"/>
+                        <segue destination="lFd-Us-kDk" kind="relationship" relationship="detailViewController" id="xe1-L5-8OW"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ey7-fB-Go5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1870" y="-1631"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Cwg-ca-Hm0">
+            <objects>
+                <navigationController id="lFd-Us-kDk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qHd-6Z-n6Q">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aF1-4L-6ib" kind="relationship" relationship="rootViewController" id="4uZ-YL-1Nj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Npg-Lt-vx2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem title="Title" id="I2f-FD-Qta"/>
+            </objects>
+            <point key="canvasLocation" x="-922" y="-1039"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="HvU-h8-WgQ">
             <objects>
@@ -13,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="6RZ-mE-XAJ" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="112" width="120" height="117"/>
+                                <rect key="frame" x="5" y="164" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="Ofc-mY-DxT">
@@ -47,7 +135,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="3QQ-OE-Yn3" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="237" width="120" height="117"/>
+                                <rect key="frame" x="5" y="288" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="hGm-EV-Rye">
@@ -74,7 +162,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="biv-TM-Zsf" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="362" width="120" height="117"/>
+                                <rect key="frame" x="5" y="412" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="JBu-Ri-1uJ">
@@ -101,7 +189,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="psg-Ze-mng" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="487" width="120" height="117"/>
+                                <rect key="frame" x="5" y="536" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="UaO-Lq-rAf">
@@ -128,7 +216,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="VuC-rf-4yo" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="612" width="120" height="117"/>
+                                <rect key="frame" x="5" y="660" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="ZLd-3o-FaU">
@@ -155,7 +243,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" id="AeQ-6S-9El" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="737" width="120" height="117"/>
+                                <rect key="frame" x="5" y="784" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="9Up-Ck-3Dm">
@@ -182,12 +270,12 @@
                                 </connections>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="map-jt-s0O">
-                                <rect key="frame" x="138" y="23" width="630" height="959"/>
+                                <rect key="frame" x="133" y="75" width="630" height="959"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="10" id="Vth-JN-QOF">
-                                    <size key="itemSize" width="110" height="117"/>
+                                    <size key="itemSize" width="110" height="116"/>
                                     <size key="headerReferenceSize" width="50" height="81"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="0.0"/>
@@ -197,7 +285,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="117"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vSY-r5-YuX">
@@ -220,11 +308,12 @@
                                         <connections>
                                             <outlet property="RemainingTasksLabel" destination="vSY-r5-YuX" id="mxy-1N-AaP"/>
                                             <outlet property="TopTaskLabel" destination="EsW-zz-BvF" id="pMP-yb-rmd"/>
+                                            <segue destination="uTZ-yI-WtI" kind="push" identifier="TaskDetail" splitViewControllerTargetIndex="1" id="89L-9Z-W9s"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateHeaderBlock" id="BjP-VP-HBP" customClass="DateHeaderView" customModule="TerpScheduler" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="650" height="81"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="630" height="81"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="u8D-Mv-Hsq" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
@@ -403,12 +492,12 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" id="OUT-bs-hKr">
-                                <rect key="frame" x="136" y="14" width="600" height="10"/>
+                                <rect key="frame" x="131" y="66" width="600" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="hBd-2P-ddL" customClass="SchoolClassView" customModule="TerpScheduler" customModuleProvider="target">
-                                <rect key="frame" x="10" y="862" width="120" height="117"/>
+                                <rect key="frame" x="5" y="905" width="120" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="Qd7-82-5ce">
@@ -441,6 +530,7 @@
                             <outletCollection property="gestureRecognizers" destination="48s-gk-k2p" appends="YES" id="9xX-2Y-Nsy"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="fOh-Ha-LgZ"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
@@ -550,7 +640,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="566" y="-420"/>
+            <point key="canvasLocation" x="-66" y="-1039"/>
         </scene>
         <!--Schedule Override Controller-->
         <scene sceneID="nON-2I-yf3">
@@ -588,7 +678,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-IS-ZgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1165" y="-877"/>
+            <point key="canvasLocation" x="517" y="-1429"/>
         </scene>
         <!--Class Period View Controller-->
         <scene sceneID="0Bb-Es-IsO">
@@ -681,7 +771,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sv6-Hq-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1338.8800000000001" y="-513.70666666666671"/>
+            <point key="canvasLocation" x="690" y="-1066"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -690,7 +780,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IB0-L2-s9k"/>
-        <segue reference="yeF-UX-YYp"/>
+        <segue reference="VNS-rl-OMq"/>
+        <segue reference="Chh-HR-z3m"/>
     </inferredMetricsTieBreakers>
 </document>
