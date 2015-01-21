@@ -4,8 +4,10 @@
         <attribute name="isScheduleLoaded" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="DailyTask" representedClassName="TerpScheduler.DailyTask" syncable="YES">
+        <attribute name="dateDue" attributeType="Date" syncable="YES"/>
         <attribute name="details" attributeType="String" syncable="YES"/>
-        <attribute name="due" attributeType="Date" syncable="YES"/>
+        <attribute name="forPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" indexed="YES" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHaikuAssignment" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="priority" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="3" syncable="YES"/>
@@ -34,7 +36,7 @@
     </entity>
     <elements>
         <element name="AppData" positionX="-450" positionY="-213" width="128" height="60"/>
-        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="148"/>
+        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="180"/>
         <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="135"/>
         <element name="TaskSummary" positionX="-432" positionY="110" width="128" height="118"/>
         <element name="Week" positionX="-288" positionY="-216" width="128" height="88"/>

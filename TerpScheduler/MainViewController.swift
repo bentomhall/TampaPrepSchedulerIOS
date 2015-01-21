@@ -14,25 +14,26 @@ class MainViewController: UIViewController {
   
   var appDelegate : AppDelegate?
   var context : NSManagedObjectContext?
+  var tableDelegate : TaskDataDelegate?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
   @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
     let direction = recognizer.direction
     switch (direction)
     {
-    case UISwipeGestureRecognizerDirection.Right:
-      dateRepository!.LoadPreviousWeek()
-      getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-      reloadCollectionView()
-      break
-    case UISwipeGestureRecognizerDirection.Left:
-      dateRepository!.LoadNextWeek()
-      getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-      reloadCollectionView()
-      break
-    default:
-      //do nothing
-      break
+      case UISwipeGestureRecognizerDirection.Right:
+        dateRepository!.LoadPreviousWeek()
+        getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+        reloadCollectionView()
+        break
+      case UISwipeGestureRecognizerDirection.Left:
+        dateRepository!.LoadNextWeek()
+        getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+        reloadCollectionView()
+        break
+      default:
+        //do nothing
+        break
     }
   }
   
@@ -42,6 +43,7 @@ class MainViewController: UIViewController {
   var classRepository: SchoolClassesRepository?
   
   var detailIndex: (day: Int, period: Int) = (0,0)
+  var dataForSelectedTask: DailyTaskData?
   
   func getTaskSummariesForDatesBetween(startDate: NSDate, stopDate: NSDate){
     taskSummaries = taskRepository!.taskSummariesForDates(startDate, stopDate: stopDate)
@@ -64,6 +66,11 @@ class MainViewController: UIViewController {
     dateRepository = DateHeaderRepository(context: context!)
     classRepository = SchoolClassesRepository(appDelegate: appDelegate!)
     getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+    let tableView = splitViewController!.view.viewWithTag(1) as UITableView
+    if let ds = tableView.dataSource as? TaskTableViewController{
+      tableDelegate = ds
+      ds.repository = taskRepository
+    }
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -97,11 +104,14 @@ class MainViewController: UIViewController {
       receivingController.index = index!
       receivingController.date = dateRepository!.dateStringByIndex(index!)
       receivingController.previousSchedule = dateRepository!.ScheduleForDateByIndex(index!)
-    } else if segue.identifier!.hasPrefix("TaskDetail"){
+    } else if segue.identifier! == "TaskDetail"{
+      var receivingController = segue.destinationViewController as TaskDetailViewController
+      receivingController.delegate = self
+      dataForSelectedTask = tableDelegate!.getSelected()
+      receivingController.previousTaskData = dataForSelectedTask
     }
     super.prepareForSegue(segue, sender: sender)
   }
-  
 }
 
 //MARK - UICollectionViewDelegate
@@ -109,6 +119,13 @@ extension MainViewController: UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     detailIndex = dayAndPeriodFromIndexPath(indexPath.row)
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+      let tableView = splitViewController!.view.viewWithTag(1) as UITableView
+      if let ds = tableView.dataSource as? TaskTableViewController{
+        let date = dateRepository!.dates[detailIndex.day].Date
+        let period = detailIndex.period
+        ds.loadTasks(date, andPeriod: period)
+        tableView.reloadData()
+      }
   }
 }
 
@@ -166,5 +183,19 @@ extension MainViewController: ScheduleOverrideDelegate{
     reloadCollectionView()
   }
 }
+
+extension MainViewController: TaskDetailDelegate{
+  func updateTaskData(data: DailyTaskData) {
+    tableDelegate!.addTask(data)
+    getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
+    reloadCollectionView()
+    tableDelegate!.reload()
+  }
+  
+  var nextID: Int {
+    get { return tableDelegate!.nextID }
+  }
+}
+
 
 

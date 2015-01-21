@@ -39,7 +39,6 @@ class SchoolClassesRepository: NSObject {
         }
         return nil
     }
-
     
     func GetClassDataByPeriod(classPeriod: Int)->ClassPeriodData{
         if let model = FetchModel(classPeriod) {

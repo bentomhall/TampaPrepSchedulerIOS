@@ -28,11 +28,15 @@ struct ScheduleTypes {
   var types: [String]{
     get {
       var letters : [String] = []
-      for key in schedules.keys{
+      for key in Array(schedules.keys).sorted(<){
         letters.append(key)
       }
       return letters
     }
+  }
+  
+  func indexForLetter(letter: String)->Int?{
+    return find(types, letter)
   }
   
   func scheduleForLetter(letter: String)->String?{
@@ -65,6 +69,9 @@ class ScheduleOverrideController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     dateLabel!.text = "Schedule for \(date)"
+    if let index = scheduleTypes.indexForLetter(previousSchedule){
+      schedulePicker!.selectRow(index, inComponent: 0, animated: false)
+    }
     // Do any additional setup after loading the view.
   }
   
@@ -80,17 +87,6 @@ class ScheduleOverrideController: UIViewController {
     delegate!.updateScheduleForIndex(index, withSchedule: schedule)
     super.viewWillDisappear(animated)
   }
-  
-  
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using segue.destinationViewController.
-  // Pass the selected object to the new view controller.
-  }
-  */
   
 }
 

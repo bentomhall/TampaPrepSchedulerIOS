@@ -39,6 +39,7 @@ class DateHeaderRepository: NSObject {
   var firstDate : NSDate {
     get { return dates[0].Date }
   }
+  
   var lastDate : NSDate {
     get { return dates[dates.count - 1 ].Date }
   }
@@ -53,7 +54,7 @@ class DateHeaderRepository: NSObject {
     if weekID < 0 {
       weekID = fetchWeekID(NSDate()) //focus on current week
     }
-    dates = LoadCurrentWeek()
+    dates = loadCurrentWeek()
   }
   
   func fetchWeekID(today: NSDate) ->Int {
@@ -64,18 +65,17 @@ class DateHeaderRepository: NSObject {
   
   func LoadNextWeek(){
     weekID += 1
-    dates = LoadCurrentWeek()
+    dates = loadCurrentWeek()
     return
   }
   
   func LoadPreviousWeek(){
     weekID -= 1
-    dates = LoadCurrentWeek()
+    dates = loadCurrentWeek()
   }
   
-  func LoadCurrentWeek()->[SchoolDate]{
+  func loadCurrentWeek()->[SchoolDate]{
     //called to populate the UI elements with current week's data
-    
     var fetchRequest = NSFetchRequest(entityName: "Week")
     fetchRequest.returnsObjectsAsFaults = false
     fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
@@ -86,7 +86,7 @@ class DateHeaderRepository: NSObject {
       let firstDay = weekData.firstWeekDay
       let schedule = weekData.weekSchedules.componentsSeparatedByString(" ")
       for (index, schedule) in enumerate(schedule) {
-        let date = GetDateByOffset(firstDay, byOffset: index)
+        let date = getDateByOffset(firstDay, byOffset: index)
         dates.append(SchoolDate(Date: date, Schedule: schedule))
       }
     }
@@ -117,7 +117,7 @@ class DateHeaderRepository: NSObject {
     return dates[index].Schedule
   }
   
-  func GetDateByOffset(date : NSDate, byOffset index : Int)->NSDate{
+  func getDateByOffset(date : NSDate, byOffset index : Int)->NSDate{
     let offset = NSDateComponents()
     offset.day = index
     return NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: nil)!
