@@ -39,7 +39,7 @@ class TaskCollectionRepository: NSObject {
   
   func taskSummariesForDateAndPeriod(date: NSDate, period: Int) -> TaskSummaryData?{
     var answer : TaskSummaryData?
-    if let result = fetchEntity("TaskSummary", withDate: date, andPeriod: period) as? [TaskSummaryModel]{
+    if let result = fetchEntity("TaskSummary", withDate: date, andPeriod: period) as? [TaskSummaryEntity]{
       if result.count == 0{
         answer = TaskSummaryData(shortTitle: "No Tasks!", remainingTasks: 0, priority: Priorities.Completed)
       }

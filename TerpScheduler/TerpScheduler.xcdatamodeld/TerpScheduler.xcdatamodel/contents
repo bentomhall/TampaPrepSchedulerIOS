@@ -1,44 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="AppData" representedClassName="TerpScheduler.AppData" syncable="YES">
+    <entity name="AppData" representedClassName="TerpScheduler.AppDataEntity" syncable="YES">
         <attribute name="isScheduleLoaded" attributeType="Boolean" syncable="YES"/>
     </entity>
-    <entity name="DailyTask" representedClassName="TerpScheduler.DailyTask" syncable="YES">
+    <entity name="DailyTask" representedClassName="TerpScheduler.DailyTaskEntity" syncable="YES">
         <attribute name="dateDue" attributeType="Date" syncable="YES"/>
         <attribute name="details" attributeType="String" syncable="YES"/>
-        <attribute name="forPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" indexed="YES" syncable="YES"/>
+        <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="1" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHaikuAssignment" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="priority" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="3" syncable="YES"/>
         <attribute name="shortTitle" attributeType="String" syncable="YES"/>
-        <relationship name="classPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SchoolClasses" inverseName="tasks" inverseEntity="SchoolClasses" syncable="YES"/>
     </entity>
-    <entity name="SchoolClasses" representedClassName="TerpScheduler.SchoolClassesModel" syncable="YES">
+    <entity name="SchoolClasses" representedClassName="TerpScheduler.SchoolClassesEntity" syncable="YES">
         <attribute name="classPeriod" attributeType="Integer 64" minValueString="1" maxValueString="7" defaultValueString="1" syncable="YES"/>
         <attribute name="haikuURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isStudyHall" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="teacherName" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DailyTask" inverseName="classPeriod" inverseEntity="DailyTask" syncable="YES"/>
     </entity>
-    <entity name="TaskSummary" representedClassName="TerpScheduler.TaskSummaryModel" syncable="YES">
-        <attribute name="dateDue" attributeType="Date" syncable="YES"/>
-        <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="priority" attributeType="Integer 64" defaultValueString="3" syncable="YES"/>
-        <attribute name="remainingTasks" attributeType="Integer 64" minValueString="0" defaultValueString="0" syncable="YES"/>
-        <attribute name="shortTitle" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Week" representedClassName="TerpScheduler.WeekModel" syncable="YES">
+    <entity name="Week" representedClassName="TerpScheduler.WeekEntity" syncable="YES">
         <attribute name="firstWeekDay" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="weekID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="weekSchedules" attributeType="String" defaultValueString="A B C D E" syncable="YES"/>
     </entity>
     <elements>
         <element name="AppData" positionX="-450" positionY="-213" width="128" height="60"/>
-        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="180"/>
-        <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="135"/>
-        <element name="TaskSummary" positionX="-432" positionY="110" width="128" height="118"/>
-        <element name="Week" positionX="-288" positionY="-216" width="128" height="88"/>
+        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="163"/>
+        <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="118"/>
+        <element name="Week" positionX="-288" positionY="-216" width="128" height="90"/>
     </elements>
 </model>

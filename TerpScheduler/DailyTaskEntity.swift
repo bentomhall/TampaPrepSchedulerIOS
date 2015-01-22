@@ -9,12 +9,6 @@
 import Foundation
 import CoreData
 
-func ==(lhs: DailyTaskData, rhs: DailyTaskData)->Bool {
-  let isSameID = lhs.id == rhs.id
-  let isSameData = lhs.due.compare(rhs.due) == NSComparisonResult.OrderedSame
-  return isSameID && isSameData
-}
-
 enum Priorities: Int {
   case Highest = 0
   case High = 1
@@ -24,9 +18,10 @@ enum Priorities: Int {
   case Completed = 5
 }
 
-struct DailyTaskData: Equatable {
-  let id : Int
-  let due : NSDate
+struct DailyTask: Filterable {
+  let id: NSUUID
+  let date: NSDate
+  let period: Int
   let shortTitle : String
   let details : String
   let isHaikuAssignment : Bool
@@ -34,27 +29,44 @@ struct DailyTaskData: Equatable {
   let priority : Priorities
 }
 
-extension DailyTaskData{
-  init(model: DailyTask){
-    id = Int(model.id)
-    due = model.dateDue
+extension DailyTask{
+  func dateIsBefore(other: DailyTask)->Bool{
+    return (date.compare(other.date) == NSComparisonResult.OrderedAscending)
+  }
+  
+  func periodIsBefore(other: DailyTask)->Bool{
+    return period < other.period
+  }
+}
+
+extension DailyTask: DataObject{
+  init(entity: NSManagedObject){
+    let model = entity as DailyTaskEntity
+    id = NSUUID(UUIDString: model.id)!
+    date = model.dateDue
     shortTitle = model.shortTitle
     details = model.details
     isHaikuAssignment = Bool(model.isHaikuAssignment)
     isCompleted = Bool(model.isCompleted)
     priority = Priorities(rawValue: Int(model.priority))!
+    period = Int(model.forPeriod)
   }
 }
 
-class DailyTask: NSManagedObject {
+struct TaskSummary {
+  let title: String
+  let remainingTasks: Int
+  static let DefaultSummary: TaskSummary = TaskSummary(title: "No Tasks", remainingTasks: 0)
+}
+
+class DailyTaskEntity: NSManagedObject {
   @NSManaged var forPeriod: NSNumber
   @NSManaged var dateDue: NSDate
-  @NSManaged var classPeriod: NSNumber
   @NSManaged var shortTitle: String
   @NSManaged var details: String
   @NSManaged var isHaikuAssignment: NSNumber
   @NSManaged var isCompleted: NSNumber
   @NSManaged var priority: NSNumber
-  @NSManaged var id: NSNumber
+  @NSManaged var id: String
 
 }

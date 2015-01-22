@@ -8,36 +8,23 @@
 
 import UIKit
 
-protocol TaskDataDelegate {
-  func addTask(taskData: DailyTaskData)
-  func removeTask(taskData: DailyTaskData)
-  var nextID:Int { get }
-  func reload()
-  func getSelected()->DailyTaskData?
-}
-
 class TaskTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
   var date = NSDate()
   var period = 1
-  var repository: TaskCollectionRepository?
-  var tasks: [DailyTaskData] = []
-  var nextID: Int {
-    get { return tasks.count }
-  }
-  func loadTasks(date: NSDate, andPeriod period:Int){
-    if repository != nil {
-      tasks = repository!.tasksForDateAndPeriod(date, period: period)
-    }
-    self.date = date
-    self.period = period
-  }
-  var selectedTask: DailyTaskData?
+  var tasks: [DailyTask] = []
+  var delegate: TaskTableDelegate?
   
+  var selectedTask: DailyTask?
   
-  var delegate: TaskDataDelegate?
+  func reload(){
+    tableView.reloadData()
+  }
   
   override func viewDidLoad() {
     self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    self.delegate = appDelegate.dataManager
+    self.delegate!.tableViewController = self
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -83,7 +70,9 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+          let item = tasks[indexPath.row]
           tasks.removeAtIndex(indexPath.row)
+          delegate!.didDeleteTask(item)
           tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -117,33 +106,9 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if tasks.count == 0 {
-      selectedTask = DailyTaskData(id: 0, due: date, shortTitle: "", details: "", isHaikuAssignment: false, isCompleted: false, priority: Priorities.Medium)
+      selectedTask = delegate!.defaultTask
     } else {
       selectedTask = tasks[indexPath.row]
     }
-  }
-}
-
-extension TaskTableViewController: TaskDataDelegate {
-  func addTask(taskData: DailyTaskData) {
-    tasks.append(taskData)
-    tableView.reloadData()
-    repository!.modelFromData(taskData, forPeriod: period)
-  }
-  
-  func removeTask(taskData: DailyTaskData) {
-    let index = find(tasks, taskData)
-    tasks.removeAtIndex(index!)
-  }
-  
-  func reload(){
-    tableView.reloadData()
-  }
-  
-  func getSelected() -> DailyTaskData? {
-    if selectedTask == nil {
-      selectedTask = DailyTaskData(id: 0, due: date, shortTitle: "", details: "", isHaikuAssignment: false, isCompleted: false, priority: Priorities.Medium)
-    }
-    return selectedTask
   }
 }

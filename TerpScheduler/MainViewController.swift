@@ -9,12 +9,18 @@ import CoreData
 import Foundation
 import UIKit
 
+protocol PopOverPresentable {
+  var delegate: AnyObject { get set }
+  var preferredContentSize: CGSize { get set }
+  var modalPresentationStyle: UIModalPresentationStyle { get set }
+  var index: Int { get set }
+}
+
 @IBDesignable
 class MainViewController: UIViewController {
   
-  var appDelegate : AppDelegate?
-  var context : NSManagedObjectContext?
-  var tableDelegate : TaskDataDelegate?
+  private var appDelegate : AppDelegate?
+  var delegate: TaskSummaryDelegate?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
   @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
@@ -22,14 +28,10 @@ class MainViewController: UIViewController {
     switch (direction)
     {
       case UISwipeGestureRecognizerDirection.Right:
-        dateRepository!.LoadPreviousWeek()
-        getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-        reloadCollectionView()
+        delegate!.loadWeek(-1)
         break
       case UISwipeGestureRecognizerDirection.Left:
-        dateRepository!.LoadNextWeek()
-        getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-        reloadCollectionView()
+        delegate!.loadWeek(1)
         break
       default:
         //do nothing
@@ -37,17 +39,12 @@ class MainViewController: UIViewController {
     }
   }
   
-  var taskSummaries : [TaskSummaryData]?
-  var taskRepository: TaskCollectionRepository?
-  var dateRepository: DateHeaderRepository?
+  var taskSummaries : [TaskSummary]?
   var classRepository: SchoolClassesRepository?
   
   var detailIndex: (day: Int, period: Int) = (0,0)
-  var dataForSelectedTask: DailyTaskData?
+  var dataForSelectedTask: DailyTask?
   
-  func getTaskSummariesForDatesBetween(startDate: NSDate, stopDate: NSDate){
-    taskSummaries = taskRepository!.taskSummariesForDates(startDate, stopDate: stopDate)
-  }
   
   func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
     let days = 5
@@ -61,16 +58,10 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-    context = appDelegate!.managedObjectContext
-    taskRepository = TaskCollectionRepository(context: context!)
-    dateRepository = DateHeaderRepository(context: context!)
-    classRepository = SchoolClassesRepository(appDelegate: appDelegate!)
-    getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-    let tableView = splitViewController!.view.viewWithTag(1) as UITableView
-    if let ds = tableView.dataSource as? TaskTableViewController{
-      tableDelegate = ds
-      ds.repository = taskRepository
-    }
+    classRepository = SchoolClassesRepository(context: appDelegate!.managedObjectContext!)
+    delegate = appDelegate!.dataManager
+    delegate!.summaryViewController = self
+    taskSummaries = delegate!.summariesForWeek()
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -99,16 +90,12 @@ class MainViewController: UIViewController {
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
       var receivingController = segue.destinationViewController as ScheduleOverrideController
       receivingController.modalPresentationStyle = .Popover
-      receivingController.preferredContentSize = CGSize(width: 500, height: 200)
       receivingController.delegate = self
       receivingController.index = index!
-      receivingController.date = dateRepository!.dateStringByIndex(index!)
-      receivingController.previousSchedule = dateRepository!.ScheduleForDateByIndex(index!)
     } else if segue.identifier! == "TaskDetail"{
       var receivingController = segue.destinationViewController as TaskDetailViewController
-      receivingController.delegate = self
-      dataForSelectedTask = tableDelegate!.getSelected()
-      receivingController.previousTaskData = dataForSelectedTask
+      delegate!.detailViewController = receivingController
+      delegate!.willDisplayDetailForTaskByID(nil)
     }
     super.prepareForSegue(segue, sender: sender)
   }
@@ -118,14 +105,9 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     detailIndex = dayAndPeriodFromIndexPath(indexPath.row)
+    let date = delegate!.datesForWeek[detailIndex.day].Date
+    delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-      let tableView = splitViewController!.view.viewWithTag(1) as UITableView
-      if let ds = tableView.dataSource as? TaskTableViewController{
-        let date = dateRepository!.dates[detailIndex.day].Date
-        let period = detailIndex.period
-        ds.loadTasks(date, andPeriod: period)
-        tableView.reloadData()
-      }
   }
 }
 
@@ -143,20 +125,20 @@ extension MainViewController: UICollectionViewDataSource {
     var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
     cell.backgroundColor = UIColor.whiteColor()
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
-    if let missedClasses = dateRepository!.missedClassesForDay(selectedDayIndexes.day){
+    if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
       if contains(missedClasses, selectedDayIndexes.period){
         cell.backgroundColor = UIColor.lightGrayColor()
       }
     }
     let summary = taskSummaries![indexPath.row]// hack [indexPath.row]
-    cell.setTopTaskLabel(summary.shortTitle)
+    cell.setTopTaskLabel(summary.title)
     cell.setRemainingTasksLabel(summary.remainingTasks)
     return cell
   }
   
   func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
     var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as DateHeaderView
-    header.SetDates(dateRepository!.dates)
+    header.SetDates(delegate!.datesForWeek)
     return header
   }
   
@@ -169,7 +151,7 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: ClassPeriodDataSource {
   func setClassData(data: ClassPeriodData, forIndex index:Int){
     classPeriods![index].classData = data
-    classRepository!.SetClassModelFromData(data)
+    classRepository!.persistData(data)
   }
   
   func getClassData(period: Int)->ClassPeriodData{
@@ -179,21 +161,8 @@ extension MainViewController: ClassPeriodDataSource {
 
 extension MainViewController: ScheduleOverrideDelegate{
   func updateScheduleForIndex(index: Int, withSchedule schedule: String){
-    dateRepository!.setScheduleForDateByIndex(index, newSchedule: schedule)
+    delegate!.didSetDateByIndex(index, withData: schedule)
     reloadCollectionView()
-  }
-}
-
-extension MainViewController: TaskDetailDelegate{
-  func updateTaskData(data: DailyTaskData) {
-    tableDelegate!.addTask(data)
-    getTaskSummariesForDatesBetween(dateRepository!.firstDate, stopDate: dateRepository!.lastDate)
-    reloadCollectionView()
-    tableDelegate!.reload()
-  }
-  
-  var nextID: Int {
-    get { return tableDelegate!.nextID }
   }
 }
 

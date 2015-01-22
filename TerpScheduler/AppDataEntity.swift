@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class AppData: NSManagedObject {
+class AppDataEntity: NSManagedObject {
 
     @NSManaged var isScheduleLoaded: NSNumber
 

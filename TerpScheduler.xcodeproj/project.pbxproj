@@ -14,41 +14,27 @@
 		D408FD801A432E45004F0B83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D408FD7E1A432E45004F0B83 /* Main.storyboard */; };
 		D408FD821A432E45004F0B83 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D408FD811A432E45004F0B83 /* Images.xcassets */; };
 		D408FD851A432E45004F0B83 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D408FD831A432E45004F0B83 /* LaunchScreen.xib */; };
-		D408FD911A432E45004F0B83 /* TerpSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */; };
-		D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9A1A432EF3004F0B83 /* DailyTask.swift */; };
+		D408FD9B1A432EF3004F0B83 /* DailyTaskEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9A1A432EF3004F0B83 /* DailyTaskEntity.swift */; };
 		D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */; };
-		D40F89DA1A5CA09D00878F23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD771A432E45004F0B83 /* AppDelegate.swift */; };
-		D40F89DB1A5CA0E900878F23 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
-		D416C7191A7039E800AC2AEE /* GenericRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C7181A7039E800AC2AEE /* GenericRepository.swift */; };
+		D416C7191A7039E800AC2AEE /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C7181A7039E800AC2AEE /* Repository.swift */; };
 		D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */; };
+		D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71D1A706B2600AC2AEE /* DateRepository.swift */; };
+		D416C7201A706EFA00AC2AEE /* DataTransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
-		D4605E931A5B162C007406E5 /* SchoolClassesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesModel.swift */; };
+		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
 		D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */; };
-		D481CCCD1A65809000648CFE /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppData.swift */; };
-		D481CCCF1A65809000648CFE /* WeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekModel.swift */; };
-		D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */; };
-		D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */; };
+		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
+		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
 		D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
-		D49CDF711A5E1E8400AEB36B /* DateHeaderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */; };
 		D49CDF741A5E2C5300AEB36B /* winter2015.json in Resources */ = {isa = PBXBuildFile; fileRef = D4463B111A571A6F0026E270 /* winter2015.json */; };
 		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
 		D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */; };
 		D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */; };
 		D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D408FD8B1A432E45004F0B83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D408FD6A1A432E45004F0B83 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D408FD711A432E45004F0B83;
-			remoteInfo = TerpScheduler;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D4079CA91A47C31100BC333C /* DayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
@@ -60,26 +46,22 @@
 		D408FD7F1A432E45004F0B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D408FD811A432E45004F0B83 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D408FD841A432E45004F0B83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		D408FD8A1A432E45004F0B83 /* TerpSchedulerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerpSchedulerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D408FD8F1A432E45004F0B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerpSchedulerTests.swift; sourceTree = "<group>"; };
-		D408FD9A1A432EF3004F0B83 /* DailyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTask.swift; sourceTree = "<group>"; };
+		D408FD9A1A432EF3004F0B83 /* DailyTaskEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskEntity.swift; sourceTree = "<group>"; };
 		D408FD9C1A43342C004F0B83 /* ClassPeriodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPeriodViewController.swift; sourceTree = "<group>"; };
-		D416C7181A7039E800AC2AEE /* GenericRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericRepository.swift; sourceTree = "<group>"; };
+		D416C7181A7039E800AC2AEE /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		D416C71D1A706B2600AC2AEE /* DateRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRepository.swift; sourceTree = "<group>"; };
+		D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransferManager.swift; sourceTree = "<group>"; };
 		D4463B111A571A6F0026E270 /* winter2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = winter2015.json; path = TerpScheduler/winter2015.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
-		D4605E921A5B162C007406E5 /* SchoolClassesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesModel.swift; sourceTree = "<group>"; };
+		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
 		D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterScheduleLoader.swift; sourceTree = "<group>"; };
 		D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
-		D481CCCC1A65809000648CFE /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		D481CCCE1A65809000648CFE /* WeekModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekModel.swift; sourceTree = SOURCE_ROOT; };
-		D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSummaryModel.swift; sourceTree = "<group>"; };
-		D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCollectionRepository.swift; sourceTree = "<group>"; };
+		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
+		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
-		D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderRepository.swift; sourceTree = "<group>"; };
 		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
 		D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassView.swift; sourceTree = "<group>"; };
 		D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateHeaderView.swift; sourceTree = "<group>"; };
@@ -94,13 +76,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D408FD871A432E45004F0B83 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,7 +84,6 @@
 			children = (
 				D4463B111A571A6F0026E270 /* winter2015.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
-				D408FD8D1A432E45004F0B83 /* TerpSchedulerTests */,
 				D408FD731A432E45004F0B83 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				D408FD721A432E45004F0B83 /* TerpScheduler.app */,
-				D408FD8A1A432E45004F0B83 /* TerpSchedulerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,30 +121,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D408FD8D1A432E45004F0B83 /* TerpSchedulerTests */ = {
-			isa = PBXGroup;
-			children = (
-				D408FD901A432E45004F0B83 /* TerpSchedulerTests.swift */,
-				D408FD8E1A432E45004F0B83 /* Supporting Files */,
-			);
-			path = TerpSchedulerTests;
-			sourceTree = "<group>";
-		};
-		D408FD8E1A432E45004F0B83 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D408FD8F1A432E45004F0B83 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D416C7171A7039B700AC2AEE /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				D416C7181A7039E800AC2AEE /* GenericRepository.swift */,
+				D416C7181A7039E800AC2AEE /* Repository.swift */,
 				D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */,
+				D416C71D1A706B2600AC2AEE /* DateRepository.swift */,
+				D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */,
 			);
 			name = Repositories;
+			sourceTree = "<group>";
+		};
+		D416C71C1A704FE300AC2AEE /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				D481CCCE1A65809000648CFE /* WeekEntity.swift */,
+				D481CCCC1A65809000648CFE /* AppDataEntity.swift */,
+				D408FD9A1A432EF3004F0B83 /* DailyTaskEntity.swift */,
+				D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		D49CDF6D1A5E19A000AEB36B /* Views */ = {
@@ -202,15 +171,9 @@
 		D49CDF6F1A5E19E600AEB36B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D416C71C1A704FE300AC2AEE /* Entities */,
 				D416C7171A7039B700AC2AEE /* Repositories */,
-				D481CCCE1A65809000648CFE /* WeekModel.swift */,
-				D481CCCC1A65809000648CFE /* AppData.swift */,
-				D408FD9A1A432EF3004F0B83 /* DailyTask.swift */,
-				D4605E921A5B162C007406E5 /* SchoolClassesModel.swift */,
-				D49CDF701A5E1E8400AEB36B /* DateHeaderRepository.swift */,
-				D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */,
-				D49011151A64A69600D14E52 /* TaskCollectionRepository.swift */,
-				D481CCD01A6586F500648CFE /* TaskSummaryModel.swift */,
+				D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -235,24 +198,6 @@
 			productReference = D408FD721A432E45004F0B83 /* TerpScheduler.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D408FD891A432E45004F0B83 /* TerpSchedulerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D408FD971A432E45004F0B83 /* Build configuration list for PBXNativeTarget "TerpSchedulerTests" */;
-			buildPhases = (
-				D408FD861A432E45004F0B83 /* Sources */,
-				D408FD871A432E45004F0B83 /* Frameworks */,
-				D408FD881A432E45004F0B83 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D408FD8C1A432E45004F0B83 /* PBXTargetDependency */,
-			);
-			name = TerpSchedulerTests;
-			productName = TerpSchedulerTests;
-			productReference = D408FD8A1A432E45004F0B83 /* TerpSchedulerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,10 +209,6 @@
 				TargetAttributes = {
 					D408FD711A432E45004F0B83 = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					D408FD891A432E45004F0B83 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = D408FD711A432E45004F0B83;
 					};
 				};
 			};
@@ -285,7 +226,6 @@
 			projectRoot = "";
 			targets = (
 				D408FD711A432E45004F0B83 /* TerpScheduler */,
-				D408FD891A432E45004F0B83 /* TerpSchedulerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -302,13 +242,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D408FD881A432E45004F0B83 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -316,9 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D481CCCF1A65809000648CFE /* WeekModel.swift in Sources */,
-				D481CCCD1A65809000648CFE /* AppData.swift in Sources */,
-				D408FD9B1A432EF3004F0B83 /* DailyTask.swift in Sources */,
+				D416C7201A706EFA00AC2AEE /* DataTransferManager.swift in Sources */,
+				D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */,
+				D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */,
+				D408FD9B1A432EF3004F0B83 /* DailyTaskEntity.swift in Sources */,
 				D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */,
@@ -329,39 +263,19 @@
 				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
 				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
-				D416C7191A7039E800AC2AEE /* GenericRepository.swift in Sources */,
-				D49CDF711A5E1E8400AEB36B /* DateHeaderRepository.swift in Sources */,
-				D4605E931A5B162C007406E5 /* SchoolClassesModel.swift in Sources */,
+				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
+				D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */,
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,
 				D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */,
 				D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */,
-				D481CCD11A6586F500648CFE /* TaskSummaryModel.swift in Sources */,
-				D49011161A64A69600D14E52 /* TaskCollectionRepository.swift in Sources */,
 				D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */,
+				D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D408FD861A432E45004F0B83 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D40F89DA1A5CA09D00878F23 /* AppDelegate.swift in Sources */,
-				D408FD911A432E45004F0B83 /* TerpSchedulerTests.swift in Sources */,
-				D40F89DB1A5CA0E900878F23 /* SemesterScheduleLoader.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D408FD8C1A432E45004F0B83 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D408FD711A432E45004F0B83 /* TerpScheduler */;
-			targetProxy = D408FD8B1A432E45004F0B83 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D408FD7E1A432E45004F0B83 /* Main.storyboard */ = {
@@ -491,40 +405,6 @@
 			};
 			name = Release;
 		};
-		D408FD981A432E45004F0B83 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TerpSchedulerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TerpScheduler.app/TerpScheduler";
-			};
-			name = Debug;
-		};
-		D408FD991A432E45004F0B83 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TerpSchedulerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TerpScheduler.app/TerpScheduler";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,15 +422,6 @@
 			buildConfigurations = (
 				D408FD951A432E45004F0B83 /* Debug */,
 				D408FD961A432E45004F0B83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D408FD971A432E45004F0B83 /* Build configuration list for PBXNativeTarget "TerpSchedulerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D408FD981A432E45004F0B83 /* Debug */,
-				D408FD991A432E45004F0B83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

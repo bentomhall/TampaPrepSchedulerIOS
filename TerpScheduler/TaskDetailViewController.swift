@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol TaskDetailDelegate{
-  func updateTaskData(data: DailyTaskData)
-  var nextID: Int { get }
-}
-
 @IBDesignable
 class TaskDetailViewController: UIViewController {
   @IBOutlet weak var titleField: UITextField?
@@ -22,18 +17,21 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var isCompleted: UISwitch?
   
   var delegate: TaskDetailDelegate?
-  var previousTaskData: DailyTaskData?
+  var previousTaskData: DailyTask?
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    self.delegate = appDelegate.dataManager
+    delegate!.detailViewController = self
+    
+    // Do any additional setup after loading the view.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -47,11 +45,11 @@ class TaskDetailViewController: UIViewController {
     let priority = prioritySelector!.selectedSegmentIndex
     let isHaiku = isHaikuAssignment!.on
     let completion = isCompleted!.on
-    let newTaskData = DailyTaskData(id: delegate!.nextID, due: previousTaskData!.due, shortTitle: shortTitle, details: details, isHaikuAssignment: isHaiku, isCompleted: completion, priority: Priorities(rawValue: priority)!)
-    delegate!.updateTaskData(newTaskData)
+    let newTaskData = DailyTask(id: NSUUID(), date: previousTaskData!.date, period: previousTaskData!.period, shortTitle: shortTitle, details: details, isHaikuAssignment: isHaiku, isCompleted: completion, priority: Priorities(rawValue: priority)!)
+    delegate!.updateTask(newTaskData)
   }
   
-  func setSubviewContentsFromTaskData(data: DailyTaskData?){
+  func setSubviewContentsFromTaskData(data: DailyTask?){
     if data != nil {
       //default case
       titleField!.text = data!.shortTitle
@@ -61,16 +59,16 @@ class TaskDetailViewController: UIViewController {
       isCompleted!.setOn(data!.isCompleted, animated: false)
     }
   }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  
+  
+  /*
+  // MARK: - Navigation
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  // Get the new view controller using segue.destinationViewController.
+  // Pass the selected object to the new view controller.
+  }
+  */
+  
 }

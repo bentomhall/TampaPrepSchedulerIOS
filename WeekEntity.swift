@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class WeekModel: NSManagedObject {
+class WeekEntity: NSManagedObject {
 
     @NSManaged var firstWeekDay: NSDate
     @NSManaged var weekID: NSNumber
