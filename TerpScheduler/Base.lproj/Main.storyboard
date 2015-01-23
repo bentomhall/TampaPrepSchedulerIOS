@@ -13,13 +13,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskListView" id="Txc-ZT-fs2" customClass="TaskTableViewCell" customModule="TerpScheduler" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskListView" textLabel="Bay-KL-vMg" style="IBUITableViewCellStyleDefault" id="Txc-ZT-fs2" customClass="TaskTableViewCell" customModule="TerpScheduler" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txc-ZT-fs2" id="4Ka-fc-Ac3">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bay-KL-vMg">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="uTZ-yI-WtI" kind="replace" identifier="TaskDetailFromTableView" splitViewControllerTargetIndex="1" id="ZKi-26-5Gl"/>
+                                    <outlet property="title" destination="Bay-KL-vMg" id="s9V-QL-118"/>
+                                    <segue destination="uTZ-yI-WtI" kind="push" identifier="TaskDetailFromTableView" splitViewControllerTargetIndex="1" id="ZKi-26-5Gl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -43,7 +52,7 @@
             <objects>
                 <viewController id="uTZ-yI-WtI" customClass="TaskDetailViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uUY-rX-cVg">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="NWO-HA-38y">
@@ -356,228 +365,6 @@
                                     <outletCollection property="gestureRecognizers" destination="BxL-yn-KEJ" appends="YES" id="Sww-Pz-2om"/>
                                 </connections>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="map-jt-s0O">
-                                <rect key="frame" x="133" y="75" width="630" height="959"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="10" id="Vth-JN-QOF">
-                                    <size key="itemSize" width="110" height="116"/>
-                                    <size key="headerReferenceSize" width="50" height="81"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClassPeriodTaskSummary" id="C3B-u0-20q" customClass="DailyTaskSmallView" customModule="TerpScheduler" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="116"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vSY-r5-YuX">
-                                                    <rect key="frame" x="8" y="59" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EsW-zz-BvF">
-                                                    <rect key="frame" x="8" y="8" width="112" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="RemainingTasksLabel" destination="vSY-r5-YuX" id="mxy-1N-AaP"/>
-                                            <outlet property="TopTaskLabel" destination="EsW-zz-BvF" id="pMP-yb-rmd"/>
-                                            <segue destination="uTZ-yI-WtI" kind="push" identifier="TaskDetail" splitViewControllerTargetIndex="1" id="89L-9Z-W9s"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateHeaderBlock" id="BjP-VP-HBP" customClass="DateHeaderView" customModule="TerpScheduler" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="630" height="81"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" id="u8D-Mv-Hsq" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="138" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KNk-W9-ldk">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7d0-Ak-2Cp">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="KNk-W9-ldk" id="oRP-QC-DvL"/>
-                                                <outlet property="ScheduleLabel" destination="7d0-Ak-2Cp" id="zG3-WT-qAq"/>
-                                                <outletCollection property="gestureRecognizers" destination="yKv-wb-V40" appends="YES" id="Myd-3A-xKa"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="YRC-JO-SfJ" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="268" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFm-S8-vQd">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dib-Jo-Fz3">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="TFm-S8-vQd" id="A3y-Bb-8oh"/>
-                                                <outlet property="ScheduleLabel" destination="dib-Jo-Fz3" id="63a-1d-Ks4"/>
-                                                <outletCollection property="gestureRecognizers" destination="LrG-s3-7ZX" appends="YES" id="Phm-g7-d9g"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="4RX-8J-kVJ" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="398" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gjS-NR-05K">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SlU-rr-cv0">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="gjS-NR-05K" id="nri-OI-0Nx"/>
-                                                <outlet property="ScheduleLabel" destination="SlU-rr-cv0" id="mFj-LF-B2M"/>
-                                                <outletCollection property="gestureRecognizers" destination="ZA3-CF-hmP" appends="YES" id="y6K-Bn-7mt"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="CDK-c5-ONS" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="528" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fG1-8u-dMo">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SP4-Tt-yqp">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="fG1-8u-dMo" id="fg5-5i-OyY"/>
-                                                <outlet property="ScheduleLabel" destination="SP4-Tt-yqp" id="T2u-sC-oiL"/>
-                                                <outletCollection property="gestureRecognizers" destination="iem-ti-Uab" appends="YES" id="qcx-bb-2Xe"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="Xka-Kl-weE" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="672" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aSY-LI-on8">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mbf-Rg-jLv">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="aSY-LI-on8" id="dh9-lt-3KK"/>
-                                                <outlet property="ScheduleLabel" destination="mbf-Rg-jLv" id="S51-8N-xvb"/>
-                                            </connections>
-                                        </view>
-                                        <view contentMode="scaleToFill" id="dHK-qr-GIk" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
-                                            <rect key="frame" x="8" y="0.0" width="120" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Xh-C4-qDK">
-                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rJn-8L-1LV">
-                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outlet property="DateLabel" destination="6Xh-C4-qDK" id="vob-3s-G48"/>
-                                                <outlet property="ScheduleLabel" destination="rJn-8L-1LV" id="uhv-nm-RYr"/>
-                                                <outletCollection property="gestureRecognizers" destination="swQ-ff-jDi" appends="YES" id="gZ6-Vt-Afa"/>
-                                            </connections>
-                                        </view>
-                                    </subviews>
-                                    <connections>
-                                        <outletCollection property="dayLabels" destination="dHK-qr-GIk" collectionClass="NSMutableArray" id="4y1-ip-gR5"/>
-                                        <outletCollection property="dayLabels" destination="u8D-Mv-Hsq" collectionClass="NSMutableArray" id="j5d-DD-eyI"/>
-                                        <outletCollection property="dayLabels" destination="YRC-JO-SfJ" collectionClass="NSMutableArray" id="Wg9-K8-BCY"/>
-                                        <outletCollection property="dayLabels" destination="4RX-8J-kVJ" collectionClass="NSMutableArray" id="hBo-hO-bVb"/>
-                                        <outletCollection property="dayLabels" destination="CDK-c5-ONS" collectionClass="NSMutableArray" id="Uwh-yx-9nF"/>
-                                    </connections>
-                                </collectionReusableView>
-                                <connections>
-                                    <outlet property="dataSource" destination="aF1-4L-6ib" id="3Dr-rY-yjf"/>
-                                    <outlet property="delegate" destination="aF1-4L-6ib" id="RdM-XU-lXN"/>
-                                    <outletCollection property="gestureRecognizers" destination="5hJ-cW-jvB" appends="YES" id="sgL-oc-maA"/>
-                                </connections>
-                            </collectionView>
                             <view contentMode="scaleToFill" id="OUT-bs-hKr">
                                 <rect key="frame" x="131" y="66" width="600" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -610,8 +397,230 @@
                                     <outletCollection property="gestureRecognizers" destination="1gA-g9-k2C" appends="YES" id="Ed9-Bt-DD2"/>
                                 </connections>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="map-jt-s0O">
+                                <rect key="frame" x="133" y="75" width="630" height="959"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="10" id="Vth-JN-QOF">
+                                    <size key="itemSize" width="114" height="116"/>
+                                    <size key="headerReferenceSize" width="50" height="81"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ClassPeriodTaskSummary" id="C3B-u0-20q" customClass="DailyTaskSmallView" customModule="TerpScheduler" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="114" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vSY-r5-YuX">
+                                                    <rect key="frame" x="8" y="59" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EsW-zz-BvF">
+                                                    <rect key="frame" x="8" y="8" width="120" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="RemainingTasksLabel" destination="vSY-r5-YuX" id="mxy-1N-AaP"/>
+                                            <outlet property="TopTaskLabel" destination="EsW-zz-BvF" id="pMP-yb-rmd"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateHeaderBlock" id="BjP-VP-HBP" customClass="DateHeaderView" customModule="TerpScheduler" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="630" height="81"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="u8D-Mv-Hsq" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="132" y="0.0" width="114" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KNk-W9-ldk">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7d0-Ak-2Cp">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="KNk-W9-ldk" id="oRP-QC-DvL"/>
+                                                <outlet property="ScheduleLabel" destination="7d0-Ak-2Cp" id="zG3-WT-qAq"/>
+                                                <outletCollection property="gestureRecognizers" destination="yKv-wb-V40" appends="YES" id="Myd-3A-xKa"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="YRC-JO-SfJ" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="256" y="0.0" width="114" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFm-S8-vQd">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dib-Jo-Fz3">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="TFm-S8-vQd" id="A3y-Bb-8oh"/>
+                                                <outlet property="ScheduleLabel" destination="dib-Jo-Fz3" id="63a-1d-Ks4"/>
+                                                <outletCollection property="gestureRecognizers" destination="LrG-s3-7ZX" appends="YES" id="Phm-g7-d9g"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="4RX-8J-kVJ" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="380" y="0.0" width="114" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gjS-NR-05K">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SlU-rr-cv0">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="gjS-NR-05K" id="nri-OI-0Nx"/>
+                                                <outlet property="ScheduleLabel" destination="SlU-rr-cv0" id="mFj-LF-B2M"/>
+                                                <outletCollection property="gestureRecognizers" destination="ZA3-CF-hmP" appends="YES" id="y6K-Bn-7mt"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="Xka-Kl-weE" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="672" y="0.0" width="120" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aSY-LI-on8">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mbf-Rg-jLv">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="aSY-LI-on8" id="dh9-lt-3KK"/>
+                                                <outlet property="ScheduleLabel" destination="mbf-Rg-jLv" id="S51-8N-xvb"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="dHK-qr-GIk" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="0.0" width="114" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Xh-C4-qDK">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rJn-8L-1LV">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="6Xh-C4-qDK" id="vob-3s-G48"/>
+                                                <outlet property="ScheduleLabel" destination="rJn-8L-1LV" id="uhv-nm-RYr"/>
+                                                <outletCollection property="gestureRecognizers" destination="swQ-ff-jDi" appends="YES" id="gZ6-Vt-Afa"/>
+                                            </connections>
+                                        </view>
+                                        <view contentMode="scaleToFill" id="CDK-c5-ONS" customClass="DayLabel" customModule="TerpScheduler" customModuleProvider="target">
+                                            <rect key="frame" x="504" y="0.0" width="115" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fG1-8u-dMo">
+                                                    <rect key="frame" x="8" y="8" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SP4-Tt-yqp">
+                                                    <rect key="frame" x="8" y="52" width="112" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <gestureRecognizers/>
+                                            <connections>
+                                                <outlet property="DateLabel" destination="fG1-8u-dMo" id="fg5-5i-OyY"/>
+                                                <outlet property="ScheduleLabel" destination="SP4-Tt-yqp" id="T2u-sC-oiL"/>
+                                                <outletCollection property="gestureRecognizers" destination="iem-ti-Uab" appends="YES" id="qcx-bb-2Xe"/>
+                                            </connections>
+                                        </view>
+                                    </subviews>
+                                    <connections>
+                                        <outletCollection property="dayLabels" destination="dHK-qr-GIk" collectionClass="NSMutableArray" id="4y1-ip-gR5"/>
+                                        <outletCollection property="dayLabels" destination="u8D-Mv-Hsq" collectionClass="NSMutableArray" id="j5d-DD-eyI"/>
+                                        <outletCollection property="dayLabels" destination="YRC-JO-SfJ" collectionClass="NSMutableArray" id="Wg9-K8-BCY"/>
+                                        <outletCollection property="dayLabels" destination="4RX-8J-kVJ" collectionClass="NSMutableArray" id="hBo-hO-bVb"/>
+                                        <outletCollection property="dayLabels" destination="CDK-c5-ONS" collectionClass="NSMutableArray" id="Uwh-yx-9nF"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="aF1-4L-6ib" id="3Dr-rY-yjf"/>
+                                    <outlet property="delegate" destination="aF1-4L-6ib" id="RdM-XU-lXN"/>
+                                    <outletCollection property="gestureRecognizers" destination="5hJ-cW-jvB" appends="YES" id="sgL-oc-maA"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="48s-gk-k2p" appends="YES" id="9xX-2Y-Nsy"/>
@@ -867,8 +876,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKi-26-5Gl"/>
-        <segue reference="Chh-HR-z3m"/>
         <segue reference="VNS-rl-OMq"/>
+        <segue reference="Chh-HR-z3m"/>
     </inferredMetricsTieBreakers>
 </document>

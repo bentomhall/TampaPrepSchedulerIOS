@@ -14,8 +14,8 @@ class SchoolClassView: UIView {
     @IBOutlet var ClassPeriodLabel : UILabel?
     @IBOutlet var ClassNameLabel : UILabel?
     @IBOutlet var TeacherNameLabel : UILabel?
-    var _classData : ClassPeriodData?
-    var classData : ClassPeriodData {
+    var _classData : SchoolClass?
+    var classData : SchoolClass {
         get { return _classData! }
         set(data) {
             _classData = data
@@ -27,10 +27,10 @@ class SchoolClassView: UIView {
     var isScheduleSet: Bool = false
     var HaikuURL : NSURL?
     
-    func SetContentLabels(data: ClassPeriodData){
-        ClassNameLabel!.text! = data.Subject
-        TeacherNameLabel!.text! = data.TeacherName
-        HaikuURL = data.HaikuURL
+    func SetContentLabels(data: SchoolClass){
+        ClassNameLabel!.text! = data.subject
+        TeacherNameLabel!.text! = data.teacherName
+        HaikuURL = data.haikuURL
     }
     
     /*

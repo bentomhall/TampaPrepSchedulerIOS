@@ -95,7 +95,6 @@ extension ScheduleOverrideController: UIPickerViewDataSource {
     return scheduleTypes.count
   }
   
-  
   func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
     return 1
   }

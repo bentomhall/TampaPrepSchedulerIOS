@@ -17,7 +17,7 @@ protocol TaskDetailDelegate{
 }
 
 protocol TaskTableDelegate {
-  func willDisplayDetailForTaskByID(id: NSUUID?)
+  func willDisplayDetailForTaskByID(id: NSUUID?, forViewController: TaskDetailViewController)
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(task: DailyTask)
@@ -32,7 +32,6 @@ protocol TaskSummaryDelegate {
   func didSetDateByIndex(index: Int, withData data: String)
   func loadWeek(direction: Int)
   func missedClassesForDayByIndex(index: Int)->[Int]
-  func willDisplayDetailForTaskByID(id: NSUUID?)
 }
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
@@ -59,10 +58,13 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   }
   
   func updateTask(task: DailyTask) {
+    taskRepository.persistData(task)
+    summaryViewController!.reloadCollectionView()
     return
   }
   
-  func willDisplayDetailForTaskByID(id: NSUUID?) {
+  func willDisplayDetailForTaskByID(id: NSUUID?, forViewController controller: TaskDetailViewController) {
+    detailViewController = controller
     var newID = id
     if id == nil {
       newID = taskRepository.defaultTask!.id
@@ -99,7 +101,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   }
   
   func missedClassesForDayByIndex(index: Int) -> [Int] {
-    return dateRepository.missedClassesForDay(index)!
+    return dateRepository.missedClassesForDay(index)
   }
   
   func didDeleteTask(task: DailyTask) {

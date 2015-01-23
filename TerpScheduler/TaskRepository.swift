@@ -35,21 +35,14 @@ class TaskRepository {
   var defaultTask: DailyTask?
   
   func persistData(data: DailyTask){
-    let managedEntity = NSManagedObject(entity: entity, insertIntoManagedObjectContext: context) as DailyTaskEntity
-    managedEntity.details = data.details
-    managedEntity.shortTitle = data.shortTitle
-    managedEntity.forPeriod = data.period
-    managedEntity.dateDue = data.date
-    managedEntity.isCompleted = data.isCompleted
-    managedEntity.isHaikuAssignment = data.isHaikuAssignment
-    managedEntity.priority = data.priority.rawValue
-    managedEntity.id = data.id.UUIDString
-    repository.add(data)
+    let entity = data.toEntity(inContext: context)
+    repository.add(data, entity: entity)
   }
   
   func tasksForDateAndPeriod(date: NSDate, period: Int)->[DailyTask]{
     let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(date: date, period: period, id: NSUUID(), stopDate: nil))
-    return sorted(tasks, {$0.priority.rawValue < $1.priority.rawValue})
+    let sortedTasks = sorted(tasks, {$0.priority.rawValue < $1.priority.rawValue})
+    return sortedTasks
   }
   
   func taskSummariesForDatesBetween(startDate: NSDate, stopDate: NSDate)->[TaskSummary]{

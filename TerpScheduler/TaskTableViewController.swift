@@ -57,6 +57,19 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
       }
       return cell
     }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let receiver = segue.destinationViewController as TaskDetailViewController
+    if tasks.count == 0 {
+      selectedTask = delegate!.defaultTask
+    } else {
+      let index = tableView.indexPathForSelectedRow()?.row
+      if index != nil {
+        selectedTask = tasks[index!]
+      }
+    }
+    delegate?.willDisplayDetailForTaskByID(selectedTask!.id, forViewController: receiver)
+  }
 
     /*
     // Override to support conditional editing of the table view.
@@ -105,10 +118,6 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     */
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if tasks.count == 0 {
-      selectedTask = delegate!.defaultTask
-    } else {
-      selectedTask = tasks[indexPath.row]
-    }
+    
   }
 }

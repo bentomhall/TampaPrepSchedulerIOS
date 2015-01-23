@@ -92,10 +92,6 @@ class MainViewController: UIViewController {
       receivingController.modalPresentationStyle = .Popover
       receivingController.delegate = self
       receivingController.index = index!
-    } else if segue.identifier! == "TaskDetail"{
-      var receivingController = segue.destinationViewController as TaskDetailViewController
-      delegate!.detailViewController = receivingController
-      delegate!.willDisplayDetailForTaskByID(nil)
     }
     super.prepareForSegue(segue, sender: sender)
   }
@@ -143,18 +139,19 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func reloadCollectionView(){
+    taskSummaries = delegate!.summariesForWeek()
     collectionView!.reloadData()
   }
 }
 
 //MARK - ClassPeriodDataSource compliance
 extension MainViewController: ClassPeriodDataSource {
-  func setClassData(data: ClassPeriodData, forIndex index:Int){
+  func setClassData(data: SchoolClass, forIndex index:Int){
     classPeriods![index].classData = data
     classRepository!.persistData(data)
   }
   
-  func getClassData(period: Int)->ClassPeriodData{
+  func getClassData(period: Int)->SchoolClass{
     return classPeriods![period].classData
   }
 }

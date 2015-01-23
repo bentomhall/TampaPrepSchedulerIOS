@@ -51,6 +51,20 @@ extension DailyTask: DataObject{
     priority = Priorities(rawValue: Int(model.priority))!
     period = Int(model.forPeriod)
   }
+  
+  func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
+    let entity = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
+    let managedEntity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as DailyTaskEntity
+    managedEntity.details = details
+    managedEntity.shortTitle = shortTitle
+    managedEntity.forPeriod = period
+    managedEntity.dateDue = date
+    managedEntity.isCompleted = isCompleted
+    managedEntity.isHaikuAssignment = isHaikuAssignment
+    managedEntity.priority = priority.rawValue
+    managedEntity.id = id.UUIDString
+    return managedEntity as NSManagedObject
+  }
 }
 
 struct TaskSummary {

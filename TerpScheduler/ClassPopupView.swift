@@ -34,10 +34,10 @@ class ClassPopupView: UIView {
     
     var classPeriod = -1
     
-    func setContent(data:ClassPeriodData){
-        classPeriod = data.ClassPeriod
+    func setContent(data:SchoolClass){
+        classPeriod = data.period
         TitleLabel!.text! = "Period \(classPeriod)"
-        if data.IsStudyHall {
+        if data.isStudyHall {
             isStudyHall!.setOn(true, animated: false)
             TeacherNameInput!.enabled = false
             SubjectNameInput!.text! = "Study Hall"
@@ -45,18 +45,18 @@ class ClassPopupView: UIView {
         }
         else {
             isStudyHall!.setOn(false, animated: false)
-            TeacherNameInput!.text! = data.TeacherName
-            SubjectNameInput!.text! = data.Subject
+            TeacherNameInput!.text! = data.teacherName
+            SubjectNameInput!.text! = data.subject
         }
-        if let url = data.HaikuURL? {
-        HaikuURLInput!.text! = url.description
+        if let url = data.haikuURL? {
+        HaikuURLInput!.text! = url.absoluteString!
         }
         else {
         HaikuURLInput!.text! = ""
         }
     }
     
-    func getContent()->ClassPeriodData{
+    func getContent()->SchoolClass{
         var haikuURL : NSURL?
         let teacher = TeacherNameInput!.text
         let subject = SubjectNameInput!.text
@@ -65,7 +65,7 @@ class ClassPopupView: UIView {
         if HaikuURLText != "" {
             haikuURL = NSURL(string: HaikuURLText)
         }
-        let outputClassData = ClassPeriodData(ClassPeriod: classPeriod, TeacherName: teacher, HaikuURL: haikuURL, IsStudyHall: studyHall, Subject: subject)
+        let outputClassData = SchoolClass(period: classPeriod, teacherName: teacher, haikuURL: haikuURL, isStudyHall: studyHall, subject: subject)
         return outputClassData
     }
     

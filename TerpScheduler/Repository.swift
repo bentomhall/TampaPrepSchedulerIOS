@@ -51,6 +51,7 @@ protocol Filterable {
 
 protocol DataObject {
   init(entity: NSManagedObject)
+  func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject
 }
 
 
@@ -137,10 +138,16 @@ class Repository<T: protocol<Filterable, DataObject>> {
     }
     return p!
   }
+  private func fetchAll()->[T]{
+    let results = context!.executeFetchRequest(fetchRequest!, error: nil) as [NSManagedObject]
+    let data = dataFromEntities(results)
+    return data
+  }
 
   init(entityName: String, withContext context: NSManagedObjectContext){
     fetchRequest = newFetchRequestforEntity(entityName)
     self.context = context
+    _cache = fetchAll()
   }
   
   func fetchBy(type: RepositoryFilterType, values: FilterValues)->[T]{
@@ -184,8 +191,9 @@ class Repository<T: protocol<Filterable, DataObject>> {
     }
   }
   
-  func add(item: T){
+  func add(item: T, entity: NSManagedObject){
     _cache.append(item)
+    
     context!.save(nil)
   }
 

@@ -9,27 +9,39 @@
 import Foundation
 import CoreData
 
-struct SchoolClass: Filterable {
-  let date = NSDate() //garbage
+struct SchoolClass {
   let period: Int
-  let id: NSUUID
   let teacherName: String
   let haikuURL: NSURL?
   let isStudyHall: Bool
   let subject: String
+  
+  static func DefaultForPeriod(period: Int)->SchoolClass{
+    return SchoolClass(period: period, teacherName: "No Teacher Selected", haikuURL: nil, isStudyHall: false, subject: "No Subject Selected")
+  }
 }
 
 extension SchoolClass: DataObject{
   init(entity: NSManagedObject){
     let entity = entity as SchoolClassesEntity
     period = entity.classPeriod
-    id = NSUUID()
     teacherName = entity.teacherName
     if entity.haikuURL != ""{
       haikuURL = NSURL(string: entity.haikuURL)
     }
     isStudyHall = entity.isStudyHall
     subject = entity.subject
+  }
+  
+  func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject {
+    let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: context)
+    let managedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as SchoolClassesEntity
+    managedObject.classPeriod = period
+    managedObject.teacherName = teacherName
+    managedObject.haikuURL = haikuURL != nil ? haikuURL!.absoluteString! : ""
+    managedObject.isStudyHall = isStudyHall
+    managedObject.subject = subject
+    return managedObject
   }
 }
 
