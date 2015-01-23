@@ -9,6 +9,11 @@
 import UIKit
 
 class TaskTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+  @IBAction func hideTableView(recognizer: UISwipeGestureRecognizer){
+    delegate!.willDisappear()
+    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+  }
+  
   var date = NSDate()
   var period = 1
   var tasks: [DailyTask] = []
@@ -35,6 +40,10 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+  }
 
     // MARK: - Table view data source
 
@@ -60,10 +69,10 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     let receiver = segue.destinationViewController as TaskDetailViewController
-    if tasks.count == 0 {
+    let index = tableView.indexPathForSelectedRow()?.row
+    if tasks.count == 0 || index == tasks.count {
       selectedTask = delegate!.defaultTask
     } else {
-      let index = tableView.indexPathForSelectedRow()?.row
       if index != nil {
         selectedTask = tasks[index!]
       }

@@ -12,6 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="308" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TaskListView" textLabel="Bay-KL-vMg" style="IBUITableViewCellStyleDefault" id="Txc-ZT-fs2" customClass="TaskTableViewCell" customModule="TerpScheduler" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -35,6 +36,7 @@
                         <connections>
                             <outlet property="dataSource" destination="OLM-A4-8v2" id="6aL-yx-IAH"/>
                             <outlet property="delegate" destination="OLM-A4-8v2" id="VOX-TW-gea"/>
+                            <outletCollection property="gestureRecognizers" destination="PSm-xA-XhP" appends="YES" id="Gfs-d6-rbV"/>
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -44,6 +46,11 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kp-sw-4NH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="PSm-xA-XhP">
+                    <connections>
+                        <action selector="hideTableView:" destination="OLM-A4-8v2" id="IBT-5z-WU8"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-584" y="-2174"/>
         </scene>

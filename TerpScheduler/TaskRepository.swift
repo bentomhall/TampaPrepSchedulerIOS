@@ -40,7 +40,7 @@ class TaskRepository {
   }
   
   func tasksForDateAndPeriod(date: NSDate, period: Int)->[DailyTask]{
-    let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(date: date, period: period, id: NSUUID(), stopDate: nil))
+    let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(optDate: date, optID: nil, optPeriod: period, optTitle: nil))
     let sortedTasks = sorted(tasks, {$0.priority.rawValue < $1.priority.rawValue})
     return sortedTasks
   }
@@ -63,7 +63,7 @@ class TaskRepository {
   }
   
   func taskDetailForID(id: NSUUID)->DailyTask?{
-    let tasks = repository.fetchBy(taskDetailFilterType, values: FilterValues(date: NSDate(), period: 0, id: id, stopDate: nil))
+    let tasks = repository.fetchBy(taskDetailFilterType, values: FilterValues(optDate: nil, optID: id, optPeriod: nil, optTitle: nil))
     if tasks.count > 0 {
       return tasks[0]
     } else {

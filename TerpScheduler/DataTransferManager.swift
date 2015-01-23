@@ -21,6 +21,7 @@ protocol TaskTableDelegate {
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(task: DailyTask)
+  func willDisappear()
 }
 
 protocol TaskSummaryDelegate {
@@ -47,6 +48,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   private var taskRepository: TaskRepository
   private var dateRepository: DateRepository
   private var schoolClassRepository: SchoolClassesRepository
+  private var selectedDate = NSDate()
+  private var selectedPeriod = 1
   var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
   var tableViewController: TaskTableViewController?
@@ -69,11 +72,15 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     if id == nil {
       newID = taskRepository.defaultTask!.id
     }
+    detailViewController!.date = selectedDate
+    detailViewController!.period = selectedPeriod
     detailViewController!.previousTaskData = taskRepository.taskDetailForID(newID!)
     return
   }
   
   func willDisplaySplitViewFor(date: NSDate, period: Int) {
+    selectedDate = date
+    selectedPeriod = period
     let tasks = taskRepository.tasksForDateAndPeriod(date, period: period)
     tableViewController!.tasks = tasks
     tableViewController!.reload()
@@ -106,6 +113,11 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   
   func didDeleteTask(task: DailyTask) {
     taskRepository.deleteItem(task)
+  }
+  
+  func willDisappear() {
+    summaryViewController!.taskSummaries = summariesForWeek()
+    summaryViewController!.reloadCollectionView()
   }
   
 

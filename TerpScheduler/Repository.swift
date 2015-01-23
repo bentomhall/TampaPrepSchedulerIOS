@@ -26,13 +26,15 @@ enum RepositoryFilterType {
   case byDateAndPeriod
   case byDateAndPeriodAndID
   case byDateBetween
+  case byTitleIsEmpty
 }
 
 struct FilterValues: Filterable {
-  var date: NSDate = NSDate()
-  var period: Int = 0
-  var id: NSUUID = NSUUID()
+  var date: NSDate
+  var period: Int
+  var id: NSUUID
   var stopDate: NSDate?
+  var shortTitle: String
 }
 
 extension FilterValues {
@@ -40,6 +42,14 @@ extension FilterValues {
     self.date = fromFilterable.date
     self.id = fromFilterable.id
     self.period = fromFilterable.period
+    self.shortTitle = fromFilterable.shortTitle
+  }
+  
+  init(optDate: NSDate?, optID: NSUUID?, optPeriod: Int?, optTitle: String?){
+    self.date = optDate ?? NSDate()
+    self.id = optID ?? NSUUID()
+    self.period = optPeriod ?? -1
+    self.shortTitle = optTitle ?? "_"
   }
 }
 
@@ -47,6 +57,7 @@ protocol Filterable {
   var date: NSDate { get }
   var period: Int { get }
   var id: NSUUID { get }
+  var shortTitle: String { get }
 }
 
 protocol DataObject {
@@ -104,6 +115,10 @@ class Repository<T: protocol<Filterable, DataObject>> {
             results.append(item)
           }
         }
+      case .byTitleIsEmpty:
+        if item.shortTitle == "" {
+          results.append(item)
+        }
       default:
         break
       }
@@ -135,6 +150,8 @@ class Repository<T: protocol<Filterable, DataObject>> {
       break
     case .byDateBetween:
       p = NSPredicate(format: "date > %@ and date < %@", argumentArray: [value.date, value.stopDate!])
+    case .byTitleIsEmpty:
+      p = NSPredicate(format: "shortTitle = %@", String())
     }
     return p!
   }
@@ -174,21 +191,39 @@ class Repository<T: protocol<Filterable, DataObject>> {
   }
   
   func deleteItemMatching(values filter: Filterable){
-    func getIndex(filter: Filterable)->Int{
+    func getIndex(filter: Filterable, isDefault: Bool)->Int{
       for (index, item) in enumerate(_cache) {
-        if filter.date.compare(item.date) == .OrderedSame && filter.period == item.period && filter.id == item.id {
-          return index
+        if isDefault {
+          if item.shortTitle == "" {
+            return index
+          }
+        } else {
+          if filter.id == item.id {
+            return index
+          }
         }
       }
         return -1
     }
-    _cache.removeAtIndex(getIndex(filter))
-    fetchRequest!.predicate = predicateByType(RepositoryFilterType.byDateAndPeriodAndID, value: FilterValues(fromFilterable: filter))
+    var cacheIndex = -1
+    if filter.shortTitle == ""{
+      cacheIndex = getIndex(filter, true)
+      fetchRequest!.predicate = predicateByType(RepositoryFilterType.byTitleIsEmpty, value: FilterValues(fromFilterable: filter))
+    } else {
+      cacheIndex = getIndex(filter, false)
+      fetchRequest!.predicate = predicateByType(RepositoryFilterType.byID, value: FilterValues(fromFilterable: filter))
+    }
+    if cacheIndex >= 0 {
+      _cache.removeAtIndex(cacheIndex)
+    }
     if let results = context!.executeFetchRequest(fetchRequest!, error: nil) as? [NSManagedObject]{
       if results.count > 0 {
-        context!.deleteObject(results[0])
+        for result in results {
+          context!.deleteObject(result)
+        }
       }
     }
+    context!.save(nil)
   }
   
   func add(item: T, entity: NSManagedObject){

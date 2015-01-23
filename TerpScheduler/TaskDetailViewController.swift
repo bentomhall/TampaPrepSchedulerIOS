@@ -18,6 +18,8 @@ class TaskDetailViewController: UIViewController {
   
   var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask?
+  var date: NSDate?
+  var period: Int?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,13 +42,15 @@ class TaskDetailViewController: UIViewController {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    let shortTitle = titleField!.text
-    let details = detailsTextView!.text
-    let priority = prioritySelector!.selectedSegmentIndex
-    let isHaiku = isHaikuAssignment!.on
-    let completion = isCompleted!.on
-    let newTaskData = DailyTask(id: NSUUID(), date: previousTaskData!.date, period: previousTaskData!.period, shortTitle: shortTitle, details: details, isHaikuAssignment: isHaiku, isCompleted: completion, priority: Priorities(rawValue: priority)!)
-    delegate!.updateTask(newTaskData)
+    if titleField!.text != "" {
+      let shortTitle = titleField!.text
+      let details = detailsTextView!.text
+      let priority = prioritySelector!.selectedSegmentIndex
+      let isHaiku = isHaikuAssignment!.on
+      let completion = isCompleted!.on
+      let newTaskData = DailyTask(id: NSUUID(), date: date!, period: period!, shortTitle: shortTitle, details: details, isHaikuAssignment: isHaiku, isCompleted: completion, priority: Priorities(rawValue: priority)!)
+      delegate!.updateTask(newTaskData)
+    }
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
   }
   
