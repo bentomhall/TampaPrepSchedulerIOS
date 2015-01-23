@@ -60,6 +60,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     get { return taskRepository.defaultTask! }
   }
   
+  
+  
   func updateTask(task: DailyTask) {
     taskRepository.persistData(task)
     summaryViewController!.reloadCollectionView()

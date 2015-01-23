@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let context = managedObjectContext{
       SemesterScheduleLoader(context: context, withJSONFile: "winter2015")
     }
+    
     return true
   }
   

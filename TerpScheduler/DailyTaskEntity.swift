@@ -9,6 +9,10 @@
 import Foundation
 import CoreData
 
+func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
+  return lhs.id == rhs.id
+}
+
 enum Priorities: Int {
   case Highest = 0
   case High = 1
@@ -18,8 +22,8 @@ enum Priorities: Int {
   case Completed = 5
 }
 
-struct DailyTask: Filterable {
-  let id: NSUUID
+struct DailyTask: Filterable, Equatable {
+  let id: NSManagedObjectID
   let date: NSDate
   let period: Int
   let shortTitle : String
@@ -42,7 +46,7 @@ extension DailyTask{
 extension DailyTask: DataObject{
   init(entity: NSManagedObject){
     let model = entity as DailyTaskEntity
-    id = NSUUID(UUIDString: model.id)!
+    id = model.objectID
     date = model.dateDue
     shortTitle = model.shortTitle
     details = model.details
@@ -54,7 +58,7 @@ extension DailyTask: DataObject{
   
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
     let entity = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
-    let managedEntity = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as DailyTaskEntity
+    let managedEntity = DailyTaskEntity(entity: entity!, insertIntoManagedObjectContext: context) as DailyTaskEntity
     managedEntity.details = details
     managedEntity.shortTitle = shortTitle
     managedEntity.forPeriod = period
@@ -62,7 +66,6 @@ extension DailyTask: DataObject{
     managedEntity.isCompleted = isCompleted
     managedEntity.isHaikuAssignment = isHaikuAssignment
     managedEntity.priority = priority.rawValue
-    managedEntity.id = id.UUIDString
     return managedEntity as NSManagedObject
   }
 }
@@ -81,6 +84,5 @@ class DailyTaskEntity: NSManagedObject {
   @NSManaged var isHaikuAssignment: NSNumber
   @NSManaged var isCompleted: NSNumber
   @NSManaged var priority: NSNumber
-  @NSManaged var id: String
 
 }

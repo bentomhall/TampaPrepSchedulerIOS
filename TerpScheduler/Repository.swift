@@ -32,7 +32,7 @@ enum RepositoryFilterType {
 struct FilterValues: Filterable {
   var date: NSDate
   var period: Int
-  var id: NSUUID
+  var id: NSManagedObjectID
   var stopDate: NSDate?
   var shortTitle: String
 }
@@ -45,9 +45,9 @@ extension FilterValues {
     self.shortTitle = fromFilterable.shortTitle
   }
   
-  init(optDate: NSDate?, optID: NSUUID?, optPeriod: Int?, optTitle: String?){
+  init(optDate: NSDate?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?){
     self.date = optDate ?? NSDate()
-    self.id = optID ?? NSUUID()
+    self.id = optID ?? NSManagedObjectID()
     self.period = optPeriod ?? -1
     self.shortTitle = optTitle ?? "_"
   }
@@ -56,7 +56,7 @@ extension FilterValues {
 protocol Filterable {
   var date: NSDate { get }
   var period: Int { get }
-  var id: NSUUID { get }
+  var id: NSManagedObjectID { get }
   var shortTitle: String { get }
 }
 
@@ -66,13 +66,13 @@ protocol DataObject {
 }
 
 
-class Repository<T: protocol<Filterable, DataObject>> {
+class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   private func newFetchRequestforEntity(entity: String)->NSFetchRequest{
     return NSFetchRequest(entityName: entity)
   }
   
+  private let entityName: String
   private var _cache = [T]()
-  private var fetchRequest: NSFetchRequest?
   private var context: NSManagedObjectContext?
   func search(items: [T], predicate: RepositoryFilterType, values: FilterValues)->[T]{
     var results = [T]()
@@ -156,24 +156,30 @@ class Repository<T: protocol<Filterable, DataObject>> {
     return p!
   }
   private func fetchAll()->[T]{
-    let results = context!.executeFetchRequest(fetchRequest!, error: nil) as [NSManagedObject]
+    let fetchRequest = newFetchRequestforEntity(entityName)
+    fetchRequest.predicate = NSPredicate(value: true)
+    let results = context!.executeFetchRequest(fetchRequest, error: nil) as [U]
     let data = dataFromEntities(results)
     return data
   }
 
   init(entityName: String, withContext context: NSManagedObjectContext){
-    fetchRequest = newFetchRequestforEntity(entityName)
+    self.entityName = entityName
+    //fetchRequest = newFetchRequestforEntity(entityName)
+    //fetchRequest!.returnsDistinctResults = true
+    //fetchRequest!.returnsObjectsAsFaults = false
     self.context = context
     _cache = fetchAll()
   }
   
   func fetchBy(type: RepositoryFilterType, values: FilterValues)->[T]{
+    let fetchRequest = newFetchRequestforEntity(entityName)
     let cacheResults = search(_cache, predicate:type, values: values)
     if cacheResults.count > 0 {
       return cacheResults
     } else {
-      fetchRequest!.predicate = predicateByType(type, value: values)
-      if let results = context!.executeFetchRequest(fetchRequest!, error: nil) as? [NSManagedObject]{
+      fetchRequest.predicate = predicateByType(type, value: values)
+      if let results = context!.executeFetchRequest(fetchRequest, error: nil) as? [U]{
         let data = dataFromEntities(results)
         _cache.extend(data)
         return data
@@ -182,7 +188,7 @@ class Repository<T: protocol<Filterable, DataObject>> {
     return [T]()
   }
   
-  private func dataFromEntities(entities: [NSManagedObject])->[T]{
+  private func dataFromEntities(entities: [U])->[T]{
     var answer = [T]()
     for item in entities{
       answer.append(T(entity: item))
@@ -190,7 +196,7 @@ class Repository<T: protocol<Filterable, DataObject>> {
     return answer
   }
   
-  func deleteItemMatching(values filter: Filterable){
+  func deleteItemMatching(values filter: protocol<Filterable, DataObject>){
     func getIndex(filter: Filterable, isDefault: Bool)->Int{
       for (index, item) in enumerate(_cache) {
         if isDefault {
@@ -208,28 +214,27 @@ class Repository<T: protocol<Filterable, DataObject>> {
     var cacheIndex = -1
     if filter.shortTitle == ""{
       cacheIndex = getIndex(filter, true)
-      fetchRequest!.predicate = predicateByType(RepositoryFilterType.byTitleIsEmpty, value: FilterValues(fromFilterable: filter))
     } else {
       cacheIndex = getIndex(filter, false)
-      fetchRequest!.predicate = predicateByType(RepositoryFilterType.byID, value: FilterValues(fromFilterable: filter))
     }
     if cacheIndex >= 0 {
       _cache.removeAtIndex(cacheIndex)
     }
-    if let results = context!.executeFetchRequest(fetchRequest!, error: nil) as? [NSManagedObject]{
-      if results.count > 0 {
-        for result in results {
-          context!.deleteObject(result)
-        }
-      }
-    }
+    var error: NSError?
+    let allItems = fetchAll()
+    let itemToDelete = filter.toEntity(inContext: context!) as U
+    context!.deleteObject(filter.toEntity(inContext: context!))
+    context!.save(&error)
+  }
+  
+  func add(item: T, entity: U){
+    _cache.append(item)
+    context!.insertObject(entity)
     context!.save(nil)
   }
   
-  func add(item: T, entity: NSManagedObject){
-    _cache.append(item)
+  func fetchDefault(){
     
-    context!.save(nil)
   }
 
 }
