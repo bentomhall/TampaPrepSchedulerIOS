@@ -77,7 +77,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
         selectedTask = tasks[index!]
       }
     }
-    delegate?.willDisplayDetailForTaskByID(selectedTask!.id, forViewController: receiver)
+    delegate?.willDisplayDetailForTask(selectedTask!, forViewController: receiver)
   }
 
     /*

@@ -45,10 +45,10 @@ class TaskDetailViewController: UIViewController {
     if titleField!.text != "" {
       let shortTitle = titleField!.text
       let details = detailsTextView!.text
-      let priority = prioritySelector!.selectedSegmentIndex
+      let priority = Priorities(rawValue: prioritySelector!.selectedSegmentIndex)
       let isHaiku = isHaikuAssignment!.on
       let completion = isCompleted!.on
-      let newTaskData = DailyTask(id: NSUUID(), date: date!, period: period!, shortTitle: shortTitle, details: details, isHaikuAssignment: isHaiku, isCompleted: completion, priority: Priorities(rawValue: priority)!)
+      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
       delegate!.updateTask(newTaskData)
     }
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden

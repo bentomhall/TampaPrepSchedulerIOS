@@ -17,7 +17,7 @@ protocol TaskDetailDelegate{
 }
 
 protocol TaskTableDelegate {
-  func willDisplayDetailForTaskByID(id: NSUUID?, forViewController: TaskDetailViewController)
+  func willDisplayDetailForTask(task: DailyTask, forViewController: TaskDetailViewController)
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(task: DailyTask)
@@ -60,23 +60,22 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     get { return taskRepository.defaultTask! }
   }
   
-  
-  
   func updateTask(task: DailyTask) {
-    taskRepository.persistData(task)
+    let oldTask = tableViewController!.selectedTask
+    if oldTask != nil && oldTask!.period != 0{
+      taskRepository.persistData(task, withMergeFromTask: oldTask!)
+    } else {
+      taskRepository.persistData(task, withMergeFromTask: nil)
+    }
     summaryViewController!.reloadCollectionView()
     return
   }
   
-  func willDisplayDetailForTaskByID(id: NSUUID?, forViewController controller: TaskDetailViewController) {
+  func willDisplayDetailForTask(task: DailyTask, forViewController controller: TaskDetailViewController) {
     detailViewController = controller
-    var newID = id
-    if id == nil {
-      newID = taskRepository.defaultTask!.id
-    }
     detailViewController!.date = selectedDate
     detailViewController!.period = selectedPeriod
-    detailViewController!.previousTaskData = taskRepository.taskDetailForID(newID!)
+    detailViewController!.previousTaskData = task
     return
   }
   
@@ -115,11 +114,12 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   
   func didDeleteTask(task: DailyTask) {
     taskRepository.deleteItem(task)
+    summaryViewController!.reloadCollectionView()
   }
   
   func willDisappear() {
-    summaryViewController!.taskSummaries = summariesForWeek()
-    summaryViewController!.reloadCollectionView()
+    //summaryViewController!.taskSummaries = summariesForWeek()
+    //summaryViewController!.reloadCollectionView()
   }
   
 

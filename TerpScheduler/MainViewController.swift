@@ -27,10 +27,10 @@ class MainViewController: UIViewController {
     let direction = recognizer.direction
     switch (direction)
     {
-      case UISwipeGestureRecognizerDirection.Right:
+      case UISwipeGestureRecognizerDirection.Down:
         delegate!.loadWeek(-1)
         break
-      case UISwipeGestureRecognizerDirection.Left:
+      case UISwipeGestureRecognizerDirection.Up:
         delegate!.loadWeek(1)
         break
       default:

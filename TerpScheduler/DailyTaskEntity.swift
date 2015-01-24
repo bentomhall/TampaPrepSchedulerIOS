@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
-  return lhs.id == rhs.id
+  return lhs.id! == rhs.id!
 }
 
 enum Priorities: Int {
@@ -23,14 +23,24 @@ enum Priorities: Int {
 }
 
 struct DailyTask: Filterable, Equatable {
-  let id: NSManagedObjectID
+  let id: NSManagedObjectID?
   let date: NSDate
   let period: Int
-  let shortTitle : String
-  let details : String
-  let isHaikuAssignment : Bool
-  let isCompleted : Bool
-  let priority : Priorities
+  var shortTitle : String
+  var details : String
+  var isHaikuAssignment : Bool
+  var isCompleted : Bool
+  var priority : Priorities
+  
+  init(date: NSDate, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities){
+    self.date = date
+    self.period = period
+    self.shortTitle = shortTitle
+    self.details = details
+    self.isCompleted = completion
+    self.isHaikuAssignment = isHaiku
+    self.priority = priority
+  }
 }
 
 extension DailyTask{
@@ -46,6 +56,8 @@ extension DailyTask{
 extension DailyTask: DataObject{
   init(entity: NSManagedObject){
     let model = entity as DailyTaskEntity
+    let context = model.managedObjectContext!
+    context.save(nil)
     id = model.objectID
     date = model.dateDue
     shortTitle = model.shortTitle
@@ -57,6 +69,16 @@ extension DailyTask: DataObject{
   }
   
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
+    
+    if self.id != nil{
+      var error: NSError?
+      let existingEntity = context.existingObjectWithID(self.id!, error: &error)
+      if existingEntity != nil && error == nil {
+        return existingEntity!
+      } else if error != nil {
+        NSLog("%@", error!)
+      }
+    }
     let entity = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
     let managedEntity = DailyTaskEntity(entity: entity!, insertIntoManagedObjectContext: context) as DailyTaskEntity
     managedEntity.details = details

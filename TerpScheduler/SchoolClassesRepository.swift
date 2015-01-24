@@ -21,7 +21,11 @@ class SchoolClassesRepository: NSObject {
   private func fetchEntity(classPeriod: Int) -> SchoolClassesEntity? {
     let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
     fetchRequest.predicate = predicate!
-    if let results = managedContext.executeFetchRequest(fetchRequest, error: nil){
+    var error: NSError?
+    if let results = managedContext.executeFetchRequest(fetchRequest, error: &error){
+      if error != nil {
+        NSLog("%@", error!)
+      }
       if results.count == 1 {
         return (results[0] as SchoolClassesEntity)
       }
@@ -37,8 +41,12 @@ class SchoolClassesRepository: NSObject {
     return SchoolClass.DefaultForPeriod(classPeriod)
   }
   
-   func persistData(classData : SchoolClass){
-    var entity = fetchEntity(classData.period)
-    managedContext.save(nil)
+  func persistData(classData : SchoolClass){
+    var entity = classData.toEntity(inContext: managedContext)
+    var error: NSError?
+    managedContext.save(&error)
+    if error != nil {
+      NSLog("%@", error!)
+    }
   }
 }

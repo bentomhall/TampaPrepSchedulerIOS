@@ -24,9 +24,10 @@ class TaskRepository {
   private let taskListFilterType = RepositoryFilterType.byDateAndPeriod
   private let taskDetailFilterType = RepositoryFilterType.byID
   private var summaries: [TaskSummary] = []
+  
   private func fetchOrLoadDefaultTask()->DailyTask{
     let fetchRequest = NSFetchRequest(entityName: "DailyTask")
-    fetchRequest.predicate = NSPredicate(format: "period = %i", 0)
+    fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", 0)
     let results = context.executeFetchRequest(fetchRequest, error: nil) as [DailyTaskEntity]
     if results.count == 0 {
       let entityDescription = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
@@ -34,22 +35,36 @@ class TaskRepository {
       task.shortTitle = ""
       task.forPeriod = 0
       task.details = ""
-      context.save(nil)
+      task.dateDue = NSDate()
+      var error: NSError?
+      context.save(&error)
+      if error != nil {
+        NSLog("%@", error!)
+      }
       return DailyTask(entity: task)
     } else {
       return DailyTask(entity: results[0])
     }
   }
   
-  
   var defaultTask: DailyTask?
   
-  func persistData(data: DailyTask){
-    if let matchingTask = taskDetailForID(data.id) {
-      deleteItem(data) //only store the updated object
+  func persistData(data: DailyTask, withMergeFromTask oldTask: DailyTask?){
+    let newEntity = data.toEntity(inContext: context) as DailyTaskEntity
+    var entity: DailyTaskEntity
+    if oldTask != nil {
+      entity = oldTask!.toEntity(inContext: context) as DailyTaskEntity
+      entity.shortTitle = newEntity.shortTitle
+      entity.priority = newEntity.priority
+      entity.details = newEntity.details
+      entity.isHaikuAssignment = newEntity.isHaikuAssignment
+      entity.isCompleted = newEntity.isCompleted
+      repository.add(entity, isNew: false)
+      context.deleteObject(newEntity)
+    } else {
+      repository.add(newEntity, isNew: true)
     }
-    let entity = data.toEntity(inContext: context)
-    repository.add(data, entity: entity as DailyTaskEntity)
+    
   }
   
   func tasksForDateAndPeriod(date: NSDate, period: Int)->[DailyTask]{
@@ -76,12 +91,10 @@ class TaskRepository {
   }
   
   func taskDetailForID(id: NSManagedObjectID)->DailyTask?{
-    let tasks = repository.fetchBy(taskDetailFilterType, values: FilterValues(optDate: nil, optID: id, optPeriod: nil, optTitle: nil))
-    if tasks.count > 0 {
-      return tasks[0]
-    } else {
-      return nil
+    if let result = context.existingObjectWithID(id, error: nil) {
+      return DailyTask(entity: result)
     }
+    return nil
   }
   
   func deleteItem(item: DailyTask){
