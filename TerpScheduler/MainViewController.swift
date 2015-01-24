@@ -44,6 +44,7 @@ class MainViewController: UIViewController {
   
   var detailIndex: (day: Int, period: Int) = (0,0)
   var dataForSelectedTask: DailyTask?
+  private var lockedClasses = [Int]()
   
   
   func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
@@ -92,7 +93,12 @@ class MainViewController: UIViewController {
       receivingController.modalPresentationStyle = .Popover
       receivingController.delegate = self
       receivingController.index = index!
+    } else if segue.identifier! == "WebView"{
+      let url = sender as NSURL
+      let receivingController = segue.destinationViewController as WebViewController
+      receivingController.initialURL = url
     }
+    
     super.prepareForSegue(segue, sender: sender)
   }
 }
@@ -153,6 +159,10 @@ extension MainViewController: ClassPeriodDataSource {
   
   func getClassData(period: Int)->SchoolClass{
     return classPeriods![period].classData
+  }
+  
+  func openWebView(url: NSURL) {
+    performSegueWithIdentifier("WebView", sender: url)
   }
 }
 

@@ -15,6 +15,7 @@
     <entity name="SchoolClasses" representedClassName="TerpScheduler.SchoolClassesEntity" syncable="YES">
         <attribute name="classPeriod" attributeType="Integer 64" minValueString="1" maxValueString="7" defaultValueString="1" syncable="YES"/>
         <attribute name="haikuURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLocked" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isStudyHall" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="teacherName" attributeType="String" syncable="YES"/>
@@ -27,7 +28,7 @@
     <elements>
         <element name="AppData" positionX="-450" positionY="-213" width="128" height="60"/>
         <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="150"/>
-        <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="118"/>
+        <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="135"/>
         <element name="Week" positionX="-288" positionY="-216" width="128" height="90"/>
     </elements>
 </model>

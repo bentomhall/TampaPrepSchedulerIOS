@@ -21,12 +21,14 @@ class SchoolClassesRepository: NSObject {
   private func fetchEntity(classPeriod: Int) -> SchoolClassesEntity? {
     let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
     fetchRequest.predicate = predicate!
+    fetchRequest.returnsObjectsAsFaults = false
     var error: NSError?
     if let results = managedContext.executeFetchRequest(fetchRequest, error: &error){
       if error != nil {
         NSLog("%@", error!)
       }
       if results.count == 1 {
+        NSLog("%@", results as [SchoolClassesEntity])
         return (results[0] as SchoolClassesEntity)
       }
     }

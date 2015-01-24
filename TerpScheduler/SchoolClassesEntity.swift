@@ -15,9 +15,11 @@ struct SchoolClass {
   let haikuURL: NSURL?
   let isStudyHall: Bool
   let subject: String
+  let isLocked: Bool
+  let id: NSManagedObjectID?
   
   static func DefaultForPeriod(period: Int)->SchoolClass{
-    return SchoolClass(period: period, teacherName: "No Teacher Selected", haikuURL: nil, isStudyHall: false, subject: "No Subject Selected")
+    return SchoolClass(period: period, teacherName: "No Teacher Selected", haikuURL: nil, isStudyHall: false, subject: "No Subject Selected", isLocked: false, id: nil)
   }
 }
 
@@ -31,17 +33,34 @@ extension SchoolClass: DataObject{
     }
     isStudyHall = entity.isStudyHall
     subject = entity.subject
+    isLocked = entity.isLocked
+    id = entity.objectID
   }
   
   func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject {
-    let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: context)
-    let managedObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as SchoolClassesEntity
-    managedObject.classPeriod = period
-    managedObject.teacherName = teacherName
-    managedObject.haikuURL = haikuURL != nil ? haikuURL!.absoluteString! : ""
-    managedObject.isStudyHall = isStudyHall
-    managedObject.subject = subject
-    return managedObject
+    var managedObject: SchoolClassesEntity?
+    var alreadyExists = false
+    if self.id != nil {
+      var error: NSError?
+      let existingEntity = context.existingObjectWithID(self.id!, error: &error)
+      if existingEntity != nil && error == nil {
+        managedObject = (existingEntity! as SchoolClassesEntity)
+        alreadyExists = true
+      } else if error != nil {
+        NSLog("%@", error!)
+      }
+    }
+    if !alreadyExists{
+      let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: context)
+      managedObject = (NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as SchoolClassesEntity)
+    }
+    managedObject!.classPeriod = period
+    managedObject!.teacherName = teacherName
+    managedObject!.haikuURL = haikuURL != nil ? haikuURL!.absoluteString! : ""
+    managedObject!.isStudyHall = isStudyHall
+    managedObject!.subject = subject
+    managedObject!.isLocked = isLocked
+    return managedObject!
   }
 }
 
@@ -51,4 +70,5 @@ class SchoolClassesEntity: NSManagedObject {
     @NSManaged var haikuURL : String
     @NSManaged var isStudyHall : Bool
     @NSManaged var subject: String
+  @NSManaged var isLocked: Bool
 }
