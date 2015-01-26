@@ -28,7 +28,7 @@ class LinksPageViewController: UIViewController {
     case "Tampa Prep":
       url = tampaPrepURL
       break
-    case "My BackPack":
+    case "My Backpack":
       url = myBackPackURL
       break
     case "Haiku Learning":
