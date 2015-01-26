@@ -51,7 +51,6 @@ class TaskDetailViewController: UIViewController {
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
       delegate!.updateTask(newTaskData)
     }
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
   }
   
   func setSubviewContentsFromTaskData(data: DailyTask?){

@@ -13,7 +13,7 @@ class DateHeaderView: UICollectionReusableView {
     @IBOutlet var dayLabels : [DayLabel]?
     
     func SetDates(dates : [SchoolDate]){
-      let today = NSDate()
+      let today = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions.allZeros)!
       for (index, date) in enumerate(dates) {
         let isToday = today.compare(date.Date) == NSComparisonResult.OrderedSame
         dayLabels![index].SetContents(date: date.Date, scheduleType: date.Schedule, dateIsToday: isToday)
