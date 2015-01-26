@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */; };
 		D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA91A47C31100BC333C /* DayLabel.swift */; };
 		D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD771A432E45004F0B83 /* AppDelegate.swift */; };
 		D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinksPageViewController.swift; sourceTree = "<group>"; };
 		D4079CA91A47C31100BC333C /* DayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		D408FD721A432E45004F0B83 /* TerpScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerpScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408FD761A432E45004F0B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */,
 				D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */,
 				D47239C11A7451DB00DBEFAD /* WebViewController.swift */,
+				D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
 				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
+				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
 				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
 				D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */,
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,

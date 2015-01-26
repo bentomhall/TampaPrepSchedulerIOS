@@ -59,7 +59,7 @@
             <objects>
                 <viewController id="uTZ-yI-WtI" customClass="TaskDetailViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uUY-rX-cVg">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="468" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="NWO-HA-38y">
@@ -136,7 +136,9 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="z36-Bc-7k9"/>
-                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="468" height="960"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="468" height="1024"/>
                     <connections>
                         <outlet property="detailsTextView" destination="VSb-Pf-2Vr" id="IfQ-aV-gV7"/>
                         <outlet property="isCompleted" destination="NUK-6e-oBJ" id="QRu-ay-I9d"/>
@@ -147,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZfY-lo-o1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="-2174"/>
+            <point key="canvasLocation" x="-176" y="-2174"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dRI-d8-8zI">
@@ -626,6 +628,14 @@
                                     <outletCollection property="gestureRecognizers" destination="5hJ-cW-jvB" appends="YES" id="sgL-oc-maA"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ofv-qw-SSH">
+                                <rect key="frame" x="16" y="75" width="109" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Links"/>
+                                <connections>
+                                    <segue destination="bBa-Wo-07Y" kind="modal" identifier="LinksPage" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="WFk-lF-BJa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.040000000000000001" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -782,7 +792,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-IS-ZgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="517" y="-1429"/>
+            <point key="canvasLocation" x="343" y="-1762"/>
         </scene>
         <!--Class Period View Controller-->
         <scene sceneID="0Bb-Es-IsO">
@@ -893,7 +903,96 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sv6-Hq-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="-1460"/>
+            <point key="canvasLocation" x="514" y="-1401"/>
+        </scene>
+        <!--Links Page View Controller-->
+        <scene sceneID="eyV-tK-Eqd">
+            <objects>
+                <viewController id="bBa-Wo-07Y" customClass="LinksPageViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DY1-L2-Sr7">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Yd-JZ-xN1">
+                                <rect key="frame" x="199" y="207" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tampa Prep">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="gyp-cz-dAc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="30E-u1-ucH">
+                                <rect key="frame" x="199" y="333" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="My Backpack">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="slF-6j-Ez0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ebm-gD-Eqj">
+                                <rect key="frame" x="199" y="459" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Haiku Learning">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="abT-pS-0js"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xGO-yk-7EJ">
+                                <rect key="frame" x="427" y="333" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VNX-gp-MDZ">
+                                <rect key="frame" x="427" y="459" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b9z-MH-jmH">
+                                <rect key="frame" x="331" y="592" width="106" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeView:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="xJb-ac-lKc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ncS-KC-gDZ">
+                                <rect key="frame" x="427" y="207" width="112" height="118"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Google Drive">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="gU2-Qz-E0G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5UB-8C-nhd"/>
+                    <connections>
+                        <outlet property="backButton" destination="b9z-MH-jmH" id="2hl-gT-jtD"/>
+                        <outlet property="googleDriveButton" destination="ncS-KC-gDZ" id="HzN-Lg-bl5"/>
+                        <outlet property="haikuLearningButton" destination="ebm-gD-Eqj" id="HY3-07-cee"/>
+                        <outlet property="myBackPackButton" destination="30E-u1-ucH" id="xh7-rn-kqu"/>
+                        <outlet property="tampaPrepButton" destination="8Yd-JZ-xN1" id="geK-Dl-q2z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="792" y="-580"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="DV3-ec-J1W">
@@ -932,7 +1031,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O73-iI-NfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Omm-3n-vDv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="611" y="-674"/>
+            <point key="canvasLocation" x="-66" y="26"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

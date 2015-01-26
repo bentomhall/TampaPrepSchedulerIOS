@@ -65,10 +65,10 @@ extension SchoolClass: DataObject{
 }
 
 class SchoolClassesEntity: NSManagedObject {
-    @NSManaged var classPeriod : Int
-    @NSManaged var teacherName : String
-    @NSManaged var haikuURL : String
-    @NSManaged var isStudyHall : Bool
-    @NSManaged var subject: String
+  @NSManaged var classPeriod : Int
+  @NSManaged var teacherName : String
+  @NSManaged var haikuURL : String
+  @NSManaged var isStudyHall : Bool
+  @NSManaged var subject: String
   @NSManaged var isLocked: Bool
 }

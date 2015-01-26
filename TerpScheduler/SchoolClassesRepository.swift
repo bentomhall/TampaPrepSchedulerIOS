@@ -28,7 +28,6 @@ class SchoolClassesRepository: NSObject {
         NSLog("%@", error!)
       }
       if results.count == 1 {
-        NSLog("%@", results as [SchoolClassesEntity])
         return (results[0] as SchoolClassesEntity)
       }
     }

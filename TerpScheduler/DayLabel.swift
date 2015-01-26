@@ -23,11 +23,14 @@ class DayLabel: UIView {
     @IBOutlet var DateLabel: UILabel?
     @IBOutlet var ScheduleLabel: UILabel?
     
-    func SetContents(date day: NSDate, scheduleType: String){
-        var formatter = NSDateFormatter()
-        formatter.dateFormat = "E MM/d"
-        DateLabel!.text = formatter.stringFromDate(day)
-        ScheduleLabel!.text = scheduleType
-        return
+  func SetContents(date day: NSDate, scheduleType: String, dateIsToday: Bool){
+    var formatter = NSDateFormatter()
+    formatter.dateFormat = "E MM/d"
+    DateLabel!.text = formatter.stringFromDate(day)
+    ScheduleLabel!.text = scheduleType
+    if dateIsToday{
+      self.backgroundColor = UIColor.blueColor()
+    }
+    return
     }
 }
