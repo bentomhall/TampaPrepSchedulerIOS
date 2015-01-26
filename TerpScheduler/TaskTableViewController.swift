@@ -68,18 +68,23 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let receiver = segue.destinationViewController as TaskDetailViewController
-    let index = tableView.indexPathForSelectedRow()?.row
-    if tasks.count == 0 || index == tasks.count {
-      selectedTask = delegate!.defaultTask
+    if segue.identifier! == "ReturnToMain"{
+      self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+    
     } else {
-      if index != nil {
-        selectedTask = tasks[index!]
+      let receiver = segue.destinationViewController as TaskDetailViewController
+      let index = tableView.indexPathForSelectedRow()?.row
+      if tasks.count == 0 || index == tasks.count {
+        selectedTask = delegate!.defaultTask
+      } else {
+        if index != nil {
+          selectedTask = tasks[index!]
+        }
       }
+      delegate?.willDisplayDetailForTask(selectedTask!, forViewController: receiver)
+  
     }
-    delegate?.willDisplayDetailForTask(selectedTask!, forViewController: receiver)
   }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -29,7 +29,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="title" destination="Bay-KL-vMg" id="s9V-QL-118"/>
-                                    <segue destination="uTZ-yI-WtI" kind="push" identifier="TaskDetailFromTableView" splitViewControllerTargetIndex="1" id="ZKi-26-5Gl"/>
+                                    <segue destination="uTZ-yI-WtI" kind="replace" identifier="TaskDetailFromTableView" splitViewControllerTargetIndex="1" id="ZKi-26-5Gl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -40,7 +40,13 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="bw0-na-Ph0"/>
+                    <navigationItem key="navigationItem" id="bw0-na-Ph0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Q8E-tb-Wp3">
+                            <connections>
+                                <segue destination="aF1-4L-6ib" kind="replace" identifier="ReturnToMain" splitViewControllerTargetIndex="1" id="4Tf-aV-Jgm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="uJM-PP-9yk">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -59,7 +65,7 @@
             <objects>
                 <viewController id="uTZ-yI-WtI" customClass="TaskDetailViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uUY-rX-cVg">
-                        <rect key="frame" x="0.0" y="64" width="468" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="468" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="NWO-HA-38y">
@@ -1041,6 +1047,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Chh-HR-z3m"/>
+        <segue reference="4Tf-aV-Jgm"/>
         <segue reference="g6i-ag-fle"/>
     </inferredMetricsTieBreakers>
 </document>

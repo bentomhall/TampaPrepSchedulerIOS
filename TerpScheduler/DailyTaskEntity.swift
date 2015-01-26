@@ -10,7 +10,12 @@ import Foundation
 import CoreData
 
 func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
-  return lhs.id! == rhs.id!
+  let isTitleSame = lhs.shortTitle == rhs.shortTitle
+  let isDetailsSame = lhs.details == rhs.details
+  let isPrioritySame = lhs.priority == rhs.priority
+  let isCompletionStatusSame = lhs.isCompleted == rhs.isCompleted
+  let isHaikuStatusSame = lhs.isHaikuAssignment == rhs.isHaikuAssignment
+  return isTitleSame && isDetailsSame && isPrioritySame && isCompletionStatusSame && isHaikuStatusSame
 }
 
 enum Priorities: Int {

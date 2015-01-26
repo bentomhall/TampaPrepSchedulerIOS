@@ -49,7 +49,9 @@ class TaskDetailViewController: UIViewController {
       let isHaiku = isHaikuAssignment!.on
       let completion = isCompleted!.on
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
-      delegate!.updateTask(newTaskData)
+      if newTaskData != previousTaskData! {
+        delegate!.updateTask(newTaskData)
+      }
     }
   }
   
