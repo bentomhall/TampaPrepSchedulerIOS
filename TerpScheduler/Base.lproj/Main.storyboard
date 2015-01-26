@@ -629,7 +629,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ofv-qw-SSH">
-                                <rect key="frame" x="16" y="75" width="109" height="81"/>
+                                <rect key="frame" x="5" y="75" width="118" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Links"/>
                                 <connections>
