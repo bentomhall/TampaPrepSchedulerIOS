@@ -12,7 +12,7 @@ import CoreData
 
 
 protocol TaskDetailDelegate{
-  func updateTask(task: DailyTask)
+  func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask)
   var detailViewController: TaskDetailViewController? {get set}
 }
 
@@ -60,13 +60,14 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     get { return taskRepository.defaultTask! }
   }
   
-  func updateTask(task: DailyTask) {
-    let oldTask = tableViewController!.selectedTask
-    if oldTask != nil && oldTask!.period != 0{
-      taskRepository.persistData(task, withMergeFromTask: oldTask!)
+  func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
+    //let oldTask = tableViewController!.selectedTask
+    if oldTask.period != 0{
+      taskRepository.persistData(task, withMergeFromTask: oldTask)
     } else {
       taskRepository.persistData(task, withMergeFromTask: nil)
     }
+    tableViewController!.reload()
     summaryViewController!.reloadCollectionView()
     return
   }
@@ -118,8 +119,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   }
   
   func willDisappear() {
-    //summaryViewController!.taskSummaries = summariesForWeek()
-    //summaryViewController!.reloadCollectionView()
   }
   
 

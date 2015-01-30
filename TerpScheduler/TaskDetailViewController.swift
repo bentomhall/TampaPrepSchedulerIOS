@@ -50,7 +50,7 @@ class TaskDetailViewController: UIViewController {
       let completion = isCompleted!.on
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
       if newTaskData != previousTaskData! {
-        delegate!.updateTask(newTaskData)
+        delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
       }
     }
   }
