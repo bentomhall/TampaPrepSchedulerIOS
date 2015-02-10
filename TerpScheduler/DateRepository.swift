@@ -78,12 +78,18 @@ class DateRepository {
   }
   
   func loadNextWeek(){
+    if weekID == 19 {
+      return
+    }
     weekID += 1
     dates = loadCurrentWeek()
     return
   }
   
   func loadPreviousWeek(){
+    if weekID == 1 {
+      return
+    }
     weekID -= 1
     dates = loadCurrentWeek()
   }

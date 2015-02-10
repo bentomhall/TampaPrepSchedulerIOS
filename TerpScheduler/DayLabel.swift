@@ -31,6 +31,9 @@ class DayLabel: UIView {
     if dateIsToday{
       self.backgroundColor = UIColor.blueColor()
     }
+    else {
+      self.backgroundColor = UIColor.whiteColor()
+    }
     return
     }
 }

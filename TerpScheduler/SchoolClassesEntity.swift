@@ -26,7 +26,7 @@ struct SchoolClass {
 extension SchoolClass: DataObject{
   init(entity: NSManagedObject){
     let entity = entity as SchoolClassesEntity
-    period = entity.classPeriod
+    period = entity.classPeriod.integerValue
     teacherName = entity.teacherName
     if entity.haikuURL != ""{
       haikuURL = NSURL(string: entity.haikuURL)
@@ -65,7 +65,7 @@ extension SchoolClass: DataObject{
 }
 
 class SchoolClassesEntity: NSManagedObject {
-  @NSManaged var classPeriod : Int
+  @NSManaged var classPeriod : NSNumber
   @NSManaged var teacherName : String
   @NSManaged var haikuURL : String
   @NSManaged var isStudyHall : Bool
