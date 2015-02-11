@@ -18,12 +18,20 @@ protocol ClassPeriodDataSource {
 class ClassPeriodViewController: UIViewController {
   @IBAction func openWebView(sender: UILabel){
     let v = self.view as ClassPopupView
-    if v.HaikuURLInput!.text.hasPrefix("https://tampaprep.haikulearning.com"){
-      let url = NSURL(string: v.HaikuURLInput!.text)
-      self.viewWillDisappear(false)
-      delegate!.openWebView(url!)
-      self.dismissViewControllerAnimated(false, completion: nil)
+    let url_string = v.HaikuURLInput!.text
+    if url_string == "" {
+      return
     }
+    
+    var url: NSURL
+    if v.HaikuURLInput!.text.hasPrefix("http://"){
+      url = NSURL(string: url_string)!
+    } else{
+      url = NSURL(string: "http://"+url_string)!
+    }
+    self.viewWillDisappear(false)
+    delegate!.openWebView(url)
+    self.dismissViewControllerAnimated(false, completion: nil)
   }
   var receivedClassData : SchoolClass?
   var delegate : ClassPeriodDataSource?
@@ -35,7 +43,6 @@ class ClassPeriodViewController: UIViewController {
       receivedClassData = delegate!.getClassData(index)
     }
   }
-  var haikuURL: NSURL?
   
   override func viewDidLoad() {
     super.viewDidLoad()
