@@ -29,9 +29,9 @@ class ClassPeriodViewController: UIViewController {
     } else{
       url = NSURL(string: "http://"+url_string)!
     }
-    self.viewWillDisappear(false)
-    delegate!.openWebView(url)
+    saveData()
     self.dismissViewControllerAnimated(false, completion: nil)
+    delegate!.openWebView(url)
   }
   var receivedClassData : SchoolClass?
   var delegate : ClassPeriodDataSource?
@@ -42,6 +42,12 @@ class ClassPeriodViewController: UIViewController {
       _index = value
       receivedClassData = delegate!.getClassData(index)
     }
+  }
+  
+  func saveData(){
+    let v = self.view as ClassPopupView
+    let outputClassData = v.getContent()
+    delegate!.setClassData(outputClassData, forIndex: index)
   }
   
   override func viewDidLoad() {
@@ -56,9 +62,7 @@ class ClassPeriodViewController: UIViewController {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    let v = self.view as ClassPopupView
-    let outputClassData = v.getContent()
-    delegate!.setClassData(outputClassData, forIndex: index)
+    saveData()
   }
   
 }
