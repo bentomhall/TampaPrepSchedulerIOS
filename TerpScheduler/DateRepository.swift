@@ -13,7 +13,7 @@ let possibleSchedules : [String:[Int]] = ["A": [6], "B": [5,7], "C": [4],
   "D": [2], "E": [1,3],
   "X": [1, 2, 3, 4, 5, 6, 7],
   "Y": [], "A*": [4, 5, 6, 7],
-  "A**": [1, 2, 3]]
+  "A**": [1, 2, 3, 6]]
 
 struct SchoolDate {
   var Date : NSDate
