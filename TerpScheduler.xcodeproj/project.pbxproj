@@ -34,6 +34,10 @@
 		D49CDF741A5E2C5300AEB36B /* winter2015.json in Resources */ = {isa = PBXBuildFile; fileRef = D4463B111A571A6F0026E270 /* winter2015.json */; };
 		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
 		D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */; };
+		D4E6F0DB1A8C25B3002FBFD4 /* TP_seal_64.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E6F0D81A8C25B2002FBFD4 /* TP_seal_64.png */; };
+		D4E6F0DC1A8C25B3002FBFD4 /* TP_seal_home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E6F0D91A8C25B2002FBFD4 /* TP_seal_home_icon.png */; };
+		D4E6F0DD1A8C25B3002FBFD4 /* TP_seal_splash.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E6F0DA1A8C25B2002FBFD4 /* TP_seal_splash.png */; };
+		D4E6F0DF1A8C295F002FBFD4 /* TP_seal_splash_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E6F0DE1A8C295F002FBFD4 /* TP_seal_splash_landscape.png */; };
 		D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */; };
 		D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +72,10 @@
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
 		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
 		D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassView.swift; sourceTree = "<group>"; };
+		D4E6F0D81A8C25B2002FBFD4 /* TP_seal_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TP_seal_64.png; sourceTree = "<group>"; };
+		D4E6F0D91A8C25B2002FBFD4 /* TP_seal_home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TP_seal_home_icon.png; sourceTree = "<group>"; };
+		D4E6F0DA1A8C25B2002FBFD4 /* TP_seal_splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TP_seal_splash.png; sourceTree = "<group>"; };
+		D4E6F0DE1A8C295F002FBFD4 /* TP_seal_splash_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TP_seal_splash_landscape.png; sourceTree = "<group>"; };
 		D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateHeaderView.swift; sourceTree = "<group>"; };
 		D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +128,10 @@
 		D408FD751A432E45004F0B83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4E6F0DE1A8C295F002FBFD4 /* TP_seal_splash_landscape.png */,
+				D4E6F0D81A8C25B2002FBFD4 /* TP_seal_64.png */,
+				D4E6F0D91A8C25B2002FBFD4 /* TP_seal_home_icon.png */,
+				D4E6F0DA1A8C25B2002FBFD4 /* TP_seal_splash.png */,
 				D408FD761A432E45004F0B83 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -242,7 +254,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E6F0DB1A8C25B3002FBFD4 /* TP_seal_64.png in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
+				D4E6F0DD1A8C25B3002FBFD4 /* TP_seal_splash.png in Resources */,
+				D4E6F0DF1A8C295F002FBFD4 /* TP_seal_splash_landscape.png in Resources */,
+				D4E6F0DC1A8C25B3002FBFD4 /* TP_seal_home_icon.png in Resources */,
 				D408FD851A432E45004F0B83 /* LaunchScreen.xib in Resources */,
 				D49CDF741A5E2C5300AEB36B /* winter2015.json in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,

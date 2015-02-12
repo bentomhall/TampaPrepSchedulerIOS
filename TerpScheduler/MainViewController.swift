@@ -39,6 +39,10 @@ class MainViewController: UIViewController {
     }
   }
   
+  @IBAction func TodayButtonTapped(sender: UIButton){
+    delegate!.loadWeek(true)
+  }
+  
   var taskSummaries : [TaskSummary]?
   var classRepository: SchoolClassesRepository?
   

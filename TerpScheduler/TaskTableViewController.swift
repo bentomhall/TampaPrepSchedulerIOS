@@ -132,6 +132,6 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     */
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    
+    tableView.reloadData()
   }
 }

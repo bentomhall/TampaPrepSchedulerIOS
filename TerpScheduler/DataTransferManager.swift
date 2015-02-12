@@ -32,6 +32,7 @@ protocol TaskSummaryDelegate {
   var datesForWeek: [SchoolDate] { get }
   func didSetDateByIndex(index: Int, withData data: String)
   func loadWeek(direction: Int)
+  func loadWeek(shouldFocusOnToday: Bool)
   func missedClassesForDayByIndex(index: Int)->[Int]
 }
 
@@ -105,6 +106,13 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     } else {
       dateRepository.loadPreviousWeek()
     }
+    summaryViewController!.taskSummaries = summariesForWeek()
+    summaryViewController!.reloadCollectionView()
+  }
+  
+  func loadWeek(shouldFocusOnToday: Bool) {
+    let today = NSDate()
+    dateRepository.loadWeekForDay(today)
     summaryViewController!.taskSummaries = summariesForWeek()
     summaryViewController!.reloadCollectionView()
   }

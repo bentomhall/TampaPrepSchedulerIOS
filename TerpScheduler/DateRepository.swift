@@ -141,6 +141,11 @@ class DateRepository {
   func dateStringByIndex(index: Int)->String{
     return dates[index].dateString!
   }
+  
+  func loadWeekForDay(date: NSDate){
+    weekID = fetchWeekID(date)
+    dates = loadCurrentWeek()
+  }
 
 
   
