@@ -20,8 +20,11 @@ class DailyTaskSmallView: UICollectionViewCell {
     RemainingTasksLabel!.hidden = false
   }
   
-  func setTopTaskLabel(taskTitle: String){
+  func setTopTaskLabel(taskTitle: String, isTaskCompleted completion: Bool){
     TopTaskLabel!.text = taskTitle
+    if completion {
+      TopTaskLabel!.enabled = false
+    }
   }
   
   func setRemainingTasksLabel(tasksRemaining: Int){

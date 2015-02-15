@@ -99,8 +99,9 @@ extension DailyTask: DataObject{
 
 struct TaskSummary {
   let title: String
+  let completion: Bool
   let remainingTasks: Int
-  static let DefaultSummary: TaskSummary = TaskSummary(title: "No Tasks", remainingTasks: 0)
+  static let DefaultSummary: TaskSummary = TaskSummary(title: "", completion: false, remainingTasks: 0)
 }
 
 class DailyTaskEntity: NSManagedObject {

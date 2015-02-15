@@ -27,10 +27,10 @@ class MainViewController: UIViewController {
     let direction = recognizer.direction
     switch (direction)
     {
-      case UISwipeGestureRecognizerDirection.Down:
+      case UISwipeGestureRecognizerDirection.Right:
         delegate!.loadWeek(-1)
         break
-      case UISwipeGestureRecognizerDirection.Up:
+      case UISwipeGestureRecognizerDirection.Left:
         delegate!.loadWeek(1)
         break
       default:
@@ -97,6 +97,8 @@ class MainViewController: UIViewController {
       receivingController.modalPresentationStyle = .Popover
       receivingController.delegate = self
       receivingController.index = index!
+      let dateInformation = delegate!.datesForWeek[index!]
+      receivingController.previousSchedule = dateInformation.Schedule
     } else if segue.identifier! == "WebView"{
       let url = sender as NSURL
       let receivingController = segue.destinationViewController as WebViewController
@@ -104,6 +106,12 @@ class MainViewController: UIViewController {
     }
     
     super.prepareForSegue(segue, sender: sender)
+  }
+  
+  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    let width = size.width - CGFloat(130.0)
+    collectionView!.collectionViewLayout.invalidateLayout()
   }
 }
 
@@ -114,6 +122,18 @@ extension MainViewController: UICollectionViewDelegate {
     let date = delegate!.datesForWeek[detailIndex.day].Date
     delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+  }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    if UIInterfaceOrientationIsPortrait(self.interfaceOrientation) {
+      //portrait
+      return CGSize(width: 114, height: 116)
+    } else {
+      //landscape
+      return CGSize(width: 166, height: 116)
+    }
   }
 }
 
@@ -133,11 +153,11 @@ extension MainViewController: UICollectionViewDataSource {
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
     if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
       if contains(missedClasses, selectedDayIndexes.period){
-        cell.backgroundColor = UIColor.lightGrayColor()
+        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
       }
     }
-    let summary = taskSummaries![indexPath.row]// hack [indexPath.row]
-    cell.setTopTaskLabel(summary.title)
+    let summary = taskSummaries![indexPath.row]
+    cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion)
     cell.setRemainingTasksLabel(summary.remainingTasks)
     return cell
   }
@@ -152,6 +172,7 @@ extension MainViewController: UICollectionViewDataSource {
     taskSummaries = delegate!.summariesForWeek()
     collectionView!.reloadData()
   }
+  
 }
 
 //MARK - ClassPeriodDataSource compliance

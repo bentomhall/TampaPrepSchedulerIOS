@@ -29,7 +29,7 @@ class DayLabel: UIView {
     DateLabel!.text = formatter.stringFromDate(day)
     ScheduleLabel!.text = scheduleType
     if dateIsToday{
-      self.backgroundColor = UIColor.blueColor()
+      self.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.25)
     }
     else {
       self.backgroundColor = UIColor.whiteColor()

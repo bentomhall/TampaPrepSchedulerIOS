@@ -45,9 +45,12 @@ class TaskDetailViewController: UIViewController {
     if titleField!.text != "" {
       let shortTitle = titleField!.text
       let details = detailsTextView!.text
-      let priority = Priorities(rawValue: prioritySelector!.selectedSegmentIndex)
+      var priority = Priorities(rawValue: prioritySelector!.selectedSegmentIndex)
       let isHaiku = isHaikuAssignment!.on
       let completion = isCompleted!.on
+      if completion {
+        priority = Priorities.Completed
+      }
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
       if newTaskData != previousTaskData! {
         delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
