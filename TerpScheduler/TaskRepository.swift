@@ -32,7 +32,7 @@ class TaskRepository {
     if results.count == 0 {
       let entityDescription = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
       let task = DailyTaskEntity(entity: entityDescription!, insertIntoManagedObjectContext: context)
-      task.shortTitle = ""
+      task.shortTitle = "New Item"
       task.forPeriod = 0
       task.details = ""
       task.dateDue = NSDate()

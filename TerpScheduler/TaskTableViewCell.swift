@@ -19,7 +19,7 @@ class TaskTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
       super.setSelected(selected, animated: animated)
-      backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+      //backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
         // Configure the view for the selected state
     }
   

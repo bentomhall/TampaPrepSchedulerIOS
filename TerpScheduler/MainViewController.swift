@@ -75,6 +75,7 @@ class MainViewController: UIViewController {
       period.classData = classData
     }
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+    self.navigationController?.setNavigationBarHidden(false, animated: false)
     super.viewDidAppear(animated)
   }
   
@@ -103,6 +104,12 @@ class MainViewController: UIViewController {
       let url = sender as NSURL
       let receivingController = segue.destinationViewController as WebViewController
       receivingController.initialURL = url
+    } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
+      let receivingController = segue.destinationViewController as TaskDetailViewController
+      if let sender = sender as? DataManager{
+        receivingController.previousTaskData = sender.selectedTask
+      }
+      delegate!.detailViewController = receivingController
     }
     
     super.prepareForSegue(segue, sender: sender)
@@ -112,6 +119,10 @@ class MainViewController: UIViewController {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     let width = size.width - CGFloat(130.0)
     collectionView!.collectionViewLayout.invalidateLayout()
+  }
+  
+  func showDetail(task: DailyTask){
+    self.performSegueWithIdentifier("ReplaceDetail", sender: self)
   }
 }
 

@@ -13,11 +13,16 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     delegate!.willDisappear()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
   }
+  @IBAction func doneButton(sender: UIBarButtonItem){
+    delegate!.willDisappear()
+    self.splitViewController!.preferredDisplayMode = .PrimaryHidden
+  }
   
   var date = NSDate()
   var period = 1
   var tasks: [DailyTask] = []
   var delegate: TaskTableDelegate?
+  
   
   var selectedTask: DailyTask?
   
@@ -25,8 +30,21 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     tableView.reloadData()
   }
   
+  func addAndSelectItem(task: DailyTask?, forIndex indx: Int){
+    var indexPath: NSIndexPath
+    var row: Int
+    if task != nil {
+      self.tasks.append(task!)
+      self.reload()
+      row = tasks.count - 1
+    } else {
+      row = indx
+    }
+    indexPath = NSIndexPath(forRow: row, inSection: 0)
+    self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+  }
+  
   override func viewDidLoad() {
-    self.navigationItem.rightBarButtonItem = self.editButtonItem()
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     self.delegate = appDelegate.dataManager
     self.delegate!.tableViewController = self
@@ -54,44 +72,25 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-      return tasks.count + 1
+      return tasks.count
     }
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as TaskTableViewCell
-      if indexPath.row == tasks.count {
-        cell.textLabel!.text = "Press to add a task"
-      } else {
-        cell.textLabel!.text = tasks[indexPath.row].shortTitle
-      }
+      cell.textLabel!.text = tasks[indexPath.row].shortTitle
       return cell
     }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier! == "ReturnToMain"{
-      self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
-    
-    } else {
-      let receiver = segue.destinationViewController as TaskDetailViewController
-      let index = tableView.indexPathForSelectedRow()?.row
-      if tasks.count == 0 || index == tasks.count {
-        selectedTask = delegate!.defaultTask
-      } else {
-        if index != nil {
-          selectedTask = tasks[index!]
-        }
-      }
-      delegate?.willDisplayDetailForTask(selectedTask!, forViewController: receiver)
-  
-    }
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    selectedTask = tasks[indexPath.row]
+    delegate!.willDisplayDetailForTask(selectedTask!)
   }
-    /*
+  
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
         return true
     }
-    */
 
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -101,9 +100,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
           tasks.removeAtIndex(indexPath.row)
           delegate!.didDeleteTask(item)
           tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
 
     /*
@@ -130,8 +127,4 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
         // Pass the selected object to the new view controller.
     }
     */
-  
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.reloadData()
-  }
 }

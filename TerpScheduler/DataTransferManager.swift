@@ -14,10 +14,12 @@ import CoreData
 protocol TaskDetailDelegate{
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask)
   var detailViewController: TaskDetailViewController? {get set}
+  var defaultTask: DailyTask { get }
+  func addItemToTableView()
 }
 
 protocol TaskTableDelegate {
-  func willDisplayDetailForTask(task: DailyTask, forViewController: TaskDetailViewController)
+  func willDisplayDetailForTask(task: DailyTask)
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(task: DailyTask)
@@ -51,6 +53,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   private var schoolClassRepository: SchoolClassesRepository
   private var selectedDate = NSDate()
   private var selectedPeriod = 1
+  var selectedTask: DailyTask?
   var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
   var tableViewController: TaskTableViewController?
@@ -60,6 +63,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   var defaultTask: DailyTask {
     get { return taskRepository.defaultTask! }
   }
+  
   
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
     //let oldTask = tableViewController!.selectedTask
@@ -73,11 +77,16 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     return
   }
   
-  func willDisplayDetailForTask(task: DailyTask, forViewController controller: TaskDetailViewController) {
-    detailViewController = controller
-    detailViewController!.date = selectedDate
-    detailViewController!.period = selectedPeriod
-    detailViewController!.previousTaskData = task
+  func addItemToTableView() {
+    tableViewController!.addAndSelectItem(defaultTask, forIndex: -1)
+  }
+  
+  func willDisplayDetailForTask(task: DailyTask) {
+    selectedTask = task
+    detailViewController!.previousTaskData = selectedTask!
+    detailViewController!.clear()
+    summaryViewController!.performSegueWithIdentifier("ShowDetail", sender: self)
+    summaryViewController?.splitViewController!.preferredDisplayMode = .AllVisible
     return
   }
   
@@ -87,6 +96,16 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     let tasks = taskRepository.tasksForDateAndPeriod(date, period: period)
     tableViewController!.tasks = tasks
     tableViewController!.reload()
+    if tasks.count > 0 {
+      selectedTask = tasks[0]
+      tableViewController!.addAndSelectItem(nil, forIndex: 0)
+    } else {
+      selectedTask = defaultTask
+      tableViewController!.addAndSelectItem(selectedTask!, forIndex: -1)
+    }
+    detailViewController!.date = selectedDate
+    detailViewController!.period = selectedPeriod
+    detailViewController!.previousTaskData = selectedTask
     return
   }
   
@@ -127,6 +146,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   }
   
   func willDisappear() {
+    detailViewController!.navigationController!.popToRootViewControllerAnimated(true)
   }
   
 
