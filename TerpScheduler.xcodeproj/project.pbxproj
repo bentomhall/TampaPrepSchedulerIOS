@@ -28,6 +28,13 @@
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
+		D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C51A939D82000AFBD1 /* period_1_background.png */; };
+		D48291C81A939D82000AFBD1 /* period_2_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C61A939D82000AFBD1 /* period_2_background.png */; };
+		D48291CE1A93AF7E000AFBD1 /* period_3_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C91A93AF7E000AFBD1 /* period_3_background.png */; };
+		D48291CF1A93AF7E000AFBD1 /* period_4_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CA1A93AF7E000AFBD1 /* period_4_background.png */; };
+		D48291D01A93AF7E000AFBD1 /* period_5_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CB1A93AF7E000AFBD1 /* period_5_background.png */; };
+		D48291D11A93AF7E000AFBD1 /* period_6_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CC1A93AF7E000AFBD1 /* period_6_background.png */; };
+		D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CD1A93AF7E000AFBD1 /* period_7_background.png */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
 		D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
@@ -67,6 +74,13 @@
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
+		D48291C51A939D82000AFBD1 /* period_1_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_1_background.png; sourceTree = "<group>"; };
+		D48291C61A939D82000AFBD1 /* period_2_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_2_background.png; sourceTree = "<group>"; };
+		D48291C91A93AF7E000AFBD1 /* period_3_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_3_background.png; sourceTree = "<group>"; };
+		D48291CA1A93AF7E000AFBD1 /* period_4_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_4_background.png; sourceTree = "<group>"; };
+		D48291CB1A93AF7E000AFBD1 /* period_5_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_5_background.png; sourceTree = "<group>"; };
+		D48291CC1A93AF7E000AFBD1 /* period_6_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_6_background.png; sourceTree = "<group>"; };
+		D48291CD1A93AF7E000AFBD1 /* period_7_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_7_background.png; sourceTree = "<group>"; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
@@ -128,6 +142,13 @@
 		D408FD751A432E45004F0B83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D48291C91A93AF7E000AFBD1 /* period_3_background.png */,
+				D48291CA1A93AF7E000AFBD1 /* period_4_background.png */,
+				D48291CB1A93AF7E000AFBD1 /* period_5_background.png */,
+				D48291CC1A93AF7E000AFBD1 /* period_6_background.png */,
+				D48291CD1A93AF7E000AFBD1 /* period_7_background.png */,
+				D48291C51A939D82000AFBD1 /* period_1_background.png */,
+				D48291C61A939D82000AFBD1 /* period_2_background.png */,
 				D4E6F0DE1A8C295F002FBFD4 /* TP_seal_splash_landscape.png */,
 				D4E6F0D81A8C25B2002FBFD4 /* TP_seal_64.png */,
 				D4E6F0D91A8C25B2002FBFD4 /* TP_seal_home_icon.png */,
@@ -255,13 +276,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4E6F0DB1A8C25B3002FBFD4 /* TP_seal_64.png in Resources */,
+				D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */,
+				D48291CE1A93AF7E000AFBD1 /* period_3_background.png in Resources */,
+				D48291C81A939D82000AFBD1 /* period_2_background.png in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4E6F0DD1A8C25B3002FBFD4 /* TP_seal_splash.png in Resources */,
 				D4E6F0DF1A8C295F002FBFD4 /* TP_seal_splash_landscape.png in Resources */,
+				D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */,
+				D48291CF1A93AF7E000AFBD1 /* period_4_background.png in Resources */,
 				D4E6F0DC1A8C25B3002FBFD4 /* TP_seal_home_icon.png in Resources */,
 				D408FD851A432E45004F0B83 /* LaunchScreen.xib in Resources */,
 				D49CDF741A5E2C5300AEB36B /* winter2015.json in Resources */,
+				D48291D11A93AF7E000AFBD1 /* period_6_background.png in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,
+				D48291D01A93AF7E000AFBD1 /* period_5_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

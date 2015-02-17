@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
   
   private var appDelegate : AppDelegate?
   var delegate: TaskSummaryDelegate?
+  @IBOutlet weak var scrollView: UIScrollView?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
   @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
@@ -67,6 +68,7 @@ class MainViewController: UIViewController {
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
     taskSummaries = delegate!.summariesForWeek()
+    scrollView?.delegate = self
   }
   
   override func viewDidAppear(animated: Bool) {
@@ -76,6 +78,8 @@ class MainViewController: UIViewController {
     }
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     self.navigationController?.setNavigationBarHidden(false, animated: false)
+    scrollView!.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+    
     super.viewDidAppear(animated)
   }
   
@@ -119,6 +123,12 @@ class MainViewController: UIViewController {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     let width = size.width - CGFloat(130.0)
     collectionView!.collectionViewLayout.invalidateLayout()
+    if size.width > 768 {
+      //landscape
+      scrollView!.contentSize = CGSizeMake(size.width, 1000.0)
+    } else {
+      scrollView!.contentSize = CGSizeMake(size.width, 900.0)
+    }
   }
   
   func showDetail(task: DailyTask){
@@ -140,12 +150,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
     if UIInterfaceOrientationIsPortrait(self.interfaceOrientation) {
       //portrait
-      return CGSize(width: 114, height: 116)
+      return CGSize(width: 117, height: 116)
     } else {
       //landscape
       return CGSize(width: 166, height: 116)
     }
   }
+  
 }
 
 //MARK - UICollectionViewDataSource
@@ -208,6 +219,22 @@ extension MainViewController: ScheduleOverrideDelegate{
     reloadCollectionView()
   }
 }
+
+extension MainViewController: UIScrollViewDelegate {
+  func scrollViewDidScroll(scrollView: UIScrollView) {
+    if scrollView.contentOffset.y < 0 {
+      scrollView.setContentOffset(CGPointZero, animated: false)
+    }
+    if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+      scrollView.setContentOffset(CGPointZero, animated: false) //disallow scrolling
+    } else {
+      if scrollView.contentOffset.y > 250 {
+        scrollView.setContentOffset(CGPointMake(0, 250), animated: false)
+      }
+    }
+  }
+}
+
 
 
 

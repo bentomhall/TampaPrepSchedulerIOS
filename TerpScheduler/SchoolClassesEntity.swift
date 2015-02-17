@@ -19,7 +19,7 @@ struct SchoolClass {
   let id: NSManagedObjectID?
   
   static func DefaultForPeriod(period: Int)->SchoolClass{
-    return SchoolClass(period: period, teacherName: "No Teacher Selected", haikuURL: nil, isStudyHall: false, subject: "No Subject Selected", isLocked: false, id: nil)
+    return SchoolClass(period: period, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
 }
 

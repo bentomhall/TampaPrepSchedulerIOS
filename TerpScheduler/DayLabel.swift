@@ -22,17 +22,20 @@ class DayLabel: UIView {
 
     @IBOutlet var DateLabel: UILabel?
     @IBOutlet var ScheduleLabel: UILabel?
+  @IBOutlet weak var selectedView: UIView?
     
   func SetContents(date day: NSDate, scheduleType: String, dateIsToday: Bool){
     var formatter = NSDateFormatter()
     formatter.dateFormat = "E MM/d"
     DateLabel!.text = formatter.stringFromDate(day)
     ScheduleLabel!.text = scheduleType
+    
+    selectedView?.layer.cornerRadius = selectedView!.frame.width/2.0
     if dateIsToday{
-      self.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.25)
+      selectedView?.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
     }
     else {
-      self.backgroundColor = UIColor.whiteColor()
+      selectedView?.backgroundColor = UIColor.clearColor()
     }
     return
     }

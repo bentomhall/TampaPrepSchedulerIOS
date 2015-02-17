@@ -18,6 +18,7 @@ class DailyTaskSmallView: UICollectionViewCell {
     TopTaskLabel!.text = ""
     RemainingTasksLabel!.text = ""
     RemainingTasksLabel!.hidden = false
+    self.layer.cornerRadius = CGFloat(2.0)
   }
   
   func setTopTaskLabel(taskTitle: String, isTaskCompleted completion: Bool){
@@ -35,7 +36,8 @@ class DailyTaskSmallView: UICollectionViewCell {
       if tasksRemaining > 2 {
         RemainingTasksLabel!.textColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
       }
-      else {
+      else if tasksRemaining == 1{
+        RemainingTasksLabel!.text = "+ 1 other"
         RemainingTasksLabel!.textColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
       }
     }
