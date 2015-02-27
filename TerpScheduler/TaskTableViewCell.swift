@@ -23,8 +23,11 @@ class TaskTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
   
-  func setTitleText(text: String){
+  func setTitleText(text: String, taskIsComplete: Bool){
     title!.text = text
+    if taskIsComplete {
+      title!.textColor = UIColor.lightTextColor()
+    }
   }
 
 }

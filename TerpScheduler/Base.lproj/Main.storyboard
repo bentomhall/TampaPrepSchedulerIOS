@@ -295,10 +295,17 @@
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsW-zz-BvF">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsW-zz-BvF">
                                                                     <rect key="frame" x="0.0" y="8" width="114" height="45"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <attributedString key="attributedText">
+                                                                        <fragment content="Label">
+                                                                            <attributes>
+                                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                                            </attributes>
+                                                                        </fragment>
+                                                                    </attributedString>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -358,6 +365,7 @@
                                                             </constraints>
                                                             <variation key="default">
                                                                 <mask key="constraints">
+                                                                    <exclude reference="ziy-7L-b3V"/>
                                                                     <exclude reference="hSO-QK-LF7"/>
                                                                     <exclude reference="m8P-h9-YVd"/>
                                                                 </mask>
@@ -413,6 +421,11 @@
                                                                 <constraint firstAttribute="bottom" secondItem="cW0-m3-yYJ" secondAttribute="bottom" constant="3" id="mK4-iF-C2T"/>
                                                                 <constraint firstAttribute="centerX" secondItem="cW0-m3-yYJ" secondAttribute="centerX" id="wzK-E0-Nu4"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="4Gz-cM-2An"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="DateLabel" destination="KNk-W9-ldk" id="oRP-QC-DvL"/>
                                                                 <outlet property="ScheduleLabel" destination="HnG-bV-exZ" id="d6f-ta-Gzw"/>
@@ -461,6 +474,7 @@
                                                             </constraints>
                                                             <variation key="default">
                                                                 <mask key="constraints">
+                                                                    <exclude reference="ZcQ-bR-Rbx"/>
                                                                     <exclude reference="HmH-V5-T4n"/>
                                                                 </mask>
                                                             </variation>
@@ -509,6 +523,11 @@
                                                                 <constraint firstAttribute="height" constant="81" id="mVr-2n-cBj"/>
                                                                 <constraint firstItem="gjS-NR-05K" firstAttribute="top" secondItem="4RX-8J-kVJ" secondAttribute="top" constant="8" id="yCE-DX-tc5"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="Pah-hA-Xtz"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="DateLabel" destination="gjS-NR-05K" id="nri-OI-0Nx"/>
                                                                 <outlet property="ScheduleLabel" destination="SlU-rr-cv0" id="mFj-LF-B2M"/>
@@ -554,6 +573,11 @@
                                                                 <constraint firstItem="fG1-8u-dMo" firstAttribute="leading" secondItem="CDK-c5-ONS" secondAttribute="leading" id="lwe-vc-Rym"/>
                                                                 <constraint firstItem="SP4-Tt-yqp" firstAttribute="leading" secondItem="CDK-c5-ONS" secondAttribute="leading" id="zfE-YC-btc"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="GS9-NP-vCU"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="DateLabel" destination="fG1-8u-dMo" id="fg5-5i-OyY"/>
                                                                 <outlet property="ScheduleLabel" destination="SP4-Tt-yqp" id="T2u-sC-oiL"/>
@@ -1244,7 +1268,7 @@
                                     <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="abT-pS-0js"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGO-yk-7EJ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGO-yk-7EJ">
                                 <rect key="frame" x="458" y="333" width="112" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="Kyi-e5-tz4"/>
@@ -1254,13 +1278,13 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
                                 <rect key="frame" x="458" y="459" width="112" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="Mtb-FV-Ok4"/>
                                     <constraint firstAttribute="width" constant="112" id="rkw-qz-3y2"/>
                                 </constraints>
-                                <state key="normal" title="Clear All">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1343,12 +1367,12 @@
                         <viewControllerLayoutGuide type="top" id="YW8-qU-MMz"/>
                         <viewControllerLayoutGuide type="bottom" id="htO-t4-6cu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DUA-bI-Coj">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="DUA-bI-Coj">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKd-NB-e89">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1308"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CKd-NB-e89">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="ml1-rz-BLB" id="dw4-GI-u2P"/>
@@ -1356,6 +1380,12 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CKd-NB-e89" firstAttribute="leading" secondItem="DUA-bI-Coj" secondAttribute="leadingMargin" constant="-16" id="6Mg-dP-dnk"/>
+                            <constraint firstItem="CKd-NB-e89" firstAttribute="top" secondItem="DUA-bI-Coj" secondAttribute="topMargin" id="Ra8-7I-hBg"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="CKd-NB-e89" secondAttribute="bottom" id="thw-ed-0Dc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CKd-NB-e89" secondAttribute="trailing" constant="-16" id="xrX-po-x3e"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E8A-hp-Npw"/>
                     <connections>

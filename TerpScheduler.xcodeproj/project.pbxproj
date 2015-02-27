@@ -35,6 +35,9 @@
 		D48291D01A93AF7E000AFBD1 /* period_5_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CB1A93AF7E000AFBD1 /* period_5_background.png */; };
 		D48291D11A93AF7E000AFBD1 /* period_6_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CC1A93AF7E000AFBD1 /* period_6_background.png */; };
 		D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CD1A93AF7E000AFBD1 /* period_7_background.png */; };
+		D48291D41A963924000AFBD1 /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D48291D31A963924000AFBD1 /* schedule.json */; };
+		D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D48291D51A9640A0000AFBD1 /* Settings.bundle */; };
+		D48291D81A964384000AFBD1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48291D71A964384000AFBD1 /* UserDefaults.swift */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
 		D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
@@ -81,6 +84,9 @@
 		D48291CB1A93AF7E000AFBD1 /* period_5_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_5_background.png; sourceTree = "<group>"; };
 		D48291CC1A93AF7E000AFBD1 /* period_6_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_6_background.png; sourceTree = "<group>"; };
 		D48291CD1A93AF7E000AFBD1 /* period_7_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_7_background.png; sourceTree = "<group>"; };
+		D48291D31A963924000AFBD1 /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedule.json; path = TerpScheduler/schedule.json; sourceTree = "<group>"; };
+		D48291D51A9640A0000AFBD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		D48291D71A964384000AFBD1 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = ../UserDefaults.swift; sourceTree = "<group>"; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				D4463B111A571A6F0026E270 /* winter2015.json */,
+				D48291D31A963924000AFBD1 /* schedule.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
 				D408FD731A432E45004F0B83 /* Products */,
 			);
@@ -135,6 +142,7 @@
 				D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */,
 				D408FD751A432E45004F0B83 /* Supporting Files */,
 				D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */,
+				D48291D51A9640A0000AFBD1 /* Settings.bundle */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -210,6 +218,7 @@
 		D49CDF6F1A5E19E600AEB36B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D48291D71A964384000AFBD1 /* UserDefaults.swift */,
 				D416C71C1A704FE300AC2AEE /* Entities */,
 				D416C7171A7039B700AC2AEE /* Repositories */,
 				D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */,
@@ -275,8 +284,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D4E6F0DB1A8C25B3002FBFD4 /* TP_seal_64.png in Resources */,
 				D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */,
+				D48291D41A963924000AFBD1 /* schedule.json in Resources */,
 				D48291CE1A93AF7E000AFBD1 /* period_3_background.png in Resources */,
 				D48291C81A939D82000AFBD1 /* period_2_background.png in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
@@ -304,6 +315,7 @@
 				D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */,
 				D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */,
 				D408FD9B1A432EF3004F0B83 /* DailyTaskEntity.swift in Sources */,
+				D48291D81A964384000AFBD1 /* UserDefaults.swift in Sources */,
 				D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */,

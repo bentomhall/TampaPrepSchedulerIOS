@@ -12,6 +12,7 @@ protocol ClassPeriodDataSource {
   func getClassData(period: Int)->SchoolClass
   func setClassData(data:SchoolClass, forIndex index:Int)
   func openWebView(url: NSURL)
+  func shouldShadeRow(_: Bool, forPeriod: Int)
 }
 
 @IBDesignable
@@ -19,14 +20,17 @@ class ClassPeriodViewController: UIViewController {
   @IBAction func openWebView(sender: UILabel){
     let v = self.view as ClassPopupView
     let url_string = v.HaikuURLInput!.text
-    if url_string == "" {
-      return
-    }
-    
     var url: NSURL
-    if v.HaikuURLInput!.text.hasPrefix("http://"){
+    if url_string == "" {
+      url = NSURL(string: "http://tampaprep.haikulearning.com")!
+    } else if v.HaikuURLInput!.text.hasPrefix("http://"){
       url = NSURL(string: url_string)!
-    } else{
+    } else if url_string.hasPrefix("https://"){
+      //web view has real hard time with https. this is a hack.
+      let real_url_string = url_string.stringByReplacingOccurrencesOfString("https", withString: "http", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+      url = NSURL(string: real_url_string)!
+    }
+    else{
       url = NSURL(string: "http://"+url_string)!
     }
     saveData()
@@ -54,6 +58,9 @@ class ClassPeriodViewController: UIViewController {
     super.viewDidLoad()
     let v = self.view as ClassPopupView
     v.setContent(receivedClassData!)
+    if receivedClassData!.isStudyHall {
+      delegate!.shouldShadeRow(true, forPeriod: index+1)
+    }
   }
   
   override func viewDidAppear(animated: Bool) {

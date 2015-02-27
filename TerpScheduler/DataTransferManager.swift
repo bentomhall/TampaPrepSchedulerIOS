@@ -16,6 +16,7 @@ protocol TaskDetailDelegate{
   var detailViewController: TaskDetailViewController? {get set}
   var defaultTask: DailyTask { get }
   func addItemToTableView()
+  func didUpdateTitle(title: String)
 }
 
 protocol TaskTableDelegate {
@@ -27,6 +28,8 @@ protocol TaskTableDelegate {
 }
 
 protocol TaskSummaryDelegate {
+  var isMiddleSchool: Bool { get }
+  var shouldShadeStudyHall: Bool { get }
   func willDisplaySplitViewFor(date: NSDate, period: Int)
   func summariesForWeek()->[TaskSummary]
   var summaryViewController: MainViewController? { get set }
@@ -45,6 +48,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     taskRepository = TaskRepository(context: managedObjectContext)
     dateRepository = DateRepository(context: managedObjectContext)
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
+    isMiddleSchool = appDelegate.userDefaults.isMiddleStudent
+    shouldShadeStudyHall = appDelegate.userDefaults.shouldShadeStudyHall
   }
   
   private var managedObjectContext: NSManagedObjectContext
@@ -53,6 +58,9 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   private var schoolClassRepository: SchoolClassesRepository
   private var selectedDate = NSDate()
   private var selectedPeriod = 1
+  
+  var isMiddleSchool = false
+  var shouldShadeStudyHall = true
   var selectedTask: DailyTask?
   var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
@@ -72,7 +80,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     } else {
       taskRepository.persistData(task, withMergeFromTask: nil)
     }
-    tableViewController!.reload()
+    tableViewController!.replaceItem(-1, withTask: task)
+    //tableViewController!.reload()
     summaryViewController!.reloadCollectionView()
     return
   }
@@ -147,6 +156,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   
   func willDisappear() {
     detailViewController!.navigationController!.popToRootViewControllerAnimated(true)
+  }
+  
+  func didUpdateTitle(title: String){
+    tableViewController!.updateTitleOfSelectedCell(title)
   }
   
 

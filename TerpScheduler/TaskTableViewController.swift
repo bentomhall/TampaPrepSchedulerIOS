@@ -23,8 +23,8 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   var tasks: [DailyTask] = []
   var delegate: TaskTableDelegate?
   
-  
   var selectedTask: DailyTask?
+  var selectedRow = NSIndexPath(forRow: 0, inSection: 0)
   
   func reload(){
     tableView.reloadData()
@@ -41,6 +41,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
       row = indx
     }
     indexPath = NSIndexPath(forRow: row, inSection: 0)
+    selectedRow = indexPath
     self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
   }
   
@@ -77,13 +78,16 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as TaskTableViewCell
-      cell.textLabel!.text = tasks[indexPath.row].shortTitle
+      let task = tasks[indexPath.row]
+      let title = task.shortTitle
+      cell.setTitleText(title, taskIsComplete: task.isCompleted)
       return cell
     }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     selectedTask = tasks[indexPath.row]
     delegate!.willDisplayDetailForTask(selectedTask!)
+    selectedRow = indexPath
   }
   
     // Override to support conditional editing of the table view.
@@ -102,6 +106,21 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
           tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
+  
+  func updateTitleOfSelectedCell(title: String){
+    var cell = tableView.cellForRowAtIndexPath(selectedRow)! as TaskTableViewCell
+    cell.setTitleText(title, taskIsComplete: false)
+    tableView.reloadData()
+  }
+  
+  func replaceItem(index: Int, withTask: DailyTask){
+    if index >= 0 {
+      tasks[index] = withTask
+    } else {
+      tasks[selectedRow.row] = withTask
+    }
+    tableView.reloadData()
+  }
 
     /*
     // Override to support rearranging the table view.

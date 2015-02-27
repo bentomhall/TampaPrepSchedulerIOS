@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable
 class SchoolClassView: UIView {
   
-  @IBOutlet var ClassPeriodLabel : UILabel?
-  @IBOutlet var ClassNameLabel : UILabel?
-  @IBOutlet var TeacherNameLabel : UILabel?
+  @IBOutlet weak var ClassPeriodLabel : UILabel?
+  @IBOutlet weak var ClassNameLabel : UILabel?
+  @IBOutlet weak var TeacherNameLabel : UILabel?
   
   var _classData : SchoolClass?
   var classData : SchoolClass {
@@ -28,6 +28,7 @@ class SchoolClassView: UIView {
   
   func SetContentLabels(data: SchoolClass){
     ClassNameLabel!.text! = data.subject
+    ClassNameLabel!.text = ClassNameLabel!.text!.uppercaseString
     TeacherNameLabel!.text! = data.teacherName
     HaikuURL = data.haikuURL
   }

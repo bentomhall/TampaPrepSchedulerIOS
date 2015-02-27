@@ -19,8 +19,12 @@ protocol PopOverPresentable {
 @IBDesignable
 class MainViewController: UIViewController {
   
+  private let noClassColor = UIColor(white: 0, alpha: 0.1)
+  private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
   private var appDelegate : AppDelegate?
   var delegate: TaskSummaryDelegate?
+  private var contentOffset = CGPointZero
+  
   @IBOutlet weak var scrollView: UIScrollView?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
@@ -46,11 +50,8 @@ class MainViewController: UIViewController {
   
   var taskSummaries : [TaskSummary]?
   var classRepository: SchoolClassesRepository?
-  
   var detailIndex: (day: Int, period: Int) = (0,0)
   var dataForSelectedTask: DailyTask?
-  private var lockedClasses = [Int]()
-  
   
   func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
     let days = 5
@@ -68,19 +69,27 @@ class MainViewController: UIViewController {
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
     taskSummaries = delegate!.summariesForWeek()
-    scrollView?.delegate = self
+    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+    splitViewController!.presentsWithGesture = false
   }
   
   override func viewDidAppear(animated: Bool) {
     for (index, period) in enumerate(classPeriods!){
       let classData = classRepository!.GetClassDataByPeriod(index + 1)
       period.classData = classData
+      if classData.isStudyHall {
+        shouldShadeRow(true, forPeriod: index + 1)
+      }
     }
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+    //self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     self.navigationController?.setNavigationBarHidden(false, animated: false)
-    scrollView!.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-    
+    scrollView?.delegate = self
+    scrollView!.setContentOffset(contentOffset, animated: false)
     super.viewDidAppear(animated)
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    scrollView!.delegate = nil
   }
   
   override func didReceiveMemoryWarning() {
@@ -115,13 +124,12 @@ class MainViewController: UIViewController {
       }
       delegate!.detailViewController = receivingController
     }
-    
+    contentOffset = scrollView!.contentOffset
     super.prepareForSegue(segue, sender: sender)
   }
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    let width = size.width - CGFloat(130.0)
     collectionView!.collectionViewLayout.invalidateLayout()
     if size.width > 768 {
       //landscape
@@ -171,13 +179,21 @@ extension MainViewController: UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
-    cell.backgroundColor = UIColor.whiteColor()
+    var shadingType: CellShadingType
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
+    if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
+      shadingType = .studyHall
+    } else if (selectedDayIndexes.period == 7 && delegate!.isMiddleSchool){
+      shadingType = .noClass
+    } else {
+      shadingType = .noShading
+    }
     if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
       if contains(missedClasses, selectedDayIndexes.period){
-        cell.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
+        shadingType = .noClass
       }
     }
+    cell.shouldShadeCell(shadingType)
     let summary = taskSummaries![indexPath.row]
     cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion)
     cell.setRemainingTasksLabel(summary.remainingTasks)
@@ -201,6 +217,11 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: ClassPeriodDataSource {
   func setClassData(data: SchoolClass, forIndex index:Int){
     classPeriods![index].classData = data
+    if data.isStudyHall {
+      shouldShadeRow(true, forPeriod: index+1)
+    } else {
+      shouldShadeRow(false, forPeriod: index+1)
+    }
     classRepository!.persistData(data)
   }
   
@@ -210,6 +231,22 @@ extension MainViewController: ClassPeriodDataSource {
   
   func openWebView(url: NSURL) {
     performSegueWithIdentifier("WebView", sender: url)
+  }
+  
+  func setCellColor(index: Int, toColor color: UIColor){
+    for indx in 0...4 {
+      let row = indx + (index-1)*5
+      let cell = collectionView!.cellForItemAtIndexPath(NSIndexPath(forItem: row, inSection: 0))
+      cell!.backgroundColor = color
+    }
+  }
+  
+  func shouldShadeRow(value: Bool, forPeriod: Int) {
+    let oldValue = shadedRowIndexes[forPeriod]!
+    if value != oldValue {
+      shadedRowIndexes[forPeriod] = value
+      reloadCollectionView()
+    }
   }
 }
 

@@ -6,14 +6,17 @@
 //  Copyright (c) 2015 Tampa Preparatory School. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class SemesterScheduleLoader{
   var context : NSManagedObjectContext
+  let appDelegate = UIApplication.sharedApplication().delegate! as AppDelegate
+  var userDefaults: UserDefaults
   
   init(context: NSManagedObjectContext, withJSONFile: String){
     self.context = context
+    userDefaults = appDelegate.userDefaults
     loadSemesterData(withJSONFile)
   }
   
@@ -42,7 +45,7 @@ class SemesterScheduleLoader{
         var managedWeek = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
         managedWeek.setValue(serializeSchedule(weekSchedule), forKey: "weekSchedules")
         managedWeek.setValue(weekLabel.toInt()!, forKey: "weekID")
-        managedWeek.setValue(sateFromString(firstDay), forKey: "firstWeekDay")
+        managedWeek.setValue(dateFromString(firstDay), forKey: "firstWeekDay")
         weeks.append(managedWeek)
       }
       
@@ -53,7 +56,7 @@ class SemesterScheduleLoader{
     }
   }
   
-  func sateFromString(string: String)->NSDate{
+  func dateFromString(string: String)->NSDate{
     var formatter = NSDateFormatter()
     formatter.dateFormat = "MM/dd/yy"
     let date = formatter.dateFromString(string)!
@@ -61,31 +64,11 @@ class SemesterScheduleLoader{
   }
   
   func isScheduleLoaded()->Bool{
-    var value = false
-    let HasLoadedFetchRequest = NSFetchRequest(entityName: "AppData")
-    HasLoadedFetchRequest.returnsObjectsAsFaults = false
-    if let appData = context.executeFetchRequest(HasLoadedFetchRequest, error: nil) as? [NSManagedObject] {
-      if appData.count > 0 {
-        
-        value = appData[0].valueForKey("isScheduleLoaded") as Bool
-      }
-      else {
-        let entity = NSEntityDescription.entityForName("AppData", inManagedObjectContext: context)
-        var data = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
-        data.setPrimitiveValue(false, forKey: "isScheduleLoaded")
-        value = false
-      }
-    }
-    return value
+    return userDefaults.isDataInitialized
   }
   
   func setScheduleLoaded(){
-    let HasLoadedFetchRequest = NSFetchRequest(entityName: "AppData")
-    HasLoadedFetchRequest.returnsObjectsAsFaults = false
-    if let appData = context.executeFetchRequest(HasLoadedFetchRequest, error: nil) as? [NSManagedObject] {
-      appData[0].setPrimitiveValue(true, forKey: "isScheduleLoaded")
-      println(appData[0])
-    }
+    userDefaults.isDataInitialized = true
   }
   
   func serializeSchedule(schedule: [String])->String{

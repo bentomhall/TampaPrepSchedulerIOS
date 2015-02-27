@@ -20,8 +20,8 @@ class DayLabel: UIView {
     }
     */
 
-    @IBOutlet var DateLabel: UILabel?
-    @IBOutlet var ScheduleLabel: UILabel?
+    @IBOutlet weak var DateLabel: UILabel?
+    @IBOutlet weak var ScheduleLabel: UILabel?
   @IBOutlet weak var selectedView: UIView?
     
   func SetContents(date day: NSDate, scheduleType: String, dateIsToday: Bool){

@@ -16,13 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true]
+    NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
     if let context = managedObjectContext{
-      SemesterScheduleLoader(context: context, withJSONFile: "winter2015")
+      SemesterScheduleLoader(context: context, withJSONFile: "schedule")
     }
-    
     return true
   }
   
+  
+  lazy var userDefaults = UserDefaults()
   lazy var dataManager = DataManager()
   
   func applicationWillResignActive(application: UIApplication) {
