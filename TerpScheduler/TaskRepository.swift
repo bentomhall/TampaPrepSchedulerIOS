@@ -101,6 +101,16 @@ class TaskRepository {
     repository.deleteItemMatching(values: item)
   }
 
+  func allTasksForPeriod(period: Int)->[DailyTask]{
+    let filter = FilterValues(optDate: nil, optID: nil, optPeriod: period, optTitle: nil)
+    let tasks = repository.fetchBy(.byPeriod, values: filter)
+    return tasks
+  }
   
+  func allTasksForDate(date: NSDate)->[DailyTask]{
+    let filter = FilterValues(optDate: date, optID: nil, optPeriod: nil, optTitle: nil)
+    let tasks = repository.fetchBy(.byDate, values: filter)
+    return tasks
+  }
   
 }

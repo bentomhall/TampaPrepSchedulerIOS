@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-
-
 protocol TaskDetailDelegate{
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask)
   var detailViewController: TaskDetailViewController? {get set}
@@ -41,7 +39,13 @@ protocol TaskSummaryDelegate {
   func missedClassesForDayByIndex(index: Int)->[Int]
 }
 
-class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
+protocol ExportDelegate {
+  func getTasks(period: Int)->[DailyTask]
+  func getTasks(weekID: Int, andExcludePeriods: [Int])->[DailyTask]
+  func getClassInformation(period: Int)->SchoolClass
+}
+
+class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate {
   init(){
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     managedObjectContext = appDelegate.managedObjectContext!
@@ -71,7 +75,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
   var defaultTask: DailyTask {
     get { return taskRepository.defaultTask! }
   }
-  
   
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
     //let oldTask = tableViewController!.selectedTask
@@ -162,5 +165,16 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate {
     tableViewController!.updateTitleOfSelectedCell(title)
   }
   
-
+  func getTasks(period: Int) -> [DailyTask]{
+    let tasks = taskRepository.allTasksForPeriod(period)
+    return tasks
+  }
+  
+  func getTasks(weekID: Int, andExcludePeriods: [Int]) -> [DailyTask] {
+    return [DailyTask]()
+  }
+  
+  func getClassInformation(period: Int) -> SchoolClass {
+    return schoolClassRepository.GetClassDataByPeriod(period)
+  }
 }

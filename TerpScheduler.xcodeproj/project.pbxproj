@@ -25,7 +25,9 @@
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
 		D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */; };
+		D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */; };
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
+		D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475812B1AA739170059BF3C /* ExportViewController.swift */; };
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C51A939D82000AFBD1 /* period_1_background.png */; };
@@ -74,7 +76,9 @@
 		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
 		D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterScheduleLoader.swift; sourceTree = "<group>"; };
 		D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfReportWriter.swift; sourceTree = "<group>"; };
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		D475812B1AA739170059BF3C /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D48291C51A939D82000AFBD1 /* period_1_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_1_background.png; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				D408FD751A432E45004F0B83 /* Supporting Files */,
 				D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */,
 				D48291D51A9640A0000AFBD1 /* Settings.bundle */,
+				D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */,
 				D47239C11A7451DB00DBEFAD /* WebViewController.swift */,
 				D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */,
+				D475812B1AA739170059BF3C /* ExportViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -329,12 +335,14 @@
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
 				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
 				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
+				D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */,
 				D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */,
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,
 				D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */,
 				D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */,
 				D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */,
 				D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */,
+				D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,
 			);
