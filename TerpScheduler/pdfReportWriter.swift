@@ -30,10 +30,10 @@ func getFileNameString(type: PDFReportTypes)->String{
   return filename
 }
 
-protocol PDFDataConvertable {
-  var metaData: [String: String] { get } //key-value dictionary, same for all pages
-  var headerData: String { get } // String to write at the top of the document
-  var bodyData: [String: [String]] { get } //dictionary of constant information (class, date): list of variable data (tasks)]
+struct PDFDataConvertable {
+  var metaData: [String: String] //key-value dictionary, same for all pages
+  var headerData: String // String to write at the top of the document
+  var bodyData: [String: [String]]  //dictionary of constant information (class, date): list of variable data (tasks)]
 }
 
 class PDFReporter {
@@ -47,7 +47,7 @@ class PDFReporter {
   private let type: PDFReportTypes
   
   private func formatHeader()->String {
-    return data.headerData
+    return data.headerData+"\n"+"-----------------------------"+"\n"
   }
   
   private func formatBody()->String {
@@ -58,7 +58,7 @@ class PDFReporter {
         output.append(task)
       }
     }
-    return "\n".join(output)
+    return "\n\n".join(output)
   }
   
   private func getText()->CFAttributedStringRef {
@@ -81,7 +81,9 @@ class PDFReporter {
     CGContextScaleCTM(currentContext, 1.0, -1.0)
     //draw the current frame
     CTFrameDraw(frameRef, currentContext)
-    range.location += currentRange.length
+    
+    range = CTFrameGetVisibleStringRange(frameRef)
+    range.location += range.length
     range.length = 0
     return range
   }
@@ -89,6 +91,7 @@ class PDFReporter {
   func render()->NSURL?{
     let filename = getFileNameString(type)
     let text = getText()
+    let l = CFAttributedStringGetLength(text)
     var framesetter = CTFramesetterCreateWithAttributedString(text)
     UIGraphicsBeginPDFContextToFile(filename, CGRectZero, data.metaData)
     var range = CFRangeMake(0, 0)
@@ -105,6 +108,7 @@ class PDFReporter {
     } while(!done)
     
     UIGraphicsEndPDFContext()
-    return NSURL(fileURLWithPath: filename)
+    let url = NSURL(fileURLWithPath: filename)
+    return url
   }
 }

@@ -1268,7 +1268,7 @@
                                     <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="abT-pS-0js"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGO-yk-7EJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGO-yk-7EJ">
                                 <rect key="frame" x="458" y="333" width="112" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="Kyi-e5-tz4"/>
@@ -1277,6 +1277,9 @@
                                 <state key="normal" title="Export">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="6M1-DS-K2o" kind="presentation" identifier="ExportTasks" modalPresentationStyle="pageSheet" id="aTf-t3-beO"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
                                 <rect key="frame" x="458" y="459" width="112" height="118"/>
@@ -1358,6 +1361,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="618.75" y="-339.84375"/>
+        </scene>
+        <!--Export View Controller-->
+        <scene sceneID="0tD-xV-Al7">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="6M1-DS-K2o" customClass="ExportViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e76-uj-ACO"/>
+                        <viewControllerLayoutGuide type="bottom" id="XVe-kk-r1N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iEd-MS-LG6">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export all tasks for period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3p-kqx">
+                                <rect key="frame" x="286" y="72" width="197" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLr-Tw-4Ya">
+                                <rect key="frame" x="340" y="181" width="88" height="30"/>
+                                <state key="normal" title="Export Tasks">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doExport:" destination="6M1-DS-K2o" eventType="touchDown" id="Ux3-Av-hOG"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-S6-Max">
+                                <rect key="frame" x="304" y="103" width="160" height="29"/>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="5"/>
+                                    <segment title="6"/>
+                                    <segment title="7"/>
+                                </segments>
+                            </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QPw-MF-iXa">
+                                <rect key="frame" x="365" y="248" width="37" height="37"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gnd-S6-Max" firstAttribute="top" secondItem="vNf-3p-kqx" secondAttribute="bottom" constant="10" id="5hN-Ar-6dJ"/>
+                            <constraint firstAttribute="centerX" secondItem="QPw-MF-iXa" secondAttribute="centerX" id="ADQ-wT-7Lq"/>
+                            <constraint firstItem="MLr-Tw-4Ya" firstAttribute="top" secondItem="gnd-S6-Max" secondAttribute="bottom" constant="50" id="QIr-rp-8jx"/>
+                            <constraint firstItem="QPw-MF-iXa" firstAttribute="top" secondItem="MLr-Tw-4Ya" secondAttribute="bottom" constant="37" id="ZG6-l0-rMD"/>
+                            <constraint firstAttribute="centerX" secondItem="vNf-3p-kqx" secondAttribute="centerX" id="asd-0S-U9n"/>
+                            <constraint firstAttribute="centerX" secondItem="gnd-S6-Max" secondAttribute="centerX" id="c1N-I0-w2D"/>
+                            <constraint firstItem="vNf-3p-kqx" firstAttribute="top" secondItem="e76-uj-ACO" secondAttribute="bottom" constant="72" id="gQN-66-MFX"/>
+                            <constraint firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="rE5-YK-Bst"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="768" height="768"/>
+                    <connections>
+                        <outlet property="activitySpinner" destination="QPw-MF-iXa" id="4BW-vu-Tnd"/>
+                        <outlet property="periodSelector" destination="gnd-S6-Max" id="IUo-8Q-jXS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qhu-vA-okF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1127" y="-372"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="DV3-ec-J1W">
