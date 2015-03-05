@@ -43,7 +43,7 @@ class PDFReporter {
   }
   
   private var data: PDFDataConvertable
-  private let frame = CGRectMake(72, 72, 468, 468) //72 point margins
+  private let frame = CGRectMake(72, 72, 468, 648) //72 point margins
   private let type: PDFReportTypes
   
   private func formatHeader()->String {

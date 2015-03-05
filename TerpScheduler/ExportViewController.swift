@@ -29,6 +29,7 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
       documentPresenter!.presentOpenInMenuFromRect(sender.frame, inView: self.view, animated: true)
       //do something useful
     }
+    //self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
   }
   
   let delegate: ExportDelegate = (UIApplication.sharedApplication().delegate! as AppDelegate).dataManager

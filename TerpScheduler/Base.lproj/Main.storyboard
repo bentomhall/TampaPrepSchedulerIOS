@@ -1326,7 +1326,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="8Yd-JZ-xN1" secondAttribute="trailing" constant="73" id="2j4-Mw-bKb"/>
                             <constraint firstItem="xGO-yk-7EJ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="3OL-Cu-vGH"/>
@@ -1405,6 +1405,15 @@
                                 <rect key="frame" x="365" y="248" width="37" height="37"/>
                                 <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zw-l2-vt6">
+                                <rect key="frame" x="366" y="497" width="37" height="30"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="qsi-Xr-gPB" kind="unwind" unwindAction="closeView:" id="iPx-sU-orB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1414,8 +1423,10 @@
                             <constraint firstItem="QPw-MF-iXa" firstAttribute="top" secondItem="MLr-Tw-4Ya" secondAttribute="bottom" constant="37" id="ZG6-l0-rMD"/>
                             <constraint firstAttribute="centerX" secondItem="vNf-3p-kqx" secondAttribute="centerX" id="asd-0S-U9n"/>
                             <constraint firstAttribute="centerX" secondItem="gnd-S6-Max" secondAttribute="centerX" id="c1N-I0-w2D"/>
+                            <constraint firstAttribute="centerY" secondItem="5Zw-l2-vt6" secondAttribute="centerY" id="gE4-iW-gtH"/>
                             <constraint firstItem="vNf-3p-kqx" firstAttribute="top" secondItem="e76-uj-ACO" secondAttribute="bottom" constant="72" id="gQN-66-MFX"/>
                             <constraint firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="rE5-YK-Bst"/>
+                            <constraint firstAttribute="centerX" secondItem="5Zw-l2-vt6" secondAttribute="centerX" id="tb4-Kb-OUj"/>
                         </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="768" height="768"/>
@@ -1425,6 +1436,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qhu-vA-okF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qsi-Xr-gPB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1127" y="-372"/>
         </scene>
