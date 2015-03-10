@@ -73,9 +73,14 @@ extension DailyTask: DataObject{
     period = Int(model.forPeriod)
   }
   
+  
+  ///returns managed entity associated with this data in the provided context. Only creates new if no entity with this id already exists.
+  ///
+  ///:param: inContext The NSManagedObjectContext to put the entity in.
+  ///:returns: A NSManagedObject containing the data from self.
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
-    
     if self.id != nil{
+      // If a entity with this id already exists, return it.
       var error: NSError?
       let existingEntity = context.existingObjectWithID(self.id!, error: &error)
       if existingEntity != nil && error == nil {

@@ -17,14 +17,21 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var isCompleted: UISwitch?
   
   @IBAction func clearData(sender: UIBarButtonItem) {
+    shouldSave = false
+    splitViewController!.preferredDisplayMode = .PrimaryHidden
+    navigationController!.popToRootViewControllerAnimated(false)
     clear()
+    
   }
   
   @IBAction func addItem(sender: UIBarButtonItem) {
     saveData()
     clear()
+    shouldSave = true
     delegate!.addItemToTableView()
   }
+  
+  private var shouldSave: Bool = true
   
   var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask? {
@@ -35,6 +42,7 @@ class TaskDetailViewController: UIViewController {
       }
     }
   }
+  
   var date: NSDate?
   var period: Int?
   
@@ -52,14 +60,10 @@ class TaskDetailViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
-    //self.navigationController!.setNavigationBarHidden(false, animated: false)
-    
-    // Do any additional setup after loading the view.
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -69,7 +73,9 @@ class TaskDetailViewController: UIViewController {
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
-    saveData()
+    if shouldSave {
+      saveData()
+    }
   }
   
   func saveData() {
@@ -101,18 +107,6 @@ class TaskDetailViewController: UIViewController {
       isCompleted!.setOn(data!.isCompleted, animated: false)
     }
   }
-  
-  
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using segue.destinationViewController.
-  // Pass the selected object to the new view controller.
-  }
-  */
-  
 }
 
 extension TaskDetailViewController: UITextFieldDelegate {
@@ -122,7 +116,6 @@ extension TaskDetailViewController: UITextFieldDelegate {
   }
   
   func textFieldDidEndEditing(textField: UITextField) {
-    saveData()
     delegate!.didUpdateTitle(textField.text)
   }
 }

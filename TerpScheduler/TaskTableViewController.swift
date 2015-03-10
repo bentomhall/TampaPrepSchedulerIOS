@@ -22,12 +22,17 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   var period = 1
   var tasks: [DailyTask] = []
   var delegate: TaskTableDelegate?
+  var dirtyCellTitles = [Int: String]()
   
   var selectedTask: DailyTask?
   var selectedRow = NSIndexPath(forRow: 0, inSection: 0)
   
   func reload(){
     tableView.reloadData()
+  }
+  
+  func clearDirtyRows(){
+    dirtyCellTitles = [Int: String]()
   }
   
   func addAndSelectItem(task: DailyTask?, forIndex indx: Int){
@@ -55,13 +60,14 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     tableView.reloadData()
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
   
   override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
+    dirtyCellTitles = [Int: String]()
   }
 
     // MARK: - Table view data source
@@ -80,7 +86,11 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
       let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as TaskTableViewCell
       let task = tasks[indexPath.row]
       let title = task.shortTitle
-      cell.setTitleText(title, taskIsComplete: task.isCompleted)
+      if !contains(dirtyCellTitles.keys, indexPath.row) {
+        cell.setTitleText(title, taskIsComplete: task.isCompleted)
+      } else {
+        cell.setTitleText(dirtyCellTitles[indexPath.row]!, taskIsComplete: false)
+      }
       return cell
     }
   
@@ -108,8 +118,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     }
   
   func updateTitleOfSelectedCell(title: String){
-    var cell = tableView.cellForRowAtIndexPath(selectedRow)! as TaskTableViewCell
-    cell.setTitleText(title, taskIsComplete: false)
+    dirtyCellTitles[selectedRow.row] = title
     tableView.reloadData()
   }
   

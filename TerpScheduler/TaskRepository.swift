@@ -64,7 +64,6 @@ class TaskRepository {
     } else {
       repository.add(newEntity, isNew: true)
     }
-    
   }
   
   func tasksForDateAndPeriod(date: NSDate, period: Int)->[DailyTask]{

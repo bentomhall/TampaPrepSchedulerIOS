@@ -10,9 +10,6 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate{
   @IBOutlet weak var webView: UIWebView?
-  @IBAction func closeView(segue: UIStoryboardSegue){
-    
-  }
   var initialURL: NSURL?
   
   override func viewWillAppear(animated: Bool) {

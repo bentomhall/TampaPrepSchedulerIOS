@@ -11,6 +11,6 @@ import CoreData
 
 class AppDataEntity: NSManagedObject {
 
-    @NSManaged var isScheduleLoaded: NSNumber
+  @NSManaged var isScheduleLoaded: NSNumber
 
 }

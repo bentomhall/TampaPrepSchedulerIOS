@@ -65,7 +65,6 @@ protocol DataObject {
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject
 }
 
-
 class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   private func newFetchRequest()->NSFetchRequest{
     return NSFetchRequest(entityName: entityName)

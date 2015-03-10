@@ -28,6 +28,7 @@
 		D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */; };
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475812B1AA739170059BF3C /* ExportViewController.swift */; };
+		D47A4C551AAF7690007017D3 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = D47A4C541AAF7690007017D3 /* launchScreen.png */; };
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C51A939D82000AFBD1 /* period_1_background.png */; };
@@ -79,6 +80,7 @@
 		D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfReportWriter.swift; sourceTree = "<group>"; };
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D475812B1AA739170059BF3C /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		D47A4C541AAF7690007017D3 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D48291C51A939D82000AFBD1 /* period_1_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_1_background.png; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		D408FD751A432E45004F0B83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D47A4C541AAF7690007017D3 /* launchScreen.png */,
 				D48291C91A93AF7E000AFBD1 /* period_3_background.png */,
 				D48291CA1A93AF7E000AFBD1 /* period_4_background.png */,
 				D48291CB1A93AF7E000AFBD1 /* period_5_background.png */,
@@ -298,6 +301,7 @@
 				D48291C81A939D82000AFBD1 /* period_2_background.png in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4E6F0DD1A8C25B3002FBFD4 /* TP_seal_splash.png in Resources */,
+				D47A4C551AAF7690007017D3 /* launchScreen.png in Resources */,
 				D4E6F0DF1A8C295F002FBFD4 /* TP_seal_splash_landscape.png in Resources */,
 				D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */,
 				D48291CF1A93AF7E000AFBD1 /* period_4_background.png in Resources */,
@@ -456,13 +460,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = TerpScheduler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -473,12 +482,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = TerpScheduler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

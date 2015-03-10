@@ -84,6 +84,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
       taskRepository.persistData(task, withMergeFromTask: nil)
     }
     tableViewController!.replaceItem(-1, withTask: task)
+    tableViewController!.clearDirtyRows()
     //tableViewController!.reload()
     summaryViewController!.reloadCollectionView()
     return
