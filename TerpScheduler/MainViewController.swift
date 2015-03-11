@@ -75,13 +75,12 @@ class MainViewController: UIViewController {
   
   override func viewDidAppear(animated: Bool) {
     for (index, period) in enumerate(classPeriods!){
-      let classData = classRepository!.GetClassDataByPeriod(index + 1)
+      let classData = classRepository!.getClassDataByPeriod(index + 1)
       period.classData = classData
       if classData.isStudyHall {
         shouldShadeRow(true, forPeriod: index + 1)
       }
     }
-    //self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
     scrollView!.setContentOffset(contentOffset, animated: false)

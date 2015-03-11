@@ -11,19 +11,11 @@ import UIKit
 
 @IBDesignable
 class DayLabel: UIView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
-    @IBOutlet weak var DateLabel: UILabel?
-    @IBOutlet weak var ScheduleLabel: UILabel?
+  
+  @IBOutlet weak var DateLabel: UILabel?
+  @IBOutlet weak var ScheduleLabel: UILabel?
   @IBOutlet weak var selectedView: UIView?
-    
+  
   func SetContents(date day: NSDate, scheduleType: String, dateIsToday: Bool){
     var formatter = NSDateFormatter()
     formatter.dateFormat = "E MM/d"
@@ -38,5 +30,5 @@ class DayLabel: UIView {
       selectedView?.backgroundColor = UIColor.clearColor()
     }
     return
-    }
+  }
 }

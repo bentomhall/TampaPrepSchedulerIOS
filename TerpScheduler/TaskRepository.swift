@@ -30,6 +30,7 @@ class TaskRepository {
     fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", 0)
     let results = context.executeFetchRequest(fetchRequest, error: nil) as [DailyTaskEntity]
     if results.count == 0 {
+      //the default task isn't created yet, so add it and return it
       let entityDescription = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
       let task = DailyTaskEntity(entity: entityDescription!, insertIntoManagedObjectContext: context)
       task.shortTitle = "New Item"
@@ -43,35 +44,43 @@ class TaskRepository {
       }
       return DailyTask(entity: task)
     } else {
+      //default task is already there, so just return it
       return DailyTask(entity: results[0])
     }
   }
   
   var defaultTask: DailyTask?
   
+  ///Saves data to backing store. If given a non-nil withMergeFromTask, overwrite the old task with the new data.
+  ///
+  ///:param: data New data to be saved
+  ///:param: withMergeFromTask Old data to overwrite. Nil implies it's a new task.
   func persistData(data: DailyTask, withMergeFromTask oldTask: DailyTask?){
-    let newEntity = data.toEntity(inContext: context) as DailyTaskEntity
-    var entity: DailyTaskEntity
     if oldTask != nil {
-      entity = oldTask!.toEntity(inContext: context) as DailyTaskEntity
-      entity.shortTitle = newEntity.shortTitle
-      entity.priority = newEntity.priority
-      entity.details = newEntity.details
-      entity.isHaikuAssignment = newEntity.isHaikuAssignment
-      entity.isCompleted = newEntity.isCompleted
-      repository.add(entity, isNew: false)
-      context.deleteObject(newEntity)
+      let newTask = DailyTask(date: oldTask!.date, period: oldTask!.period, shortTitle: data.shortTitle, details: data.details, isHaiku: data.isHaikuAssignment, completion: data.isCompleted, priority: data.priority)
+      repository.add(newTask)
     } else {
-      repository.add(newEntity, isNew: true)
+      repository.add(data)
     }
   }
   
+  ///Fetches all tasks associated with both given date and period (1 indexed).
+  ///
+  ///:param: date The NSDate for which to fetch tasks. Time portions ignored.
+  ///:param: period 1-indexed integer for the class period.
+  ///:returns: A list of DailyTasks, sorted by priority
   func tasksForDateAndPeriod(date: NSDate, period: Int)->[DailyTask]{
     let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(optDate: date, optID: nil, optPeriod: period, optTitle: nil))
     let sortedTasks = sorted(tasks, {$0.priority.rawValue < $1.priority.rawValue})
     return sortedTasks
   }
   
+  
+  ///Fetches all task summaries for dates between inputs (inclusive).
+  ///
+  ///:param: startDate First date to fetch summaries for
+  ///:param: stopDate: Last date to fetch summaries for
+  ///:returns: A list of TaskSummary objects sorted by period->date->priority
   func taskSummariesForDatesBetween(startDate: NSDate, stopDate: NSDate)->[TaskSummary]{
     var summaries: [TaskSummary] = []
     let dates = dateRange(startDate, stopDate)

@@ -66,8 +66,21 @@ protocol DataObject {
 }
 
 class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
+  init(entityName: String, withContext context: NSManagedObjectContext){
+    self.entityName = entityName
+    self.context = context
+  }
+  
   private func newFetchRequest()->NSFetchRequest{
     return NSFetchRequest(entityName: entityName)
+  }
+  
+  private func dataFromEntities(entities: [U])->[T]{
+    var answer = [T]()
+    for item in entities{
+      answer.append(T(entity: item))
+    }
+    return answer
   }
   
   private let entityName: String
@@ -109,12 +122,20 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     let data = dataFromEntities(results)
     return data
   }
-
-  init(entityName: String, withContext context: NSManagedObjectContext){
-    self.entityName = entityName
-    self.context = context
-  }
   
+  private func save(){
+    var error: NSError?
+    context!.save(&error)
+    if error != nil {
+      NSLog("%@", error!)
+    }
+  }
+
+  ///fetches all stored items matching the values given when filtered by type
+  ///
+  ///:param: type RepositoryFilterType value on which to filter.
+  ///:param: values Set of values to match against. Only the one matching the filter type will be used.
+  ///:returns: list of values matching filter criteria
   func fetchBy(type: RepositoryFilterType, values: FilterValues)->[T]{
       let fetchRequest = newFetchRequest()
       fetchRequest.predicate = predicateByType(type, value: values)
@@ -125,16 +146,7 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     return [T]()
   }
   
-  private func dataFromEntities(entities: [U])->[T]{
-    var answer = [T]()
-    for item in entities{
-      answer.append(T(entity: item))
-    }
-    return answer
-  }
-  
   func deleteItemMatching(values filter: protocol<Filterable, DataObject>){
-    var error: NSError?
     var toDelete: NSManagedObject?
     if filter.id != nil {
       toDelete = context!.existingObjectWithID(filter.id!, error: nil)
@@ -144,17 +156,11 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     if toDelete != nil {
       context!.deleteObject(toDelete!)
     }
-    context!.save(&error)
-    if error != nil {
-      NSLog("%@", error!)
-    }
+    save()
   }
   
-  func add(entity: DailyTaskEntity, isNew: Bool){
-    var error: NSError?
-    context!.save(&error)
-    if error != nil {
-      NSLog("%@", error!)
-    }
+  func add(item: T){
+    let entity = item.toEntity(inContext: context!)
+    save()
   }
 }

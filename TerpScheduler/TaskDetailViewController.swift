@@ -21,7 +21,6 @@ class TaskDetailViewController: UIViewController {
     splitViewController!.preferredDisplayMode = .PrimaryHidden
     navigationController!.popToRootViewControllerAnimated(false)
     clear()
-    
   }
   
   @IBAction func addItem(sender: UIBarButtonItem) {

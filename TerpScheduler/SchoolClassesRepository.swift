@@ -34,12 +34,12 @@ class SchoolClassesRepository: NSObject {
     return nil
   }
   
-  func GetClassDataByPeriod(classPeriod: Int)->SchoolClass{
+  func getClassDataByPeriod(classPeriod: Int)->SchoolClass{
     if let classEntity = fetchEntity(classPeriod) {
       let newClass = SchoolClass(entity: classEntity as NSManagedObject)
       return newClass
     }
-    return SchoolClass.DefaultForPeriod(classPeriod)
+    return SchoolClass.defaultForPeriod(classPeriod)
   }
   
   func persistData(classData : SchoolClass){

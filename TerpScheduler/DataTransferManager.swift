@@ -77,7 +77,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
-    //let oldTask = tableViewController!.selectedTask
     if oldTask.period != 0{
       taskRepository.persistData(task, withMergeFromTask: oldTask)
     } else {
@@ -85,7 +84,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     }
     tableViewController!.replaceItem(-1, withTask: task)
     tableViewController!.clearDirtyRows()
-    //tableViewController!.reload()
     summaryViewController!.reloadCollectionView()
     return
   }
@@ -176,6 +174,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func getClassInformation(period: Int) -> SchoolClass {
-    return schoolClassRepository.GetClassDataByPeriod(period)
+    return schoolClassRepository.getClassDataByPeriod(period)
   }
 }

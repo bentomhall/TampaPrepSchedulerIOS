@@ -18,7 +18,7 @@ struct SchoolClass {
   let isLocked: Bool
   let id: NSManagedObjectID?
   
-  static func DefaultForPeriod(period: Int)->SchoolClass{
+  static func defaultForPeriod(period: Int)->SchoolClass{
     return SchoolClass(period: period, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
 }
