@@ -20,11 +20,12 @@ protocol PopOverPresentable {
 class MainViewController: UIViewController {
   
   private let noClassColor = UIColor(white: 0, alpha: 0.1)
-  private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
+  private var shadedRowIndexes = [0:false, 1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
   private var appDelegate : AppDelegate?
   var delegate: TaskSummaryDelegate?
   private var contentOffset = CGPointZero
   
+  @IBOutlet weak var contentView: UIView?
   @IBOutlet weak var scrollView: UIScrollView?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
@@ -56,7 +57,7 @@ class MainViewController: UIViewController {
   func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
     let days = 5
     let dayIndex = row % days
-    let periodIndex = Int(Double(row)/Double(days)) + 1 //ugly
+    let periodIndex = Int(Double(row)/Double(days)) //ugly
     return (day: dayIndex, period: periodIndex)
   }
   
@@ -71,19 +72,25 @@ class MainViewController: UIViewController {
     taskSummaries = delegate!.summariesForWeek()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     splitViewController!.presentsWithGesture = false
+    scrollView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    scrollView!.contentSize = CGSizeMake(contentView!.frame.width, contentView!.frame.height)
   }
   
   override func viewDidAppear(animated: Bool) {
     for (index, period) in enumerate(classPeriods!){
-      let classData = classRepository!.getClassDataByPeriod(index + 1)
+      let classData = classRepository!.getClassDataByPeriod(index)
       period.classData = classData
       if classData.isStudyHall {
-        shouldShadeRow(true, forPeriod: index + 1)
+        shouldShadeRow(true, forPeriod: index)
       }
     }
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
-    scrollView!.setContentOffset(contentOffset, animated: false)
+    //scrollView!.setContentOffset(contentOffset, animated: false)
     super.viewDidAppear(animated)
   }
   
@@ -101,7 +108,7 @@ class MainViewController: UIViewController {
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
       var receivingController = segue.destinationViewController as ClassPeriodViewController
       receivingController.modalPresentationStyle = .Popover
-      receivingController.preferredContentSize = CGSize(width: 300, height: 300)
+      receivingController.preferredContentSize = CGSize(width: 500, height: 300)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
@@ -123,19 +130,22 @@ class MainViewController: UIViewController {
       }
       delegate!.detailViewController = receivingController
     }
-    contentOffset = scrollView!.contentOffset
+    //contentOffset = scrollView!.contentOffset
     super.prepareForSegue(segue, sender: sender)
   }
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     collectionView!.collectionViewLayout.invalidateLayout()
+    scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
+    /*
     if size.width > 768 {
       //landscape
-      scrollView!.contentSize = CGSizeMake(size.width, 1000.0)
+      scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
     } else {
-      scrollView!.contentSize = CGSizeMake(size.width, 900.0)
+      scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
     }
+*/
   }
   
   func showDetail(task: DailyTask){
@@ -173,7 +183,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 35
+    return 40
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -258,16 +268,17 @@ extension MainViewController: ScheduleOverrideDelegate{
 
 extension MainViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(scrollView: UIScrollView) {
-    if scrollView.contentOffset.y < 0 {
-      scrollView.setContentOffset(CGPointZero, animated: false)
-    }
-    if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
-      scrollView.setContentOffset(CGPointZero, animated: false) //disallow scrolling
-    } else {
-      if scrollView.contentOffset.y > 250 {
-        scrollView.setContentOffset(CGPointMake(0, 250), animated: false)
-      }
-    }
+    //NSLog("%@", NSStringFromCGSize(scrollView.contentSize))
+    //if scrollView.contentOffset.y < 0 {
+    //  scrollView.setContentOffset(CGPointZero, animated: false)
+    //}
+    //if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
+    //  scrollView.setContentOffset(CGPointZero, animated: false) //disallow scrolling
+    //} else {
+      //if scrollView.contentOffset.y > 250 {
+      //  scrollView.setContentOffset(CGPointMake(0, 250), animated: false)
+      //}
+    //}
   }
 }
 

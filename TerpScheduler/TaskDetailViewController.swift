@@ -35,7 +35,7 @@ class TaskDetailViewController: UIViewController {
   var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask? {
     willSet(value) {
-      if value?.period != 0 {
+      if value?.period != -1 {
         date = value!.date
         period = value!.period
       }

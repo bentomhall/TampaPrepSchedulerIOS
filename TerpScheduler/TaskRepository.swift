@@ -27,14 +27,14 @@ class TaskRepository {
   
   private func fetchOrLoadDefaultTask()->DailyTask{
     let fetchRequest = NSFetchRequest(entityName: "DailyTask")
-    fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", 0)
+    fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", -1)
     let results = context.executeFetchRequest(fetchRequest, error: nil) as [DailyTaskEntity]
     if results.count == 0 {
       //the default task isn't created yet, so add it and return it
       let entityDescription = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
       let task = DailyTaskEntity(entity: entityDescription!, insertIntoManagedObjectContext: context)
       task.shortTitle = "New Item"
-      task.forPeriod = 0
+      task.forPeriod = -1
       task.details = ""
       task.dateDue = NSDate()
       var error: NSError?
@@ -84,10 +84,11 @@ class TaskRepository {
   func taskSummariesForDatesBetween(startDate: NSDate, stopDate: NSDate)->[TaskSummary]{
     var summaries: [TaskSummary] = []
     let dates = dateRange(startDate, stopDate)
-    for period in 1...7{
+    for period in 0...7{
       for date in dates {
         let tasks = tasksForDateAndPeriod(date, period: period)
         if tasks.count > 0 {
+          NSLog("Found a task for period %d", period)
           let topTask = tasks[0]
           summaries.append(TaskSummary(title: topTask.shortTitle, completion: topTask.isCompleted, remainingTasks: tasks.count - 1))
         } else {
