@@ -269,10 +269,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-rw-alB">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="1500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="1100"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="map-jt-s0O">
-                                                <rect key="frame" x="130" y="2" width="630" height="1496"/>
+                                                <rect key="frame" x="130" y="2" width="630" height="1096"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -879,7 +879,7 @@
                                             <constraint firstItem="psg-Ze-mng" firstAttribute="trailing" secondItem="VuC-rf-4yo" secondAttribute="trailing" id="aYD-Lh-ltx"/>
                                             <constraint firstItem="3QQ-OE-Yn3" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="214" id="err-tX-6TE"/>
                                             <constraint firstItem="6RZ-mE-XAJ" firstAttribute="leading" secondItem="3QQ-OE-Yn3" secondAttribute="leading" id="fEH-fP-Dck"/>
-                                            <constraint firstAttribute="height" constant="1500" id="fvA-RF-j2l"/>
+                                            <constraint firstAttribute="height" constant="1100" id="fvA-RF-j2l"/>
                                             <constraint firstItem="VuC-rf-4yo" firstAttribute="leading" secondItem="psg-Ze-mng" secondAttribute="leading" id="iQN-eJ-Km6"/>
                                             <constraint firstItem="hBd-2P-ddL" firstAttribute="bottom" secondItem="xDb-rw-alB" secondAttribute="bottomMargin" id="mIv-NN-ENH"/>
                                             <constraint firstItem="map-jt-s0O" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="2" id="mLe-3H-dok"/>
@@ -913,6 +913,7 @@
                                     <constraint firstItem="xDb-rw-alB" firstAttribute="leading" secondItem="mnl-UB-eKj" secondAttribute="leading" id="Pax-ge-GMg"/>
                                     <constraint firstAttribute="height" constant="1024" id="dFy-AA-NIU"/>
                                     <constraint firstItem="xDb-rw-alB" firstAttribute="top" secondItem="mnl-UB-eKj" secondAttribute="top" id="nBd-41-BJ1"/>
+                                    <constraint firstAttribute="bottom" secondItem="xDb-rw-alB" secondAttribute="bottom" constant="-76" id="peD-Rb-l2z"/>
                                     <constraint firstItem="xDb-rw-alB" firstAttribute="centerX" secondItem="mnl-UB-eKj" secondAttribute="centerX" id="rI6-uI-Vkx"/>
                                     <constraint firstAttribute="bottom" secondItem="xDb-rw-alB" secondAttribute="bottom" priority="100" constant="2" id="tZi-vC-Fx6"/>
                                     <constraint firstAttribute="width" constant="768" id="xis-2T-JwK"/>
@@ -921,6 +922,7 @@
                                     <mask key="constraints">
                                         <exclude reference="dFy-AA-NIU"/>
                                         <exclude reference="xis-2T-JwK"/>
+                                        <exclude reference="7z8-7Y-c7p"/>
                                         <exclude reference="tZi-vC-Fx6"/>
                                     </mask>
                                 </variation>
