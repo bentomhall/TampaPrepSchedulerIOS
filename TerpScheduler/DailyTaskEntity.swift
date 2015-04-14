@@ -28,7 +28,7 @@ enum Priorities: Int {
 }
 
 struct DailyTask: Filterable, Equatable {
-  let id: NSManagedObjectID?
+  var id: NSManagedObjectID?
   let date: NSDate
   let period: Int
   var shortTitle : String
@@ -60,7 +60,7 @@ extension DailyTask{
 
 extension DailyTask: DataObject{
   init(entity: NSManagedObject){
-    let model = entity as DailyTaskEntity
+    let model = entity as! DailyTaskEntity
     let context = model.managedObjectContext!
     context.save(nil)
     id = model.objectID

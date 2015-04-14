@@ -51,7 +51,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   }
   
   override func viewDidLoad() {
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     self.delegate = appDelegate.dataManager
     self.delegate!.tableViewController = self
   }
@@ -83,7 +83,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as TaskTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as! TaskTableViewCell
     let task = tasks[indexPath.row]
     let title = task.shortTitle
     if !contains(dirtyCellTitles.keys, indexPath.row) {

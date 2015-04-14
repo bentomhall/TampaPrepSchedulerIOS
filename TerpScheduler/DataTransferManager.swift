@@ -47,7 +47,7 @@ protocol ExportDelegate {
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate {
   init(){
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     managedObjectContext = appDelegate.managedObjectContext!
     taskRepository = TaskRepository(context: managedObjectContext)
     dateRepository = DateRepository(context: managedObjectContext)

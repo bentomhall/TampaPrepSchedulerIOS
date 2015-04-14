@@ -20,10 +20,11 @@ protocol PopOverPresentable {
 class MainViewController: UIViewController {
   
   private let noClassColor = UIColor(white: 0, alpha: 0.1)
-  private var shadedRowIndexes = [0:false, 1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false]
+  private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
   private var appDelegate : AppDelegate?
   var delegate: TaskSummaryDelegate?
   private var contentOffset = CGPointZero
+  private var deviceOrientationisPortrait = false
   
   @IBOutlet weak var contentView: UIView?
   @IBOutlet weak var scrollView: UIScrollView?
@@ -57,7 +58,7 @@ class MainViewController: UIViewController {
   func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
     let days = 5
     let dayIndex = row % days
-    let periodIndex = Int(Double(row)/Double(days)) //ugly
+    let periodIndex = Int(Double(row)/Double(days)) + 1 //ugly
     return (day: dayIndex, period: periodIndex)
   }
   
@@ -73,6 +74,7 @@ class MainViewController: UIViewController {
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     splitViewController!.presentsWithGesture = false
     scrollView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+    deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
   }
   
   override func viewDidLayoutSubviews() {
@@ -85,7 +87,7 @@ class MainViewController: UIViewController {
       let classData = classRepository!.getClassDataByPeriod(index)
       period.classData = classData
       if classData.isStudyHall {
-        shouldShadeRow(true, forPeriod: index)
+        shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index)
       }
     }
     self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -106,25 +108,25 @@ class MainViewController: UIViewController {
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier!.hasPrefix("ClassDetail") {
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
-      var receivingController = segue.destinationViewController as ClassPeriodViewController
+      var receivingController = segue.destinationViewController as! ClassPeriodViewController
       receivingController.modalPresentationStyle = .Popover
       receivingController.preferredContentSize = CGSize(width: 500, height: 300)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
-      var receivingController = segue.destinationViewController as ScheduleOverrideController
+      var receivingController = segue.destinationViewController as! ScheduleOverrideController
       receivingController.modalPresentationStyle = .Popover
       receivingController.delegate = self
       receivingController.index = index!
       let dateInformation = delegate!.datesForWeek[index!]
       receivingController.previousSchedule = dateInformation.Schedule
     } else if segue.identifier! == "WebView"{
-      let url = sender as NSURL
-      let receivingController = segue.destinationViewController as WebViewController
+      let url = sender as! NSURL
+      let receivingController = segue.destinationViewController as! WebViewController
       receivingController.initialURL = url
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
-      let receivingController = segue.destinationViewController as TaskDetailViewController
+      let receivingController = segue.destinationViewController as! TaskDetailViewController
       if let sender = sender as? DataManager{
         receivingController.previousTaskData = sender.selectedTask
       }
@@ -136,8 +138,12 @@ class MainViewController: UIViewController {
   
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    collectionView!.collectionViewLayout.invalidateLayout()
-    scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
+    coordinator.animateAlongsideTransition(nil, completion: {(context:UIViewControllerTransitionCoordinatorContext!)->Void in
+      self.deviceOrientationisPortrait = size.width < size.height
+      self.collectionView!.collectionViewLayout.invalidateLayout()
+      self.scrollView!.contentSize = CGSizeMake(size.width, self.collectionView!.frame.height)
+      return
+    })
     /*
     if size.width > 768 {
       //landscape
@@ -165,7 +171,7 @@ extension MainViewController: UICollectionViewDelegate {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-    if UIInterfaceOrientationIsPortrait(self.interfaceOrientation) {
+    if deviceOrientationisPortrait {
       //portrait
       return CGSize(width: 117, height: 116)
     } else {
@@ -183,11 +189,15 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 40
+    if appDelegate!.userDefaults.shouldDisplayExtraRow {
+      return 40
+    } else {
+      return 35
+    }
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as DailyTaskSmallView
+    var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as! DailyTaskSmallView
     var shadingType: CellShadingType
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
     if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
@@ -205,12 +215,12 @@ extension MainViewController: UICollectionViewDataSource {
     cell.shouldShadeCell(shadingType)
     let summary = taskSummaries![indexPath.row]
     cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion)
-    cell.setRemainingTasksLabel(summary.remainingTasks)
+    cell.setRemainingTasksLabel(tasksRemaining: summary.remainingTasks)
     return cell
   }
   
   func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as DateHeaderView
+    var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as! DateHeaderView
     header.SetDates(delegate!.datesForWeek)
     return header
   }

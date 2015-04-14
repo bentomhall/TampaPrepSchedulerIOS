@@ -32,7 +32,7 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     //self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
   }
   
-  let delegate: ExportDelegate = (UIApplication.sharedApplication().delegate! as AppDelegate).dataManager
+  let delegate: ExportDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate).dataManager
   var documentPresenter: UIDocumentInteractionController?
   override func viewDidLoad() {
     super.viewDidLoad()

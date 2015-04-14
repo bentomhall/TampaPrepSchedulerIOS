@@ -56,7 +56,7 @@ class TaskDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
   }

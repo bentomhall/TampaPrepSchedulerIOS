@@ -25,11 +25,13 @@ struct SchoolClass {
 
 extension SchoolClass: DataObject{
   init(entity: NSManagedObject){
-    let entity = entity as SchoolClassesEntity
+    let entity = entity as! SchoolClassesEntity
     period = entity.classPeriod.integerValue
     teacherName = entity.teacherName
     if entity.haikuURL != ""{
       haikuURL = NSURL(string: entity.haikuURL)
+    } else {
+      haikuURL = nil
     }
     isStudyHall = entity.isStudyHall
     subject = entity.subject
@@ -44,7 +46,7 @@ extension SchoolClass: DataObject{
       var error: NSError?
       let existingEntity = context.existingObjectWithID(self.id!, error: &error)
       if existingEntity != nil && error == nil {
-        managedObject = (existingEntity! as SchoolClassesEntity)
+        managedObject = (existingEntity! as! SchoolClassesEntity)
         alreadyExists = true
       } else if error != nil {
         NSLog("%@", error!)
@@ -52,7 +54,7 @@ extension SchoolClass: DataObject{
     }
     if !alreadyExists{
       let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: context)
-      managedObject = (NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as SchoolClassesEntity)
+      managedObject = (NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as! SchoolClassesEntity)
     }
     managedObject!.classPeriod = period
     managedObject!.teacherName = teacherName

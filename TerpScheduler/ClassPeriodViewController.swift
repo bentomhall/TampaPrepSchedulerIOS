@@ -18,7 +18,7 @@ protocol ClassPeriodDataSource {
 @IBDesignable
 class ClassPeriodViewController: UIViewController {
   @IBAction func openWebView(sender: UILabel){
-    let v = self.view as ClassPopupView
+    let v = self.view as! ClassPopupView
     let url_string = v.HaikuURLInput!.text
     var url: NSURL
     if url_string == "" {
@@ -49,14 +49,14 @@ class ClassPeriodViewController: UIViewController {
   }
   
   func saveData(){
-    let v = self.view as ClassPopupView
+    let v = self.view as! ClassPopupView
     let outputClassData = v.getContent()
     delegate!.setClassData(outputClassData, forIndex: index)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let v = self.view as ClassPopupView
+    let v = self.view as! ClassPopupView
     v.setContent(receivedClassData!)
     if receivedClassData!.isStudyHall {
       delegate!.shouldShadeRow(true, forPeriod: index+1)

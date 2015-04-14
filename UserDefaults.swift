@@ -27,4 +27,9 @@ class UserDefaults {
     set (value) { defaults.setBool(value, forKey: "shouldShadeStudyHall") }
   }
   
+  var shouldDisplayExtraRow: Bool {
+    get { return defaults.boolForKey("shouldShowExtraRow") }
+    set (value) { defaults.setBool(value, forKey: "shouldShowExtraRow") }
+  }
+  
 }

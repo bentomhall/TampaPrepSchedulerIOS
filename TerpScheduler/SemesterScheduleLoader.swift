@@ -11,7 +11,7 @@ import CoreData
 
 class SemesterScheduleLoader{
   var context : NSManagedObjectContext
-  let appDelegate = UIApplication.sharedApplication().delegate! as AppDelegate
+  let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
   var userDefaults: UserDefaults
   
   init(context: NSManagedObjectContext, withJSONFile: String){
@@ -33,14 +33,14 @@ class SemesterScheduleLoader{
     var error: NSError?
     if let path = NSBundle.mainBundle().pathForResource(jsonFileName, ofType: "json"){
       let data = NSData(contentsOfFile: path, options: NSDataReadingOptions.allZeros, error: &error)
-      let jsonData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &error) as NSDictionary
+      let jsonData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
       var weeks = [] as [NSManagedObject]
       for (key, value) in jsonData {
-        let weekLabel = key as String
-        let weekInformation = value as NSArray
-        let weekSchedule = weekInformation[0] as [String]
+        let weekLabel = key as! String
+        let weekInformation = value as! NSArray
+        let weekSchedule = weekInformation[0] as! [String]
         
-        let firstDay = weekInformation[1] as String
+        let firstDay = weekInformation[1] as! String
         let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
         var managedWeek = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
         managedWeek.setValue(serializeSchedule(weekSchedule), forKey: "weekSchedules")

@@ -100,13 +100,13 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     case .byDateAndPeriod:
       let p1 = NSPredicate(format: "dateDue = %@", value.date)
       let p2 = NSPredicate(format: "forPeriod = %i", value.period)
-      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1!, p2!])
+      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1, p2])
       break
     case .byDateAndPeriodAndID:
       let p1 = NSPredicate(format: "dateDue = %@", value.date)
       let p2 = NSPredicate(format: "forPeriod = %i", value.period)
       let p3 = NSPredicate(format: "id = %@", value.id!)
-      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1!, p2!, p3!])
+      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1, p2, p3])
       break
     case .byDateBetween:
       p = NSPredicate(format: "date > %@ and date < %@", argumentArray: [value.date, value.stopDate!])
@@ -118,7 +118,7 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   private func fetchAll()->[T]{
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
-    let results = context!.executeFetchRequest(fetchRequest, error: nil) as [U]
+    let results = context!.executeFetchRequest(fetchRequest, error: nil) as! [U]
     let data = dataFromEntities(results)
     return data
   }

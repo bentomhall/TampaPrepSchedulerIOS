@@ -5,6 +5,16 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Show row for extracurricular activities?</string>
+			<key>Key</key>
+			<string>shouldShowExtraRow</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>Options</string>
 			<key>Type</key>
@@ -31,6 +41,15 @@
 			<true/>
 		</dict>
 	</array>
+	<key>Title</key>
+	<dict>
+		<key>Type</key>
+		<string>PSTextFieldSpecifier</string>
+		<key>Title</key>
+		<string></string>
+		<key>Key</key>
+		<string></string>
+	</dict>
 	<key>StringsTable</key>
 	<string>Root</string>
 </dict>

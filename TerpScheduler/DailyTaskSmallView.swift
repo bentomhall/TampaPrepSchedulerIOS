@@ -36,15 +36,15 @@ class DailyTaskSmallView: UICollectionViewCell {
     }
   }
   
-  func setRemainingTasksLabel(tasksRemaining: Int){
-    if tasksRemaining > 0 {
+  func setRemainingTasksLabel(tasksRemaining remaining: Int){
+    if remaining > 0 {
       RemainingTasksLabel?.hidden = false
-      let text = "+ \(tasksRemaining) others"
+      let text = "+ \(remaining) others"
       RemainingTasksLabel!.text! = text
-      if tasksRemaining > 1 {
+      if remaining > 1 {
         RemainingTasksLabel!.textColor = UIColor.redColor()
       }
-      else if tasksRemaining == 1{
+      else if remaining == 1{
         RemainingTasksLabel!.text = "+ 1 other"
         RemainingTasksLabel!.textColor = UIColor.blueColor()
       }
