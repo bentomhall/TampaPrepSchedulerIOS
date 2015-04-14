@@ -77,10 +77,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
-    if oldTask.period != 0{
+    if oldTask.period != -1 {
       taskRepository.persistData(task, withMergeFromTask: oldTask)
     } else {
-      taskRepository.persistData(task, withMergeFromTask: nil)
+     self.taskRepository.persistData(task, withMergeFromTask: nil)
     }
     tableViewController!.replaceItem(-1, withTask: task)
     tableViewController!.clearDirtyRows()

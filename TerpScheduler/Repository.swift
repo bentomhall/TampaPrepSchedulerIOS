@@ -115,7 +115,8 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     }
     return p!
   }
-  private func fetchAll()->[T]{
+  
+  func fetchAll()->[T]{
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
     let results = context!.executeFetchRequest(fetchRequest, error: nil) as! [U]

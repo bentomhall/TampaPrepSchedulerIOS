@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AppData" representedClassName="TerpScheduler.AppDataEntity" syncable="YES">
         <attribute name="isScheduleLoaded" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="DailyTask" representedClassName="TerpScheduler.DailyTaskEntity" syncable="YES">
-        <attribute name="dateDue" attributeType="Date" syncable="YES"/>
+        <attribute name="dateDue" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="details" attributeType="String" syncable="YES"/>
-        <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="1" syncable="YES"/>
+        <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="1" indexed="YES" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isHaikuAssignment" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="priority" attributeType="Integer 16" minValueString="0" maxValueString="5" defaultValueString="3" syncable="YES"/>
