@@ -44,7 +44,7 @@ class ClassPeriodViewController: UIViewController {
     get { return _index }
     set(value) {
       _index = value
-      receivedClassData = delegate!.getClassData(index)
+      receivedClassData = delegate!.getClassData(_index)
     }
   }
   
@@ -59,7 +59,7 @@ class ClassPeriodViewController: UIViewController {
     let v = self.view as! ClassPopupView
     v.setContent(receivedClassData!)
     if receivedClassData!.isStudyHall {
-      delegate!.shouldShadeRow(true, forPeriod: index+1)
+      delegate!.shouldShadeRow(true, forPeriod: index + 1)
     }
   }
   

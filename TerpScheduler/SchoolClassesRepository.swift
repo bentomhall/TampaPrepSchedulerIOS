@@ -19,7 +19,7 @@ class SchoolClassesRepository: NSObject {
   }
   
   private func fetchEntity(classPeriod: Int) -> SchoolClassesEntity? {
-    let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
+    let predicate = NSPredicate(format: "classPeriod = %i", classPeriod + 1)
     fetchRequest.predicate = predicate
     fetchRequest.returnsObjectsAsFaults = false
     var error: NSError?

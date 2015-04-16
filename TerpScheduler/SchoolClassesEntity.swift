@@ -19,7 +19,8 @@ struct SchoolClass {
   let id: NSManagedObjectID?
   
   static func defaultForPeriod(period: Int)->SchoolClass{
-    return SchoolClass(period: period, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
+    //sometimes there's a disconnect and a 0-indexed period gets passed in. Sigh. Hack.
+    return SchoolClass(period: period+1, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
 }
 

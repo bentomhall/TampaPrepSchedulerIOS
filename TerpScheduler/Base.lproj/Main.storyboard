@@ -58,7 +58,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-503" y="-1274"/>
+            <point key="canvasLocation" x="-893" y="-1527"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="Z5t-vu-qfW">
@@ -1095,7 +1095,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-62" y="-319"/>
+            <point key="canvasLocation" x="-86" y="-174"/>
         </scene>
         <!--Schedule Override Controller-->
         <scene sceneID="nON-2I-yf3">
@@ -1168,7 +1168,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1bI-GY-Nft">
                                 <rect key="frame" x="199" y="170" width="51" height="31"/>
                                 <connections>
-                                    <action selector="ToggleStudyHall:" destination="TqG-gn-vu2" eventType="valueChanged" id="6A7-Nd-vYN"/>
+                                    <action selector="toggleStudyHall:" destination="TqG-gn-vu2" eventType="valueChanged" id="LzD-d3-EMr"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Study Hall?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-Fh-Y9T">
@@ -1239,7 +1239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sv6-Hq-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="401" y="-821"/>
+            <point key="canvasLocation" x="584" y="-576"/>
         </scene>
         <!--Links Page View Controller-->
         <scene sceneID="eyV-tK-Eqd">
@@ -1384,7 +1384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="618.75" y="-339.84375"/>
+            <point key="canvasLocation" x="661" y="145"/>
         </scene>
         <!--Export View Controller-->
         <scene sceneID="0tD-xV-Al7">
@@ -1514,6 +1514,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="zJQ-35-XM5"/>
         <segue reference="IB0-L2-s9k"/>
-        <segue reference="yeF-UX-YYp"/>
+        <segue reference="g6i-ag-fle"/>
     </inferredMetricsTieBreakers>
 </document>

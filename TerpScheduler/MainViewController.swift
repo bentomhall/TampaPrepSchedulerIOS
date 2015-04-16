@@ -87,7 +87,7 @@ class MainViewController: UIViewController {
       let classData = classRepository!.getClassDataByPeriod(index)
       period.classData = classData
       if classData.isStudyHall {
-        shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index)
+        shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index+1)
       }
     }
     self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -109,7 +109,7 @@ class MainViewController: UIViewController {
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
       var receivingController = segue.destinationViewController as! ClassPeriodViewController
       receivingController.modalPresentationStyle = .Popover
-      receivingController.preferredContentSize = CGSize(width: 500, height: 300)
+      receivingController.preferredContentSize = CGSize(width: 300, height: 300)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
@@ -219,7 +219,6 @@ extension MainViewController: UICollectionViewDataSource {
     taskSummaries = delegate!.summariesForWeek()
     collectionView!.reloadData()
   }
-  
 }
 
 //MARK - ClassPeriodDataSource compliance
@@ -227,9 +226,9 @@ extension MainViewController: ClassPeriodDataSource {
   func setClassData(data: SchoolClass, forIndex index:Int){
     classPeriods![index].classData = data
     if data.isStudyHall {
-      shouldShadeRow(true, forPeriod: index+1)
+      shouldShadeRow(true, forPeriod: index + 1) //period indexes start at 1
     } else {
-      shouldShadeRow(false, forPeriod: index+1)
+      shouldShadeRow(false, forPeriod: index + 1)
     }
     classRepository!.persistData(data)
   }
