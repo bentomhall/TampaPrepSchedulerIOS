@@ -29,14 +29,12 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
       documentPresenter!.presentOpenInMenuFromRect(sender.frame, inView: self.view, animated: true)
       //do something useful
     }
-    //self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
   }
   
   let delegate: ExportDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate).dataManager
   var documentPresenter: UIDocumentInteractionController?
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     // Do any additional setup after loading the view.
   }
   
@@ -70,15 +68,4 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     formatter.dateFormat = "MM/dd/yy"
     return formatter.stringFromDate(date)
   }
-  
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using segue.destinationViewController.
-  // Pass the selected object to the new view controller.
-  }
-  */
-  
 }

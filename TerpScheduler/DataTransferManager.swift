@@ -28,15 +28,11 @@ protocol TaskTableDelegate {
 protocol TaskSummaryDelegate {
   var isMiddleSchool: Bool { get }
   var shouldShadeStudyHall: Bool { get }
+  var shouldDisplayExtraRow: Bool { get }
   func willDisplaySplitViewFor(date: NSDate, period: Int)
   func summariesForWeek()->[TaskSummary]
   var summaryViewController: MainViewController? { get set }
   var detailViewController: TaskDetailViewController? { get set }
-  var datesForWeek: [SchoolDate] { get }
-  func didSetDateByIndex(index: Int, withData data: String)
-  func loadWeek(direction: Int)
-  func loadWeek(shouldFocusOnToday: Bool)
-  func missedClassesForDayByIndex(index: Int)->[Int]
 }
 
 protocol ExportDelegate {
@@ -45,17 +41,25 @@ protocol ExportDelegate {
   func getClassInformation(period: Int)->SchoolClass
 }
 
-class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate {
+protocol DateInformationDelegate {
+  var datesForWeek: [SchoolDate] { get }
+  func didSetDateByIndex(index: Int, withData data: String)
+  func loadWeek(direction: Int)
+  func loadWeek(shouldFocusOnToday: Bool)
+  func missedClassesForDayByIndex(index: Int)->[Int]
+}
+
+class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
   init(){
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    defaults = appDelegate.userDefaults
     managedObjectContext = appDelegate.managedObjectContext!
     taskRepository = TaskRepository(context: managedObjectContext)
     dateRepository = DateRepository(context: managedObjectContext)
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
-    isMiddleSchool = appDelegate.userDefaults.isMiddleStudent
-    shouldShadeStudyHall = appDelegate.userDefaults.shouldShadeStudyHall
   }
   
+  private var defaults: UserDefaults?
   private var managedObjectContext: NSManagedObjectContext
   private var taskRepository: TaskRepository
   private var dateRepository: DateRepository
@@ -63,8 +67,24 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   private var selectedDate = NSDate()
   private var selectedPeriod = 1
   
-  var isMiddleSchool = false
-  var shouldShadeStudyHall = true
+  var isMiddleSchool: Bool {
+    get {
+      defaults!.readDefaults()
+      return defaults!.isMiddleStudent
+    }
+  }
+  var shouldShadeStudyHall: Bool {
+    get {
+      defaults!.readDefaults()
+      return defaults!.shouldShadeStudyHall
+    }
+  }
+  var shouldDisplayExtraRow: Bool {
+    get {
+      defaults!.readDefaults()
+      return defaults!.shouldDisplayExtraRow
+    }
+  }
   var selectedTask: DailyTask?
   var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
@@ -176,4 +196,5 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   func getClassInformation(period: Int) -> SchoolClass {
     return schoolClassRepository.getClassDataByPeriod(period)
   }
+  
 }

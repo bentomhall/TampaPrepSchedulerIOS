@@ -316,8 +316,8 @@
                                                         </view>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <connections>
-                                                            <outlet property="RemainingTasksLabel" destination="vSY-r5-YuX" id="mxy-1N-AaP"/>
-                                                            <outlet property="TopTaskLabel" destination="EsW-zz-BvF" id="pMP-yb-rmd"/>
+                                                            <outlet property="remainingTasksLabel" destination="vSY-r5-YuX" id="gde-TV-saO"/>
+                                                            <outlet property="topTaskLabel" destination="EsW-zz-BvF" id="fgh-eJ-f0r"/>
                                                             <segue destination="uTZ-yI-WtI" kind="show" identifier="ShowDetail" id="GA8-Em-dHn"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -374,8 +374,8 @@
                                                                 </mask>
                                                             </variation>
                                                             <connections>
-                                                                <outlet property="DateLabel" destination="6Xh-C4-qDK" id="vob-3s-G48"/>
-                                                                <outlet property="ScheduleLabel" destination="rJn-8L-1LV" id="uhv-nm-RYr"/>
+                                                                <outlet property="dateLabel" destination="6Xh-C4-qDK" id="4ig-Oo-7Xx"/>
+                                                                <outlet property="scheduleLabel" destination="rJn-8L-1LV" id="nWJ-LC-Frt"/>
                                                                 <outlet property="selectedView" destination="bL0-A9-ael" id="Os3-2W-0Aa"/>
                                                                 <outletCollection property="gestureRecognizers" destination="swQ-ff-jDi" appends="YES" id="gZ6-Vt-Afa"/>
                                                             </connections>
@@ -430,8 +430,8 @@
                                                                 </mask>
                                                             </variation>
                                                             <connections>
-                                                                <outlet property="DateLabel" destination="KNk-W9-ldk" id="oRP-QC-DvL"/>
-                                                                <outlet property="ScheduleLabel" destination="HnG-bV-exZ" id="d6f-ta-Gzw"/>
+                                                                <outlet property="dateLabel" destination="KNk-W9-ldk" id="Nj4-hc-QN4"/>
+                                                                <outlet property="scheduleLabel" destination="HnG-bV-exZ" id="7Cu-5F-2bQ"/>
                                                                 <outlet property="selectedView" destination="cW0-m3-yYJ" id="ya8-Rt-0AV"/>
                                                                 <outletCollection property="gestureRecognizers" destination="yKv-wb-V40" appends="YES" id="Myd-3A-xKa"/>
                                                             </connections>
@@ -482,8 +482,8 @@
                                                                 </mask>
                                                             </variation>
                                                             <connections>
-                                                                <outlet property="DateLabel" destination="TFm-S8-vQd" id="A3y-Bb-8oh"/>
-                                                                <outlet property="ScheduleLabel" destination="dib-Jo-Fz3" id="63a-1d-Ks4"/>
+                                                                <outlet property="dateLabel" destination="TFm-S8-vQd" id="o39-HU-jEv"/>
+                                                                <outlet property="scheduleLabel" destination="dib-Jo-Fz3" id="zQZ-bA-Krp"/>
                                                                 <outlet property="selectedView" destination="USw-VC-M7S" id="q4S-3I-YJy"/>
                                                                 <outletCollection property="gestureRecognizers" destination="LrG-s3-7ZX" appends="YES" id="Phm-g7-d9g"/>
                                                             </connections>
@@ -532,8 +532,8 @@
                                                                 </mask>
                                                             </variation>
                                                             <connections>
-                                                                <outlet property="DateLabel" destination="gjS-NR-05K" id="nri-OI-0Nx"/>
-                                                                <outlet property="ScheduleLabel" destination="SlU-rr-cv0" id="mFj-LF-B2M"/>
+                                                                <outlet property="dateLabel" destination="gjS-NR-05K" id="mEu-gD-cIn"/>
+                                                                <outlet property="scheduleLabel" destination="SlU-rr-cv0" id="jZo-Da-Uud"/>
                                                                 <outlet property="selectedView" destination="2Uk-jr-feT" id="VSQ-q8-7lE"/>
                                                                 <outletCollection property="gestureRecognizers" destination="ZA3-CF-hmP" appends="YES" id="y6K-Bn-7mt"/>
                                                             </connections>
@@ -582,8 +582,8 @@
                                                                 </mask>
                                                             </variation>
                                                             <connections>
-                                                                <outlet property="DateLabel" destination="fG1-8u-dMo" id="fg5-5i-OyY"/>
-                                                                <outlet property="ScheduleLabel" destination="SP4-Tt-yqp" id="T2u-sC-oiL"/>
+                                                                <outlet property="dateLabel" destination="fG1-8u-dMo" id="7eH-HP-qr7"/>
+                                                                <outlet property="scheduleLabel" destination="SP4-Tt-yqp" id="SUG-zR-TQX"/>
                                                                 <outlet property="selectedView" destination="6y6-xA-ZMY" id="TfR-6S-f6f"/>
                                                                 <outletCollection property="gestureRecognizers" destination="iem-ti-Uab" appends="YES" id="qcx-bb-2Xe"/>
                                                             </connections>
@@ -660,8 +660,8 @@
                                                     <constraint firstAttribute="height" constant="116" id="m44-NC-LvQ"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="yuG-GP-GqX" id="cR7-8x-x1u"/>
-                                                    <outlet property="TeacherNameLabel" destination="Ofc-mY-DxT" id="Z8p-29-Kgu"/>
+                                                    <outlet property="classNameLabel" destination="yuG-GP-GqX" id="XrD-bZ-rl6"/>
+                                                    <outlet property="teacherNameLabel" destination="Ofc-mY-DxT" id="ctS-jq-6uR"/>
                                                     <outletCollection property="gestureRecognizers" destination="o0n-ka-L14" appends="YES" id="I5c-jb-lcA"/>
                                                 </connections>
                                             </view>
@@ -691,8 +691,8 @@
                                                     <constraint firstAttribute="width" constant="120" id="ah8-pp-MjP"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="tiD-nT-SOF" id="vyN-FE-rsU"/>
-                                                    <outlet property="TeacherNameLabel" destination="hGm-EV-Rye" id="Xt1-jA-KR8"/>
+                                                    <outlet property="classNameLabel" destination="tiD-nT-SOF" id="oRQ-ai-ZqJ"/>
+                                                    <outlet property="teacherNameLabel" destination="hGm-EV-Rye" id="oYY-CV-Zxx"/>
                                                     <outletCollection property="gestureRecognizers" destination="dN6-G6-p3X" appends="YES" id="2Hh-TU-Sqt"/>
                                                 </connections>
                                             </view>
@@ -722,8 +722,8 @@
                                                     <constraint firstAttribute="height" constant="116" id="bEI-n5-pRf"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="JBu-Ri-1uJ" id="Irl-bC-ibI"/>
-                                                    <outlet property="TeacherNameLabel" destination="Vzt-YK-Ub5" id="Hb2-Ux-DbO"/>
+                                                    <outlet property="classNameLabel" destination="JBu-Ri-1uJ" id="ec6-2P-hlj"/>
+                                                    <outlet property="teacherNameLabel" destination="Vzt-YK-Ub5" id="1wD-sh-EsN"/>
                                                     <outletCollection property="gestureRecognizers" destination="c9n-Vi-J1B" appends="YES" id="o3W-J7-6Cs"/>
                                                 </connections>
                                             </view>
@@ -753,8 +753,8 @@
                                                     <constraint firstAttribute="height" constant="116" id="yaw-k5-iOO"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="kMv-HC-rNu" id="lm2-lP-jSK"/>
-                                                    <outlet property="TeacherNameLabel" destination="UaO-Lq-rAf" id="tqv-Oc-gDt"/>
+                                                    <outlet property="classNameLabel" destination="kMv-HC-rNu" id="AFu-S3-GJV"/>
+                                                    <outlet property="teacherNameLabel" destination="UaO-Lq-rAf" id="bVp-d1-hfL"/>
                                                     <outletCollection property="gestureRecognizers" destination="fwD-Y8-yKr" appends="YES" id="xEw-7G-cPg"/>
                                                 </connections>
                                             </view>
@@ -784,8 +784,8 @@
                                                     <constraint firstAttribute="width" constant="120" id="CTS-aU-o0c"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="Jo0-WK-rH7" id="bQz-7M-sgF"/>
-                                                    <outlet property="TeacherNameLabel" destination="ZLd-3o-FaU" id="9sk-fG-kLs"/>
+                                                    <outlet property="classNameLabel" destination="Jo0-WK-rH7" id="dBp-If-Pi6"/>
+                                                    <outlet property="teacherNameLabel" destination="ZLd-3o-FaU" id="15f-xH-olw"/>
                                                     <outletCollection property="gestureRecognizers" destination="jOM-g1-4fV" appends="YES" id="vlx-kn-ffE"/>
                                                 </connections>
                                             </view>
@@ -815,8 +815,8 @@
                                                     <constraint firstAttribute="height" constant="116" id="a2m-NW-EZT"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="Xdm-zZ-vXU" id="VQh-o1-ICF"/>
-                                                    <outlet property="TeacherNameLabel" destination="9Up-Ck-3Dm" id="bay-9Z-uu7"/>
+                                                    <outlet property="classNameLabel" destination="Xdm-zZ-vXU" id="Nq1-IC-Ydl"/>
+                                                    <outlet property="teacherNameLabel" destination="9Up-Ck-3Dm" id="5gF-Oq-Dd9"/>
                                                     <outletCollection property="gestureRecognizers" destination="BxL-yn-KEJ" appends="YES" id="Sww-Pz-2om"/>
                                                 </connections>
                                             </view>
@@ -846,8 +846,8 @@
                                                     <constraint firstAttribute="height" constant="116" id="pnR-wQ-JrZ"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="ClassNameLabel" destination="hMq-Yk-muL" id="EQo-RD-7pQ"/>
-                                                    <outlet property="TeacherNameLabel" destination="Qd7-82-5ce" id="j9Q-xz-nxV"/>
+                                                    <outlet property="classNameLabel" destination="hMq-Yk-muL" id="qrH-T2-HRp"/>
+                                                    <outlet property="teacherNameLabel" destination="Qd7-82-5ce" id="M6D-sJ-nCR"/>
                                                     <outletCollection property="gestureRecognizers" destination="1gA-g9-k2C" appends="YES" id="Ed9-Bt-DD2"/>
                                                 </connections>
                                             </view>
@@ -1225,12 +1225,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
-                            <outlet property="HaikuURLInput" destination="xJC-PB-GeV" id="PSV-0H-f6D"/>
-                            <outlet property="SubjectNameInput" destination="lbA-XW-mXk" id="CH9-SD-HfR"/>
-                            <outlet property="TeacherNameInput" destination="Wah-47-wNt" id="maR-aX-Ece"/>
-                            <outlet property="TitleLabel" destination="ufk-BQ-GWp" id="cUh-28-yJl"/>
                             <outlet property="classLockSwitch" destination="lJ8-4v-wRy" id="HWf-Bl-47T"/>
+                            <outlet property="haikuURLInput" destination="xJC-PB-GeV" id="Jt8-Lt-Mgc"/>
                             <outlet property="isStudyHall" destination="1bI-GY-Nft" id="aq7-I2-Qn7"/>
+                            <outlet property="subjectNameInput" destination="lbA-XW-mXk" id="JdN-Hj-Dm9"/>
+                            <outlet property="teacherNameInput" destination="Wah-47-wNt" id="Dhd-zb-Gs3"/>
+                            <outlet property="titleLabel" destination="ufk-BQ-GWp" id="Ung-5E-R5N"/>
                         </connections>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="500" height="500"/>

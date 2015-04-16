@@ -32,4 +32,8 @@ class UserDefaults {
     set (value) { defaults.setBool(value, forKey: "shouldShowExtraRow") }
   }
   
+  func readDefaults(){
+    defaults.synchronize()
+  }
+  
 }

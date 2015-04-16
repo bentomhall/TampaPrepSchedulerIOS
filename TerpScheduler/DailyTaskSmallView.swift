@@ -17,39 +17,39 @@ enum CellShadingType {
 @IBDesignable
 class DailyTaskSmallView: UICollectionViewCell {
   
-  @IBOutlet weak var TopTaskLabel : UILabel?
-  @IBOutlet weak var RemainingTasksLabel : UILabel?
+  @IBOutlet weak var topTaskLabel : UILabel?
+  @IBOutlet weak var remainingTasksLabel : UILabel?
   
   override func prepareForReuse() {
-    TopTaskLabel!.text = ""
-    RemainingTasksLabel!.text = ""
-    RemainingTasksLabel!.hidden = false
+    topTaskLabel!.text = ""
+    remainingTasksLabel!.text = ""
+    remainingTasksLabel!.hidden = false
   }
   
   func setTopTaskLabel(taskTitle: String, isTaskCompleted completion: Bool){
     if completion {
-      TopTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSStrikethroughStyleAttributeName: 2])
-      TopTaskLabel!.enabled = false
+      topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSStrikethroughStyleAttributeName: 2])
+      topTaskLabel!.enabled = false
     } else {
-      TopTaskLabel!.attributedText = NSAttributedString(string: taskTitle)
-      TopTaskLabel!.enabled = true
+      topTaskLabel!.attributedText = NSAttributedString(string: taskTitle)
+      topTaskLabel!.enabled = true
     }
   }
   
   func setRemainingTasksLabel(tasksRemaining remaining: Int){
     if remaining > 0 {
-      RemainingTasksLabel?.hidden = false
+      remainingTasksLabel?.hidden = false
       let text = "+ \(remaining) others"
-      RemainingTasksLabel!.text! = text
+      remainingTasksLabel!.text! = text
       if remaining > 1 {
-        RemainingTasksLabel!.textColor = UIColor.redColor()
+        remainingTasksLabel!.textColor = UIColor.redColor()
       }
       else if remaining == 1{
-        RemainingTasksLabel!.text = "+ 1 other"
-        RemainingTasksLabel!.textColor = UIColor.blueColor()
+        remainingTasksLabel!.text = "+ 1 other"
+        remainingTasksLabel!.textColor = UIColor.blueColor()
       }
     } else {
-      RemainingTasksLabel?.hidden = true
+      remainingTasksLabel?.hidden = true
     }
     
   }
@@ -66,6 +66,4 @@ class DailyTaskSmallView: UICollectionViewCell {
       self.backgroundColor = UIColor.whiteColor()
     }
   }
-  
-  
 }

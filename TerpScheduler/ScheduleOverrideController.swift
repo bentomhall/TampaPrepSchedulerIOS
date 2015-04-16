@@ -47,7 +47,6 @@ struct ScheduleTypes {
     let key = types[index]
     return key
   }
-  
 }
 
 protocol ScheduleOverrideDelegate{

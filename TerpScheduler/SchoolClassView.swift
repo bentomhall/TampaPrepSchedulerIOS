@@ -11,34 +11,24 @@ import UIKit
 @IBDesignable
 class SchoolClassView: UIView {
   
-  @IBOutlet weak var ClassPeriodLabel : UILabel?
-  @IBOutlet weak var ClassNameLabel : UILabel?
-  @IBOutlet weak var TeacherNameLabel : UILabel?
+  @IBOutlet weak var classPeriodLabel : UILabel?
+  @IBOutlet weak var classNameLabel : UILabel?
+  @IBOutlet weak var teacherNameLabel : UILabel?
   
   var _classData : SchoolClass?
   var classData : SchoolClass {
     get { return _classData! }
     set(data) {
       _classData = data
-      SetContentLabels(data)
+      setContentLabels(data)
     }
   }
   
-  var HaikuURL : NSURL?
+  var haikuURL : NSURL?
   
-  func SetContentLabels(data: SchoolClass){
-    ClassNameLabel!.text! = data.subject
-    ClassNameLabel!.text = ClassNameLabel!.text!.uppercaseString
-    TeacherNameLabel!.text! = data.teacherName
-    HaikuURL = data.haikuURL
-  }
-  
-  /*
-  // Only override drawRect: if you perform custom drawing.
-  // An empty implementation adversely affects performance during animation.
-  override func drawRect(rect: CGRect) {
-  // Drawing code
-  }
-  */
-  
+  func setContentLabels(data: SchoolClass){
+    classNameLabel!.text! = data.subject.uppercaseString
+    teacherNameLabel!.text! = data.teacherName
+    haikuURL = data.haikuURL
+  }  
 }

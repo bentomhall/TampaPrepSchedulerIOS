@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
   private let noClassColor = UIColor(white: 0, alpha: 0.1)
   private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
   private var appDelegate : AppDelegate?
-  var delegate: TaskSummaryDelegate?
+  var delegate: protocol<TaskSummaryDelegate, DateInformationDelegate>?
   private var contentOffset = CGPointZero
   private var deviceOrientationisPortrait = false
   
@@ -92,7 +92,6 @@ class MainViewController: UIViewController {
     }
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
-    //scrollView!.setContentOffset(contentOffset, animated: false)
     super.viewDidAppear(animated)
   }
   
@@ -132,7 +131,6 @@ class MainViewController: UIViewController {
       }
       delegate!.detailViewController = receivingController
     }
-    //contentOffset = scrollView!.contentOffset
     super.prepareForSegue(segue, sender: sender)
   }
   
@@ -144,14 +142,6 @@ class MainViewController: UIViewController {
       self.scrollView!.contentSize = CGSizeMake(size.width, self.collectionView!.frame.height)
       return
     })
-    /*
-    if size.width > 768 {
-      //landscape
-      scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
-    } else {
-      scrollView!.contentSize = CGSizeMake(size.width, collectionView!.frame.height)
-    }
-*/
   }
   
   func showDetail(task: DailyTask){
@@ -189,7 +179,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if appDelegate!.userDefaults.shouldDisplayExtraRow {
+    if delegate!.shouldDisplayExtraRow {
       return 40
     } else {
       return 35
@@ -278,17 +268,6 @@ extension MainViewController: ScheduleOverrideDelegate{
 
 extension MainViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(scrollView: UIScrollView) {
-    //NSLog("%@", NSStringFromCGSize(scrollView.contentSize))
-    //if scrollView.contentOffset.y < 0 {
-    //  scrollView.setContentOffset(CGPointZero, animated: false)
-    //}
-    //if UIInterfaceOrientationIsPortrait(self.interfaceOrientation){
-    //  scrollView.setContentOffset(CGPointZero, animated: false) //disallow scrolling
-    //} else {
-      //if scrollView.contentOffset.y > 250 {
-      //  scrollView.setContentOffset(CGPointMake(0, 250), animated: false)
-      //}
-    //}
   }
 }
 

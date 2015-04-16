@@ -13,6 +13,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     delegate!.willDisappear()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
   }
+  
   @IBAction func doneButton(sender: UIBarButtonItem){
     delegate!.willDisappear()
     self.splitViewController!.preferredDisplayMode = .PrimaryHidden
@@ -23,7 +24,6 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   var tasks: [DailyTask] = []
   var delegate: TaskTableDelegate?
   var dirtyCellTitles = [Int: String]()
-  
   var selectedTask: DailyTask?
   var selectedRow = NSIndexPath(forRow: 0, inSection: 0)
   

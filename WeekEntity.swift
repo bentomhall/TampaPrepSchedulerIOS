@@ -14,5 +14,4 @@ class WeekEntity: NSManagedObject {
   @NSManaged var firstWeekDay: NSDate
   @NSManaged var weekID: NSNumber
   @NSManaged var weekSchedules: String
-
 }

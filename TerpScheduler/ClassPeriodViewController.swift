@@ -19,11 +19,11 @@ protocol ClassPeriodDataSource {
 class ClassPeriodViewController: UIViewController {
   @IBAction func openWebView(sender: UILabel){
     let v = self.view as! ClassPopupView
-    let url_string = v.HaikuURLInput!.text
+    let url_string = v.haikuURLInput!.text
     var url: NSURL
     if url_string == "" {
       url = NSURL(string: "http://tampaprep.haikulearning.com")!
-    } else if v.HaikuURLInput!.text.hasPrefix("http://"){
+    } else if v.haikuURLInput!.text.hasPrefix("http://"){
       url = NSURL(string: url_string)!
     } else if url_string.hasPrefix("https://"){
       //web view has real hard time with https. this is a hack.
