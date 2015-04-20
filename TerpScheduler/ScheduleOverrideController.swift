@@ -54,9 +54,7 @@ protocol ScheduleOverrideDelegate{
 }
 
 @IBDesignable
-class ScheduleOverrideController: UIViewController {
-  @IBOutlet weak var schedulePicker: UIPickerView?
-  @IBOutlet weak var dateLabel: UILabel?
+class ScheduleOverrideController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
   var delegate: ScheduleOverrideDelegate?
   var index: Int = 0
   var schedule = ""
@@ -67,10 +65,6 @@ class ScheduleOverrideController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    dateLabel!.text = "Schedule for \(date)"
-    if let index = scheduleTypes.indexForLetter(previousSchedule){
-      schedulePicker!.selectRow(index, inComponent: 0, animated: false)
-    }
     // Do any additional setup after loading the view.
   }
   
@@ -80,36 +74,40 @@ class ScheduleOverrideController: UIViewController {
   }
   
   override func viewWillDisappear(animated: Bool) {
-    if schedule == ""{
-      schedule = previousSchedule
-    }
-    delegate!.updateScheduleForIndex(index, withSchedule: schedule)
     super.viewWillDisappear(animated)
   }
   
-}
-
-extension ScheduleOverrideController: UIPickerViewDataSource {
-  func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let letter = scheduleTypes.scheduleForIndex(indexPath.row)
+    let classes = scheduleTypes.scheduleForLetter(letter)
+    var cell = tableView.dequeueReusableCellWithIdentifier("scheduleTypeCell") as! UITableViewCell
+    if classes == "" {
+      cell.textLabel!.text = "Schedule \(letter): School Closed"
+    } else {
+      cell.textLabel!.text = "Schedule \(letter): Periods \(classes!) meet"
+    }
+    if previousSchedule == letter {
+      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+    } else {
+      
+    }
+    return cell
+  }
+  
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return scheduleTypes.count
   }
   
-  func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-    return 1
+  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return false
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let letter = scheduleTypes.scheduleForIndex(indexPath.row)
+    let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
+    cell.accessoryType = .Checkmark
+    delegate!.updateScheduleForIndex(index, withSchedule: letter)
+    self.dismissViewControllerAnimated(false, completion: nil)
   }
 }
 
-extension ScheduleOverrideController: UIPickerViewDelegate{
-  func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-    let key = scheduleTypes.scheduleForIndex(row)
-    let value = scheduleTypes.scheduleForLetter(key)!
-    if value == ""{
-      return "Schedule \(key): School Closed"
-    }
-    return "Schedule \(key): Periods \(value) meet"
-  }
-  
-  func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    schedule = scheduleTypes.scheduleForIndex(row)
-  }
-}

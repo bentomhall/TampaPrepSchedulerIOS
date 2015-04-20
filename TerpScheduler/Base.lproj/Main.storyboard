@@ -58,7 +58,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-893" y="-1527"/>
+            <point key="canvasLocation" x="-745" y="-1410"/>
         </scene>
         <!--Task Detail View Controller-->
         <scene sceneID="Z5t-vu-qfW">
@@ -205,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZfY-lo-o1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="-1274"/>
+            <point key="canvasLocation" x="-5" y="-1622"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dRI-d8-8zI">
@@ -221,7 +221,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNU-Uz-JLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-868.75" y="-1273.828125"/>
+            <point key="canvasLocation" x="-1397" y="-1410"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="ALh-z2-S2E">
@@ -234,7 +234,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey7-fB-Go5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1460.9375" y="-955.6640625"/>
+            <point key="canvasLocation" x="-2069" y="-1020"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cwg-ca-Hm0">
@@ -251,7 +251,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npg-Lt-vx2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationItem title="Title" id="I2f-FD-Qta"/>
             </objects>
-            <point key="canvasLocation" x="-787" y="-623"/>
+            <point key="canvasLocation" x="-1387" y="-635"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="HvU-h8-WgQ">
@@ -271,6 +271,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-rw-alB">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="1100"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxU-1t-vuA">
+                                                <rect key="frame" x="130" y="2" width="630" height="2"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="9qo-rm-237"/>
+                                                    <constraint firstAttribute="width" constant="630" id="pE0-YY-EIq"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="map-jt-s0O">
                                                 <rect key="frame" x="130" y="2" width="630" height="1096"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -866,6 +874,7 @@
                                             <constraint firstItem="map-jt-s0O" firstAttribute="trailing" secondItem="xDb-rw-alB" secondAttribute="trailingMargin" id="IzP-9p-0nr"/>
                                             <constraint firstItem="hBd-2P-ddL" firstAttribute="leading" secondItem="xDb-rw-alB" secondAttribute="leadingMargin" id="KLx-eg-JJk"/>
                                             <constraint firstItem="6RZ-mE-XAJ" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="89" id="KWQ-9P-dHY"/>
+                                            <constraint firstItem="map-jt-s0O" firstAttribute="trailing" secondItem="lxU-1t-vuA" secondAttribute="trailing" id="LO0-QT-RyV"/>
                                             <constraint firstItem="psg-Ze-mng" firstAttribute="top" secondItem="biv-TM-Zsf" secondAttribute="bottom" constant="8" id="Nhn-Vz-SyQ"/>
                                             <constraint firstItem="AeQ-6S-9El" firstAttribute="leading" secondItem="VuC-rf-4yo" secondAttribute="leading" id="No8-FA-dJb"/>
                                             <constraint firstItem="biv-TM-Zsf" firstAttribute="top" secondItem="3QQ-OE-Yn3" secondAttribute="bottom" constant="8" id="OmZ-gb-2Em"/>
@@ -890,6 +899,7 @@
                                             <constraint firstItem="3QQ-OE-Yn3" firstAttribute="leading" secondItem="biv-TM-Zsf" secondAttribute="leading" id="qAP-8P-6st"/>
                                             <constraint firstItem="psg-Ze-mng" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="462" id="rpp-En-1bl"/>
                                             <constraint firstItem="biv-TM-Zsf" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="338" id="su8-mu-qXg"/>
+                                            <constraint firstItem="lxU-1t-vuA" firstAttribute="top" secondItem="xDb-rw-alB" secondAttribute="top" constant="2" id="ztg-mf-SZV"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -1061,81 +1071,76 @@
                 </swipeGestureRecognizer>
                 <tapGestureRecognizer id="swQ-ff-jDi">
                     <connections>
-                        <segue destination="Y4H-km-338" kind="popoverPresentation" identifier="Day_0" popoverAnchorView="nDY-ye-eiz" id="Chh-HR-z3m">
+                        <segue destination="7LU-I2-icD" kind="popoverPresentation" identifier="Day_0" popoverAnchorView="lxU-1t-vuA" id="0cZ-qF-ncz">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="yKv-wb-V40">
                     <connections>
-                        <segue destination="Y4H-km-338" kind="popoverPresentation" identifier="Day_1" popoverAnchorView="nDY-ye-eiz" id="BnH-eD-2k9">
+                        <segue destination="7LU-I2-icD" kind="popoverPresentation" identifier="Day_1" popoverAnchorView="lxU-1t-vuA" id="DjU-EI-ODZ">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="LrG-s3-7ZX">
                     <connections>
-                        <segue destination="Y4H-km-338" kind="popoverPresentation" identifier="Day_2" popoverAnchorView="nDY-ye-eiz" id="Zsd-Mi-5kM">
+                        <segue destination="7LU-I2-icD" kind="popoverPresentation" identifier="Day_2" popoverAnchorView="lxU-1t-vuA" id="Vkr-A9-i67">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="ZA3-CF-hmP">
                     <connections>
-                        <segue destination="Y4H-km-338" kind="popoverPresentation" identifier="Day_3" popoverAnchorView="nDY-ye-eiz" id="S9J-Om-vuj">
+                        <segue destination="7LU-I2-icD" kind="popoverPresentation" identifier="Day_3" popoverAnchorView="lxU-1t-vuA" id="NiQ-yn-zFH">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="iem-ti-Uab">
                     <connections>
-                        <segue destination="Y4H-km-338" kind="popoverPresentation" identifier="Day_4" popoverAnchorView="nDY-ye-eiz" id="IB0-L2-s9k">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        <segue destination="7LU-I2-icD" kind="popoverPresentation" identifier="Day_4" popoverAnchorView="lxU-1t-vuA" id="nEP-aC-rBe">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-86" y="-174"/>
+            <point key="canvasLocation" x="-674" y="-423"/>
         </scene>
         <!--Schedule Override Controller-->
-        <scene sceneID="nON-2I-yf3">
+        <scene sceneID="wHo-Jd-212">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="Y4H-km-338" customClass="ScheduleOverrideController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aa4-s0-ioh"/>
-                        <viewControllerLayoutGuide type="bottom" id="QtZ-Yd-C8c"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sdZ-Bm-P4o">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="200"/>
+                <tableViewController id="7LU-I2-icD" customClass="ScheduleOverrideController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tm5-O7-sOK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ung-OX-6gy">
-                                <rect key="frame" x="0.0" y="179" width="500" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ND0-SY-lRo">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="154"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Y4H-km-338" id="YaP-Dz-gn6"/>
-                                    <outlet property="delegate" destination="Y4H-km-338" id="Dka-iH-c15"/>
-                                </connections>
-                            </pickerView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="500" height="200"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="500" height="200"/>
-                    <connections>
-                        <outlet property="dateLabel" destination="Ung-OX-6gy" id="D4T-E9-tMA"/>
-                        <outlet property="schedulePicker" destination="ND0-SY-lRo" id="cOY-EY-6jk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-IS-ZgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scheduleTypeCell" textLabel="BLb-me-t5f" style="IBUITableViewCellStyleDefault" id="3ax-aK-dIt">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3ax-aK-dIt" id="KP4-o8-gtu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BLb-me-t5f">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="7LU-I2-icD" id="XZ3-rR-2rL"/>
+                            <outlet property="delegate" destination="7LU-I2-icD" id="CAY-HV-2sD"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbq-VQ-pv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267.96875" y="-1032.421875"/>
+            <point key="canvasLocation" x="87" y="-758"/>
         </scene>
         <!--Class Period View Controller-->
         <scene sceneID="0Bb-Es-IsO">
@@ -1239,7 +1244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sv6-Hq-diE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="584" y="-576"/>
+            <point key="canvasLocation" x="-5" y="-485"/>
         </scene>
         <!--Links Page View Controller-->
         <scene sceneID="eyV-tK-Eqd">
@@ -1384,7 +1389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661" y="145"/>
+            <point key="canvasLocation" x="229" y="265"/>
         </scene>
         <!--Export View Controller-->
         <scene sceneID="0tD-xV-Al7">
@@ -1499,7 +1504,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O73-iI-NfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51.5625" y="15.234375"/>
+            <point key="canvasLocation" x="-674" y="731"/>
         </scene>
     </scenes>
     <resources>
@@ -1513,7 +1518,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zJQ-35-XM5"/>
-        <segue reference="IB0-L2-s9k"/>
+        <segue reference="0cZ-qF-ncz"/>
         <segue reference="g6i-ag-fle"/>
     </inferredMetricsTieBreakers>
 </document>
