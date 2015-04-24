@@ -33,7 +33,17 @@ class TaskDetailViewController: UIViewController {
   private var shouldSave: Bool = true
   
   var delegate: TaskDetailDelegate?
-  var previousTaskData: DailyTask?
+  var previousTaskData: DailyTask? {
+    willSet(value) {
+      if value == delegate!.defaultTask {
+        return
+      }
+      if date == nil && value != nil{
+        date = value!.date
+        period = value!.period
+      }
+    }
+  }
   
   var date: NSDate?
   var period: Int?

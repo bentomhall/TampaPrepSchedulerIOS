@@ -126,9 +126,9 @@ class MainViewController: UIViewController {
       receivingController.initialURL = url
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
       let receivingController = segue.destinationViewController as! TaskDetailViewController
-      if let sender = sender as? DataManager{
-        receivingController.previousTaskData = sender.selectedTask
-      }
+      //if let sender = sender as? DataManager{
+      //  receivingController.previousTaskData = sender.selectedTask
+      //}
       delegate!.detailViewController = receivingController
     }
     super.prepareForSegue(segue, sender: sender)

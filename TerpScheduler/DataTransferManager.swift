@@ -114,10 +114,14 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   
   func willDisplayDetailForTask(task: DailyTask) {
     selectedTask = task
-    detailViewController!.previousTaskData = selectedTask!
-    detailViewController!.clear()
-    summaryViewController!.performSegueWithIdentifier("ShowDetail", sender: self)
-    summaryViewController?.splitViewController!.preferredDisplayMode = .AllVisible
+    if detailViewController != nil {
+      detailViewController!.clear()
+      detailViewController!.previousTaskData = selectedTask!
+      detailViewController!.setSubviewContentsFromTaskData(task)
+    } else {
+      summaryViewController!.performSegueWithIdentifier("ShowDetail", sender: self)
+      summaryViewController?.splitViewController!.preferredDisplayMode = .AllVisible
+    }
     return
   }
   
@@ -133,6 +137,9 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     } else {
       selectedTask = defaultTask
       tableViewController!.addAndSelectItem(selectedTask!, forIndex: -1)
+    }
+    if detailViewController!.delegate == nil {
+      detailViewController!.delegate = self
     }
     detailViewController!.date = selectedDate
     detailViewController!.period = selectedPeriod

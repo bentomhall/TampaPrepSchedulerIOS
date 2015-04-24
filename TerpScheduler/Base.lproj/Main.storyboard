@@ -1307,7 +1307,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6M1-DS-K2o" kind="presentation" identifier="ExportTasks" modalPresentationStyle="pageSheet" id="aTf-t3-beO"/>
+                                    <segue destination="6M1-DS-K2o" kind="presentation" identifier="ExportTasks" modalPresentationStyle="formSheet" id="aTf-t3-beO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
@@ -1400,17 +1400,17 @@
                         <viewControllerLayoutGuide type="bottom" id="XVe-kk-r1N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iEd-MS-LG6">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export all tasks for period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3p-kqx">
-                                <rect key="frame" x="286" y="72" width="197" height="21"/>
+                                <rect key="frame" x="172" y="8" width="197" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLr-Tw-4Ya">
-                                <rect key="frame" x="340" y="181" width="88" height="30"/>
+                                <rect key="frame" x="226" y="117" width="88" height="30"/>
                                 <state key="normal" title="Export Tasks">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1419,7 +1419,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-S6-Max">
-                                <rect key="frame" x="304" y="103" width="160" height="29"/>
+                                <rect key="frame" x="190" y="39" width="160" height="29"/>
                                 <segments>
                                     <segment title="1"/>
                                     <segment title="2"/>
@@ -1430,12 +1430,8 @@
                                     <segment title="7"/>
                                 </segments>
                             </segmentedControl>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="QPw-MF-iXa">
-                                <rect key="frame" x="365" y="248" width="37" height="37"/>
-                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zw-l2-vt6">
-                                <rect key="frame" x="366" y="497" width="37" height="30"/>
+                                <rect key="frame" x="252" y="167" width="37" height="30"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1447,20 +1443,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gnd-S6-Max" firstAttribute="top" secondItem="vNf-3p-kqx" secondAttribute="bottom" constant="10" id="5hN-Ar-6dJ"/>
-                            <constraint firstAttribute="centerX" secondItem="QPw-MF-iXa" secondAttribute="centerX" id="ADQ-wT-7Lq"/>
+                            <constraint firstItem="5Zw-l2-vt6" firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="60w-OY-X4W"/>
+                            <constraint firstItem="5Zw-l2-vt6" firstAttribute="top" secondItem="MLr-Tw-4Ya" secondAttribute="bottom" constant="20" id="Aga-W4-Uxv"/>
                             <constraint firstItem="MLr-Tw-4Ya" firstAttribute="top" secondItem="gnd-S6-Max" secondAttribute="bottom" constant="50" id="QIr-rp-8jx"/>
-                            <constraint firstItem="QPw-MF-iXa" firstAttribute="top" secondItem="MLr-Tw-4Ya" secondAttribute="bottom" constant="37" id="ZG6-l0-rMD"/>
                             <constraint firstAttribute="centerX" secondItem="vNf-3p-kqx" secondAttribute="centerX" id="asd-0S-U9n"/>
                             <constraint firstAttribute="centerX" secondItem="gnd-S6-Max" secondAttribute="centerX" id="c1N-I0-w2D"/>
                             <constraint firstAttribute="centerY" secondItem="5Zw-l2-vt6" secondAttribute="centerY" id="gE4-iW-gtH"/>
-                            <constraint firstItem="vNf-3p-kqx" firstAttribute="top" secondItem="e76-uj-ACO" secondAttribute="bottom" constant="72" id="gQN-66-MFX"/>
+                            <constraint firstItem="vNf-3p-kqx" firstAttribute="top" secondItem="e76-uj-ACO" secondAttribute="bottom" constant="8" id="gQN-66-MFX"/>
                             <constraint firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="rE5-YK-Bst"/>
                             <constraint firstAttribute="centerX" secondItem="5Zw-l2-vt6" secondAttribute="centerX" id="tb4-Kb-OUj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gE4-iW-gtH"/>
+                                <exclude reference="tb4-Kb-OUj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="768" height="768"/>
                     <connections>
-                        <outlet property="activitySpinner" destination="QPw-MF-iXa" id="4BW-vu-Tnd"/>
                         <outlet property="periodSelector" destination="gnd-S6-Max" id="IUo-8Q-jXS"/>
                     </connections>
                 </viewController>

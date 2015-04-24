@@ -10,10 +10,8 @@ import UIKit
 
 class ExportViewController: UIViewController, UIDocumentInteractionControllerDelegate {
   @IBOutlet var periodSelector: UISegmentedControl?
-  @IBOutlet var activitySpinner: UIActivityIndicatorView?
   
   @IBAction func doExport(sender: UIButton){
-    activitySpinner!.startAnimating()
     let selectedPeriod = periodSelector!.selectedSegmentIndex + 1
     let tasksForPeriod = delegate.getTasks(selectedPeriod)
     let classData = delegate.getClassInformation(selectedPeriod)
@@ -23,7 +21,6 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     let pdfData = PDFDataConvertable(metaData: metaData, headerData: header, bodyData: body)
     let pdfWriter = PDFReporter(data: pdfData, ofType: .TasksForClass)
     let url = pdfWriter.render()
-    activitySpinner!.stopAnimating()
     if url != nil {
       documentPresenter = UIDocumentInteractionController(URL: url!)
       documentPresenter!.presentOpenInMenuFromRect(sender.frame, inView: self.view, animated: true)
@@ -35,6 +32,7 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
   var documentPresenter: UIDocumentInteractionController?
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.preferredContentSize = CGSizeMake(300, 200)
     // Do any additional setup after loading the view.
   }
   

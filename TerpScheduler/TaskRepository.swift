@@ -59,6 +59,7 @@ class TaskRepository {
     if oldTask != nil {
       let newTask = DailyTask(date: oldTask!.date, period: oldTask!.period, shortTitle: data.shortTitle, details: data.details, isHaiku: data.isHaikuAssignment, completion: data.isCompleted, priority: data.priority)
       repository.add(newTask)
+      repository.deleteItemMatching(values: oldTask!)
     } else {
       repository.add(data)
     }
