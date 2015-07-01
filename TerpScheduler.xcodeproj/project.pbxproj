@@ -21,6 +21,7 @@
 		D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */; };
 		D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71D1A706B2600AC2AEE /* DateRepository.swift */; };
 		D416C7201A706EFA00AC2AEE /* DataTransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */; };
+		D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
@@ -38,7 +39,7 @@
 		D48291D01A93AF7E000AFBD1 /* period_5_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CB1A93AF7E000AFBD1 /* period_5_background.png */; };
 		D48291D11A93AF7E000AFBD1 /* period_6_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CC1A93AF7E000AFBD1 /* period_6_background.png */; };
 		D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291CD1A93AF7E000AFBD1 /* period_7_background.png */; };
-		D48291D41A963924000AFBD1 /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D48291D31A963924000AFBD1 /* schedule.json */; };
+		D48291D41A963924000AFBD1 /* schedule_bak.json in Resources */ = {isa = PBXBuildFile; fileRef = D48291D31A963924000AFBD1 /* schedule_bak.json */; };
 		D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D48291D51A9640A0000AFBD1 /* Settings.bundle */; };
 		D48291D81A964384000AFBD1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48291D71A964384000AFBD1 /* UserDefaults.swift */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
@@ -72,6 +73,7 @@
 		D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		D416C71D1A706B2600AC2AEE /* DateRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRepository.swift; sourceTree = "<group>"; };
 		D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransferManager.swift; sourceTree = "<group>"; };
+		D43FAB5C1AF12D6800A1C55E /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
 		D4463B111A571A6F0026E270 /* winter2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = winter2015.json; path = TerpScheduler/winter2015.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
 		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 		D48291CB1A93AF7E000AFBD1 /* period_5_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_5_background.png; sourceTree = "<group>"; };
 		D48291CC1A93AF7E000AFBD1 /* period_6_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_6_background.png; sourceTree = "<group>"; };
 		D48291CD1A93AF7E000AFBD1 /* period_7_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_7_background.png; sourceTree = "<group>"; };
-		D48291D31A963924000AFBD1 /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedule.json; path = TerpScheduler/schedule.json; sourceTree = "<group>"; };
+		D48291D31A963924000AFBD1 /* schedule_bak.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schedule_bak.json; path = TerpScheduler/schedule_bak.json; sourceTree = "<group>"; };
 		D48291D51A9640A0000AFBD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D48291D71A964384000AFBD1 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = ../UserDefaults.swift; sourceTree = "<group>"; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -121,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				D4463B111A571A6F0026E270 /* winter2015.json */,
-				D48291D31A963924000AFBD1 /* schedule.json */,
+				D48291D31A963924000AFBD1 /* schedule_bak.json */,
+				D43FAB5C1AF12D6800A1C55E /* schedule.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
 				D408FD731A432E45004F0B83 /* Products */,
 			);
@@ -296,12 +299,13 @@
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D4E6F0DB1A8C25B3002FBFD4 /* TP_seal_64.png in Resources */,
 				D48291D21A93AF7E000AFBD1 /* period_7_background.png in Resources */,
-				D48291D41A963924000AFBD1 /* schedule.json in Resources */,
+				D48291D41A963924000AFBD1 /* schedule_bak.json in Resources */,
 				D48291CE1A93AF7E000AFBD1 /* period_3_background.png in Resources */,
 				D48291C81A939D82000AFBD1 /* period_2_background.png in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4E6F0DD1A8C25B3002FBFD4 /* TP_seal_splash.png in Resources */,
 				D47A4C551AAF7690007017D3 /* launchScreen.png in Resources */,
+				D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */,
 				D4E6F0DF1A8C295F002FBFD4 /* TP_seal_splash_landscape.png in Resources */,
 				D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */,
 				D48291CF1A93AF7E000AFBD1 /* period_4_background.png in Resources */,

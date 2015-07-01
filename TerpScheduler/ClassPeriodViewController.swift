@@ -37,6 +37,7 @@ class ClassPeriodViewController: UIViewController {
     self.dismissViewControllerAnimated(false, completion: nil)
     delegate!.openWebView(url)
   }
+  
   var receivedClassData : SchoolClass?
   var delegate : ClassPeriodDataSource?
   var _index: Int = -1

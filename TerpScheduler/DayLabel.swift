@@ -19,7 +19,7 @@ class DayLabel: UIView, UITextFieldDelegate {
   let dateFormat = "E MM/d"
   var dateFormatter = NSDateFormatter()
   
-  func SetContents(date day: NSDate, scheduleType: String, dateIsToday: Bool, dayInformation: String? = nil){
+  func setContents(date day: NSDate, scheduleType: String, dateIsToday: Bool, dayInformation: String? = nil){
     self.dateFormatter.dateFormat = dateFormat
     dateLabel!.text = dateFormatter.stringFromDate(day)
     scheduleLabel!.text = scheduleType

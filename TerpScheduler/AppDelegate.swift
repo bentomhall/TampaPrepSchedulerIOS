@@ -19,7 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true]
     NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
     if let context = managedObjectContext{
-      SemesterScheduleLoader(context: context, withJSONFile: "schedule")
+      let files = ["schedule_bak", "schedule"]
+      SemesterScheduleLoader(context: context, withJSONFiles: files)
+      let fetchRequest = NSFetchRequest(entityName: "Week")
+      let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
+      NSLog("%i", results!.count)
     }
     return true
   }
@@ -36,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidEnterBackground(application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    self.saveContext()
   }
   
   func applicationWillEnterForeground(application: UIApplication) {
@@ -72,21 +77,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("TerpScheduler.sqlite")
     var error: NSError? = nil
+    var configuration = [String: AnyObject]()
+    configuration[NSMigratePersistentStoresAutomaticallyOption] = true
+    configuration[NSInferMappingModelAutomaticallyOption] = true
     var failureReason = "There was an error creating or loading the application's saved data."
-    if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+    if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: configuration, error: &error) == nil {
       coordinator = nil
       // Report any error we got.
       let dict = NSMutableDictionary()
       dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
       dict[NSLocalizedFailureReasonErrorKey] = failureReason
       dict[NSUnderlyingErrorKey] = error
-      error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject : AnyObject])
+      error = NSError(domain: "TERPSCHEDULER_PERSISTENCE", code: 9999, userInfo: dict as [NSObject : AnyObject])
       // Replace this with code to handle the error appropriately.
       // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
       NSLog("Unresolved error \(error), \(error!.userInfo)")
-      abort()
+      //abort()
     }
-    
     return coordinator
     }()
   

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="AppData" representedClassName="TerpScheduler.AppDataEntity" syncable="YES">
         <attribute name="isScheduleLoaded" attributeType="Boolean" syncable="YES"/>
     </entity>
@@ -22,6 +22,7 @@
     </entity>
     <entity name="Week" representedClassName="TerpScheduler.WeekEntity" syncable="YES">
         <attribute name="firstWeekDay" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="schoolYear" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="weekID" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="weekSchedules" attributeType="String" defaultValueString="A B C D E" syncable="YES"/>
     </entity>
@@ -29,6 +30,6 @@
         <element name="AppData" positionX="-450" positionY="-213" width="128" height="60"/>
         <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="150"/>
         <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="135"/>
-        <element name="Week" positionX="-288" positionY="-216" width="128" height="90"/>
+        <element name="Week" positionX="-288" positionY="-216" width="128" height="105"/>
     </elements>
 </model>

@@ -24,7 +24,6 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     if url != nil {
       documentPresenter = UIDocumentInteractionController(URL: url!)
       documentPresenter!.presentOpenInMenuFromRect(sender.frame, inView: self.view, animated: true)
-      //do something useful
     }
   }
   

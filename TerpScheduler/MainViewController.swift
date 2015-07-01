@@ -65,7 +65,6 @@ class MainViewController: UIViewController {
   //Mark - Overrides
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
     appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
     classRepository = SchoolClassesRepository(context: appDelegate!.managedObjectContext!)
     delegate = appDelegate!.dataManager
@@ -101,7 +100,6 @@ class MainViewController: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -126,9 +124,6 @@ class MainViewController: UIViewController {
       receivingController.initialURL = url
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
       let receivingController = segue.destinationViewController as! TaskDetailViewController
-      //if let sender = sender as? DataManager{
-      //  receivingController.previousTaskData = sender.selectedTask
-      //}
       delegate!.detailViewController = receivingController
     }
     super.prepareForSegue(segue, sender: sender)
@@ -169,7 +164,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
       return CGSize(width: 166, height: 116)
     }
   }
-  
 }
 
 //MARK - UICollectionViewDataSource
@@ -265,10 +259,10 @@ extension MainViewController: ScheduleOverrideDelegate{
   }
 }
 
-extension MainViewController: UIScrollViewDelegate {
-  func scrollViewDidScroll(scrollView: UIScrollView) {
-  }
-}
+//extension MainViewController: UIScrollViewDelegate {
+//  func scrollViewDidScroll(scrollView: UIScrollView) {
+//  }
+//}
 
 
 

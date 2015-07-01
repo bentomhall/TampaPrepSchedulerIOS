@@ -92,14 +92,4 @@ class ClassPopupView: UIView {
     let outputClassData = SchoolClass(period: classPeriod, teacherName: teacher, haikuURL: haikuURL, isStudyHall: studyHall, subject: subject, isLocked: isLocked, id: receivedData!.id)
     return outputClassData
   }
-  
-  
-  /*
-  // Only override drawRect: if you perform custom drawing.
-  // An empty implementation adversely affects performance during animation.
-  override func drawRect(rect: CGRect) {
-  // Drawing code
-  }
-  */
-  
 }

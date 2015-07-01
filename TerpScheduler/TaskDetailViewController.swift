@@ -101,7 +101,6 @@ class TaskDetailViewController: UIViewController {
   
   func setSubviewContentsFromTaskData(data: DailyTask?){
     if data != nil {
-      //default case
       titleField!.text = data!.shortTitle
       detailsTextView!.text = data!.details
       prioritySelector!.selectedSegmentIndex = data!.priority.rawValue

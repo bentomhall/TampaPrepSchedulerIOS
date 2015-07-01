@@ -13,21 +13,28 @@ class SemesterScheduleLoader{
   var context : NSManagedObjectContext
   let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
   var userDefaults: UserDefaults
+  var formatter = NSDateFormatter()
   
-  init(context: NSManagedObjectContext, withJSONFile: String){
+  init(context: NSManagedObjectContext, withJSONFiles: [String]){
     self.context = context
     userDefaults = appDelegate.userDefaults
-    loadSemesterData(withJSONFile)
-  }
-  
-  func loadSemesterData(jsonFileName: String){
-    var error : NSError?
     if !isScheduleLoaded(){
-      let weeks = loadScheduleDataFromJSON(jsonFileName)
+      for file in withJSONFiles {
+        let weeks = loadScheduleDataFromJSON(file)
+        context.save(nil)
+      }
       setScheduleLoaded()
-      context.save(&error)
     }
   }
+  /*
+  func loadSemesterData(jsonFileName: String){
+    var error : NSError?
+    if
+      let weeks = loadScheduleDataFromJSON(jsonFileName)
+      //setScheduleLoaded()
+      context.save(&error)
+    }
+  }*/
   
   func loadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
     var error: NSError?
@@ -42,10 +49,11 @@ class SemesterScheduleLoader{
         
         let firstDay = weekInformation[1] as! String
         let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
-        var managedWeek = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
-        managedWeek.setValue(serializeSchedule(weekSchedule), forKey: "weekSchedules")
-        managedWeek.setValue(weekLabel.toInt()!, forKey: "weekID")
-        managedWeek.setValue(dateFromString(firstDay), forKey: "firstWeekDay")
+        var managedWeek = WeekEntity(entity: entity!, insertIntoManagedObjectContext: context)
+        managedWeek.weekSchedules = serializeSchedule(weekSchedule)
+        managedWeek.weekID = weekLabel.toInt()!
+        managedWeek.firstWeekDay = dateFromString(firstDay)
+        managedWeek.schoolYear = getSchoolYear(managedWeek.firstWeekDay)
         weeks.append(managedWeek)
       }
       
@@ -57,7 +65,6 @@ class SemesterScheduleLoader{
   }
   
   func dateFromString(string: String)->NSDate{
-    var formatter = NSDateFormatter()
     formatter.dateFormat = "MM/dd/yy"
     let date = formatter.dateFromString(string)!
     return date

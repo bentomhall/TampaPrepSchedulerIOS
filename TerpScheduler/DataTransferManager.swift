@@ -73,18 +73,21 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
       return defaults!.isMiddleStudent
     }
   }
+  
   var shouldShadeStudyHall: Bool {
     get {
       defaults!.readDefaults()
       return defaults!.shouldShadeStudyHall
     }
   }
+  
   var shouldDisplayExtraRow: Bool {
     get {
       defaults!.readDefaults()
       return defaults!.shouldDisplayExtraRow
     }
   }
+  
   var selectedTask: DailyTask?
   var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
@@ -92,6 +95,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   var datesForWeek: [SchoolDate]{
     get { return dateRepository.dates }
   }
+  
   var defaultTask: DailyTask {
     get { return taskRepository.defaultTask! }
   }
