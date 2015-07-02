@@ -115,9 +115,6 @@ class DateRepository {
       weekID += 1
     }
     dates = loadCurrentWeek()
-    if weekID >= 1 && weekID < 5 {
-      NSLog("%@", dates[0].Date)
-    }
     return
   }
   
