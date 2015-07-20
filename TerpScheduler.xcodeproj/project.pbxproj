@@ -30,6 +30,7 @@
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475812B1AA739170059BF3C /* ExportViewController.swift */; };
 		D47A4C551AAF7690007017D3 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = D47A4C541AAF7690007017D3 /* launchScreen.png */; };
+		D47B684B1B5C82550061C835 /* TaskNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B684A1B5C82550061C835 /* TaskNotification.swift */; };
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D48291C71A939D82000AFBD1 /* period_1_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D48291C51A939D82000AFBD1 /* period_1_background.png */; };
@@ -83,6 +84,7 @@
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D475812B1AA739170059BF3C /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		D47A4C541AAF7690007017D3 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
+		D47B684A1B5C82550061C835 /* TaskNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNotification.swift; sourceTree = "<group>"; };
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D48291C51A939D82000AFBD1 /* period_1_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = period_1_background.png; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				D481CCCC1A65809000648CFE /* AppDataEntity.swift */,
 				D408FD9A1A432EF3004F0B83 /* DailyTaskEntity.swift */,
 				D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */,
+				D47B684A1B5C82550061C835 /* TaskNotification.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */,
 				D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */,
+				D47B684B1B5C82550061C835 /* TaskNotification.swift in Sources */,
 				D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,
 				D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */,

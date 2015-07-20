@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
       NSLog("%i", results!.count)
     }
+    let types = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
+    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories: nil))
     return true
   }
   

@@ -208,4 +208,19 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return schoolClassRepository.getClassDataByPeriod(period)
   }
   
+  func postNotification(forTask task: DailyTask) {
+    let notification = TaskNotification(task: task)
+    let time = NotificationTimes.Afternoon
+    notification.scheduleNotification(atTime: time)
+  }
+  
+  func cancelNotificationMatching(UUID: NSUUID){
+    for notification in UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification] {
+      if (notification.userInfo!["UUID"]!.isEqual(UUID)) {
+        UIApplication.sharedApplication().cancelLocalNotification(notification)
+        break
+      }
+    }
+  }
+  
 }

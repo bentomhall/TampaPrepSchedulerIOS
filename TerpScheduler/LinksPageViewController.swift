@@ -39,7 +39,11 @@ class LinksPageViewController: UIViewController {
       }
       break
     case "Google Drive":
-      url = googleDriveAppURL
+      if UIApplication.sharedApplication().canOpenURL(googleDriveAppURL) {
+        url = googleDriveAppURL
+      } else {
+        url = NSURL(string: "http://drive.google.com")!
+      }
       break
     default:
       url = NSURL(string: "http://www.google.com")!

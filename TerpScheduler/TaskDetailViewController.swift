@@ -15,6 +15,7 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var prioritySelector: UISegmentedControl?
   @IBOutlet weak var isHaikuAssignment: UISwitch?
   @IBOutlet weak var isCompleted: UISwitch?
+  @IBOutlet weak var shouldNotify: UISwitch?
   
   @IBAction func clearData(sender: UIBarButtonItem) {
     shouldSave = false
