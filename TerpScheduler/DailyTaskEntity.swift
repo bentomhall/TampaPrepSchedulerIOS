@@ -36,8 +36,9 @@ struct DailyTask: Filterable, Equatable {
   var isHaikuAssignment : Bool
   var isCompleted : Bool
   var priority : Priorities
+  var shouldNotify: Bool
   
-  init(date: NSDate, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities){
+  init(date: NSDate, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool){
     self.date = date
     self.period = period
     self.shortTitle = shortTitle
@@ -45,6 +46,7 @@ struct DailyTask: Filterable, Equatable {
     self.isCompleted = completion
     self.isHaikuAssignment = isHaiku
     self.priority = priority
+    self.shouldNotify = notify
   }
 }
 
@@ -71,8 +73,8 @@ extension DailyTask: DataObject{
     isCompleted = Bool(model.isCompleted)
     priority = Priorities(rawValue: Int(model.priority))!
     period = Int(model.forPeriod)
+    shouldNotify = false
   }
-  
   
   ///returns managed entity associated with this data in the provided context. Only creates new if no entity with this id already exists.
   ///

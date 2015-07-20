@@ -23,13 +23,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       SemesterScheduleLoader(context: context, withJSONFiles: files)
       let fetchRequest = NSFetchRequest(entityName: "Week")
       let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
-      NSLog("%i", results!.count)
     }
+    let categories = setupNotification()
     let types = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
-    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories: nil))
+    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories: categories))
     return true
   }
   
+  func setupNotification()->Set<NSObject>{
+    var justInformAction = UIMutableUserNotificationAction()
+    justInformAction.identifier = "justInform"
+    justInformAction.title = "OK"
+    justInformAction.activationMode = UIUserNotificationActivationMode.Background
+    justInformAction.destructive = false
+    justInformAction.authenticationRequired = false
+    
+    let actionsArray = [justInformAction]
+    var category = UIMutableUserNotificationCategory()
+    category.identifier = "taskReminderCategory"
+    category.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
+    category.setActions(actionsArray, forContext: UIUserNotificationActionContext.Minimal)
+    return Set<NSObject>(arrayLiteral: [category])
+  }
+  
+  func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    application.applicationIconBadgeNumber += 1
+  }
+  
+  func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+    application.applicationIconBadgeNumber -= 1
+  }
   
   lazy var userDefaults = UserDefaults()
   lazy var dataManager = DataManager()

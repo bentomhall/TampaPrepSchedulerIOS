@@ -106,6 +106,9 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     } else {
      self.taskRepository.persistData(task, withMergeFromTask: nil)
     }
+    if task.shouldNotify {
+      postNotification(forTask: task)
+    }
     tableViewController!.replaceItem(-1, withTask: task)
     tableViewController!.clearDirtyRows()
     summaryViewController!.reloadCollectionView()
@@ -185,6 +188,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   func didDeleteTask(task: DailyTask) {
     taskRepository.deleteItem(task)
     summaryViewController!.reloadCollectionView()
+    cancelNotificationMatching(task)
   }
   
   func willDisappear() {
@@ -214,13 +218,14 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     notification.scheduleNotification(atTime: time)
   }
   
-  func cancelNotificationMatching(UUID: NSUUID){
+  func cancelNotificationMatching(task: DailyTask){
     for notification in UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification] {
-      if (notification.userInfo!["UUID"]!.isEqual(UUID)) {
+      if (notification.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)") {
         UIApplication.sharedApplication().cancelLocalNotification(notification)
         break
       }
     }
   }
+
   
 }

@@ -91,7 +91,8 @@ class TaskDetailViewController: UIViewController {
       if completion {
         priority = Priorities.Completed
       }
-      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!)
+      
+      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: shouldNotify!.on)
       if newTaskData != previousTaskData! {
         delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
         previousTaskData = newTaskData

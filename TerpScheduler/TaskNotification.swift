@@ -37,10 +37,11 @@ class TaskNotification {
     
     var notification = UILocalNotification()
     notification.alertBody = task.shortTitle
-    notification.alertAction = "Open"
+    notification.alertAction = "justInformAction"
     notification.fireDate = notificationDate
     notification.soundName = UILocalNotificationDefaultSoundName
-    notification.userInfo = ["UUID": UUID]
+    notification.userInfo = ["taskID": "\(task.shortTitle)\(task.period)"]
+    notification.category = "taskReminderCategory"
     
     UIApplication.sharedApplication().scheduleLocalNotification(notification)
     return UUID

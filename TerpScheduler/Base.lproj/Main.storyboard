@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rsH-ps-hLA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rsH-ps-hLA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -143,6 +143,15 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NUK-6e-oBJ">
                                 <rect key="frame" x="560" y="384" width="51" height="31"/>
                             </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="quF-6g-BFD">
+                                <rect key="frame" x="560" y="423" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me the day before this is due?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-rp-lWV">
+                                <rect key="frame" x="243" y="428" width="296" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96078437566757202" green="0.97647064924240112" blue="0.92549026012420654" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -151,6 +160,7 @@
                             <constraint firstItem="4MG-2V-QKp" firstAttribute="leading" secondItem="uUY-rX-cVg" secondAttribute="leadingMargin" id="8gl-aN-Y6n"/>
                             <constraint firstItem="NWO-HA-38y" firstAttribute="leading" secondItem="VSb-Pf-2Vr" secondAttribute="leading" id="ECS-l2-Mpv"/>
                             <constraint firstItem="TGa-eU-ttd" firstAttribute="top" secondItem="qct-QA-SiQ" secondAttribute="bottom" constant="36" id="JOu-II-CGp"/>
+                            <constraint firstItem="1fJ-rp-lWV" firstAttribute="top" secondItem="ihF-0r-IjV" secondAttribute="bottom" constant="18" id="LDg-bU-rbY"/>
                             <constraint firstItem="Yey-AX-BpI" firstAttribute="leading" secondItem="uUY-rX-cVg" secondAttribute="leadingMargin" id="MIh-yC-lTS"/>
                             <constraint firstAttribute="centerX" secondItem="qct-QA-SiQ" secondAttribute="centerX" id="QAg-Jv-d61"/>
                             <constraint firstItem="NUK-6e-oBJ" firstAttribute="top" secondItem="TGa-eU-ttd" secondAttribute="bottom" constant="3" id="SmS-yB-zhb"/>
@@ -161,22 +171,27 @@
                             <constraint firstItem="4MG-2V-QKp" firstAttribute="top" secondItem="Yey-AX-BpI" secondAttribute="bottom" constant="24" id="XMB-kN-rnv"/>
                             <constraint firstAttribute="centerX" secondItem="vyM-8d-Ynv" secondAttribute="centerX" id="bBb-Sv-qCN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NUK-6e-oBJ" secondAttribute="trailing" constant="143" id="bGT-NK-9Re"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="quF-6g-BFD" secondAttribute="trailing" constant="143" id="cex-lv-gRR"/>
                             <constraint firstItem="bV3-Si-e0W" firstAttribute="top" secondItem="qct-QA-SiQ" secondAttribute="bottom" constant="41" id="gIl-71-ElV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TGa-eU-ttd" secondAttribute="trailing" constant="143" id="hQM-Oa-mC0"/>
                             <constraint firstItem="qct-QA-SiQ" firstAttribute="leading" secondItem="bV3-Si-e0W" secondAttribute="leading" id="if4-tc-VAE"/>
                             <constraint firstItem="qct-QA-SiQ" firstAttribute="leading" secondItem="ihF-0r-IjV" secondAttribute="leading" id="iuz-ll-hIA"/>
+                            <constraint firstItem="quF-6g-BFD" firstAttribute="top" secondItem="NUK-6e-oBJ" secondAttribute="bottom" constant="8" id="lfh-JC-R86"/>
                             <constraint firstItem="qct-QA-SiQ" firstAttribute="top" secondItem="vyM-8d-Ynv" secondAttribute="bottom" constant="8" id="nXQ-n2-1z4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VSb-Pf-2Vr" secondAttribute="trailing" id="qid-ib-VmR"/>
                             <constraint firstItem="vyM-8d-Ynv" firstAttribute="top" secondItem="VSb-Pf-2Vr" secondAttribute="bottom" constant="13" id="sDY-L3-F7b"/>
                             <constraint firstItem="TGa-eU-ttd" firstAttribute="leading" secondItem="bV3-Si-e0W" secondAttribute="trailing" constant="21" id="vVt-F9-eoP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NWO-HA-38y" secondAttribute="trailing" id="xo5-s6-tXd"/>
                             <constraint firstItem="NWO-HA-38y" firstAttribute="leading" secondItem="Yey-AX-BpI" secondAttribute="trailing" constant="78" id="xsL-XL-QZB"/>
+                            <constraint firstItem="quF-6g-BFD" firstAttribute="leading" secondItem="1fJ-rp-lWV" secondAttribute="trailing" constant="21" id="zrA-td-Zr5"/>
+                            <constraint firstItem="1fJ-rp-lWV" firstAttribute="top" secondItem="ihF-0r-IjV" secondAttribute="bottom" constant="8" id="zyb-mw-Eus"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="V2W-P4-333"/>
                                 <exclude reference="if4-tc-VAE"/>
                                 <exclude reference="iuz-ll-hIA"/>
+                                <exclude reference="zyb-mw-Eus"/>
                             </mask>
                         </variation>
                     </view>
@@ -200,6 +215,7 @@
                         <outlet property="isCompleted" destination="NUK-6e-oBJ" id="QRu-ay-I9d"/>
                         <outlet property="isHaikuAssignment" destination="TGa-eU-ttd" id="SSG-Fc-63b"/>
                         <outlet property="prioritySelector" destination="qct-QA-SiQ" id="H2P-tH-8VL"/>
+                        <outlet property="shouldNotify" destination="quF-6g-BFD" id="msF-2H-GRE"/>
                         <outlet property="titleField" destination="NWO-HA-38y" id="qJE-br-oJB"/>
                     </connections>
                 </viewController>
@@ -1124,7 +1140,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="BLb-me-t5f">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1406,13 +1422,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export all tasks for period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3p-kqx">
-                                <rect key="frame" x="172" y="8" width="197" height="21"/>
+                                <rect key="frame" x="172" y="28" width="197" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLr-Tw-4Ya">
-                                <rect key="frame" x="226" y="117" width="88" height="30"/>
+                                <rect key="frame" x="226" y="137" width="88" height="30"/>
                                 <state key="normal" title="Export Tasks">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1421,7 +1437,7 @@
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-S6-Max">
-                                <rect key="frame" x="190" y="39" width="160" height="29"/>
+                                <rect key="frame" x="190" y="59" width="160" height="29"/>
                                 <segments>
                                     <segment title="1"/>
                                     <segment title="2"/>
@@ -1433,7 +1449,7 @@
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zw-l2-vt6">
-                                <rect key="frame" x="252" y="167" width="37" height="30"/>
+                                <rect key="frame" x="252" y="187" width="37" height="30"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
