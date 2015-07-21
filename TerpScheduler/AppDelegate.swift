@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let fetchRequest = NSFetchRequest(entityName: "Week")
       let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
     }
+    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil {
+      //application was launched from home screen
+      application.cancelAllLocalNotifications()
+      application.applicationIconBadgeNumber = 0
+    }
+    
     let categories = setupNotification()
     let types = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
     application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories: categories))
@@ -34,11 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var justInformAction = UIMutableUserNotificationAction()
     justInformAction.identifier = "justInform"
     justInformAction.title = "OK"
-    justInformAction.activationMode = UIUserNotificationActivationMode.Background
+    justInformAction.activationMode = UIUserNotificationActivationMode.Foreground
     justInformAction.destructive = false
-    justInformAction.authenticationRequired = false
+    justInformAction.authenticationRequired = true
     
-    let actionsArray = [justInformAction]
+    var ignoreAction = UIMutableUserNotificationAction()
+    ignoreAction.identifier = "ignore"
+    ignoreAction.title = "Ignore"
+    ignoreAction.activationMode = UIUserNotificationActivationMode.Background
+    ignoreAction.destructive = false
+    ignoreAction.authenticationRequired = false
+    
+    let actionsArray = [justInformAction, ignoreAction]
     var category = UIMutableUserNotificationCategory()
     category.identifier = "taskReminderCategory"
     category.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
@@ -47,11 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-    application.applicationIconBadgeNumber += 1
+    renumberBadge()
   }
   
   func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-    application.applicationIconBadgeNumber -= 1
+    if identifier != "ignore" {
+      application.cancelAllLocalNotifications()
+      application.applicationIconBadgeNumber = 0
+    } else {
+      renumberBadge()
+    }
+    completionHandler()
   }
   
   lazy var userDefaults = UserDefaults()
@@ -74,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func applicationDidBecomeActive(application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //application.applicationIconBadgeNumber = 0
   }
   
   func applicationWillTerminate(application: UIApplication) {
