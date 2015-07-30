@@ -32,6 +32,38 @@ class UserDefaults {
     set (value) { defaults.setBool(value, forKey: "shouldShowExtraRow") }
   }
   
+  var shouldNotifyWhen: NotificationTimes {
+    get {
+      switch(defaults.stringForKey("shouldNotifyWhen")!){
+      case "Morning":
+        return NotificationTimes.Morning
+      case "Afternoon":
+        return NotificationTimes.Afternoon
+      case "Evening":
+        return NotificationTimes.Evening
+      default:
+        return NotificationTimes.Testing
+      }
+    }
+    set (value) {
+      var stringValue = ""
+      switch(value){
+      case .Morning:
+        stringValue = "Morning"
+        break
+      case .Afternoon:
+        stringValue = "Afternoon"
+        break
+      case .Evening:
+        stringValue = "Evening"
+        break
+      case .Testing:
+        break
+      }
+      defaults.setValue(stringValue, forKey: "shouldNotifyWhen")
+    }
+  }
+  
   func readDefaults(){
     defaults.synchronize()
   }

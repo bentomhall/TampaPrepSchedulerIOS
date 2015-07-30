@@ -214,7 +214,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   
   func postNotification(forTask task: DailyTask) {
     let notification = TaskNotification(task: task)
-    let time = NotificationTimes.Afternoon
+    let time = defaults!.shouldNotifyWhen
     notification.scheduleNotification(atTime: time)
   }
   

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
-    let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true]
+    let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"]
     NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
     if let context = managedObjectContext{
       let files = ["schedule_bak", "schedule"]
