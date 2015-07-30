@@ -109,6 +109,9 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     if task.shouldNotify {
       postNotification(forTask: task)
     }
+    if task.isCompleted {
+      cancelNotificationMatching(task)
+    }
     tableViewController!.replaceItem(-1, withTask: task)
     tableViewController!.clearDirtyRows()
     summaryViewController!.reloadCollectionView()

@@ -21,6 +21,7 @@
 		D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */; };
 		D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71D1A706B2600AC2AEE /* DateRepository.swift */; };
 		D416C7201A706EFA00AC2AEE /* DataTransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */; };
+		D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */; };
 		D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
@@ -74,6 +75,7 @@
 		D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		D416C71D1A706B2600AC2AEE /* DateRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRepository.swift; sourceTree = "<group>"; };
 		D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransferManager.swift; sourceTree = "<group>"; };
+		D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationsTableViewController.swift; sourceTree = "<group>"; };
 		D43FAB5C1AF12D6800A1C55E /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
 		D4463B111A571A6F0026E270 /* winter2015.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = winter2015.json; path = TerpScheduler/winter2015.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				D47239C11A7451DB00DBEFAD /* WebViewController.swift */,
 				D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */,
 				D475812B1AA739170059BF3C /* ExportViewController.swift */,
+				D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
 				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
 				D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */,
+				D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */,
 				D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */,
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,
 				D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */,
