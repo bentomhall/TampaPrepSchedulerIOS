@@ -48,6 +48,20 @@ struct DailyTask: Filterable, Equatable {
     self.priority = priority
     self.shouldNotify = notify
   }
+  
+  func contentsAsDictionary()->[String: AnyObject]{
+    var contentDictionary = [String: AnyObject]()
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "MM/dd/yyyy"
+    contentDictionary["date"] = dateFormatter.stringFromDate(self.date)
+    contentDictionary["period"] = self.period
+    contentDictionary["shortTitle"] = self.shortTitle
+    contentDictionary["details"] = self.details
+    contentDictionary["isCompleted"] = Int(self.isCompleted)
+    contentDictionary["priority"] = self.priority.rawValue
+    contentDictionary["shouldNotify"] = Int(self.shouldNotify)
+    return contentDictionary
+  }
 }
 
 extension DailyTask{

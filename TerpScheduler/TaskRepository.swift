@@ -123,4 +123,8 @@ class TaskRepository {
     return tasks
   }
   
+  func allTasks()->[DailyTask]{
+    return repository.fetchAll()
+  }
+  
 }
