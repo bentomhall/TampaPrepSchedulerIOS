@@ -124,7 +124,7 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     return data
   }
   
-  private func save(){
+  func save(){
     var error: NSError?
     context!.save(&error)
     if error != nil {
@@ -163,5 +163,9 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   func add(item: T){
     let entity = item.toEntity(inContext: context!)
     save()
+  }
+  
+  func addWithoutSave(item: T){
+    let entity = item.toEntity(inContext: context!)
   }
 }

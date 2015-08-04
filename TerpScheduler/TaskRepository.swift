@@ -127,4 +127,17 @@ class TaskRepository {
     return repository.fetchAll()
   }
   
+  func countAllTasks()->Int {
+    let fetchRequest = NSFetchRequest()
+    fetchRequest.predicate = NSPredicate(value: true)
+    return context.countForFetchRequest(fetchRequest, error: nil)
+  }
+  
+  func persistTasks(tasks: [DailyTask]){
+    for task in tasks {
+      repository.addWithoutSave(task)
+    }
+    repository.save()
+  }
+  
 }

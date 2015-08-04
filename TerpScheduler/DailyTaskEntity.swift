@@ -59,6 +59,7 @@ struct DailyTask: Filterable, Equatable {
     contentDictionary["details"] = self.details
     contentDictionary["isCompleted"] = Int(self.isCompleted)
     contentDictionary["priority"] = self.priority.rawValue
+    contentDictionary["isHaikuAssignment"] = Int(self.isHaikuAssignment)
     contentDictionary["shouldNotify"] = Int(self.shouldNotify)
     return contentDictionary
   }
