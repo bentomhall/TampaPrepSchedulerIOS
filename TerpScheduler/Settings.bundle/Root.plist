@@ -6,38 +6,6 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>Notification Time</string>
-			<key>Key</key>
-			<string>shouldNotifyWhen</string>
-			<key>DefaultValue</key>
-			<string>Evening</string>
-			<key>Titles</key>
-			<array>
-				<string>Morning</string>
-				<string>Afternoon</string>
-				<string>Evening</string>
-			</array>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Show row for extracurricular activities?</string>
-			<key>Key</key>
-			<string>shouldShowExtraRow</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Options</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Are you a middle school student?</string>
@@ -55,6 +23,38 @@
 			<string>shouldShadeStudyHall</string>
 			<key>DefaultValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Show row for extracurricular activities?</string>
+			<key>Key</key>
+			<string>shouldShowExtraRow</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>Morning</string>
+				<string>Afternoon</string>
+				<string>Evening</string>
+			</array>
+			<key>Title</key>
+			<string>Notification Time</string>
+			<key>Key</key>
+			<string>shouldNotifyWhen</string>
+			<key>DefaultValue</key>
+			<string>Evening</string>
+			<key>Titles</key>
+			<array>
+				<string>Morning (7AM)</string>
+				<string>Afternoon (4PM)</string>
+				<string>Evening (7PM)</string>
+			</array>
 		</dict>
 	</array>
 	<key>Title</key>

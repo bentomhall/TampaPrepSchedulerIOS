@@ -26,15 +26,6 @@ class SemesterScheduleLoader{
       setScheduleLoaded()
     }
   }
-  /*
-  func loadSemesterData(jsonFileName: String){
-    var error : NSError?
-    if
-      let weeks = loadScheduleDataFromJSON(jsonFileName)
-      //setScheduleLoaded()
-      context.save(&error)
-    }
-  }*/
   
   func loadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
     var error: NSError?
@@ -71,7 +62,11 @@ class SemesterScheduleLoader{
   }
   
   func isScheduleLoaded()->Bool{
-    return userDefaults.isDataInitialized
+    if userDefaults.isFirstLaunchForCurrentVersion() {
+      return false
+    } else {
+      return userDefaults.isDataInitialized
+    }
   }
   
   func setScheduleLoaded(){
