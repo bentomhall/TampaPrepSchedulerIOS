@@ -21,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let context = managedObjectContext{
       let files = ["schedule_bak", "schedule"]
       SemesterScheduleLoader(context: context, withJSONFiles: files)
-      let fetchRequest = NSFetchRequest(entityName: "Week")
-      let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
     }
     if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil {
       //application was launched from home screen
       application.cancelAllLocalNotifications()
       application.applicationIconBadgeNumber = 0
+      self.dataManager.backupManager.readBackup(false)
+      self.dataManager.backupManager.makeBackup(false)
     }
     
     let categories = setupNotification()
@@ -89,6 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
   }
   
   func applicationDidBecomeActive(application: UIApplication) {

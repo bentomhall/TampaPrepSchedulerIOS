@@ -42,7 +42,11 @@ class JsonBackupWriter {
     backupData["data"] = data
     
     if let jsonData = serialize(backupData) {
-      writeToFile(jsonData)
+      let dispach_priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+      dispatch_async(dispatch_get_global_queue(dispach_priority, 0))
+        {
+          self.writeToFile(jsonData)
+        }
       return true
     } else {
       return false

@@ -128,7 +128,7 @@ class TaskRepository {
   }
   
   func countAllTasks()->Int {
-    let fetchRequest = NSFetchRequest()
+    let fetchRequest = NSFetchRequest(entityName: "DailyTask")
     fetchRequest.predicate = NSPredicate(value: true)
     return context.countForFetchRequest(fetchRequest, error: nil)
   }

@@ -57,6 +57,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     taskRepository = TaskRepository(context: managedObjectContext)
     dateRepository = DateRepository(context: managedObjectContext)
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
+    backupManager = BackupManager(repository: taskRepository)
   }
   
   private var defaults: UserDefaults?
@@ -66,6 +67,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   private var schoolClassRepository: SchoolClassesRepository
   private var selectedDate = NSDate()
   private var selectedPeriod = 1
+  let backupManager: BackupManager
   
   var isMiddleSchool: Bool {
     get {
@@ -196,7 +198,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func willDisappear() {
-    detailViewController!.clear()
+    //detailViewController!.clear()
     detailViewController!.navigationController!.popToRootViewControllerAnimated(true)
   }
   

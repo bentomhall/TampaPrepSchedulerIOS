@@ -54,7 +54,13 @@ class BackupManager {
   func makeBackup(force: Bool){
     if force || shouldMakeBackup() {
       let data = gatherDataForBackup()
-      backupWriter.makeBackupFrom(data)
+      if data.count == 1 {
+        //only the default task is present, so skip the backup
+        return
+      } else {
+        NSLog("making backup with %i tasks", data.count)
+        backupWriter.makeBackupFrom(data)
+      }
     }
   }
   
