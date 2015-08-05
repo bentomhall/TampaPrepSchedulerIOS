@@ -89,7 +89,6 @@ class TaskRepository {
       for date in dates {
         let tasks = tasksForDateAndPeriod(date, period: period)
         if tasks.count > 0 {
-          //NSLog("Found a task for period %d", period)
           let topTask = tasks[0]
           summaries.append(TaskSummary(title: topTask.shortTitle, completion: topTask.isCompleted, remainingTasks: tasks.count - 1))
         } else {

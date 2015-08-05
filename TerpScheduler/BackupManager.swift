@@ -58,7 +58,6 @@ class BackupManager {
         //only the default task is present, so skip the backup
         return
       } else {
-        NSLog("making backup with %i tasks", data.count)
         backupWriter.makeBackupFrom(data)
       }
     }
