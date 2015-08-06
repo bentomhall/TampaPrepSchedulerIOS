@@ -61,7 +61,7 @@ class TaskNotification {
     var notification = UILocalNotification()
     notification.alertBody = task.shortTitle
     notification.applicationIconBadgeNumber = nextBadgeNumber
-    notification.alertAction = "justInformAction"
+    notification.alertAction = "view tasks"
     notification.fireDate = notificationDate
     notification.soundName = UILocalNotificationDefaultSoundName
     notification.userInfo = ["taskID": "\(task.shortTitle)\(task.period)"]
