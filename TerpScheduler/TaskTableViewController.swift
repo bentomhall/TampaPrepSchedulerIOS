@@ -96,8 +96,8 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     selectedTask = tasks[indexPath.row]
-    selectedRow = indexPath
     delegate!.willDisplayDetailForTask(selectedTask!)
+    selectedRow = indexPath
     
   }
   

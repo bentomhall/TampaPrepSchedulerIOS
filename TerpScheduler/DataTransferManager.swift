@@ -123,6 +123,9 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func willDisplayDetailForTask(task: DailyTask) {
+    if task != selectedTask! && detailViewController != nil{
+      detailViewController!.saveData()
+    }
     selectedTask = task
     if detailViewController != nil {
       detailViewController!.clear()
@@ -196,7 +199,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func willDisappear() {
-    detailViewController!.clear()
+    //detailViewController!.clear()
     detailViewController!.navigationController!.popToRootViewControllerAnimated(true)
   }
   
