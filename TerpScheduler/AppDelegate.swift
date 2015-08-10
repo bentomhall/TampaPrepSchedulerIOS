@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"]
     NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
     if let context = managedObjectContext{
-      let files = ["schedule_bak", "schedule"]
+      let files = ["schedule"]//["schedule_bak", "schedule"]
       SemesterScheduleLoader(context: context, withJSONFiles: files)
     }
     if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil {

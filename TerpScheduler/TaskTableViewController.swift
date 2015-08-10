@@ -96,8 +96,8 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     selectedTask = tasks[indexPath.row]
-    selectedRow = indexPath
     delegate!.willDisplayDetailForTask(selectedTask!)
+    selectedRow = indexPath
     
   }
   
@@ -126,8 +126,10 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
   func replaceItem(index: Int, withTask: DailyTask){
     if index >= 0 {
       tasks[index] = withTask
-    } else {
+    } else if tasks.count > 0{
       tasks[selectedRow.row] = withTask
+    } else {
+      tasks.append(withTask)
     }
     tableView.reloadData()
   }

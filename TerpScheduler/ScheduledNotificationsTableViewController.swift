@@ -18,8 +18,10 @@ class ScheduledNotificationsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
-    if notifications.count != 0 {
+    if notifications.count > 1 {
       titleView!.text = "\(notifications.count) Notifications Scheduled"
+    } else if notifications.count == 1 {
+      titleView!.text = "1 Notification Scheduled"
     } else {
       titleView!.text = "No Notifications Scheduled"
     }
