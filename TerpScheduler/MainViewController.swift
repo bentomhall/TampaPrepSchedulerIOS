@@ -82,8 +82,13 @@ class MainViewController: UIViewController {
   }
   
   override func viewDidAppear(animated: Bool) {
+    var classData: SchoolClass
     for (index, period) in enumerate(classPeriods!){
-      let classData = classRepository!.getClassDataByPeriod(index)
+      if delegate!.isMiddleSchool && index == 6{
+        classData = classRepository!.getMiddleSchoolSports()
+      } else {
+        classData = classRepository!.getClassDataByPeriod(index)
+      }
       period.classData = classData
       if classData.isStudyHall {
         shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index+1)
@@ -107,7 +112,7 @@ class MainViewController: UIViewController {
       let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
       var receivingController = segue.destinationViewController as! ClassPeriodViewController
       receivingController.modalPresentationStyle = .Popover
-      receivingController.preferredContentSize = CGSize(width: 300, height: 300)
+      receivingController.preferredContentSize = CGSize(width: 500, height: 260)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
@@ -187,7 +192,7 @@ extension MainViewController: UICollectionViewDataSource {
     if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
       shadingType = .studyHall
     } else if (selectedDayIndexes.period == 7 && delegate!.isMiddleSchool){
-      shadingType = .noClass
+      shadingType = .noShading
     } else {
       shadingType = .noShading
     }

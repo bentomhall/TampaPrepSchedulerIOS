@@ -50,4 +50,8 @@ class SchoolClassesRepository: NSObject {
       NSLog("%@", error!)
     }
   }
+  
+  func getMiddleSchoolSports()->SchoolClass{
+    return SchoolClass.middleSchoolSports()
+  }
 }

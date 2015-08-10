@@ -22,6 +22,10 @@ struct SchoolClass {
     //sometimes there's a disconnect and a 0-indexed period gets passed in. Sigh. Hack.
     return SchoolClass(period: period+1, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
+  
+  static func middleSchoolSports()->SchoolClass{
+    return SchoolClass(period: 7, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "Sports", isLocked: true, id: nil)
+  }
 }
 
 extension SchoolClass: DataObject{
