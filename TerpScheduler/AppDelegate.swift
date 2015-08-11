@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let fetchRequest = NSFetchRequest(entityName: "Week")
       let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]
     }
-    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil {
-      //application was launched from home screen
-      application.cancelAllLocalNotifications()
+    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil  && application.applicationIconBadgeNumber != 0{
+      //application was launched from home screen with badge set, so clear the badge.
+      //application.cancelAllLocalNotifications()
       application.applicationIconBadgeNumber = 0
     }
     
