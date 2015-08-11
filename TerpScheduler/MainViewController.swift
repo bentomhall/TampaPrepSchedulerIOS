@@ -74,6 +74,11 @@ class MainViewController: UIViewController {
     splitViewController!.presentsWithGesture = false
     scrollView!.setTranslatesAutoresizingMaskIntoConstraints(false)
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
+    
+    let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+    longPressRecognizer.delaysTouchesBegan = true
+    longPressRecognizer.minimumPressDuration = 0.5
+    self.collectionView?.addGestureRecognizer(longPressRecognizer)
   }
   
   override func viewDidLayoutSubviews() {
@@ -147,6 +152,22 @@ class MainViewController: UIViewController {
   func showDetail(task: DailyTask){
     self.performSegueWithIdentifier("ReplaceDetail", sender: self)
   }
+  
+  func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer){
+    if gestureRecognizer.state != UIGestureRecognizerState.Ended {
+      return
+    }
+    let p = gestureRecognizer.locationInView(self.collectionView)
+    let indexPath = self.collectionView?.indexPathForItemAtPoint(p)
+    
+    if let index = indexPath {
+      var cell = collectionView!.cellForItemAtIndexPath(index)
+      let menuController = UIMenuController.sharedMenuController()
+      let selectionRectangle = CGRectMake(p.x, p.y, 100, 100)
+      menuController.setTargetRect(selectionRectangle, inView: self.collectionView!)
+      menuController.setMenuVisible(true, animated: true)
+    }
+  }
 }
 
 //MARK - UICollectionViewDelegate
@@ -156,6 +177,23 @@ extension MainViewController: UICollectionViewDelegate {
     let date = delegate!.datesForWeek[detailIndex.day].Date
     delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+  }
+  
+  func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+  }
+  
+  func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
+    let pasteboard = UIPasteboard(name: "com.tampaprep.terpscheduler", create: true)
+    if action == Selector("cut:"){
+      return false
+    } else if action == Selector("copy:"){
+      return true
+    } else if action == Selector("paste:"){
+      return pasteboard.numberOfItems > 0
+    } else {
+      return false
+    }
   }
 }
 
@@ -263,6 +301,7 @@ extension MainViewController: ScheduleOverrideDelegate{
     reloadCollectionView()
   }
 }
+
 
 //extension MainViewController: UIScrollViewDelegate {
 //  func scrollViewDidScroll(scrollView: UIScrollView) {
