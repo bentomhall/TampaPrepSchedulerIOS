@@ -15,7 +15,8 @@ func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
   let isPrioritySame = lhs.priority == rhs.priority
   let isCompletionStatusSame = lhs.isCompleted == rhs.isCompleted
   let isHaikuStatusSame = lhs.isHaikuAssignment == rhs.isHaikuAssignment
-  return isTitleSame && isDetailsSame && isPrioritySame && isCompletionStatusSame && isHaikuStatusSame
+  let isNotificationStatusSame = lhs.shouldNotify == rhs.shouldNotify
+  return isTitleSame && isDetailsSame && isPrioritySame && isCompletionStatusSame && isHaikuStatusSame && isNotificationStatusSame
 }
 
 enum Priorities: Int {
