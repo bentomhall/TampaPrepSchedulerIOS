@@ -46,7 +46,6 @@ struct SchoolDate {
   }
 }
 
-
 ///Handles all date-related interactions. Fetches class schedules (ie what classes meet which days).
 class DateRepository {
   init(context: NSManagedObjectContext){
