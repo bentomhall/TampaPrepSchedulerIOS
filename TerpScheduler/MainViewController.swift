@@ -19,7 +19,7 @@ protocol PopOverPresentable {
 @IBDesignable
 class MainViewController: UIViewController {
   
-  private let noClassColor = UIColor(white: 0, alpha: 0.1)
+  //private let noClassColor = UIColor(white: 0, alpha: 0.1)
   private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
   private var appDelegate : AppDelegate?
   var delegate: protocol<TaskSummaryDelegate, DateInformationDelegate>?

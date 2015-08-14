@@ -9,6 +9,24 @@
 import Foundation
 import UIKit
 
+extension NSUserDefaults {
+  func colorForKey(key: String)->UIColor?{
+    var color: UIColor?
+    if let data = dataForKey(key){
+      color = NSKeyedUnarchiver.unarchiveObjectWithData(data) as UIColor
+    }
+    return color
+  }
+  
+  func setColor(color: UIColor?, forKey key: String){
+    var colorData: NSData?
+    if let color = color {
+      colorData = NSKeyedArchiver.archivedDataWithRootObject(color)
+    }
+    setValue(colorData, forKey: key)
+  }
+}
+
 class UserDefaults {
   private var defaults = NSUserDefaults.standardUserDefaults()
   
@@ -64,6 +82,24 @@ class UserDefaults {
     }
   }
   
+  var NoClassColor: UIColor? {
+    get {
+      return defaults.colorForKey("NoClassColor")
+    }
+    set(value) {
+      defaults.setColor(value, forKey: "NoClassColor")
+    }
+  }
+  
+  var StudyHallColor: UIColor? {
+    get {
+      return defaults.colorForKey("StudyHallColor")
+    }
+    set(value) {
+      defaults.setColor(value, forKey: "StudyHallColor")
+    }
+  }
+  
   func isFirstLaunchForCurrentVersion()->Bool{
     let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String
     
@@ -80,6 +116,8 @@ class UserDefaults {
       return true
     }
   }
+  
+  
   
   func readDefaults(){
     defaults.synchronize()
