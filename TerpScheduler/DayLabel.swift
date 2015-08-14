@@ -25,7 +25,7 @@ class DayLabel: UIView, UITextFieldDelegate {
     scheduleLabel!.text = scheduleType
     selectedView?.layer.cornerRadius = selectedView!.frame.width/2.0
     if dateIsToday{
-      selectedView?.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
+      selectedView?.backgroundColor = (UIApplication.sharedApplication().delegate as! AppDelegate).userColors!.primaryThemeColor
     }
     else {
       selectedView?.backgroundColor = UIColor.clearColor()

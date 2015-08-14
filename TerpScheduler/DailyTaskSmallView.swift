@@ -55,12 +55,14 @@ class DailyTaskSmallView: UICollectionViewCell {
   }
   
   func shouldShadeCell(shadingType: CellShadingType){
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let colors = appDelegate.userColors!
     switch(shadingType){
     case .noClass:
-      self.backgroundColor = UIColor(white: 0, alpha: 0.1)
+      self.backgroundColor = colors.NoClassColor
       break
     case .studyHall:
-      self.backgroundColor = UIColor(white: 0, alpha: 0.05)
+      self.backgroundColor = colors.StudyHallColor
       break
     case .noShading:
       self.backgroundColor = UIColor.whiteColor()
