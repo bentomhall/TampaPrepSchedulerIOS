@@ -17,7 +17,7 @@ class UserColors {
   
    var NoClassColor: UIColor {
     get {
-      if let color = defaults.NoClassColor {
+      if let color = defaults.noClassColor {
         return color
       } else {
         return UIColor(white: 0, alpha: 0.1)
@@ -25,20 +25,30 @@ class UserColors {
     }
     
     set(value) {
-      defaults.NoClassColor = value
+      defaults.noClassColor = value
     }
   }
   
   var StudyHallColor: UIColor {
     get {
-      if let color = defaults.StudyHallColor {
+      if let color = defaults.studyHallColor {
         return color
       } else {
         return UIColor(white: 0, alpha: 0.05)
       }
     }
     set(value) {
-      defaults.StudyHallColor = value
+      defaults.studyHallColor = value
+    }
+  }
+  
+  var primaryThemeColor: UIColor {
+    get {
+      if let color = defaults.primaryThemeColor {
+        return color
+      } else {
+        return UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
+      }
     }
   }
 }

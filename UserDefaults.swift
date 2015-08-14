@@ -82,7 +82,7 @@ class UserDefaults {
     }
   }
   
-  var NoClassColor: UIColor? {
+  var noClassColor: UIColor? {
     get {
       return defaults.colorForKey("NoClassColor")
     }
@@ -91,12 +91,21 @@ class UserDefaults {
     }
   }
   
-  var StudyHallColor: UIColor? {
+  var studyHallColor: UIColor? {
     get {
       return defaults.colorForKey("StudyHallColor")
     }
     set(value) {
       defaults.setColor(value, forKey: "StudyHallColor")
+    }
+  }
+  
+  var primaryThemeColor: UIColor? {
+    get {
+      return defaults.colorForKey("PrimaryThemeColor")
+    }
+    set(value){
+      defaults.setColor(value, forKey: "PrimaryThemeColor")
     }
   }
   
