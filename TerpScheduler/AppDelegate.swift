@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"]
     NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
     if let context = managedObjectContext{
-      let files = ["schedule"]//["schedule_bak", "schedule"]
+      let files = ["schedule"]
       SemesterScheduleLoader(context: context, withJSONFiles: files)
     }
-    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil {
-      //application was launched from home screen
-      application.cancelAllLocalNotifications()
+    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil  && application.applicationIconBadgeNumber != 0{
+      //application was launched from home screen with badge set, so clear the badge.
+      //application.cancelAllLocalNotifications()
       application.applicationIconBadgeNumber = 0
       self.dataManager.backupManager.readBackup(false)
       self.dataManager.backupManager.makeBackup(false)
