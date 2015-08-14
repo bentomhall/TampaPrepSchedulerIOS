@@ -43,7 +43,7 @@ class BackupManager {
     let allTasks = taskRepository.allTasks()
     var output = [[String: AnyObject]]()
     for task in allTasks {
-      output.append(task.contentsAsDictionary())
+      //output.append(task.contentsAsDictionary())
     }
     return output
   }
