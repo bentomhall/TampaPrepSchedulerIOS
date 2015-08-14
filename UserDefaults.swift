@@ -13,7 +13,7 @@ extension NSUserDefaults {
   func colorForKey(key: String)->UIColor?{
     var color: UIColor?
     if let data = dataForKey(key){
-      color = NSKeyedUnarchiver.unarchiveObjectWithData(data) as UIColor
+      color = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UIColor
     }
     return color
   }
