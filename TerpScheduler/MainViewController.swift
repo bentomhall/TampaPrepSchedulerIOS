@@ -74,11 +74,12 @@ class MainViewController: UIViewController {
     splitViewController!.presentsWithGesture = false
     scrollView!.setTranslatesAutoresizingMaskIntoConstraints(false)
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
-    
+    /*
     let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
     longPressRecognizer.delaysTouchesBegan = true
     longPressRecognizer.minimumPressDuration = 0.5
-    self.collectionView?.addGestureRecognizer(longPressRecognizer)
+    longPressRecognizer.delegate = self
+    self.collectionView?.addGestureRecognizer(longPressRecognizer)*/
   }
   
   override func viewDidLayoutSubviews() {
@@ -190,10 +191,21 @@ extension MainViewController: UICollectionViewDelegate {
     } else if action == Selector("copy:"){
       return true
     } else if action == Selector("paste:"){
-      return pasteboard.numberOfItems > 0
+      return delegate!.hasCopiedTasks()
     } else {
       return false
     }
+  }
+  
+  func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+    //WARN Incomplete implementation
+    let dayAndPeriod = dayAndPeriodFromIndexPath(indexPath.row)
+    if action == Selector("copy:"){
+      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+    } else if action == Selector("paste:"){
+      delegate!.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
+    }
+    return
   }
 }
 
@@ -299,6 +311,12 @@ extension MainViewController: ScheduleOverrideDelegate{
   func updateScheduleForIndex(index: Int, withSchedule schedule: String){
     delegate!.didSetDateByIndex(index, withData: schedule)
     reloadCollectionView()
+  }
+}
+
+extension MainViewController: UIGestureRecognizerDelegate{
+  func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
   }
 }
 

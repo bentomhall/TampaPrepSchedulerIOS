@@ -33,6 +33,9 @@ protocol TaskSummaryDelegate {
   func summariesForWeek()->[TaskSummary]
   var summaryViewController: MainViewController? { get set }
   var detailViewController: TaskDetailViewController? { get set }
+  func copyTasksFor(dateIndex: Int, period: Int)
+  func pasteTasksTo(dateIndex: Int, period: Int)
+  func hasCopiedTasks()->Bool
 }
 
 protocol ExportDelegate {
@@ -67,6 +70,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   private var schoolClassRepository: SchoolClassesRepository
   private var selectedDate = NSDate()
   private var selectedPeriod = 1
+  private var copiedTasks = [DailyTask]()
   let backupManager: BackupManager
   
   var isMiddleSchool: Bool {
@@ -235,6 +239,33 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
         break
       }
     }
+  }
+  
+  func copyTasksFor(dateIndex: Int, period: Int) {
+    //note this overwrites what's in the "clipboard" space.
+    let date = dateRepository.dates[dateIndex].Date
+    copiedTasks = taskRepository.tasksForDateAndPeriod(date, period: period)
+    NSLog("copying %i tasks", copiedTasks.count)
+  }
+  
+  func pasteTasksTo(dateIndex: Int, period: Int) {
+    if !hasCopiedTasks() {
+      return
+    }
+    let date = dateRepository.dates[dateIndex].Date
+    var newTasks = [DailyTask]()
+    
+    for task in copiedTasks {
+      let newTask = DailyTask(date: date, period: period, shortTitle: task.shortTitle, details: task.details, isHaiku: task.isHaikuAssignment, completion: task.isCompleted, priority: task.priority, notify: task.shouldNotify)
+      newTasks.append(newTask)
+    }
+    NSLog("pasting %i tasks", newTasks.count)
+    taskRepository.persistTasks(newTasks)
+    summaryViewController!.reloadCollectionView()
+  }
+  
+  func hasCopiedTasks()->Bool{
+    return copiedTasks.count > 0
   }
 
   
