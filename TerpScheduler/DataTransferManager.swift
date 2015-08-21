@@ -245,7 +245,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     //note this overwrites what's in the "clipboard" space.
     let date = dateRepository.dates[dateIndex].Date
     copiedTasks = taskRepository.tasksForDateAndPeriod(date, period: period)
-    NSLog("copying %i tasks", copiedTasks.count)
   }
   
   func pasteTasksTo(dateIndex: Int, period: Int) {
@@ -259,7 +258,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
       let newTask = DailyTask(date: date, period: period, shortTitle: task.shortTitle, details: task.details, isHaiku: task.isHaikuAssignment, completion: task.isCompleted, priority: task.priority, notify: task.shouldNotify)
       newTasks.append(newTask)
     }
-    NSLog("pasting %i tasks", newTasks.count)
     taskRepository.persistTasks(newTasks)
     summaryViewController!.reloadCollectionView()
   }
