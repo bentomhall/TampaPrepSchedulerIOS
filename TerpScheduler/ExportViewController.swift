@@ -61,7 +61,7 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
   }
   
   func stringFromDate(date: NSDate)->String{
-    var formatter = NSDateFormatter()
+    let formatter = NSDateFormatter()
     formatter.dateFormat = "MM/dd/yy"
     return formatter.stringFromDate(date)
   }

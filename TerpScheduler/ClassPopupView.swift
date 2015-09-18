@@ -68,7 +68,7 @@ class ClassPopupView: UIView {
       subjectNameInput!.text! = data.subject
     }
     if let url = data.haikuURL {
-      haikuURLInput!.text! = url.absoluteString!
+      haikuURLInput!.text! = url.absoluteString
     }
     else {
       haikuURLInput!.text! = ""

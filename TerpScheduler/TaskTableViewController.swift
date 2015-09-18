@@ -86,7 +86,7 @@ class TaskTableViewController: UITableViewController, UITableViewDataSource, UIT
     let cell = tableView.dequeueReusableCellWithIdentifier("TaskListView", forIndexPath: indexPath) as! TaskTableViewCell
     let task = tasks[indexPath.row]
     let title = task.shortTitle
-    if !contains(dirtyCellTitles.keys, indexPath.row) {
+    if !dirtyCellTitles.keys.contains(indexPath.row) {
       cell.setTitleText(title, taskIsComplete: task.isCompleted)
     } else {
       cell.setTitleText(dirtyCellTitles[indexPath.row]!, taskIsComplete: false)

@@ -21,7 +21,10 @@ class SemesterScheduleLoader{
     if !isScheduleLoaded(){
       for file in withJSONFiles {
         let weeks = loadScheduleDataFromJSON(file)
-        context.save(nil)
+        do {
+          try context.save()
+        } catch _ {
+        }
       }
       setScheduleLoaded()
     }
@@ -30,8 +33,14 @@ class SemesterScheduleLoader{
   func loadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
     var error: NSError?
     if let path = NSBundle.mainBundle().pathForResource(jsonFileName, ofType: "json"){
-      let data = NSData(contentsOfFile: path, options: NSDataReadingOptions.allZeros, error: &error)
-      let jsonData : NSDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &error) as! NSDictionary
+      let data: NSData?
+      do {
+        data = try NSData(contentsOfFile: path, options: NSDataReadingOptions())
+      } catch let error1 as NSError {
+        error = error1
+        data = nil
+      }
+      let jsonData : NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
       var weeks = [] as [NSManagedObject]
       for (key, value) in jsonData {
         let weekLabel = key as! String
@@ -40,9 +49,9 @@ class SemesterScheduleLoader{
         
         let firstDay = weekInformation[1] as! String
         let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
-        var managedWeek = WeekEntity(entity: entity!, insertIntoManagedObjectContext: context)
+        let managedWeek = WeekEntity(entity: entity!, insertIntoManagedObjectContext: context)
         managedWeek.weekSchedules = serializeSchedule(weekSchedule)
-        managedWeek.weekID = weekLabel.toInt()!
+        managedWeek.weekID = Int(weekLabel)!
         managedWeek.firstWeekDay = dateFromString(firstDay)
         managedWeek.schoolYear = getSchoolYear(managedWeek.firstWeekDay)
         weeks.append(managedWeek)
@@ -74,6 +83,6 @@ class SemesterScheduleLoader{
   }
   
   func serializeSchedule(schedule: [String])->String{
-    return " ".join(schedule)
+    return schedule.joinWithSeparator(" ")
   }
 }

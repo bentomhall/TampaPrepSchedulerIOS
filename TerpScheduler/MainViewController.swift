@@ -72,7 +72,7 @@ class MainViewController: UIViewController {
     taskSummaries = delegate!.summariesForWeek()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
     splitViewController!.presentsWithGesture = false
-    scrollView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+    scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
     /*
     let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
@@ -89,7 +89,7 @@ class MainViewController: UIViewController {
   
   override func viewDidAppear(animated: Bool) {
     var classData: SchoolClass
-    for (index, period) in enumerate(classPeriods!){
+    for (index, period) in (classPeriods!).enumerate(){
       if delegate!.isMiddleSchool && index == 6{
         classData = classRepository!.getMiddleSchoolSports()
       } else {
@@ -115,15 +115,15 @@ class MainViewController: UIViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier!.hasPrefix("ClassDetail") {
-      let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
-      var receivingController = segue.destinationViewController as! ClassPeriodViewController
+      let index = Int(segue.identifier!.componentsSeparatedByString("_")[1])
+      let receivingController = segue.destinationViewController as! ClassPeriodViewController
       receivingController.modalPresentationStyle = .Popover
       receivingController.preferredContentSize = CGSize(width: 500, height: 260)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
-      let index = segue.identifier!.componentsSeparatedByString("_")[1].toInt()
-      var receivingController = segue.destinationViewController as! ScheduleOverrideController
+      let index = Int(segue.identifier!.componentsSeparatedByString("_")[1])
+      let receivingController = segue.destinationViewController as! ScheduleOverrideController
       receivingController.modalPresentationStyle = .Popover
       receivingController.delegate = self
       receivingController.index = index!
@@ -184,7 +184,7 @@ extension MainViewController: UICollectionViewDelegate {
     return true
   }
   
-  func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
+  func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
     let pasteboard = UIPasteboard(name: "com.tampaprep.terpscheduler", create: true)
     if action == Selector("cut:"){
       return false
@@ -197,7 +197,7 @@ extension MainViewController: UICollectionViewDelegate {
     }
   }
   
-  func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+  func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     //WARN Incomplete implementation
     let dayAndPeriod = dayAndPeriodFromIndexPath(indexPath.row)
     if action == Selector("copy:"){
@@ -236,7 +236,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    var cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as! DailyTaskSmallView
+    let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as! DailyTaskSmallView
     var shadingType: CellShadingType
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
     if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
@@ -247,7 +247,7 @@ extension MainViewController: UICollectionViewDataSource {
       shadingType = .noShading
     }
     if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
-      if contains(missedClasses, selectedDayIndexes.period){
+      if missedClasses.contains(selectedDayIndexes.period){
         shadingType = .noClass
       }
     }
@@ -259,7 +259,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    var header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as! DateHeaderView
+    let header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as! DateHeaderView
     header.SetDates(delegate!.datesForWeek)
     return header
   }

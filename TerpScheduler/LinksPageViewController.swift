@@ -69,7 +69,7 @@ class LinksPageViewController: UIViewController {
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ExportTasks"{
-      var receivingController = segue.destinationViewController as! ExportViewController
+      let receivingController = segue.destinationViewController as! ExportViewController
       receivingController.modalPresentationStyle = .Popover
       receivingController.preferredContentSize = CGSize(width: 300, height: 300)
     }

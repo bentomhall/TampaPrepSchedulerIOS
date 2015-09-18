@@ -19,7 +19,7 @@ class JsonBackupWriter {
   
   func serialize(data: AnyObject)->NSData? {
     if NSJSONSerialization.isValidJSONObject(data) {
-      return NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+      return try? NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
     } else {
       return nil
     }
@@ -27,15 +27,15 @@ class JsonBackupWriter {
   
   func writeToFile(data: NSData){
     var err: NSError?
-    var outputStream = NSOutputStream(URL: path, append: false)
+    let outputStream = NSOutputStream(URL: path, append: false)
     if outputStream != nil {
-      NSJSONSerialization.writeJSONObject(data, toStream: outputStream!, options: NSJSONWritingOptions.allZeros, error: &err)
+      NSJSONSerialization.writeJSONObject(data, toStream: outputStream!, options: NSJSONWritingOptions(), error: &err)
     }
   }
   
   //Needs error handling
   func makeBackupFrom(data: [AnyObject])->Bool{
-    var count = data.count
+    let count = data.count
     var backupData = [String: AnyObject]()
     backupData["created"] = dateFormatter.stringFromDate(NSDate())
     backupData["count"] = count

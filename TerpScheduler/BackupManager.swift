@@ -19,15 +19,15 @@ class BackupManager {
   init(repository: TaskRepository){
     taskRepository = repository
     fileManager = NSFileManager.defaultManager()
-    documentDirectory = fileManager.URLForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)!
+    documentDirectory = try! fileManager.URLForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true)
     backupWriter = JsonBackupWriter(filePath: documentDirectory.URLByAppendingPathComponent(backupBaseName))
     backupReader = JsonBackupReader(filePath: documentDirectory.URLByAppendingPathComponent(backupBaseName))
   }
   
   private func shouldMakeBackup()->Bool{
     let path = documentDirectory.path!.stringByAppendingPathComponent(backupBaseName)
-    let oneDayAgo = NSCalendar.currentCalendar().dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: NSDate(), options: .allZeros)
-    if let attributes = fileManager.attributesOfItemAtPath(path, error: nil) {
+    let oneDayAgo = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: [])
+    if let attributes = try? fileManager.attributesOfItemAtPath(path) {
       let lastModified = attributes[NSFileCreationDate]! as! NSDate
       if lastModified.compare(oneDayAgo!) == NSComparisonResult.OrderedAscending {
         return true
@@ -41,7 +41,7 @@ class BackupManager {
   
   private func gatherDataForBackup()-> [[String: AnyObject]]{
     let allTasks = taskRepository.allTasks()
-    var output = [[String: AnyObject]]()
+    let output = [[String: AnyObject]]()
     for task in allTasks {
       //output.append(task.contentsAsDictionary())
     }
@@ -50,7 +50,7 @@ class BackupManager {
   
   ///Creates a backup of all tasks to JSON file if force parameter is true, or if the last backup was more than a day ago. Note, if no backup exists a new one will be made.
   ///
-  ///:param: force Indicates the backup should be done regardless of last backup date.
+  ///- parameter force: Indicates the backup should be done regardless of last backup date.
   func makeBackup(force: Bool){
     if force || shouldMakeBackup() {
       let data = gatherDataForBackup()

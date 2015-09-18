@@ -44,13 +44,13 @@ class TaskNotification {
   private func notificationTime(fromCategory time: NotificationTimes)->NSDate{
     let calendar = NSCalendar.currentCalendar()
     if time != .Testing {
-    let dueDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: task.date, options: NSCalendarOptions.allZeros)
-    let notificationDate = calendar.dateByAddingUnit(.CalendarUnitDay, value: -1, toDate: dueDate!, options: .allZeros)
-    return calendar.dateBySettingHour(time.rawValue, minute: 0, second: 0, ofDate: notificationDate!, options: .allZeros)!
+    let dueDate = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: task.date, options: NSCalendarOptions())
+    let notificationDate = calendar.dateByAddingUnit(.Day, value: -1, toDate: dueDate!, options: [])
+    return calendar.dateBySettingHour(time.rawValue, minute: 0, second: 0, ofDate: notificationDate!, options: [])!
     } else {
       //Testing should set the notification for one minute from creation time
       let dueDate = NSDate()
-      return calendar.dateByAddingUnit(.CalendarUnitMinute, value: 1, toDate: dueDate, options: .allZeros)!
+      return calendar.dateByAddingUnit(.Minute, value: 1, toDate: dueDate, options: [])!
     }
   }
   

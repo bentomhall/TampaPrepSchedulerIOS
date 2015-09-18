@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 func getSchoolYear(date: NSDate)->Int{
-  let flags = NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth
+  let flags: NSCalendarUnit = [NSCalendarUnit.WeekOfYear, NSCalendarUnit.Year, NSCalendarUnit.Month]
   let dateComponents = NSCalendar.currentCalendar().components(flags, fromDate: date)
   //1st week of august is currently the start of a new school year (by this system).
   let weekOfYear = dateComponents.weekOfYear

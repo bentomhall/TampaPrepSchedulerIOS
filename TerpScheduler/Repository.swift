@@ -14,7 +14,7 @@ func dateRange(start: NSDate, stop: NSDate)->[NSDate]{
   var currentDate = start
   while currentDate.compare(stop) != NSComparisonResult.OrderedDescending{
     dates.append(currentDate)
-    currentDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, toDate: currentDate, options: NSCalendarOptions.allZeros)!
+    currentDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: 1, toDate: currentDate, options: NSCalendarOptions())!
   }
   return dates
 }
@@ -119,14 +119,18 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   func fetchAll()->[T]{
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
-    let results = context!.executeFetchRequest(fetchRequest, error: nil) as! [U]
+    let results = (try! context!.executeFetchRequest(fetchRequest)) as! [U]
     let data = dataFromEntities(results)
     return data
   }
   
   func save(){
     var error: NSError?
-    context!.save(&error)
+    do {
+      try context!.save()
+    } catch let error1 as NSError {
+      error = error1
+    }
     if error != nil {
       NSLog("%@", error!)
     }
@@ -134,13 +138,13 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
 
   ///fetches all stored items matching the values given when filtered by type
   ///
-  ///:param: type RepositoryFilterType value on which to filter.
-  ///:param: values Set of values to match against. Only the one matching the filter type will be used.
-  ///:returns: list of values matching filter criteria
+  ///- parameter type: RepositoryFilterType value on which to filter.
+  ///- parameter values: Set of values to match against. Only the one matching the filter type will be used.
+  ///- returns: list of values matching filter criteria
   func fetchBy(type: RepositoryFilterType, values: FilterValues)->[T]{
       let fetchRequest = newFetchRequest()
       fetchRequest.predicate = predicateByType(type, value: values)
-      if let results = context!.executeFetchRequest(fetchRequest, error: nil) as? [U]{
+      if let results = (try? context!.executeFetchRequest(fetchRequest)) as? [U]{
         let data = dataFromEntities(results)
         return data
       }
@@ -150,7 +154,7 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   func deleteItemMatching(values filter: protocol<Filterable, DataObject>){
     var toDelete: NSManagedObject?
     if filter.id != nil {
-      toDelete = context!.existingObjectWithID(filter.id!, error: nil)
+      toDelete = try? context!.existingObjectWithID(filter.id!)
     } else {
       NSLog("%@", "Cannot delete object with nil id")
     }

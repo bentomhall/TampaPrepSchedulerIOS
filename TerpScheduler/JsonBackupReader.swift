@@ -21,7 +21,7 @@ class JsonBackupReader {
   
   func deserializeBackup()->[[String: AnyObject]]?{
     if let inputStream = NSInputStream(URL: path) {
-      let fileContents = NSJSONSerialization.JSONObjectWithStream(inputStream, options: .allZeros, error: nil) as! [String: AnyObject]
+      let fileContents = (try! NSJSONSerialization.JSONObjectWithStream(inputStream, options: [])) as! [String: AnyObject]
       
       dateCreated = dateFormatter.dateFromString(fileContents["created"]! as! String)
       itemCount = fileContents["count"] as? Int

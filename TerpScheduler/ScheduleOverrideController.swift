@@ -30,7 +30,7 @@ struct ScheduleTypes {
   var types: [String]{
     get {
       var letters : [String] = []
-      for key in Array(schedules.keys).sorted(<){
+      for key in Array(schedules.keys).sort(<){
         letters.append(key)
       }
       return letters
@@ -38,7 +38,7 @@ struct ScheduleTypes {
   }
   
   func indexForLetter(letter: String)->Int?{
-    return find(types, letter)
+    return types.indexOf(letter)
   }
   
   func scheduleForLetter(letter: String)->String?{

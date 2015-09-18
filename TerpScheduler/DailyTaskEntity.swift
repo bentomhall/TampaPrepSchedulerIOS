@@ -65,7 +65,10 @@ extension DailyTask: DataObject{
   init(entity: NSManagedObject){
     let model = entity as! DailyTaskEntity
     let context = model.managedObjectContext!
-    context.save(nil)
+    do {
+      try context.save()
+    } catch _ {
+    }
     id = model.objectID
     date = model.dateDue
     shortTitle = model.shortTitle
@@ -79,13 +82,19 @@ extension DailyTask: DataObject{
   
   ///returns managed entity associated with this data in the provided context. Only creates new if no entity with this id already exists.
   ///
-  ///:param: inContext The NSManagedObjectContext to put the entity in.
-  ///:returns: A NSManagedObject containing the data from self.
+  ///- parameter inContext: The NSManagedObjectContext to put the entity in.
+  ///- returns: A NSManagedObject containing the data from self.
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
     if self.id != nil{
       // If a entity with this id already exists, return it.
       var error: NSError?
-      let existingEntity = context.existingObjectWithID(self.id!, error: &error)
+      let existingEntity: NSManagedObject?
+      do {
+        existingEntity = try context.existingObjectWithID(self.id!)
+      } catch let error1 as NSError {
+        error = error1
+        existingEntity = nil
+      }
       if existingEntity != nil && error == nil {
         return existingEntity!
       } else if error != nil {

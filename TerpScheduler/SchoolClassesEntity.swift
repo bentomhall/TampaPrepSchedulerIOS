@@ -49,7 +49,13 @@ extension SchoolClass: DataObject{
     var alreadyExists = false
     if self.id != nil {
       var error: NSError?
-      let existingEntity = context.existingObjectWithID(self.id!, error: &error)
+      let existingEntity: NSManagedObject?
+      do {
+        existingEntity = try context.existingObjectWithID(self.id!)
+      } catch var error1 as NSError {
+        error = error1
+        existingEntity = nil
+      }
       if existingEntity != nil && error == nil {
         managedObject = (existingEntity! as! SchoolClassesEntity)
         alreadyExists = true
@@ -63,7 +69,7 @@ extension SchoolClass: DataObject{
     }
     managedObject!.classPeriod = period
     managedObject!.teacherName = teacherName
-    managedObject!.haikuURL = haikuURL != nil ? haikuURL!.absoluteString! : ""
+    managedObject!.haikuURL = haikuURL != nil ? haikuURL!.absoluteString : ""
     managedObject!.isStudyHall = isStudyHall
     managedObject!.subject = subject
     managedObject!.isLocked = isLocked

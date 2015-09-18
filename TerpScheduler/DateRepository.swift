@@ -72,20 +72,23 @@ class DateRepository {
   private var weekID = -1
   
   private func persistDates(){
-    if let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]{
+    if let results = (try? context.executeFetchRequest(fetchRequest)) as? [WeekEntity]{
       var schedules:[String] = []
       for day in dates{
         schedules.append(day.Schedule)
       }
-      results[0].weekSchedules = " ".join(schedules)
-      context.save(nil)
+      results[0].weekSchedules = schedules.joinWithSeparator(" ")
+      do {
+        try context.save()
+      } catch _ {
+      }
     }
   }
   
   private func getDateByOffset(date : NSDate, byOffset index : Int)->NSDate{
     let offset = NSDateComponents()
     offset.day = index
-    return NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: nil)!
+    return NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: [])!
   }
   
   var dates : [SchoolDate] = []
@@ -102,7 +105,7 @@ class DateRepository {
   }
   
   func fetchWeekID(today: NSDate) ->Int {
-    let components = calendar.components(NSCalendarUnit.CalendarUnitWeekOfYear, fromDate: today)
+    let components = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: today)
     return components.weekOfYear
   }
   
@@ -136,16 +139,16 @@ class DateRepository {
   
   ///fetches the currently selected week's schedule.
   ///
-  ///:returns: [SchoolDate] for all dates in the week.
+  ///- returns: [SchoolDate] for all dates in the week.
   func loadCurrentWeek()->[SchoolDate]{
     var error : NSError?
     var dates: [SchoolDate] = []
     fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
-    if let results = context.executeFetchRequest(fetchRequest, error: nil) as? [WeekEntity]{
+    if let results = (try? context.executeFetchRequest(fetchRequest)) as? [WeekEntity]{
       var weekData = results.filter(isCurrentYear)
       let firstDay = weekData[0].firstWeekDay
       let schedule = weekData[0].weekSchedules.componentsSeparatedByString(" ")
-      for (index, schedule) in enumerate(schedule) {
+      for (index, schedule) in schedule.enumerate() {
         let date = getDateByOffset(firstDay, byOffset: index)
         dates.append(SchoolDate(Date: date, Schedule: schedule))
       }

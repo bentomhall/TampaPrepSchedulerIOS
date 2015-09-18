@@ -23,13 +23,16 @@ class SchoolClassesRepository: NSObject {
     fetchRequest.predicate = predicate
     fetchRequest.returnsObjectsAsFaults = false
     var error: NSError?
-    if let results = managedContext.executeFetchRequest(fetchRequest, error: &error){
+    do {
+      let results = try managedContext.executeFetchRequest(fetchRequest)
       if error != nil {
         NSLog("%@", error!)
       }
       if results.count == 1 {
         return (results[0] as! SchoolClassesEntity)
       }
+    } catch let error1 as NSError {
+      error = error1
     }
     return nil
   }
@@ -45,7 +48,11 @@ class SchoolClassesRepository: NSObject {
   func persistData(classData : SchoolClass){
     var entity = classData.toEntity(inContext: managedContext)
     var error: NSError?
-    managedContext.save(&error)
+    do {
+      try managedContext.save()
+    } catch let error1 as NSError {
+      error = error1
+    }
     if error != nil {
       NSLog("%@", error!)
     }

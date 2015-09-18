@@ -14,8 +14,8 @@ class DateHeaderView: UICollectionReusableView {
   private let calendar = NSCalendar.currentCalendar()
     
   func SetDates(dates : [SchoolDate]){
-    let today = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions.allZeros)!
-    for (index, date) in enumerate(dates) {
+    let today = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
+    for (index, date) in dates.enumerate() {
       let isToday = today.compare(date.Date) == NSComparisonResult.OrderedSame
       dayLabels![index].setContents(date: date.Date, scheduleType: date.Schedule, dateIsToday: isToday)
     }

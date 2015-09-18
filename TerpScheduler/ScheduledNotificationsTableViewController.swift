@@ -51,7 +51,7 @@ class ScheduledNotificationsTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) 
       let notification = notifications[indexPath.row]
       cell.textLabel!.text = notification.alertBody!
       cell.detailTextLabel!.text = dateFormatter.stringFromDate(notification.fireDate!)
