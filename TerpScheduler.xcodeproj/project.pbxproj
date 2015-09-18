@@ -282,6 +282,7 @@
 		D408FD6A1A432E45004F0B83 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tampa Preparatory School";
 				TargetAttributes = {
