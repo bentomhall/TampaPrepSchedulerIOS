@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TaskTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class TaskTableViewController: UITableViewController {
   @IBAction func hideTableView(recognizer: UISwipeGestureRecognizer){
     delegate!.willDisappear()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden

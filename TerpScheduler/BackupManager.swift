@@ -25,7 +25,7 @@ class BackupManager {
   }
   
   private func shouldMakeBackup()->Bool{
-    let path = documentDirectory.path!.stringByAppendingPathComponent(backupBaseName)
+    let path = documentDirectory.URLByAppendingPathComponent(backupBaseName).path!
     let oneDayAgo = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: [])
     if let attributes = try? fileManager.attributesOfItemAtPath(path) {
       let lastModified = attributes[NSFileCreationDate]! as! NSDate
@@ -40,11 +40,11 @@ class BackupManager {
   }
   
   private func gatherDataForBackup()-> [[String: AnyObject]]{
-    let allTasks = taskRepository.allTasks()
+    //let allTasks = taskRepository.allTasks()
     let output = [[String: AnyObject]]()
-    for task in allTasks {
+    //for task in allTasks {
       //output.append(task.contentsAsDictionary())
-    }
+    //}
     return output
   }
   
@@ -65,7 +65,7 @@ class BackupManager {
   
   private func shouldReadBackup(force: Bool)->Bool{
     let repositoryCount = taskRepository.countAllTasks()
-    let path = documentDirectory.path!.stringByAppendingPathComponent(backupBaseName)
+    let path = documentDirectory.URLByAppendingPathComponent(backupBaseName).path!
     if force || repositoryCount == 0 {
       if fileManager.isReadableFileAtPath(path){
         return true

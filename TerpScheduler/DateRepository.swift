@@ -141,7 +141,6 @@ class DateRepository {
   ///
   ///- returns: [SchoolDate] for all dates in the week.
   func loadCurrentWeek()->[SchoolDate]{
-    var error : NSError?
     var dates: [SchoolDate] = []
     fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
     if let results = (try? context.executeFetchRequest(fetchRequest)) as? [WeekEntity]{

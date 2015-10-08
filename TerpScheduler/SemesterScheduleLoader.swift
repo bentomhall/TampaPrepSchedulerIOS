@@ -15,15 +15,19 @@ class SemesterScheduleLoader{
   var userDefaults: UserDefaults
   var formatter = NSDateFormatter()
   
-  init(context: NSManagedObjectContext, withJSONFiles: [String]){
+  init(context: NSManagedObjectContext){
     self.context = context
     userDefaults = appDelegate.userDefaults
+  }
+  
+  func loadSchedule(fromFiles files: [String]){
     if !isScheduleLoaded(){
-      for file in withJSONFiles {
-        let weeks = loadScheduleDataFromJSON(file)
+      for file in files {
+        loadScheduleDataFromJSON(file)
         do {
           try context.save()
-        } catch _ {
+        } catch let error as NSError {
+          NSLog("%@", error)
         }
       }
       setScheduleLoaded()
@@ -31,14 +35,13 @@ class SemesterScheduleLoader{
   }
   
   func loadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
-    var error: NSError?
     if let path = NSBundle.mainBundle().pathForResource(jsonFileName, ofType: "json"){
       let data: NSData?
       do {
         data = try NSData(contentsOfFile: path, options: NSDataReadingOptions())
-      } catch let error1 as NSError {
-        error = error1
+      } catch let error as NSError {
         data = nil
+        NSLog("%@", error)
       }
       let jsonData : NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
       var weeks = [] as [NSManagedObject]

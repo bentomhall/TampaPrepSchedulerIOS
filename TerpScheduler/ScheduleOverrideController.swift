@@ -56,7 +56,7 @@ protocol ScheduleOverrideDelegate{
 }
 
 @IBDesignable
-class ScheduleOverrideController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
+class ScheduleOverrideController: UITableViewController {
   var delegate: ScheduleOverrideDelegate?
   var index: Int = 0
   var schedule = ""
@@ -82,18 +82,18 @@ class ScheduleOverrideController: UITableViewController, UITableViewDataSource, 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let letter = scheduleTypes.scheduleForIndex(indexPath.row)
     let classes = scheduleTypes.scheduleForLetter(letter)
-    var cell = tableView.dequeueReusableCellWithIdentifier("scheduleTypeCell") as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("scheduleTypeCell")
     if classes == "" {
-      cell.textLabel!.text = "Schedule \(letter): School Closed"
+      cell!.textLabel!.text = "Schedule \(letter): School Closed"
     } else {
-      cell.textLabel!.text = "Schedule \(letter): Periods \(classes!) meet"
+      cell!.textLabel!.text = "Schedule \(letter): Periods \(classes!) meet"
     }
     if previousSchedule == letter {
-      cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+      cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
     } else {
       
     }
-    return cell
+    return cell!
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

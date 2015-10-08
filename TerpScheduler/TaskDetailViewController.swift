@@ -92,7 +92,7 @@ class TaskDetailViewController: UIViewController {
         priority = Priorities.Completed
       }
       
-      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: shouldNotify!.on)
+      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle!, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: shouldNotify!.on)
       if newTaskData != previousTaskData! {
         delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
         previousTaskData = newTaskData
@@ -119,7 +119,7 @@ extension TaskDetailViewController: UITextFieldDelegate {
   }
   
   func textFieldDidEndEditing(textField: UITextField) {
-    delegate!.didUpdateTitle(textField.text)
+    delegate!.didUpdateTitle(textField.text!)
   }
 }
 

@@ -48,19 +48,16 @@ extension SchoolClass: DataObject{
     var managedObject: SchoolClassesEntity?
     var alreadyExists = false
     if self.id != nil {
-      var error: NSError?
       let existingEntity: NSManagedObject?
       do {
         existingEntity = try context.existingObjectWithID(self.id!)
-      } catch var error1 as NSError {
-        error = error1
+      } catch let error as NSError {
         existingEntity = nil
+        NSLog("%@", error)
       }
-      if existingEntity != nil && error == nil {
+      if existingEntity != nil {
         managedObject = (existingEntity! as! SchoolClassesEntity)
         alreadyExists = true
-      } else if error != nil {
-        NSLog("%@", error!)
       }
     }
     if !alreadyExists{

@@ -46,15 +46,11 @@ class SchoolClassesRepository: NSObject {
   }
   
   func persistData(classData : SchoolClass){
-    var entity = classData.toEntity(inContext: managedContext)
-    var error: NSError?
+    _ = classData.toEntity(inContext: managedContext)
     do {
       try managedContext.save()
-    } catch let error1 as NSError {
-      error = error1
-    }
-    if error != nil {
-      NSLog("%@", error!)
+    } catch let error as NSError {
+      NSLog("%@", error)
     }
   }
   

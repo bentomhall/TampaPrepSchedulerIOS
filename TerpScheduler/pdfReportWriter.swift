@@ -16,15 +16,15 @@ enum PDFReportTypes {
   case TasksForWeek
 }
 
-func getFileNameString(type: PDFReportTypes)->String{
-  let tempDirectory = NSTemporaryDirectory()
-  var filename: String
+func getFileNameString(type: PDFReportTypes)->NSURL{
+  let tempDirectory = NSURL(fileURLWithPath: NSTemporaryDirectory())
+  var filename: NSURL
   switch(type){
   case .TasksForClass:
-    filename = tempDirectory.stringByAppendingPathComponent("class_tasks.pdf")
+    filename = tempDirectory.URLByAppendingPathComponent("class_tasks.pdf")
     break
   case .TasksForWeek:
-    filename = tempDirectory.stringByAppendingPathComponent("weekly_tasks.pdf")
+    filename = tempDirectory.URLByAppendingPathComponent("weekly_tasks.pdf")
     break
   }
   return filename
@@ -80,7 +80,7 @@ class PDFReporter {
     CGContextTranslateCTM(currentContext, 0, 792)
     CGContextScaleCTM(currentContext, 1.0, -1.0)
     //draw the current frame
-    CTFrameDraw(frameRef, currentContext)
+    CTFrameDraw(frameRef, currentContext!)
     
     range = CTFrameGetVisibleStringRange(frameRef)
     range.location += range.length
@@ -91,9 +91,9 @@ class PDFReporter {
   func render()->NSURL?{
     let filename = getFileNameString(type)
     let text = getText()
-    let l = CFAttributedStringGetLength(text)
+    _ = CFAttributedStringGetLength(text)
     let framesetter = CTFramesetterCreateWithAttributedString(text)
-    UIGraphicsBeginPDFContextToFile(filename, CGRectZero, data.metaData)
+    UIGraphicsBeginPDFContextToFile(filename.path!, CGRectZero, data.metaData)
     var range = CFRangeMake(0, 0)
     var page = 0
     var done = false
@@ -108,7 +108,6 @@ class PDFReporter {
     } while(!done)
     
     UIGraphicsEndPDFContext()
-    let url = NSURL(fileURLWithPath: filename)
-    return url
+    return filename
   }
 }

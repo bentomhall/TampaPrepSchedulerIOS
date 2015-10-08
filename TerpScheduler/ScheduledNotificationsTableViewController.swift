@@ -11,7 +11,7 @@ import UIKit
 class ScheduledNotificationsTableViewController: UITableViewController {
   @IBOutlet weak var titleView: UILabel?
   
-  var notifications = UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification]
+  var notifications = UIApplication.sharedApplication().scheduledLocalNotifications!
   let calendar = NSCalendar.currentCalendar()
   let dateFormatter = NSDateFormatter()
   

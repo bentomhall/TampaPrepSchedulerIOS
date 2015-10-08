@@ -12,7 +12,7 @@ import CoreData
 func renumberBadge() {
   let application = UIApplication.sharedApplication()
   application.applicationIconBadgeNumber = 0
-  var pendingNotifications = application.scheduledLocalNotifications as! [UILocalNotification]
+  let pendingNotifications = application.scheduledLocalNotifications!
   if pendingNotifications.count != 0 {
     application.cancelAllLocalNotifications()
     var badgeNumber = 1
@@ -56,9 +56,9 @@ class TaskNotification {
   
   func scheduleNotification(atTime time: NotificationTimes)->NSUUID? {
     let notificationDate = notificationTime(fromCategory: time)
-    let nextBadgeNumber = UIApplication.sharedApplication().scheduledLocalNotifications.count + 1
+    let nextBadgeNumber = UIApplication.sharedApplication().scheduledLocalNotifications!.count + 1
     
-    var notification = UILocalNotification()
+    let notification = UILocalNotification()
     notification.alertBody = task.shortTitle
     notification.applicationIconBadgeNumber = nextBadgeNumber
     notification.alertAction = "view tasks"

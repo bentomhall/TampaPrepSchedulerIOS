@@ -165,11 +165,11 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   }
   
   func add(item: T){
-    let entity = item.toEntity(inContext: context!)
+    let _ = item.toEntity(inContext: context!)
     save()
   }
   
   func addWithoutSave(item: T){
-    let entity = item.toEntity(inContext: context!)
+    let _ = item.toEntity(inContext: context!)
   }
 }

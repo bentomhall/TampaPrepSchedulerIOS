@@ -35,6 +35,7 @@ protocol TaskSummaryDelegate {
   var detailViewController: TaskDetailViewController? { get set }
   func copyTasksFor(dateIndex: Int, period: Int)
   func pasteTasksTo(dateIndex: Int, period: Int)
+  func deleteAllTasksFrom(dateIndex: Int, period: Int)
   func hasCopiedTasks()->Bool
 }
 
@@ -233,7 +234,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func cancelNotificationMatching(task: DailyTask){
-    for notification in UIApplication.sharedApplication().scheduledLocalNotifications as! [UILocalNotification] {
+    for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
       if (notification.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)") {
         UIApplication.sharedApplication().cancelLocalNotification(notification)
         break
@@ -260,6 +261,13 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     }
     taskRepository.persistTasks(newTasks)
     summaryViewController!.reloadCollectionView()
+  }
+  
+  func deleteAllTasksFrom(dateIndex: Int, period: Int) {
+    let date = dateRepository.dates[dateIndex].Date
+    for task in taskRepository.tasksForDateAndPeriod(date, period: period) {
+      didDeleteTask(task)
+    }
   }
   
   func hasCopiedTasks()->Bool{

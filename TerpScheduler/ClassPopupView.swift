@@ -82,10 +82,10 @@ class ClassPopupView: UIView {
   
   func getContent()->SchoolClass{
     var haikuURL : NSURL?
-    let teacher = teacherNameInput!.text
-    let subject = subjectNameInput!.text
+    let teacher = teacherNameInput!.text ?? ""
+    let subject = subjectNameInput!.text ?? ""
     let studyHall = isStudyHall!.on
-    let HaikuURLText = haikuURLInput!.text
+    let HaikuURLText = haikuURLInput!.text ?? ""
     if HaikuURLText != "" {
       haikuURL = NSURL(string: HaikuURLText)
     }

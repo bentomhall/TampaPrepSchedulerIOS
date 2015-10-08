@@ -161,8 +161,7 @@ class MainViewController: UIViewController {
     let p = gestureRecognizer.locationInView(self.collectionView)
     let indexPath = self.collectionView?.indexPathForItemAtPoint(p)
     
-    if let index = indexPath {
-      var cell = collectionView!.cellForItemAtIndexPath(index)
+    if indexPath != nil {
       let menuController = UIMenuController.sharedMenuController()
       let selectionRectangle = CGRectMake(p.x, p.y, 100, 100)
       menuController.setTargetRect(selectionRectangle, inView: self.collectionView!)
@@ -185,13 +184,14 @@ extension MainViewController: UICollectionViewDelegate {
   }
   
   func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-    let pasteboard = UIPasteboard(name: "com.tampaprep.terpscheduler", create: true)
     if action == Selector("cut:"){
       return false
     } else if action == Selector("copy:"){
       return true
     } else if action == Selector("paste:"){
       return delegate!.hasCopiedTasks()
+    } else if action == Selector("cut:"){
+      return true
     } else {
       return false
     }
@@ -204,6 +204,9 @@ extension MainViewController: UICollectionViewDelegate {
       delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
     } else if action == Selector("paste:"){
       delegate!.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
+    } else if action == Selector("cut:"){
+      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate!.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
     }
     return
   }
