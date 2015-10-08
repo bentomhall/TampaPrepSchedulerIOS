@@ -200,8 +200,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   
   func didDeleteTask(task: DailyTask) {
     taskRepository.deleteItem(task)
-    summaryViewController!.reloadCollectionView()
-    detailViewController!.clear()
+    summaryViewController?.reloadCollectionView()
+    detailViewController?.clear()
     cancelNotificationMatching(task)
   }
   

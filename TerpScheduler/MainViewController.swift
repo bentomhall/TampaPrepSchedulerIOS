@@ -185,13 +185,11 @@ extension MainViewController: UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
     if action == Selector("cut:"){
-      return false
+      return true
     } else if action == Selector("copy:"){
       return true
     } else if action == Selector("paste:"){
       return delegate!.hasCopiedTasks()
-    } else if action == Selector("cut:"){
-      return true
     } else {
       return false
     }
