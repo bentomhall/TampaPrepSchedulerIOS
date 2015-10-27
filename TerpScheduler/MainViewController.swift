@@ -238,16 +238,13 @@ extension MainViewController: UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as! DailyTaskSmallView
-    var shadingType: CellShadingType
+    var shadingType: CellShadingType = .noShading
     let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
-    if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
+    if delegate!.isMiddleSchool && (selectedDayIndexes.period == 7){
+      shadingType = .noShading
+    } else if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
       shadingType = .studyHall
-    } else if (selectedDayIndexes.period == 7 && delegate!.isMiddleSchool){
-      shadingType = .noShading
-    } else {
-      shadingType = .noShading
-    }
-    if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
+    } else if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
       if missedClasses.contains(selectedDayIndexes.period){
         shadingType = .noClass
       }
