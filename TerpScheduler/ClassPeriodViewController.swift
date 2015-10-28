@@ -22,15 +22,10 @@ class ClassPeriodViewController: UIViewController {
     let url_string = v.haikuURLInput!.text
     var url: NSURL
     if url_string == "" {
-      url = NSURL(string: "http://tampaprep.haikulearning.com")!
-    } else if v.haikuURLInput!.text!.hasPrefix("http://"){
-      url = NSURL(string: url_string!)!
+      url = NSURL(string: "https://tampaprep.haikulearning.com")!
     } else if url_string!.hasPrefix("https://"){
-      //web view has real hard time with https. this is a hack.
-      let real_url_string = url_string!.stringByReplacingOccurrencesOfString("https", withString: "http", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-      url = NSURL(string: real_url_string)!
-    }
-    else{
+      url = NSURL(string: url_string!)!
+    } else{
       url = NSURL(string: "http://"+url_string!)!
     }
     saveData()
