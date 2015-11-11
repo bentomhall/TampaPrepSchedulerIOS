@@ -24,7 +24,9 @@ class SchoolClassesRepository: NSObject {
     fetchRequest.returnsObjectsAsFaults = false
     do {
       let results = try managedContext.executeFetchRequest(fetchRequest)
-      return (results[0] as! SchoolClassesEntity)
+      if results.count > 0 {
+        return (results[0] as! SchoolClassesEntity)
+      }
     } catch let error as NSError {
       NSLog("error fetching class period: %@", error)
     }
@@ -45,12 +47,14 @@ class SchoolClassesRepository: NSObject {
     fetchRequest.returnsObjectsAsFaults = false
     do {
       let results = try managedContext.executeFetchRequest(fetchRequest)
+      NSLog("%i", results.count)
       if results.count > 1 {
         for result in results {
           managedContext.deleteObject(result as! NSManagedObject)
         }
       }
     } catch let error as NSError {
+      NSLog("Error removing objects")
       NSLog("%@", error)
     }
   }
@@ -61,6 +65,7 @@ class SchoolClassesRepository: NSObject {
     do {
       try managedContext.save()
     } catch let error as NSError {
+      NSLog("Error Saving objects")
       NSLog("%@", error)
     }
 
