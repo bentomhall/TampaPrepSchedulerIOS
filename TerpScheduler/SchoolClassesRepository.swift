@@ -19,39 +19,51 @@ class SchoolClassesRepository: NSObject {
   }
   
   private func fetchEntity(classPeriod: Int) -> SchoolClassesEntity? {
-    let predicate = NSPredicate(format: "classPeriod = %i", classPeriod + 1)
+    let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
     fetchRequest.predicate = predicate
     fetchRequest.returnsObjectsAsFaults = false
-    var error: NSError?
     do {
       let results = try managedContext.executeFetchRequest(fetchRequest)
-      if error != nil {
-        NSLog("%@", error!)
-      }
-      if results.count == 1 {
-        return (results[0] as! SchoolClassesEntity)
-      }
-    } catch let error1 as NSError {
-      error = error1
+      return (results[0] as! SchoolClassesEntity)
+    } catch let error as NSError {
+      NSLog("error fetching class period: %@", error)
     }
     return nil
   }
   
   func getClassDataByPeriod(classPeriod: Int)->SchoolClass{
-    if let classEntity = fetchEntity(classPeriod) {
+    if let classEntity = fetchEntity(classPeriod + 1) {
       let newClass = SchoolClass(entity: classEntity as NSManagedObject)
       return newClass
     }
     return SchoolClass.defaultForPeriod(classPeriod)
   }
   
+  func removeAllFor(period: Int){
+    let predicate = NSPredicate(format: "classPeriod = %i", period)
+    fetchRequest.predicate = predicate
+    fetchRequest.returnsObjectsAsFaults = false
+    do {
+      let results = try managedContext.executeFetchRequest(fetchRequest)
+      if results.count > 1 {
+        for result in results {
+          managedContext.deleteObject(result as! NSManagedObject)
+        }
+      }
+    } catch let error as NSError {
+      NSLog("%@", error)
+    }
+  }
+  
   func persistData(classData : SchoolClass){
-    _ = classData.toEntity(inContext: managedContext)
+    removeAllFor(classData.period) //ensure there can only be one (the most recent)
+    let _ = classData.toEntity(inContext: managedContext) as! SchoolClassesEntity
     do {
       try managedContext.save()
     } catch let error as NSError {
       NSLog("%@", error)
     }
+
   }
   
   func getMiddleSchoolSports()->SchoolClass{

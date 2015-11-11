@@ -88,8 +88,8 @@ class MainViewController: UIViewController {
   }
   
   override func viewDidAppear(animated: Bool) {
-    var classData: SchoolClass
     for (index, period) in (classPeriods!).enumerate(){
+      var classData: SchoolClass
       if delegate!.isMiddleSchool && index == 6{
         classData = classRepository!.getMiddleSchoolSports()
       } else {
