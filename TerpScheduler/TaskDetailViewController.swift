@@ -116,6 +116,7 @@ class TaskDetailViewController: UIViewController {
       prioritySelector!.selectedSegmentIndex = data!.priority.rawValue
       isHaikuAssignment!.setOn(data!.isHaikuAssignment, animated: false)
       isCompleted!.setOn(data!.isCompleted, animated: false)
+      shouldNotify?.setOn(data!.shouldNotify, animated: false)
     }
   }
 }
