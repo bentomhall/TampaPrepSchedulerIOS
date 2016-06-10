@@ -61,6 +61,12 @@
       "idiom" : "ipad",
       "filename" : "TP_seal_home_icon.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "TP_seal_167.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

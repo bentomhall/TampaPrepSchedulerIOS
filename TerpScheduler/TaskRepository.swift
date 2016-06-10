@@ -61,7 +61,7 @@ class TaskRepository {
   ///- parameter withMergeFromTask: Old data to overwrite. Nil implies it's a new task.
   func persistData(data: DailyTask, withMergeFromTask oldTask: DailyTask?){
     if oldTask != nil {
-      let newTask = DailyTask(date: oldTask!.date, period: oldTask!.period, shortTitle: data.shortTitle, details: data.details, isHaiku: data.isHaikuAssignment, completion: data.isCompleted, priority: data.priority, notify: false)
+      let newTask = DailyTask(date: oldTask!.date, period: oldTask!.period, shortTitle: data.shortTitle, details: data.details, isHaiku: data.isHaikuAssignment, completion: data.isCompleted, priority: data.priority, notify: oldTask!.shouldNotify)
       repository.add(newTask)
       repository.deleteItemMatching(values: oldTask!)
     } else {

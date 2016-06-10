@@ -177,7 +177,7 @@ extension MainViewController: UICollectionViewDelegate {
   }
   
   func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-    if action == Selector("cut:"){
+    if action == #selector(cut){
       return true
     } else if action == Selector("copy:"){
       return true

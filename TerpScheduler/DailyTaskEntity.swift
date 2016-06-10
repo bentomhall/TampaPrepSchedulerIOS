@@ -77,7 +77,7 @@ extension DailyTask: DataObject{
     isCompleted = Bool(model.isCompleted)
     priority = Priorities(rawValue: Int(model.priority))!
     period = Int(model.forPeriod)
-    shouldNotify = false
+    shouldNotify = model.hasNotification
   }
   
   ///returns managed entity associated with this data in the provided context. Only creates new if no entity with this id already exists.
@@ -110,6 +110,7 @@ extension DailyTask: DataObject{
     managedEntity.isCompleted = isCompleted
     managedEntity.isHaikuAssignment = isHaikuAssignment
     managedEntity.priority = priority.rawValue
+    managedEntity.hasNotification = shouldNotify
     return managedEntity as NSManagedObject
   }
 }
@@ -129,5 +130,6 @@ class DailyTaskEntity: NSManagedObject {
   @NSManaged var isHaikuAssignment: NSNumber
   @NSManaged var isCompleted: NSNumber
   @NSManaged var priority: NSNumber
+  @NSManaged var hasNotification: Bool
 
 }

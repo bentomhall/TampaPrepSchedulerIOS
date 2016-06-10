@@ -49,6 +49,13 @@ class TaskDetailViewController: UIViewController {
   var date: NSDate?
   var period: Int?
   
+  func stringFromDate(date: NSDate)->String
+  {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "MM/DD/YYYY"
+    return formatter.stringFromDate(date)
+  }
+  
   func clear(){
     titleField!.text = ""
     detailsTextView!.text = ""
@@ -61,6 +68,7 @@ class TaskDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    self.navigationItem.title = stringFromDate(date ?? NSDate())
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
   }
