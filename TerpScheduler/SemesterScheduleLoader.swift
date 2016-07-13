@@ -74,6 +74,7 @@ class SemesterScheduleLoader{
   }
   
   func isScheduleLoaded()->Bool{
+    userDefaults.setFirstLaunch(true) //temporary
     if userDefaults.isFirstLaunchForCurrentVersion() {
       return false
     } else {
@@ -83,6 +84,7 @@ class SemesterScheduleLoader{
   
   func setScheduleLoaded(){
     userDefaults.isDataInitialized = true
+    userDefaults.setFirstLaunch(false)
   }
   
   func serializeSchedule(schedule: [String])->String{

@@ -121,12 +121,20 @@ class UserDefaults {
     if (defaults.valueForKey("version") as! String) == currentVersion {
       return false
     } else {
-      defaults.setValue(currentVersion, forKey: "version")
+      //defaults.setValue(currentVersion, forKey: "version")
       return true
     }
   }
   
-  
+  func setFirstLaunch(value: Bool){
+    let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String
+    if (value){
+      defaults.removeObjectForKey(currentVersion)
+    } else {
+      defaults.setValue(currentVersion, forKey: "version")
+    }
+    
+  }
   
   func readDefaults(){
     defaults.synchronize()

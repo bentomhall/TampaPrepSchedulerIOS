@@ -12,11 +12,11 @@ import CoreData
 func getSchoolYear(date: NSDate)->Int{
   let flags: NSCalendarUnit = [NSCalendarUnit.WeekOfYear, NSCalendarUnit.Year, NSCalendarUnit.Month]
   let dateComponents = NSCalendar.currentCalendar().components(flags, fromDate: date)
-  //1st week of august is currently the start of a new school year (by this system).
+  //1st week of june is currently the start of a new school year (by this system).
   let weekOfYear = dateComponents.weekOfYear
   
   //test for the case where the first official week of the year occurs in December.
-  if weekOfYear >= 30 || (weekOfYear == 1 && dateComponents.month == 12){
+  if weekOfYear >= 22 || (weekOfYear == 1 && dateComponents.month == 12){
     return dateComponents.year
   } else {
     return dateComponents.year - 1

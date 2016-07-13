@@ -179,9 +179,9 @@ extension MainViewController: UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
     if action == #selector(cut){
       return true
-    } else if action == Selector("copy:"){
+    } else if action == #selector(NSObject.copy(_:)){
       return true
-    } else if action == Selector("paste:"){
+    } else if action == #selector(NSObject.paste(_:)){
       return delegate!.hasCopiedTasks()
     } else {
       return false
@@ -191,11 +191,11 @@ extension MainViewController: UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     //WARN Incomplete implementation
     let dayAndPeriod = dayAndPeriodFromIndexPath(indexPath.row)
-    if action == Selector("copy:"){
+    if action == #selector(NSObject.copy(_:)){
       delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
-    } else if action == Selector("paste:"){
+    } else if action == #selector(NSObject.paste(_:)){
       delegate!.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
-    } else if action == Selector("cut:"){
+    } else if action == #selector(NSObject.cut(_:)){
       delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
       delegate!.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
     }

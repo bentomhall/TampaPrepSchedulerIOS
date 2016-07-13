@@ -15,12 +15,14 @@ import CoreData
 let possibleSchedules : [String:[Int]] = ["A": [6], "B": [5,7], "C": [4],
   "D": [2], "E": [1,3],
   "X": [1, 2, 3, 4, 5, 6, 7],
-  "Y": [], "A*": [4, 5, 6, 7],
-  "A**": [1, 2, 3, 6],
+  "Y": [], "D*": [2, 5, 6, 7],
+  "D**": [1, 2, 3, 4],
   "Y*": [5, 6, 7],
   "Y**": [1, 2, 3, 4],
   "C**": [1, 2, 3, 4],
-  "C*": [4, 5, 6, 7]
+  "C*": [4, 5, 6, 7],
+  "C***": [2, 4, 6, 7]
+  
 ]
 
 struct SchoolDate {
@@ -112,7 +114,7 @@ class DateRepository {
   func loadNextWeek(){
     if weekID == 52 {
       weekID = 1
-    } else if weekID == 29 {
+    } else if weekID == 22 {
       schoolYear += 1
       weekID += 1
     } else {
@@ -123,7 +125,7 @@ class DateRepository {
   }
   
   func loadPreviousWeek(){
-    if weekID == 30 {
+    if weekID == 23 {
       schoolYear -= 1
     } else if weekID == 1 {
       weekID = 52

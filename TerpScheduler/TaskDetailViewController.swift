@@ -16,6 +16,7 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var isHaikuAssignment: UISwitch?
   @IBOutlet weak var isCompleted: UISwitch?
   @IBOutlet weak var shouldNotify: UISwitch?
+  @IBOutlet weak var dateLabel: UILabel?
   
   @IBAction func clearData(sender: UIBarButtonItem) {
     shouldSave = false
@@ -52,7 +53,7 @@ class TaskDetailViewController: UIViewController {
   func stringFromDate(date: NSDate)->String
   {
     let formatter = NSDateFormatter()
-    formatter.dateFormat = "MM/DD/YYYY"
+    formatter.dateFormat = "MM/dd/YYYY"
     return formatter.stringFromDate(date)
   }
   
@@ -67,8 +68,9 @@ class TaskDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationItem.setHidesBackButton(true, animated: false)
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    self.navigationItem.title = stringFromDate(date ?? NSDate())
+    self.dateLabel!.text = stringFromDate(date ?? NSDate()) + ": period \(period!)"
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
   }
