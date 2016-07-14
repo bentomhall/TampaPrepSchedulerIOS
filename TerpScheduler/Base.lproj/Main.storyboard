@@ -149,6 +149,9 @@
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="quF-6g-BFD">
                                 <rect key="frame" x="476" y="482" width="51" height="31"/>
+                                <connections>
+                                    <action selector="notificationStatusChanged:" destination="uTZ-yI-WtI" eventType="valueChanged" id="rUh-6C-4Q4"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me about this?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fJ-rp-lWV">
                                 <rect key="frame" x="280" y="487" width="175" height="21"/>

@@ -15,6 +15,8 @@ protocol TaskDetailDelegate{
   var defaultTask: DailyTask { get }
   func addItemToTableView()
   func didUpdateTitle(title: String)
+  func postNotification(forTask task: DailyTask)
+  func cancelNotificationMatching(task: DailyTask)
 }
 
 protocol TaskTableDelegate {
@@ -227,9 +229,18 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return schoolClassRepository.getClassDataByPeriod(period)
   }
   
+  private func notificationsEqual(n1: UILocalNotification, n2: UILocalNotification)->Bool
+  {
+    return n1.userInfo!["taskID"]! as! String == n2.userInfo!["taskID"]! as! String
+  }
+  
   func postNotification(forTask task: DailyTask) {
     let notification = TaskNotification(task: task)
     let time = defaults!.shouldNotifyWhen
+    if UIApplication.sharedApplication().scheduledLocalNotifications!.contains({$0.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)"})
+    {
+      return //notification already exists
+    }
     notification.scheduleNotification(atTime: time)
   }
   

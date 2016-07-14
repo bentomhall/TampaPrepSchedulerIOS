@@ -28,11 +28,13 @@ class TaskDetailViewController: UIViewController {
   @IBAction func addItem(sender: UIBarButtonItem) {
     saveData()
     clear()
+    taskIsPersisted = false
     shouldSave = true
     delegate!.addItemToTableView()
   }
   
   private var shouldSave: Bool = true
+  private var taskIsPersisted: Bool = false
   
   var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask? {
@@ -63,7 +65,9 @@ class TaskDetailViewController: UIViewController {
     prioritySelector!.selectedSegmentIndex = 2
     isHaikuAssignment!.on = false
     isCompleted!.on = false
+    shouldNotify!.on = false
     previousTaskData = delegate!.defaultTask
+    taskIsPersisted = false
   }
   
   override func viewDidLoad() {
@@ -91,6 +95,20 @@ class TaskDetailViewController: UIViewController {
     }
   }
   
+  @IBAction func notificationStatusChanged(sender: UISwitch)
+  {
+    if previousTaskData == nil {
+      return
+    }
+    if taskIsPersisted {
+      if sender.on {
+        delegate!.postNotification(forTask: previousTaskData!)
+      } else {
+        delegate!.cancelNotificationMatching(previousTaskData!)
+      }
+    }
+  }
+  
   func saveData() {
     if titleField!.text != "" {
       let shortTitle = titleField!.text
@@ -98,16 +116,17 @@ class TaskDetailViewController: UIViewController {
       var priority = Priorities(rawValue: prioritySelector!.selectedSegmentIndex)
       let isHaiku = isHaikuAssignment!.on
       let completion = isCompleted!.on
+      let notification = shouldNotify!.on
       if completion {
         priority = Priorities.Completed
       }
       
-      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle!, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: shouldNotify!.on)
+      let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle!, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification)
       if newTaskData != previousTaskData! {
         delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
         previousTaskData = newTaskData
       }
-      
+      taskIsPersisted = true
     }
   }
   
@@ -119,6 +138,7 @@ class TaskDetailViewController: UIViewController {
       isHaikuAssignment!.setOn(data!.isHaikuAssignment, animated: false)
       isCompleted!.setOn(data!.isCompleted, animated: false)
       shouldNotify?.setOn(data!.shouldNotify, animated: false)
+      taskIsPersisted = true
     }
   }
 }
