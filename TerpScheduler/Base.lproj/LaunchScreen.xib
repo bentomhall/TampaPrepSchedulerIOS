@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -11,68 +12,62 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="  Copyright (c) 2014 Tampa Preparatory School. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="445" width="441" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="9jW-hp-F16">
+                    <rect key="frame" x="164" y="235" width="441" height="554"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9jW-hp-F16" secondAttribute="height" multiplier="98:123" id="83P-XR-aWC"/>
+                        <constraint firstAttribute="height" constant="554" id="MtP-ZL-BXe"/>
+                        <constraint firstAttribute="width" constant="441" id="s1S-ZF-HjO"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="83P-XR-aWC"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2016 Tampa Preparatory School. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="129" y="968" width="511" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="uxm-sd-E97">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="700" id="TEY-Yr-RYv"/>
-                        <constraint firstAttribute="width" secondItem="uxm-sd-E97" secondAttribute="height" multiplier="441:554" id="ov5-sy-0Bi"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="TEY-Yr-RYv"/>
-                            <exclude reference="ov5-sy-0Bi"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=regular">
-                        <mask key="constraints">
-                            <include reference="TEY-Yr-RYv"/>
-                            <include reference="ov5-sy-0Bi"/>
-                        </mask>
-                    </variation>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="uxm-sd-E97" secondAttribute="centerY" id="AJX-Xs-Vg6"/>
+                <constraint firstAttribute="bottom" secondItem="9jW-hp-F16" secondAttribute="bottom" constant="20" id="9W9-Z9-hTy"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="35" id="9ag-YW-aim"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="9jW-hp-F16" secondAttribute="bottom" constant="8" id="JWg-up-IHs"/>
+                <constraint firstItem="9jW-hp-F16" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JyN-kS-bjN"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="8" id="NOd-Al-se1"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="14" id="Q12-qN-771"/>
-                <constraint firstAttribute="centerX" secondItem="uxm-sd-E97" secondAttribute="centerX" id="ebK-BN-i8I"/>
+                <constraint firstItem="9jW-hp-F16" firstAttribute="top" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="8" id="U5k-Pg-Yog"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dUl-ZN-xoh"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="jHw-3o-BL3"/>
+                <constraint firstItem="9jW-hp-F16" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tgd-n1-aLT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
             <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="uxm-sd-E97"/>
-                </mask>
                 <mask key="constraints">
+                    <exclude reference="9W9-Z9-hTy"/>
+                    <exclude reference="U5k-Pg-Yog"/>
+                    <exclude reference="JWg-up-IHs"/>
+                    <exclude reference="NOd-Al-se1"/>
                     <exclude reference="Q12-qN-771"/>
                     <exclude reference="jHw-3o-BL3"/>
-                    <exclude reference="AJX-Xs-Vg6"/>
-                    <exclude reference="ebK-BN-i8I"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=regular">
-                <mask key="subviews">
-                    <include reference="uxm-sd-E97"/>
-                </mask>
                 <mask key="constraints">
                     <include reference="Q12-qN-771"/>
                     <include reference="jHw-3o-BL3"/>
-                    <include reference="AJX-Xs-Vg6"/>
-                    <include reference="ebK-BN-i8I"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="launchScreen.png" width="882" height="1107"/>
+        <image name="launchScreenImage.png" width="882" height="1107"/>
     </resources>
 </document>
