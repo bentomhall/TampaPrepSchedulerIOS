@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,18 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="9jW-hp-F16">
-                    <rect key="frame" x="164" y="235" width="441" height="554"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="9jW-hp-F16" secondAttribute="height" multiplier="98:123" id="83P-XR-aWC"/>
-                        <constraint firstAttribute="height" constant="554" id="MtP-ZL-BXe"/>
-                        <constraint firstAttribute="width" constant="441" id="s1S-ZF-HjO"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="83P-XR-aWC"/>
-                        </mask>
-                    </variation>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lt4-ki-ZpO">
+                    <rect key="frame" x="8" y="8" width="752" height="1008"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2016 Tampa Preparatory School. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="129" y="968" width="511" height="21"/>
@@ -34,25 +23,21 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="9jW-hp-F16" secondAttribute="bottom" constant="20" id="9W9-Z9-hTy"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="35" id="9ag-YW-aim"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="top" secondItem="9jW-hp-F16" secondAttribute="bottom" constant="8" id="JWg-up-IHs"/>
-                <constraint firstItem="9jW-hp-F16" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JyN-kS-bjN"/>
+                <constraint firstItem="lt4-ki-ZpO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="E8p-0a-haE"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="8" id="NOd-Al-se1"/>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="14" id="Q12-qN-771"/>
-                <constraint firstItem="9jW-hp-F16" firstAttribute="top" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="8" id="U5k-Pg-Yog"/>
+                <constraint firstAttribute="bottom" secondItem="lt4-ki-ZpO" secondAttribute="bottom" constant="8" id="S0u-nR-TeN"/>
+                <constraint firstItem="lt4-ki-ZpO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Si1-Ba-t5N"/>
+                <constraint firstAttribute="trailing" secondItem="lt4-ki-ZpO" secondAttribute="trailing" constant="8" id="XcC-wv-g9O"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dUl-ZN-xoh"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="jHw-3o-BL3"/>
-                <constraint firstItem="9jW-hp-F16" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tgd-n1-aLT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="9W9-Z9-hTy"/>
-                    <exclude reference="U5k-Pg-Yog"/>
-                    <exclude reference="JWg-up-IHs"/>
                     <exclude reference="NOd-Al-se1"/>
                     <exclude reference="Q12-qN-771"/>
                     <exclude reference="jHw-3o-BL3"/>
@@ -67,7 +52,4 @@
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
-    <resources>
-        <image name="launchScreenImage.png" width="882" height="1107"/>
-    </resources>
 </document>
