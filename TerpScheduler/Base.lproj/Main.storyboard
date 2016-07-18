@@ -50,6 +50,11 @@
                                 <action selector="doneButton:" destination="OLM-A4-8v2" id="4di-1T-J4f"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rrs-oO-raY">
+                            <connections>
+                                <action selector="addTaskButton:" destination="OLM-A4-8v2" id="aTg-xG-9tQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="uJM-PP-9yk">
                         <autoresizingMask key="autoresizingMask"/>

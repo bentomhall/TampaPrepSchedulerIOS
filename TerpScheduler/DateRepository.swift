@@ -22,7 +22,6 @@ let possibleSchedules : [String:[Int]] = ["A": [6], "B": [5,7], "C": [4],
   "C**": [1, 2, 3, 4],
   "C*": [4, 5, 6, 7],
   "C***": [2, 4, 6, 7]
-  
 ]
 
 struct SchoolDate {

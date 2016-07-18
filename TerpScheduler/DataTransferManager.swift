@@ -25,6 +25,7 @@ protocol TaskTableDelegate {
   var defaultTask: DailyTask { get }
   func didDeleteTask(task: DailyTask)
   func willDisappear()
+  func addItemToTableView()
 }
 
 protocol TaskSummaryDelegate {
@@ -128,7 +129,12 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
   
   func addItemToTableView() {
+    if (detailViewController != nil){
+      detailViewController!.saveData()
+      detailViewController!.clear()
+    }
     tableViewController!.addAndSelectItem(defaultTask, forIndex: -1)
+    
   }
   
   func willDisplayDetailForTask(task: DailyTask) {

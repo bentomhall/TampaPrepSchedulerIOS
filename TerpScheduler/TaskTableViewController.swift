@@ -19,6 +19,10 @@ class TaskTableViewController: UITableViewController {
     self.splitViewController!.preferredDisplayMode = .PrimaryHidden
   }
   
+  @IBAction func addTaskButton(sender: UIBarButtonItem){
+    delegate!.addItemToTableView()
+  }
+  
   var date = NSDate()
   var period = 1
   var tasks: [DailyTask] = []
