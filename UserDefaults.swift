@@ -136,6 +136,10 @@ class UserDefaults {
     
   }
   
+  func onSettingsChange(notification: NSNotification){
+    readDefaults()
+  }
+  
   func readDefaults(){
     defaults.synchronize()
   }

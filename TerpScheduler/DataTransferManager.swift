@@ -40,6 +40,7 @@ protocol TaskSummaryDelegate {
   func pasteTasksTo(dateIndex: Int, period: Int)
   func deleteAllTasksFrom(dateIndex: Int, period: Int)
   func hasCopiedTasks()->Bool
+  func refreshDefaults()
 }
 
 protocol ExportDelegate {
@@ -289,6 +290,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   
   func hasCopiedTasks()->Bool{
     return copiedTasks.count > 0
+  }
+  
+  func refreshDefaults() {
+    defaults!.readDefaults()
   }
 
   

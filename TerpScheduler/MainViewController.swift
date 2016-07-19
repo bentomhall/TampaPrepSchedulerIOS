@@ -73,6 +73,14 @@ class MainViewController: UIViewController {
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
+    
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onDefaultsChanged), name: NSUserDefaultsDidChangeNotification, object: nil)
+    
+  }
+  
+  func onDefaultsChanged(notification: NSNotification){
+    delegate!.refreshDefaults()
+    reloadCollectionView()
   }
   
   override func viewDidLayoutSubviews() {
@@ -81,6 +89,13 @@ class MainViewController: UIViewController {
   }
   
   override func viewDidAppear(animated: Bool) {
+    performShading()
+    self.navigationController?.setNavigationBarHidden(false, animated: false)
+    scrollView?.delegate = self
+    super.viewDidAppear(animated)
+  }
+  
+  func performShading(){
     for (index, period) in (classPeriods!).enumerate(){
       var classData: SchoolClass
       if delegate!.isMiddleSchool && index == 6{
@@ -93,13 +108,14 @@ class MainViewController: UIViewController {
         shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index+1)
       }
     }
-    self.navigationController?.setNavigationBarHidden(false, animated: false)
-    scrollView?.delegate = self
-    super.viewDidAppear(animated)
   }
   
   override func viewWillDisappear(animated: Bool) {
     scrollView!.delegate = nil
+  }
+  
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
   
   override func didReceiveMemoryWarning() {
@@ -257,6 +273,7 @@ extension MainViewController: UICollectionViewDataSource {
   
   func reloadCollectionView(){
     taskSummaries = delegate!.summariesForWeek()
+    performShading()
     collectionView!.reloadData()
   }
 }
