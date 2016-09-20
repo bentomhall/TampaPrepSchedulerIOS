@@ -10,20 +10,20 @@ import UIKit
 import CoreData
 
 protocol TaskDetailDelegate{
-  func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask)
+  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask)
   var detailViewController: TaskDetailViewController? {get set}
   var defaultTask: DailyTask { get }
   func addItemToTableView()
-  func didUpdateTitle(title: String)
+  func didUpdateTitle(_ title: String)
   func postNotification(forTask task: DailyTask)
-  func cancelNotificationMatching(task: DailyTask)
+  func cancelNotificationMatching(_ task: DailyTask)
 }
 
 protocol TaskTableDelegate {
-  func willDisplayDetailForTask(task: DailyTask)
+  func willDisplayDetailForTask(_ task: DailyTask)
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
-  func didDeleteTask(task: DailyTask)
+  func didDeleteTask(_ task: DailyTask)
   func willDisappear()
   func addItemToTableView()
 }
@@ -32,34 +32,34 @@ protocol TaskSummaryDelegate {
   var isMiddleSchool: Bool { get }
   var shouldShadeStudyHall: Bool { get }
   var shouldDisplayExtraRow: Bool { get }
-  func willDisplaySplitViewFor(date: NSDate, period: Int)
+  func willDisplaySplitViewFor(_ date: Date, period: Int)
   func summariesForWeek()->[TaskSummary]
   var summaryViewController: MainViewController? { get set }
   var detailViewController: TaskDetailViewController? { get set }
-  func copyTasksFor(dateIndex: Int, period: Int)
-  func pasteTasksTo(dateIndex: Int, period: Int)
-  func deleteAllTasksFrom(dateIndex: Int, period: Int)
+  func copyTasksFor(_ dateIndex: Int, period: Int)
+  func pasteTasksTo(_ dateIndex: Int, period: Int)
+  func deleteAllTasksFrom(_ dateIndex: Int, period: Int)
   func hasCopiedTasks()->Bool
   func refreshDefaults()
 }
 
 protocol ExportDelegate {
-  func getTasks(period: Int)->[DailyTask]
-  func getTasks(weekID: Int, andExcludePeriods: [Int])->[DailyTask]
-  func getClassInformation(period: Int)->SchoolClass
+  func getTasks(_ period: Int)->[DailyTask]
+  func getTasks(_ weekID: Int, andExcludePeriods: [Int])->[DailyTask]
+  func getClassInformation(_ period: Int)->SchoolClass
 }
 
 protocol DateInformationDelegate {
   var datesForWeek: [SchoolDate] { get }
-  func didSetDateByIndex(index: Int, withData data: String)
-  func loadWeek(direction: Int)
-  func loadWeek(shouldFocusOnToday: Bool)
-  func missedClassesForDayByIndex(index: Int)->[Int]
+  func didSetDateByIndex(_ index: Int, withData data: String)
+  func loadWeek(_ direction: Int)
+  func loadWeek(_ shouldFocusOnToday: Bool)
+  func missedClassesForDayByIndex(_ index: Int)->[Int]
 }
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
   init(){
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     defaults = appDelegate.userDefaults
     managedObjectContext = appDelegate.managedObjectContext!
     taskRepository = TaskRepository(context: managedObjectContext)
@@ -68,14 +68,14 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     backupManager = BackupManager(repository: taskRepository)
   }
   
-  private var defaults: UserDefaults?
-  private var managedObjectContext: NSManagedObjectContext
-  private var taskRepository: TaskRepository
-  private var dateRepository: DateRepository
-  private var schoolClassRepository: SchoolClassesRepository
-  private var selectedDate = NSDate()
-  private var selectedPeriod = 1
-  private var copiedTasks = [DailyTask]()
+  fileprivate var defaults: UserDefaults?
+  fileprivate var managedObjectContext: NSManagedObjectContext
+  fileprivate var taskRepository: TaskRepository
+  fileprivate var dateRepository: DateRepository
+  fileprivate var schoolClassRepository: SchoolClassesRepository
+  fileprivate var selectedDate = Date()
+  fileprivate var selectedPeriod = 1
+  fileprivate var copiedTasks = [DailyTask]()
   let backupManager: BackupManager
   
   var isMiddleSchool: Bool {
@@ -111,7 +111,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     get { return taskRepository.defaultTask! }
   }
   
-  func updateTask(task: DailyTask, withPreviousTask oldTask: DailyTask) {
+  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) {
     if oldTask.period != -1 {
       taskRepository.persistData(task, withMergeFromTask: oldTask)
     } else {
@@ -138,7 +138,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     
   }
   
-  func willDisplayDetailForTask(task: DailyTask) {
+  func willDisplayDetailForTask(_ task: DailyTask) {
     if task != selectedTask! && detailViewController != nil{
       detailViewController!.saveData()
     }
@@ -148,13 +148,13 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
       detailViewController!.previousTaskData = selectedTask!
       detailViewController!.setSubviewContentsFromTaskData(task)
     } else {
-      summaryViewController!.performSegueWithIdentifier("ShowDetail", sender: self)
-      summaryViewController?.splitViewController!.preferredDisplayMode = .AllVisible
+      summaryViewController!.performSegue(withIdentifier: "ShowDetail", sender: self)
+      summaryViewController?.splitViewController!.preferredDisplayMode = .allVisible
     }
     return
   }
   
-  func willDisplaySplitViewFor(date: NSDate, period: Int) {
+  func willDisplaySplitViewFor(_ date: Date, period: Int) {
     selectedDate = date
     selectedPeriod = period
     let tasks = taskRepository.tasksForDateAndPeriod(date, period: period)
@@ -182,11 +182,11 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return taskRepository.taskSummariesForDatesBetween(startDate, stopDate: stopDate)
   }
   
-  func didSetDateByIndex(index: Int, withData data: String) {
+  func didSetDateByIndex(_ index: Int, withData data: String) {
     dateRepository.setScheduleForDateByIndex(index, newSchedule: data)
   }
   
-  func loadWeek(direction: Int) {
+  func loadWeek(_ direction: Int) {
     if direction > 0 {
       dateRepository.loadNextWeek()
     } else {
@@ -196,18 +196,18 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     summaryViewController!.reloadCollectionView()
   }
   
-  func loadWeek(shouldFocusOnToday: Bool) {
-    let today = NSDate()
+  func loadWeek(_ shouldFocusOnToday: Bool) {
+    let today = Date()
     dateRepository.loadWeekForDay(today)
     summaryViewController!.taskSummaries = summariesForWeek()
     summaryViewController!.reloadCollectionView()
   }
   
-  func missedClassesForDayByIndex(index: Int) -> [Int] {
+  func missedClassesForDayByIndex(_ index: Int) -> [Int] {
     return dateRepository.missedClassesForDay(index)
   }
   
-  func didDeleteTask(task: DailyTask) {
+  func didDeleteTask(_ task: DailyTask) {
     taskRepository.deleteItem(task)
     summaryViewController?.reloadCollectionView()
     detailViewController?.clear()
@@ -216,27 +216,27 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   
   func willDisappear() {
     //detailViewController!.clear()
-    detailViewController!.navigationController!.popToRootViewControllerAnimated(true)
+    detailViewController!.navigationController!.popToRootViewController(animated: true)
   }
   
-  func didUpdateTitle(title: String){
+  func didUpdateTitle(_ title: String){
     tableViewController!.updateTitleOfSelectedCell(title)
   }
   
-  func getTasks(period: Int) -> [DailyTask]{
+  func getTasks(_ period: Int) -> [DailyTask]{
     let tasks = taskRepository.allTasksForPeriod(period)
     return tasks
   }
   
-  func getTasks(weekID: Int, andExcludePeriods: [Int]) -> [DailyTask] {
+  func getTasks(_ weekID: Int, andExcludePeriods: [Int]) -> [DailyTask] {
     return [DailyTask]()
   }
   
-  func getClassInformation(period: Int) -> SchoolClass {
+  func getClassInformation(_ period: Int) -> SchoolClass {
     return schoolClassRepository.getClassDataByPeriod(period)
   }
   
-  private func notificationsEqual(n1: UILocalNotification, n2: UILocalNotification)->Bool
+  fileprivate func notificationsEqual(_ n1: UILocalNotification, n2: UILocalNotification)->Bool
   {
     return n1.userInfo!["taskID"]! as! String == n2.userInfo!["taskID"]! as! String
   }
@@ -244,29 +244,29 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   func postNotification(forTask task: DailyTask) {
     let notification = TaskNotification(task: task)
     let time = defaults!.shouldNotifyWhen
-    if UIApplication.sharedApplication().scheduledLocalNotifications!.contains({$0.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)"})
+    if UIApplication.shared.scheduledLocalNotifications!.contains(where: {$0.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)"})
     {
       return //notification already exists
     }
     notification.scheduleNotification(atTime: time)
   }
   
-  func cancelNotificationMatching(task: DailyTask){
-    for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+  func cancelNotificationMatching(_ task: DailyTask){
+    for notification in UIApplication.shared.scheduledLocalNotifications! {
       if (notification.userInfo!["taskID"]! as! String == "\(task.shortTitle)\(task.period)") {
-        UIApplication.sharedApplication().cancelLocalNotification(notification)
+        UIApplication.shared.cancelLocalNotification(notification)
         break
       }
     }
   }
   
-  func copyTasksFor(dateIndex: Int, period: Int) {
+  func copyTasksFor(_ dateIndex: Int, period: Int) {
     //note this overwrites what's in the "clipboard" space.
     let date = dateRepository.dates[dateIndex].Date
     copiedTasks = taskRepository.tasksForDateAndPeriod(date, period: period)
   }
   
-  func pasteTasksTo(dateIndex: Int, period: Int) {
+  func pasteTasksTo(_ dateIndex: Int, period: Int) {
     if !hasCopiedTasks() {
       return
     }
@@ -281,7 +281,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     summaryViewController!.reloadCollectionView()
   }
   
-  func deleteAllTasksFrom(dateIndex: Int, period: Int) {
+  func deleteAllTasksFrom(_ dateIndex: Int, period: Int) {
     let date = dateRepository.dates[dateIndex].Date
     for task in taskRepository.tasksForDateAndPeriod(date, period: period) {
       didDeleteTask(task)

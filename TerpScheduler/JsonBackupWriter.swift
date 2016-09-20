@@ -9,41 +9,41 @@
 import Foundation
 
 class JsonBackupWriter {
-  let path: NSURL
-  let dateFormatter = NSDateFormatter()
+  let path: URL
+  let dateFormatter = DateFormatter()
   
-  init(filePath: NSURL){
+  init(filePath: URL){
     path = filePath
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.dateStyle = DateFormatter.Style.short
   }
   
-  func serialize(data: AnyObject)->NSData? {
-    if NSJSONSerialization.isValidJSONObject(data) {
-      return try? NSJSONSerialization.dataWithJSONObject(data, options: NSJSONWritingOptions.PrettyPrinted)
+  func serialize(_ data: AnyObject)->Data? {
+    if JSONSerialization.isValidJSONObject(data) {
+      return try? JSONSerialization.data(withJSONObject: data, options: JSONSerialization.WritingOptions.prettyPrinted)
     } else {
       return nil
     }
   }
   
-  func writeToFile(data: NSData){
+  func writeToFile(_ data: Data){
     var err: NSError?
-    let outputStream = NSOutputStream(URL: path, append: false)
+    let outputStream = OutputStream(url: path, append: false)
     if outputStream != nil {
-      NSJSONSerialization.writeJSONObject(data, toStream: outputStream!, options: NSJSONWritingOptions(), error: &err)
+      JSONSerialization.writeJSONObject(data, to: outputStream!, options: JSONSerialization.WritingOptions(), error: &err)
     }
   }
   
   //Needs error handling
-  func makeBackupFrom(data: [AnyObject])->Bool{
+  func makeBackupFrom(_ data: [AnyObject])->Bool{
     let count = data.count
     var backupData = [String: AnyObject]()
-    backupData["created"] = dateFormatter.stringFromDate(NSDate())
-    backupData["count"] = count
-    backupData["data"] = data
+    backupData["created"] = dateFormatter.string(from: Date()) as AnyObject?
+    backupData["count"] = count as AnyObject?
+    backupData["data"] = data as AnyObject?
     
-    if let jsonData = serialize(backupData) {
-      let dispach_priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-      dispatch_async(dispatch_get_global_queue(dispach_priority, 0))
+    if let jsonData = serialize(backupData as AnyObject) {
+      let dispach_priority = DispatchQueue.GlobalQueuePriority.default
+      DispatchQueue.global(priority: dispach_priority).async
         {
           self.writeToFile(jsonData)
         }

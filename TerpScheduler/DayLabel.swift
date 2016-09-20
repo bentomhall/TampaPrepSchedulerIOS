@@ -17,18 +17,18 @@ class DayLabel: UIView, UITextFieldDelegate {
   @IBOutlet weak var selectedView: UIView?
   
   let dateFormat = "E MM/d"
-  var dateFormatter = NSDateFormatter()
+  var dateFormatter = DateFormatter()
   
-  func setContents(date day: NSDate, scheduleType: String, dateIsToday: Bool, dayInformation: String? = nil){
+  func setContents(date day: Date, scheduleType: String, dateIsToday: Bool, dayInformation: String? = nil){
     self.dateFormatter.dateFormat = dateFormat
-    dateLabel!.text = dateFormatter.stringFromDate(day)
+    dateLabel!.text = dateFormatter.string(from: day)
     scheduleLabel!.text = scheduleType
     selectedView?.layer.cornerRadius = selectedView!.frame.width/2.0
     if dateIsToday{
-      selectedView?.backgroundColor = (UIApplication.sharedApplication().delegate as! AppDelegate).userColors!.primaryThemeColor
+      selectedView?.backgroundColor = (UIApplication.shared.delegate as! AppDelegate).userColors!.primaryThemeColor
     }
     else {
-      selectedView?.backgroundColor = UIColor.clearColor()
+      selectedView?.backgroundColor = UIColor.clear
     }
     return
   }

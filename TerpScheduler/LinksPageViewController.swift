@@ -16,14 +16,14 @@ class LinksPageViewController: UIViewController {
   @IBOutlet weak var googleDriveButton: UIButton?
   @IBOutlet weak var backButton: UIButton?
   
-  let tampaPrepURL = NSURL(string: "http://www.tampaprep.org")!
-  let myBackPackURL = NSURL(string: "https://tampaprep.seniormbp.com/SeniorApps")!
-  let haikuAppURL = NSURL(string: "haikulearning://")!
-  let haikuURL = NSURL(string: "https://tampaprep.haikulearning.com")!
-  let googleDriveAppURL = NSURL(string: "googledrive://")!
+  let tampaPrepURL = URL(string: "http://www.tampaprep.org")!
+  let myBackPackURL = URL(string: "https://tampaprep.seniormbp.com/SeniorApps")!
+  let haikuAppURL = URL(string: "haikulearning://")!
+  let haikuURL = URL(string: "https://tampaprep.haikulearning.com")!
+  let googleDriveAppURL = URL(string: "googledrive://")!
   
-  @IBAction func linkButtonPressed(sender: UIButton){
-    var url: NSURL
+  @IBAction func linkButtonPressed(_ sender: UIButton){
+    var url: URL
     switch(sender.titleLabel!.text!){
     case "Tampa Prep":
       url = tampaPrepURL
@@ -32,28 +32,28 @@ class LinksPageViewController: UIViewController {
       url = myBackPackURL
       break
     case "Haiku Learning":
-      if UIApplication.sharedApplication().canOpenURL(haikuAppURL){
+      if UIApplication.shared.canOpenURL(haikuAppURL){
         url = haikuAppURL
       } else {
         url = haikuURL
       }
       break
     case "Google Drive":
-      if UIApplication.sharedApplication().canOpenURL(googleDriveAppURL) {
+      if UIApplication.shared.canOpenURL(googleDriveAppURL) {
         url = googleDriveAppURL
       } else {
-        url = NSURL(string: "http://drive.google.com")!
+        url = URL(string: "http://drive.google.com")!
       }
       break
     default:
-      url = NSURL(string: "http://www.google.com")!
+      url = URL(string: "http://www.google.com")!
       break
     }
-    UIApplication.sharedApplication().openURL(url)
+    UIApplication.shared.openURL(url)
   }
   
-  @IBAction func closeView(sender: UIButton){
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func closeView(_ sender: UIButton){
+    dismiss(animated: true, completion: nil)
   }
   
     override func viewDidLoad() {
@@ -67,10 +67,10 @@ class LinksPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ExportTasks"{
-      let receivingController = segue.destinationViewController as! ExportViewController
-      receivingController.modalPresentationStyle = .Popover
+      let receivingController = segue.destination as! ExportViewController
+      receivingController.modalPresentationStyle = .popover
       receivingController.preferredContentSize = CGSize(width: 300, height: 300)
     }
   }

@@ -9,27 +9,27 @@
 import UIKit
 
 protocol ClassPeriodDataSource {
-  func getClassData(period: Int)->SchoolClass
-  func setClassData(data:SchoolClass, forIndex index:Int)
-  func openWebView(url: NSURL)
+  func getClassData(_ period: Int)->SchoolClass
+  func setClassData(_ data:SchoolClass, forIndex index:Int)
+  func openWebView(_ url: URL)
   func shouldShadeRow(_: Bool, forPeriod: Int)
 }
 
 @IBDesignable
 class ClassPeriodViewController: UIViewController {
-  @IBAction func openWebView(sender: UILabel){
+  @IBAction func openWebView(_ sender: UILabel){
     let v = self.view as! ClassPopupView
     let url_string = v.haikuURLInput!.text
-    var url: NSURL
+    var url: URL
     if url_string == "" {
-      url = NSURL(string: "https://tampaprep.haikulearning.com")!
+      url = URL(string: "https://tampaprep.haikulearning.com")!
     } else if url_string!.hasPrefix("https://"){
-      url = NSURL(string: url_string!)!
+      url = URL(string: url_string!)!
     } else{
-      url = NSURL(string: "http://"+url_string!)!
+      url = URL(string: "http://"+url_string!)!
     }
     saveData()
-    self.dismissViewControllerAnimated(false, completion: nil)
+    self.dismiss(animated: false, completion: nil)
     delegate!.openWebView(url)
   }
   
@@ -59,11 +59,11 @@ class ClassPeriodViewController: UIViewController {
     }
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     saveData()
   }

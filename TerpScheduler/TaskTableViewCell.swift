@@ -17,14 +17,14 @@ class TaskTableViewCell: UITableViewCell {
       // Initialization code
   }
 
-  override func setSelected(selected: Bool, animated: Bool) {
+  override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
   
-  func setTitleText(text: String, taskIsComplete: Bool){
+  func setTitleText(_ text: String, taskIsComplete: Bool){
     title!.text = text
     if taskIsComplete {
-      title!.textColor = UIColor.lightTextColor()
+      title!.textColor = UIColor.lightText
     }
   }
 }

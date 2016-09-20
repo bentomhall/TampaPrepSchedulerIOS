@@ -11,19 +11,19 @@ import CoreData
 
 
 class SchoolClassesRepository: NSObject {
-  private var managedContext : NSManagedObjectContext
-  private let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
+  fileprivate var managedContext : NSManagedObjectContext
+  fileprivate let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
   
   init(context: NSManagedObjectContext){
     managedContext = context
   }
   
-  private func fetchEntity(classPeriod: Int) -> SchoolClassesEntity? {
+  fileprivate func fetchEntity(_ classPeriod: Int) -> SchoolClassesEntity? {
     let predicate = NSPredicate(format: "classPeriod = %i", classPeriod)
     fetchRequest.predicate = predicate
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      let results = try managedContext.executeFetchRequest(fetchRequest)
+      let results = try managedContext.fetch(fetchRequest)
       if results.count > 0 {
         return (results[0] as! SchoolClassesEntity)
       }
@@ -33,7 +33,7 @@ class SchoolClassesRepository: NSObject {
     return nil
   }
   
-  func getClassDataByPeriod(classPeriod: Int)->SchoolClass{
+  func getClassDataByPeriod(_ classPeriod: Int)->SchoolClass{
     if let classEntity = fetchEntity(classPeriod + 1) {
       let newClass = SchoolClass(entity: classEntity as NSManagedObject)
       return newClass
@@ -41,15 +41,15 @@ class SchoolClassesRepository: NSObject {
     return SchoolClass.defaultForPeriod(classPeriod)
   }
   
-  func removeAllFor(period: Int){
+  func removeAllFor(_ period: Int){
     let predicate = NSPredicate(format: "classPeriod = %i", period)
     fetchRequest.predicate = predicate
     fetchRequest.returnsObjectsAsFaults = false
     do {
-      let results = try managedContext.executeFetchRequest(fetchRequest)
+      let results = try managedContext.fetch(fetchRequest)
       if results.count > 1 {
         for result in results {
-          managedContext.deleteObject(result as! NSManagedObject)
+          managedContext.delete(result as! NSManagedObject)
         }
       }
     } catch let error as NSError {
@@ -57,7 +57,7 @@ class SchoolClassesRepository: NSObject {
     }
   }
   
-  func persistData(classData : SchoolClass){
+  func persistData(_ classData : SchoolClass){
     removeAllFor(classData.period) //ensure there can only be one (the most recent)
     let _ = classData.toEntity(inContext: managedContext) as! SchoolClassesEntity
     do {

@@ -246,6 +246,7 @@
 					D408FD711A432E45004F0B83 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 6MNL48WNZE;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -442,6 +443,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -466,6 +468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TerpScheduler/TerpScheduler-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -7,23 +7,43 @@
 //
 
 import Foundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class JsonBackupReader {
-  let path: NSURL
-  let dateFormatter = NSDateFormatter()
+  let path: URL
+  let dateFormatter = DateFormatter()
   var itemCount: Int?
-  var dateCreated: NSDate?
+  var dateCreated: Date?
   
-  init(filePath: NSURL){
+  init(filePath: URL){
     path = filePath
-    dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+    dateFormatter.dateStyle = DateFormatter.Style.short
   }
   
   func deserializeBackup()->[[String: AnyObject]]?{
-    if let inputStream = NSInputStream(URL: path) {
-      let fileContents = (try! NSJSONSerialization.JSONObjectWithStream(inputStream, options: [])) as! [String: AnyObject]
+    if let inputStream = InputStream(url: path) {
+      let fileContents = (try! JSONSerialization.jsonObject(with: inputStream, options: [])) as! [String: AnyObject]
       
-      dateCreated = dateFormatter.dateFromString(fileContents["created"]! as! String)
+      dateCreated = dateFormatter.date(from: fileContents["created"]! as! String)
       itemCount = fileContents["count"] as? Int
       
       if itemCount > 0 {

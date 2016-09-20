@@ -24,11 +24,11 @@ class SchoolClassView: UIView {
     }
   }
   
-  var haikuURL : NSURL?
+  var haikuURL : URL?
   
-  func setContentLabels(data: SchoolClass){
-    classNameLabel!.text! = data.subject.uppercaseString
+  func setContentLabels(_ data: SchoolClass){
+    classNameLabel!.text! = data.subject.uppercased()
     teacherNameLabel!.text! = data.teacherName
-    haikuURL = data.haikuURL
+    haikuURL = data.haikuURL as URL?
   }  
 }

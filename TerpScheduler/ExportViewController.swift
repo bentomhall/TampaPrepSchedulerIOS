@@ -11,7 +11,7 @@ import UIKit
 class ExportViewController: UIViewController, UIDocumentInteractionControllerDelegate {
   @IBOutlet var periodSelector: UISegmentedControl?
   
-  @IBAction func doExport(sender: UIButton){
+  @IBAction func doExport(_ sender: UIButton){
     let selectedPeriod = periodSelector!.selectedSegmentIndex + 1
     let tasksForPeriod = delegate.getTasks(selectedPeriod)
     let classData = delegate.getClassInformation(selectedPeriod)
@@ -19,19 +19,19 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     let body = createBody(fromTasks: tasksForPeriod)
     let header = createHeader(classData)
     let pdfData = PDFDataConvertable(metaData: metaData, headerData: header, bodyData: body)
-    let pdfWriter = PDFReporter(data: pdfData, ofType: .TasksForClass)
+    let pdfWriter = PDFReporter(data: pdfData, ofType: .tasksForClass)
     let url = pdfWriter.render()
     if url != nil {
-      documentPresenter = UIDocumentInteractionController(URL: url!)
-      documentPresenter!.presentOpenInMenuFromRect(sender.frame, inView: self.view, animated: true)
+      documentPresenter = UIDocumentInteractionController(url: url!)
+      documentPresenter!.presentOpenInMenu(from: sender.frame, in: self.view, animated: true)
     }
   }
   
-  let delegate: ExportDelegate = (UIApplication.sharedApplication().delegate! as! AppDelegate).dataManager
+  let delegate: ExportDelegate = (UIApplication.shared.delegate! as! AppDelegate).dataManager
   var documentPresenter: UIDocumentInteractionController?
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.preferredContentSize = CGSizeMake(300, 200)
+    self.preferredContentSize = CGSize(width: 300, height: 200)
     // Do any additional setup after loading the view.
   }
   
@@ -40,14 +40,14 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     // Dispose of any resources that can be recreated.
   }
   
-  func createHeader(classData: SchoolClass)->String{
+  func createHeader(_ classData: SchoolClass)->String{
     return "All tasks for \n \(classData.subject), period \(classData.period)"
   }
   
   func createBody(fromTasks tasks: [DailyTask])->[String: [String]]{
     var strings = [String: [String]]()
     for task in tasks {
-      let key = stringFromDate(task.date)
+      let key = stringFromDate(task.date as Date)
       let temporaryString = "\(task.shortTitle) Priority: \(task.priority.rawValue) \n Details: \(task.details) \n Turn in on Haiku? \(task.isHaikuAssignment) \n Completed? \(task.isCompleted)"
       var currentValue = strings[key]
       if currentValue != nil {
@@ -60,9 +60,9 @@ class ExportViewController: UIViewController, UIDocumentInteractionControllerDel
     return strings
   }
   
-  func stringFromDate(date: NSDate)->String{
-    let formatter = NSDateFormatter()
+  func stringFromDate(_ date: Date)->String{
+    let formatter = DateFormatter()
     formatter.dateFormat = "MM/dd/yy"
-    return formatter.stringFromDate(date)
+    return formatter.string(from: date)
   }
 }

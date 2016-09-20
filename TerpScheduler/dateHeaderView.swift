@@ -11,12 +11,12 @@ import UIKit
 @IBDesignable
 class DateHeaderView: UICollectionReusableView {
   @IBOutlet var dayLabels : [DayLabel]?
-  private let calendar = NSCalendar.currentCalendar()
+  fileprivate let calendar = Calendar.current
     
-  func SetDates(dates : [SchoolDate]){
-    let today = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
-    for (index, date) in dates.enumerate() {
-      let isToday = today.compare(date.Date) == NSComparisonResult.OrderedSame
+  func SetDates(_ dates : [SchoolDate]){
+    let today = (calendar as NSCalendar).date(bySettingHour: 0, minute: 0, second: 0, of: Date(), options: NSCalendar.Options())!
+    for (index, date) in dates.enumerated() {
+      let isToday = today.compare(date.Date as Date) == ComparisonResult.orderedSame
       dayLabels![index].setContents(date: date.Date, scheduleType: date.Schedule, dateIsToday: isToday)
     }
   }

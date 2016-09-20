@@ -23,39 +23,39 @@ class DailyTaskSmallView: UICollectionViewCell {
   override func prepareForReuse() {
     topTaskLabel!.text = ""
     remainingTasksLabel!.text = ""
-    remainingTasksLabel!.hidden = false
+    remainingTasksLabel!.isHidden = false
   }
   
-  func setTopTaskLabel(taskTitle: String, isTaskCompleted completion: Bool){
+  func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool){
     if completion {
       topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSStrikethroughStyleAttributeName: 2])
-      topTaskLabel!.enabled = false
+      topTaskLabel!.isEnabled = false
     } else {
       topTaskLabel!.attributedText = NSAttributedString(string: taskTitle)
-      topTaskLabel!.enabled = true
+      topTaskLabel!.isEnabled = true
     }
   }
   
   func setRemainingTasksLabel(tasksRemaining remaining: Int){
     if remaining > 0 {
-      remainingTasksLabel?.hidden = false
+      remainingTasksLabel?.isHidden = false
       let text = "+ \(remaining) others"
       remainingTasksLabel!.text! = text
       if remaining > 1 {
-        remainingTasksLabel!.textColor = UIColor.redColor()
+        remainingTasksLabel!.textColor = UIColor.red
       }
       else if remaining == 1{
         remainingTasksLabel!.text = "+ 1 other"
-        remainingTasksLabel!.textColor = UIColor.blueColor()
+        remainingTasksLabel!.textColor = UIColor.blue
       }
     } else {
-      remainingTasksLabel?.hidden = true
+      remainingTasksLabel?.isHidden = true
     }
     
   }
   
-  func shouldShadeCell(shadingType: CellShadingType){
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+  func shouldShadeCell(_ shadingType: CellShadingType){
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let colors = appDelegate.userColors!
     switch(shadingType){
     case .noClass:
@@ -65,7 +65,7 @@ class DailyTaskSmallView: UICollectionViewCell {
       self.backgroundColor = colors.StudyHallColor
       break
     case .noShading:
-      self.backgroundColor = UIColor.whiteColor()
+      self.backgroundColor = UIColor.white
     }
   }
 }

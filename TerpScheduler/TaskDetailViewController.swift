@@ -18,14 +18,14 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var shouldNotify: UISwitch?
   @IBOutlet weak var dateLabel: UILabel?
   
-  @IBAction func clearData(sender: UIBarButtonItem) {
+  @IBAction func clearData(_ sender: UIBarButtonItem) {
     shouldSave = false
-    splitViewController!.preferredDisplayMode = .PrimaryHidden
-    navigationController!.popToRootViewControllerAnimated(false)
+    splitViewController!.preferredDisplayMode = .primaryHidden
+    navigationController!.popToRootViewController(animated: false)
     clear()
   }
   
-  @IBAction func addItem(sender: UIBarButtonItem) {
+  @IBAction func addItem(_ sender: UIBarButtonItem) {
     saveData()
     clear()
     taskIsPersisted = false
@@ -33,8 +33,8 @@ class TaskDetailViewController: UIViewController {
     delegate!.addItemToTableView()
   }
   
-  private var shouldSave: Bool = true
-  private var taskIsPersisted: Bool = false
+  fileprivate var shouldSave: Bool = true
+  fileprivate var taskIsPersisted: Bool = false
   
   var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask? {
@@ -43,29 +43,29 @@ class TaskDetailViewController: UIViewController {
         return
       }
       if date == nil && value != nil{
-        date = value!.date
+        date = value!.date as Date
         period = value!.period
       }
     }
   }
   
-  var date: NSDate?
+  var date: Date?
   var period: Int?
   
-  func stringFromDate(date: NSDate)->String
+  func stringFromDate(_ date: Date)->String
   {
-    let formatter = NSDateFormatter()
+    let formatter = DateFormatter()
     formatter.dateFormat = "MM/dd/YYYY"
-    return formatter.stringFromDate(date)
+    return formatter.string(from: date)
   }
   
   func clear(){
     titleField!.text = ""
     detailsTextView!.text = ""
     prioritySelector!.selectedSegmentIndex = 2
-    isHaikuAssignment!.on = false
-    isCompleted!.on = false
-    shouldNotify!.on = false
+    isHaikuAssignment!.isOn = false
+    isCompleted!.isOn = false
+    shouldNotify!.isOn = false
     previousTaskData = delegate!.defaultTask
     taskIsPersisted = false
   }
@@ -73,8 +73,8 @@ class TaskDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.setHidesBackButton(true, animated: false)
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    self.dateLabel!.text = stringFromDate(date ?? NSDate()) + ": period \(period!)"
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    self.dateLabel!.text = stringFromDate(date ?? Date()) + ": period \(period!)"
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
   }
@@ -83,25 +83,25 @@ class TaskDetailViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setSubviewContentsFromTaskData(previousTaskData)
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     if shouldSave {
       saveData()
     }
   }
   
-  @IBAction func notificationStatusChanged(sender: UISwitch)
+  @IBAction func notificationStatusChanged(_ sender: UISwitch)
   {
     if previousTaskData == nil {
       return
     }
     if taskIsPersisted {
-      if sender.on {
+      if sender.isOn {
         delegate!.postNotification(forTask: previousTaskData!)
       } else {
         delegate!.cancelNotificationMatching(previousTaskData!)
@@ -114,11 +114,11 @@ class TaskDetailViewController: UIViewController {
       let shortTitle = titleField!.text
       let details = detailsTextView!.text
       var priority = Priorities(rawValue: prioritySelector!.selectedSegmentIndex)
-      let isHaiku = isHaikuAssignment!.on
-      let completion = isCompleted!.on
-      let notification = shouldNotify!.on
+      let isHaiku = isHaikuAssignment!.isOn
+      let completion = isCompleted!.isOn
+      let notification = shouldNotify!.isOn
       if completion {
-        priority = Priorities.Completed
+        priority = Priorities.completed
       }
       
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle!, details: details, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification)
@@ -130,7 +130,7 @@ class TaskDetailViewController: UIViewController {
     }
   }
   
-  func setSubviewContentsFromTaskData(data: DailyTask?){
+  func setSubviewContentsFromTaskData(_ data: DailyTask?){
     if data != nil {
       titleField!.text = data!.shortTitle
       detailsTextView!.text = data!.details
@@ -144,18 +144,18 @@ class TaskDetailViewController: UIViewController {
 }
 
 extension TaskDetailViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
   }
   
-  func textFieldDidEndEditing(textField: UITextField) {
+  func textFieldDidEndEditing(_ textField: UITextField) {
     delegate!.didUpdateTitle(textField.text!)
   }
 }
 
 extension TaskDetailViewController: UITextViewDelegate {
-  func textViewDidEndEditing(textView: UITextView) {
+  func textViewDidEndEditing(_ textView: UITextView) {
     textView.resignFirstResponder()
   }
 }

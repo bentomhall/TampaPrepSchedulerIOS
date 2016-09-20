@@ -19,25 +19,25 @@ protocol PopOverPresentable {
 @IBDesignable
 class MainViewController: UIViewController {
   
-  private var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
-  private var appDelegate : AppDelegate?
-  var delegate: protocol<TaskSummaryDelegate, DateInformationDelegate>?
-  private var contentOffset = CGPointZero
-  private var deviceOrientationisPortrait = false
+  fileprivate var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
+  fileprivate var appDelegate : AppDelegate?
+  var delegate: TaskSummaryDelegate & DateInformationDelegate
+  fileprivate var contentOffset = CGPoint.zero
+  fileprivate var deviceOrientationisPortrait = false
   
   @IBOutlet weak var contentView: UIView?
   @IBOutlet weak var scrollView: UIScrollView?
   @IBOutlet weak var collectionView : UICollectionView?
   @IBOutlet var classPeriods : [SchoolClassView]?
-  @IBAction func SwipeRecognizer(recognizer: UISwipeGestureRecognizer){
+  @IBAction func SwipeRecognizer(_ recognizer: UISwipeGestureRecognizer){
     let direction = recognizer.direction
     switch (direction)
     {
-      case UISwipeGestureRecognizerDirection.Right:
-        delegate!.loadWeek(-1)
+      case UISwipeGestureRecognizerDirection.right:
+        delegate.loadWeek(-1)
         break
-      case UISwipeGestureRecognizerDirection.Left:
-        delegate!.loadWeek(1)
+      case UISwipeGestureRecognizerDirection.left:
+        delegate.loadWeek(1)
         break
       default:
         //do nothing
@@ -45,8 +45,8 @@ class MainViewController: UIViewController {
     }
   }
   
-  @IBAction func TodayButtonTapped(sender: UIButton){
-    delegate!.loadWeek(true)
+  @IBAction func TodayButtonTapped(_ sender: UIButton){
+    delegate.loadWeek(true)
   }
   
   var taskSummaries : [TaskSummary]?
@@ -54,7 +54,7 @@ class MainViewController: UIViewController {
   var detailIndex: (day: Int, period: Int) = (0,0)
   var dataForSelectedTask: DailyTask?
   
-  func dayAndPeriodFromIndexPath(row: Int)->(day: Int, period: Int){
+  func dayAndPeriodFromIndexPath(_ row: Int)->(day: Int, period: Int){
     let days = 5
     let dayIndex = row % days
     let periodIndex = Int(Double(row)/Double(days)) + 1 //ugly
@@ -64,31 +64,31 @@ class MainViewController: UIViewController {
   //Mark - Overrides
   override func viewDidLoad() {
     super.viewDidLoad()
-    appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+    appDelegate = UIApplication.shared.delegate as? AppDelegate
     classRepository = SchoolClassesRepository(context: appDelegate!.managedObjectContext!)
     delegate = appDelegate!.dataManager
-    delegate!.summaryViewController = self
-    taskSummaries = delegate!.summariesForWeek()
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.PrimaryHidden
+    delegate.summaryViewController = self
+    taskSummaries = delegate.summariesForWeek()
+    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.primaryHidden
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
     
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onDefaultsChanged), name: NSUserDefaultsDidChangeNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(onDefaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
     
   }
   
-  func onDefaultsChanged(notification: NSNotification){
-    delegate!.refreshDefaults()
-    reloadCollectionView()
+  func onDefaultsChanged(_ notification: Notification){
+    delegate.refreshDefaults()
+    reloadCollectionView(true)
   }
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    scrollView!.contentSize = CGSizeMake(contentView!.frame.width, contentView!.frame.height)
+    scrollView!.contentSize = CGSize(width: contentView!.frame.width, height: contentView!.frame.height)
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     performShading()
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
@@ -96,84 +96,84 @@ class MainViewController: UIViewController {
   }
   
   func performShading(){
-    for (index, period) in (classPeriods!).enumerate(){
+    for (index, period) in (classPeriods!).enumerated(){
       var classData: SchoolClass
-      if delegate!.isMiddleSchool && index == 6{
+      if delegate.isMiddleSchool && index == 6{
         classData = classRepository!.getMiddleSchoolSports()
       } else {
         classData = classRepository!.getClassDataByPeriod(index)
       }
       period.classData = classData
       if classData.isStudyHall {
-        shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index+1)
+        shouldShadeRow(delegate.shouldShadeStudyHall, forPeriod: index+1)
       }
     }
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     scrollView!.delegate = nil
   }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier!.hasPrefix("ClassDetail") {
-      let index = Int(segue.identifier!.componentsSeparatedByString("_")[1])
-      let receivingController = segue.destinationViewController as! ClassPeriodViewController
-      receivingController.modalPresentationStyle = .Popover
+      let index = Int(segue.identifier!.components(separatedBy: "_")[1])
+      let receivingController = segue.destination as! ClassPeriodViewController
+      receivingController.modalPresentationStyle = .popover
       receivingController.preferredContentSize = CGSize(width: 500, height: 260)
       receivingController.delegate = self
       receivingController.index = index!
     } else if segue.identifier!.hasPrefix("Day"){
-      let index = Int(segue.identifier!.componentsSeparatedByString("_")[1])
-      let receivingController = segue.destinationViewController as! ScheduleOverrideController
-      receivingController.modalPresentationStyle = .Popover
+      let index = Int(segue.identifier!.components(separatedBy: "_")[1])
+      let receivingController = segue.destination as! ScheduleOverrideController
+      receivingController.modalPresentationStyle = .popover
       receivingController.delegate = self
       receivingController.index = index!
-      let dateInformation = delegate!.datesForWeek[index!]
+      let dateInformation = delegate.datesForWeek[index!]
       receivingController.previousSchedule = dateInformation.Schedule
     } else if segue.identifier! == "WebView"{
-      let url = sender as! NSURL
-      let receivingController = segue.destinationViewController as! WebViewController
+      let url = sender as! URL
+      let receivingController = segue.destination as! WebViewController
       receivingController.initialURL = url
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
-      let receivingController = segue.destinationViewController as! TaskDetailViewController
-      delegate!.detailViewController = receivingController
+      let receivingController = segue.destination as! TaskDetailViewController
+      delegate.detailViewController = receivingController
     }
-    super.prepareForSegue(segue, sender: sender)
+    super.prepare(for: segue, sender: sender)
   }
   
-  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    coordinator.animateAlongsideTransition(nil, completion: {(context:UIViewControllerTransitionCoordinatorContext!)->Void in
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    coordinator.animate(alongsideTransition: nil, completion: {(context:UIViewControllerTransitionCoordinatorContext!)->Void in
       self.deviceOrientationisPortrait = size.width < size.height
       self.collectionView!.collectionViewLayout.invalidateLayout()
-      self.scrollView!.contentSize = CGSizeMake(size.width, self.collectionView!.frame.height)
+      self.scrollView!.contentSize = CGSize(width: size.width, height: self.collectionView!.frame.height)
       return
     })
   }
   
-  func showDetail(task: DailyTask){
-    self.performSegueWithIdentifier("ReplaceDetail", sender: self)
+  func showDetail(_ task: DailyTask){
+    self.performSegue(withIdentifier: "ReplaceDetail", sender: self)
   }
   
-  func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer){
-    if gestureRecognizer.state != UIGestureRecognizerState.Ended {
+  func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer){
+    if gestureRecognizer.state != UIGestureRecognizerState.ended {
       return
     }
-    let p = gestureRecognizer.locationInView(self.collectionView)
-    let indexPath = self.collectionView?.indexPathForItemAtPoint(p)
+    let p = gestureRecognizer.location(in: self.collectionView)
+    let indexPath = self.collectionView?.indexPathForItem(at: p)
     
     if indexPath != nil {
-      let menuController = UIMenuController.sharedMenuController()
-      let selectionRectangle = CGRectMake(p.x, p.y, 100, 100)
-      menuController.setTargetRect(selectionRectangle, inView: self.collectionView!)
+      let menuController = UIMenuController.shared
+      let selectionRectangle = CGRect(x: p.x, y: p.y, width: 100, height: 100)
+      menuController.setTargetRect(selectionRectangle, in: self.collectionView!)
       menuController.setMenuVisible(true, animated: true)
     }
   }
@@ -181,46 +181,46 @@ class MainViewController: UIViewController {
 
 //MARK - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
-  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    detailIndex = dayAndPeriodFromIndexPath(indexPath.row)
-    let date = delegate!.datesForWeek[detailIndex.day].Date
-    delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    detailIndex = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
+    let date = delegate.datesForWeek[detailIndex.day].Date
+    delegate.willDisplaySplitViewFor(date, period: detailIndex.period)
+    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
   }
   
-  func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+  func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
     return true
   }
   
-  func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+  func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
     if action == #selector(cut){
       return true
     } else if action == #selector(NSObject.copy(_:)){
       return true
     } else if action == #selector(NSObject.paste(_:)){
-      return delegate!.hasCopiedTasks()
+      return delegate.hasCopiedTasks()
     } else {
       return false
     }
   }
   
-  func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+  func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     //WARN Incomplete implementation
-    let dayAndPeriod = dayAndPeriodFromIndexPath(indexPath.row)
+    let dayAndPeriod = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
     if action == #selector(NSObject.copy(_:)){
-      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
     } else if action == #selector(NSObject.paste(_:)){
-      delegate!.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
     } else if action == #selector(NSObject.cut(_:)){
-      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
-      delegate!.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
     }
     return
   }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if deviceOrientationisPortrait {
       //portrait
       return CGSize(width: 117, height: 116)
@@ -233,54 +233,54 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 //MARK - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
-  func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
   
-  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if delegate!.shouldDisplayExtraRow {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    if delegate.shouldDisplayExtraRow {
       return 40
     } else {
       return 35
     }
   }
   
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier("ClassPeriodTaskSummary", forIndexPath: indexPath) as! DailyTaskSmallView
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "ClassPeriodTaskSummary", for: indexPath) as! DailyTaskSmallView
     var shadingType: CellShadingType = .noShading
-    let selectedDayIndexes = dayAndPeriodFromIndexPath(indexPath.row)
-    if delegate!.isMiddleSchool && (selectedDayIndexes.period == 7){
+    let selectedDayIndexes = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
+    if delegate.isMiddleSchool && (selectedDayIndexes.period == 7){
       shadingType = .noShading
-    } else if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
+    } else if (shadedRowIndexes[selectedDayIndexes.period]! && delegate.shouldShadeStudyHall){
       shadingType = .studyHall
-    } else if let missedClasses = delegate?.missedClassesForDayByIndex(selectedDayIndexes.day){
+    } else if let missedClasses = delegate.missedClassesForDayByIndex(selectedDayIndexes.day){
       if missedClasses.contains(selectedDayIndexes.period){
         shadingType = .noClass
       }
     }
     cell.shouldShadeCell(shadingType)
-    let summary = taskSummaries![indexPath.row]
+    let summary = taskSummaries![(indexPath as NSIndexPath).row]
     cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion)
     cell.setRemainingTasksLabel(tasksRemaining: summary.remainingTasks)
     return cell
   }
   
-  func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-    let header = self.collectionView?.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", forIndexPath: indexPath) as! DateHeaderView
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    let header = self.collectionView?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", for: indexPath) as! DateHeaderView
     header.SetDates(delegate!.datesForWeek)
     return header
   }
   
-  func reloadCollectionView(){
-    taskSummaries = delegate!.summariesForWeek()
-    performShading()
+  func reloadCollectionView(_ settingsDidChange: Bool=false){
+    taskSummaries = delegate.summariesForWeek()
+    if settingsDidChange { performShading() }
     collectionView!.reloadData()
   }
 }
 
 //MARK - ClassPeriodDataSource compliance
 extension MainViewController: ClassPeriodDataSource {
-  func setClassData(data: SchoolClass, forIndex index:Int){
+  func setClassData(_ data: SchoolClass, forIndex index:Int){
     classPeriods![index].classData = data
     if data.isStudyHall {
       shouldShadeRow(true, forPeriod: index + 1) //period indexes start at 1
@@ -288,25 +288,26 @@ extension MainViewController: ClassPeriodDataSource {
       shouldShadeRow(false, forPeriod: index + 1)
     }
     classRepository!.persistData(data)
+    
   }
   
-  func getClassData(period: Int)->SchoolClass{
+  func getClassData(_ period: Int)->SchoolClass{
     return classPeriods![period].classData
   }
   
-  func openWebView(url: NSURL) {
-    performSegueWithIdentifier("WebView", sender: url)
+  func openWebView(_ url: URL) {
+    performSegue(withIdentifier: "WebView", sender: url)
   }
   
-  func setCellColor(index: Int, toColor color: UIColor){
+  func setCellColor(_ index: Int, toColor color: UIColor){
     for indx in 0...4 {
       let row = indx + (index-1)*5
-      let cell = collectionView!.cellForItemAtIndexPath(NSIndexPath(forItem: row, inSection: 0))
+      let cell = collectionView!.cellForItem(at: IndexPath(item: row, section: 0))
       cell!.backgroundColor = color
     }
   }
   
-  func shouldShadeRow(value: Bool, forPeriod: Int) {
+  func shouldShadeRow(_ value: Bool, forPeriod: Int) {
     let oldValue = shadedRowIndexes[forPeriod]!
     if value != oldValue {
       shadedRowIndexes[forPeriod] = value
@@ -316,14 +317,14 @@ extension MainViewController: ClassPeriodDataSource {
 }
 
 extension MainViewController: ScheduleOverrideDelegate{
-  func updateScheduleForIndex(index: Int, withSchedule schedule: String){
-    delegate!.didSetDateByIndex(index, withData: schedule)
+  func updateScheduleForIndex(_ index: Int, withSchedule schedule: String){
+    delegate.didSetDateByIndex(index, withData: schedule)
     reloadCollectionView()
   }
 }
 
 extension MainViewController: UIGestureRecognizerDelegate{
-  func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
     return true
   }
 }

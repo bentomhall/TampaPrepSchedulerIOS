@@ -25,9 +25,9 @@ let possibleSchedules : [String:[Int]] = ["A": [6], "B": [5,7], "C": [4],
 ]
 
 struct SchoolDate {
-  var Date : NSDate
+  var Date : Foundation.Date
   var Schedule : String
-  let formatter = NSDateFormatter()
+  let formatter = DateFormatter()
   var ClassesMissed : [Int] {
     get {
       let missed = possibleSchedules[Schedule]
@@ -42,7 +42,7 @@ struct SchoolDate {
   var dateString: String? {
     get{
       formatter.dateFormat = "MM/dd"
-      return formatter.stringFromDate(Date)
+      return formatter.string(from: Date)
     }
   }
 }
@@ -50,11 +50,11 @@ struct SchoolDate {
 ///Handles all date-related interactions. Fetches class schedules (ie what classes meet which days).
 class DateRepository {
   init(context: NSManagedObjectContext){
-    entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: context)!
+    entity = NSEntityDescription.entity(forEntityName: "Week", in: context)!
     self.context = context
     fetchRequest = NSFetchRequest(entityName: "Week")
     fetchRequest.returnsObjectsAsFaults = false
-    let today = NSDate()
+    let today = Date()
     schoolYear = getSchoolYear(today)
     currentSchoolYear = schoolYear
     if weekID < 0 {
@@ -63,22 +63,22 @@ class DateRepository {
     dates = loadCurrentWeek()
   }
   
-  private let fetchRequest: NSFetchRequest
-  private let entity: NSEntityDescription
-  private let context: NSManagedObjectContext
-  private var schoolYear: Int //the school year associated with the date in view
-  private let currentSchoolYear: Int //always the school year for todays date
-  private let calendar = NSCalendar.currentCalendar()
+  fileprivate let fetchRequest: NSFetchRequest<AnyObject>
+  fileprivate let entity: NSEntityDescription
+  fileprivate let context: NSManagedObjectContext
+  fileprivate var schoolYear: Int //the school year associated with the date in view
+  fileprivate let currentSchoolYear: Int //always the school year for todays date
+  fileprivate let calendar = Calendar.current
   
-  private var weekID = -1
+  fileprivate var weekID = -1
   
-  private func persistDates(){
-    if let results = (try? context.executeFetchRequest(fetchRequest)) as? [WeekEntity]{
+  fileprivate func persistDates(){
+    if let results = (try? context.fetch(fetchRequest)) as? [WeekEntity]{
       var schedules:[String] = []
       for day in dates{
         schedules.append(day.Schedule)
       }
-      results[0].weekSchedules = schedules.joinWithSeparator(" ")
+      results[0].weekSchedules = schedules.joined(separator: " ")
       do {
         try context.save()
       } catch _ {
@@ -86,28 +86,28 @@ class DateRepository {
     }
   }
   
-  private func getDateByOffset(date : NSDate, byOffset index : Int)->NSDate{
-    let offset = NSDateComponents()
+  fileprivate func getDateByOffset(_ date : Date, byOffset index : Int)->Date{
+    var offset = DateComponents()
     offset.day = index
-    return NSCalendar.currentCalendar().dateByAddingComponents(offset, toDate: date, options: [])!
+    return (Calendar.current as NSCalendar).date(byAdding: offset, to: date, options: [])!
   }
   
   var dates : [SchoolDate] = []
-  var firstDate : NSDate {
+  var firstDate : Date {
     get { return dates[0].Date }
   }
   
-  var lastDate : NSDate {
+  var lastDate : Date {
     get { return dates[dates.count - 1 ].Date }
   }
   
-  func missedClassesForDay(index:Int)->[Int]{
+  func missedClassesForDay(_ index:Int)->[Int]{
     return dates[index].ClassesMissed
   }
   
-  func fetchWeekID(today: NSDate) ->Int {
-    let components = calendar.components(NSCalendarUnit.WeekOfYear, fromDate: today)
-    return components.weekOfYear
+  func fetchWeekID(_ today: Date) ->Int {
+    let components = (calendar as NSCalendar).components(NSCalendar.Unit.weekOfYear, from: today)
+    return components.weekOfYear!
   }
   
   func loadNextWeek(){
@@ -133,7 +133,7 @@ class DateRepository {
     dates = loadCurrentWeek()
   }
   
-  func isCurrentYear(week: WeekEntity)->Bool {
+  func isCurrentYear(_ week: WeekEntity)->Bool {
     let testYear = week.schoolYear
     return testYear == self.schoolYear
   }
@@ -144,11 +144,11 @@ class DateRepository {
   func loadCurrentWeek()->[SchoolDate]{
     var dates: [SchoolDate] = []
     fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
-    if let results = (try? context.executeFetchRequest(fetchRequest)) as? [WeekEntity]{
+    if let results = (try? context.fetch(fetchRequest)) as? [WeekEntity]{
       var weekData = results.filter(isCurrentYear)
       let firstDay = weekData[0].firstWeekDay
-      let schedule = weekData[0].weekSchedules.componentsSeparatedByString(" ")
-      for (index, schedule) in schedule.enumerate() {
+      let schedule = weekData[0].weekSchedules.components(separatedBy: " ")
+      for (index, schedule) in schedule.enumerated() {
         let date = getDateByOffset(firstDay, byOffset: index)
         dates.append(SchoolDate(Date: date, Schedule: schedule))
       }
@@ -156,13 +156,13 @@ class DateRepository {
     return dates
   }
   
-  func setScheduleForDateByIndex(index: Int, newSchedule: String){
+  func setScheduleForDateByIndex(_ index: Int, newSchedule: String){
     dates[index].Schedule = newSchedule
     persistDates()
     return
   }
   
-  func loadWeekForDay(date: NSDate){
+  func loadWeekForDay(_ date: Date){
     weekID = fetchWeekID(date)
     dates = loadCurrentWeek()
     schoolYear = getSchoolYear(date)

@@ -10,13 +10,13 @@ import UIKit
 
 class WebViewController: UIViewController, UIWebViewDelegate{
   @IBOutlet weak var webView: UIWebView?
-  var initialURL: NSURL?
+  var initialURL: URL?
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    var request: NSURLRequest?
+    var request: URLRequest?
     if initialURL != nil {
-      request = NSURLRequest(URL: initialURL!)
+      request = URLRequest(url: initialURL!)
     }
     webView!.loadRequest(request!)
   }

@@ -11,9 +11,9 @@ import UIKit
 class ScheduledNotificationsTableViewController: UITableViewController {
   @IBOutlet weak var titleView: UILabel?
   
-  var notifications = UIApplication.sharedApplication().scheduledLocalNotifications!
-  let calendar = NSCalendar.currentCalendar()
-  let dateFormatter = NSDateFormatter()
+  var notifications = UIApplication.shared.scheduledLocalNotifications!
+  let calendar = Calendar.current
+  let dateFormatter = DateFormatter()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,38 +40,38 @@ class ScheduledNotificationsTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     // Return the number of sections.
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // Return the number of rows in the section.
     return notifications.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) 
-      let notification = notifications[indexPath.row]
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) 
+      let notification = notifications[(indexPath as NSIndexPath).row]
       cell.textLabel!.text = notification.alertBody!
-      cell.detailTextLabel!.text = dateFormatter.stringFromDate(notification.fireDate!)
+      cell.detailTextLabel!.text = dateFormatter.string(from: notification.fireDate!)
     return cell
   }
   
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return true
   }
   
   
   // Override to support editing the table view.
-  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
       // Delete the row from the data source
-      let notification = notifications[indexPath.row]
-      notifications.removeAtIndex(indexPath.row)
-      UIApplication.sharedApplication().cancelLocalNotification(notification)
-      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
+      let notification = notifications[(indexPath as NSIndexPath).row]
+      notifications.remove(at: (indexPath as NSIndexPath).row)
+      UIApplication.shared.cancelLocalNotification(notification)
+      tableView.deleteRows(at: [indexPath], with: .fade)
+    } else if editingStyle == .insert {
       // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
   }

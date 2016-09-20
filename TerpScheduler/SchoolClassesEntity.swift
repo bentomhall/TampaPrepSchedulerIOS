@@ -12,13 +12,13 @@ import CoreData
 struct SchoolClass {
   let period: Int
   let teacherName: String
-  let haikuURL: NSURL?
+  let haikuURL: URL?
   let isStudyHall: Bool
   let subject: String
   let isLocked: Bool
   let id: NSManagedObjectID?
   
-  static func defaultForPeriod(period: Int)->SchoolClass{
+  static func defaultForPeriod(_ period: Int)->SchoolClass{
     //sometimes there's a disconnect and a 0-indexed period gets passed in. Sigh. Hack.
     return SchoolClass(period: period+1, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
@@ -31,10 +31,10 @@ struct SchoolClass {
 extension SchoolClass: DataObject{
   init(entity: NSManagedObject){
     let entity = entity as! SchoolClassesEntity
-    period = entity.classPeriod.integerValue
+    period = entity.classPeriod.intValue
     teacherName = entity.teacherName
     if entity.haikuURL != ""{
-      haikuURL = NSURL(string: entity.haikuURL)
+      haikuURL = URL(string: entity.haikuURL)
     } else {
       haikuURL = nil
     }
@@ -50,7 +50,7 @@ extension SchoolClass: DataObject{
     if self.id != nil {
       let existingEntity: NSManagedObject?
       do {
-        existingEntity = try context.existingObjectWithID(self.id!)
+        existingEntity = try context.existingObject(with: self.id!)
       } catch let error as NSError {
         existingEntity = nil
         NSLog("%@", error)
@@ -61,10 +61,10 @@ extension SchoolClass: DataObject{
       }
     }
     if !alreadyExists{
-      let entity = NSEntityDescription.entityForName("SchoolClasses", inManagedObjectContext: context)
-      managedObject = (NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as! SchoolClassesEntity)
+      let entity = NSEntityDescription.entity(forEntityName: "SchoolClasses", in: context)
+      managedObject = (NSManagedObject(entity: entity!, insertInto: context) as! SchoolClassesEntity)
     }
-    managedObject!.classPeriod = period
+    managedObject!.classPeriod = NSNumber(period)
     managedObject!.teacherName = teacherName
     managedObject!.haikuURL = haikuURL != nil ? haikuURL!.absoluteString : ""
     managedObject!.isStudyHall = isStudyHall

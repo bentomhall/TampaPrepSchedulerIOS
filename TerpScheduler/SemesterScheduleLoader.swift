@@ -11,9 +11,9 @@ import CoreData
 
 class SemesterScheduleLoader{
   var context : NSManagedObjectContext
-  let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+  let appDelegate = UIApplication.shared.delegate! as! AppDelegate
   var userDefaults: UserDefaults
-  var formatter = NSDateFormatter()
+  var formatter = DateFormatter()
   
   init(context: NSManagedObjectContext){
     self.context = context
@@ -34,16 +34,16 @@ class SemesterScheduleLoader{
     }
   }
   
-  func loadScheduleDataFromJSON(jsonFileName: String)->[NSManagedObject]?{
-    if let path = NSBundle.mainBundle().pathForResource(jsonFileName, ofType: "json"){
-      let data: NSData?
+  func loadScheduleDataFromJSON(_ jsonFileName: String)->[NSManagedObject]?{
+    if let path = Bundle.main.path(forResource: jsonFileName, ofType: "json"){
+      let data: Data?
       do {
-        data = try NSData(contentsOfFile: path, options: NSDataReadingOptions())
+        data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions())
       } catch let error as NSError {
         data = nil
         NSLog("%@", error)
       }
-      let jsonData : NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)) as! NSDictionary
+      let jsonData : NSDictionary = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
       var weeks = [] as [NSManagedObject]
       for (key, value) in jsonData {
         let weekLabel = key as! String
@@ -51,8 +51,8 @@ class SemesterScheduleLoader{
         let weekSchedule = weekInformation[0] as! [String]
         
         let firstDay = weekInformation[1] as! String
-        let entity = NSEntityDescription.entityForName("Week", inManagedObjectContext: self.context)
-        let managedWeek = WeekEntity(entity: entity!, insertIntoManagedObjectContext: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Week", in: self.context)
+        let managedWeek = WeekEntity(entity: entity!, insertInto: context)
         managedWeek.weekSchedules = serializeSchedule(weekSchedule)
         managedWeek.weekID = Int(weekLabel)!
         managedWeek.firstWeekDay = dateFromString(firstDay)
@@ -67,9 +67,9 @@ class SemesterScheduleLoader{
     }
   }
   
-  func dateFromString(string: String)->NSDate{
+  func dateFromString(_ string: String)->Date{
     formatter.dateFormat = "MM/dd/yy"
-    let date = formatter.dateFromString(string)!
+    let date = formatter.date(from: string)!
     return date
   }
   
@@ -87,7 +87,7 @@ class SemesterScheduleLoader{
     userDefaults.setFirstLaunch(false)
   }
   
-  func serializeSchedule(schedule: [String])->String{
-    return schedule.joinWithSeparator(" ")
+  func serializeSchedule(_ schedule: [String])->String{
+    return schedule.joined(separator: " ")
   }
 }

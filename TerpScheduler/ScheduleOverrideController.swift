@@ -33,29 +33,29 @@ struct ScheduleTypes {
   var types: [String]{
     get {
       var letters : [String] = []
-      for key in Array(schedules.keys).sort(<){
+      for key in Array(schedules.keys).sorted(by: <){
         letters.append(key)
       }
       return letters
     }
   }
   
-  func indexForLetter(letter: String)->Int?{
-    return types.indexOf(letter)
+  func indexForLetter(_ letter: String)->Int?{
+    return types.index(of: letter)
   }
   
-  func scheduleForLetter(letter: String)->String?{
+  func scheduleForLetter(_ letter: String)->String?{
     return schedules[letter]
   }
   
-  func scheduleForIndex(index: Int)->String{
+  func scheduleForIndex(_ index: Int)->String{
     let key = types[index]
     return key
   }
 }
 
 protocol ScheduleOverrideDelegate{
-  func updateScheduleForIndex(index: Int, withSchedule schedule: String)
+  func updateScheduleForIndex(_ index: Int, withSchedule schedule: String)
 }
 
 @IBDesignable
@@ -78,41 +78,41 @@ class ScheduleOverrideController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let letter = scheduleTypes.scheduleForIndex(indexPath.row)
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let letter = scheduleTypes.scheduleForIndex((indexPath as NSIndexPath).row)
     let classes = scheduleTypes.scheduleForLetter(letter)
-    let cell = tableView.dequeueReusableCellWithIdentifier("scheduleTypeCell")
+    let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleTypeCell")
     if classes == "" {
       cell!.textLabel!.text = "Schedule \(letter): School Closed"
     } else {
       cell!.textLabel!.text = "Schedule \(letter): Periods \(classes!) meet"
     }
     if previousSchedule == letter {
-      cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
+      cell!.accessoryType = UITableViewCellAccessoryType.checkmark
     } else {
       
     }
     return cell!
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return scheduleTypes.count
   }
   
-  override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return false
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let letter = scheduleTypes.scheduleForIndex(indexPath.row)
-    let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath)
-    cell.accessoryType = .Checkmark
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let letter = scheduleTypes.scheduleForIndex((indexPath as NSIndexPath).row)
+    let cell = self.tableView(tableView, cellForRowAt: indexPath)
+    cell.accessoryType = .checkmark
     delegate!.updateScheduleForIndex(index, withSchedule: letter)
-    self.dismissViewControllerAnimated(false, completion: nil)
+    self.dismiss(animated: false, completion: nil)
   }
 }
 

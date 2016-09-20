@@ -20,17 +20,17 @@ func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
 }
 
 enum Priorities: Int {
-  case Highest = 0
-  case High = 1
-  case Medium = 2
-  case Low = 3
-  case Lowest = 4
-  case Completed = 5
+  case highest = 0
+  case high = 1
+  case medium = 2
+  case low = 3
+  case lowest = 4
+  case completed = 5
 }
 
 struct DailyTask: Filterable, Equatable {
   var id: NSManagedObjectID?
-  let date: NSDate
+  let date: Date
   let period: Int
   var shortTitle : String
   var details : String
@@ -39,7 +39,7 @@ struct DailyTask: Filterable, Equatable {
   var priority : Priorities
   var shouldNotify: Bool
   
-  init(date: NSDate, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool){
+  init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool){
     self.date = date
     self.period = period
     self.shortTitle = shortTitle
@@ -52,11 +52,11 @@ struct DailyTask: Filterable, Equatable {
 }
 
 extension DailyTask{
-  func dateIsBefore(other: DailyTask)->Bool{
-    return (date.compare(other.date) == NSComparisonResult.OrderedAscending)
+  func dateIsBefore(_ other: DailyTask)->Bool{
+    return (date.compare(other.date) == ComparisonResult.orderedAscending)
   }
   
-  func periodIsBefore(other: DailyTask)->Bool{
+  func periodIsBefore(_ other: DailyTask)->Bool{
     return period < other.period
   }
 }
@@ -90,7 +90,7 @@ extension DailyTask: DataObject{
       var error: NSError?
       let existingEntity: NSManagedObject?
       do {
-        existingEntity = try context.existingObjectWithID(self.id!)
+        existingEntity = try context.existingObject(with: self.id!)
       } catch let error1 as NSError {
         error = error1
         existingEntity = nil
@@ -101,15 +101,15 @@ extension DailyTask: DataObject{
         NSLog("%@", error!)
       }
     }
-    let entity = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
-    let managedEntity = DailyTaskEntity(entity: entity!, insertIntoManagedObjectContext: context) as DailyTaskEntity
+    let entity = NSEntityDescription.entity(forEntityName: "DailyTask", in: context)
+    let managedEntity = DailyTaskEntity(entity: entity!, insertInto: context) as DailyTaskEntity
     managedEntity.details = details
     managedEntity.shortTitle = shortTitle
-    managedEntity.forPeriod = period
+    managedEntity.forPeriod = NSNumber(period)
     managedEntity.dateDue = date
-    managedEntity.isCompleted = isCompleted
-    managedEntity.isHaikuAssignment = isHaikuAssignment
-    managedEntity.priority = priority.rawValue
+    managedEntity.isCompleted = isCompleted as NSNumber
+    managedEntity.isHaikuAssignment = isHaikuAssignment as NSNumber
+    managedEntity.priority = NSNumber(priority.rawValue)
     managedEntity.hasNotification = shouldNotify
     return managedEntity as NSManagedObject
   }
@@ -124,7 +124,7 @@ struct TaskSummary {
 
 class DailyTaskEntity: NSManagedObject {
   @NSManaged var forPeriod: NSNumber
-  @NSManaged var dateDue: NSDate
+  @NSManaged var dateDue: Date
   @NSManaged var shortTitle: String
   @NSManaged var details: String
   @NSManaged var isHaikuAssignment: NSNumber

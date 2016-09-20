@@ -9,12 +9,12 @@
 import UIKit
 import CoreData
 
-func dateRange(start: NSDate, stop: NSDate)->[NSDate]{
-  var dates: [NSDate] = []
+func dateRange(_ start: Date, stop: Date)->[Date]{
+  var dates: [Date] = []
   var currentDate = start
-  while currentDate.compare(stop) != NSComparisonResult.OrderedDescending{
+  while currentDate.compare(stop) != ComparisonResult.orderedDescending{
     dates.append(currentDate)
-    currentDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: 1, toDate: currentDate, options: NSCalendarOptions())!
+    currentDate = (Calendar.current as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: 1, to: currentDate, options: NSCalendar.Options())!
   }
   return dates
 }
@@ -30,10 +30,10 @@ enum RepositoryFilterType {
 }
 
 struct FilterValues: Filterable {
-  var date: NSDate
+  var date: Date
   var period: Int
   var id: NSManagedObjectID?
-  var stopDate: NSDate?
+  var stopDate: Date?
   var shortTitle: String
 }
 
@@ -45,8 +45,8 @@ extension FilterValues {
     self.shortTitle = fromFilterable.shortTitle
   }
   
-  init(optDate: NSDate?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?){
-    self.date = optDate ?? NSDate()
+  init(optDate: Date?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?){
+    self.date = optDate ?? Date()
     self.id = optID ?? NSManagedObjectID()
     self.period = optPeriod ?? -1
     self.shortTitle = optTitle ?? "_"
@@ -54,7 +54,7 @@ extension FilterValues {
 }
 
 protocol Filterable {
-  var date: NSDate { get }
+  var date: Date { get }
   var period: Int { get }
   var id: NSManagedObjectID? { get }
   var shortTitle: String { get }
@@ -65,17 +65,17 @@ protocol DataObject {
   func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject
 }
 
-class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
+class Repository<T: Filterable & DataObject, U: NSManagedObject> {
   init(entityName: String, withContext context: NSManagedObjectContext){
     self.entityName = entityName
     self.context = context
   }
   
-  private func newFetchRequest()->NSFetchRequest{
+  fileprivate func newFetchRequest()->NSFetchRequest<AnyObject>{
     return NSFetchRequest(entityName: entityName)
   }
   
-  private func dataFromEntities(entities: [U])->[T]{
+  fileprivate func dataFromEntities(_ entities: [U])->[T]{
     var answer = [T]()
     for item in entities{
       answer.append(T(entity: item))
@@ -83,13 +83,13 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
     return answer
   }
   
-  private let entityName: String
-  private var context: NSManagedObjectContext?
-  private func predicateByType(type: RepositoryFilterType, value: FilterValues)->NSPredicate {
+  fileprivate let entityName: String
+  fileprivate var context: NSManagedObjectContext?
+  fileprivate func predicateByType(_ type: RepositoryFilterType, value: FilterValues)->NSPredicate {
     var p: NSPredicate?
     switch(type){
     case .byDate:
-      p = NSPredicate(format: "dateDue = %@", value.date)
+      p = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       break
     case .byID:
       p = NSPredicate(format: "id = %@", value.id!)
@@ -98,15 +98,15 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
       p = NSPredicate(format: "forPeriod = %i", value.period)
       break
     case .byDateAndPeriod:
-      let p1 = NSPredicate(format: "dateDue = %@", value.date)
+      let p1 = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       let p2 = NSPredicate(format: "forPeriod = %i", value.period)
-      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1, p2])
+      p = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [p1, p2])
       break
     case .byDateAndPeriodAndID:
-      let p1 = NSPredicate(format: "dateDue = %@", value.date)
+      let p1 = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       let p2 = NSPredicate(format: "forPeriod = %i", value.period)
       let p3 = NSPredicate(format: "id = %@", value.id!)
-      p = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [p1, p2, p3])
+      p = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [p1, p2, p3])
       break
     case .byDateBetween:
       p = NSPredicate(format: "date > %@ and date < %@", argumentArray: [value.date, value.stopDate!])
@@ -119,7 +119,7 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   func fetchAll()->[T]{
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
-    let results = (try! context!.executeFetchRequest(fetchRequest)) as! [U]
+    let results = (try! context!.fetch(fetchRequest)) as! [U]
     let data = dataFromEntities(results)
     return data
   }
@@ -141,35 +141,35 @@ class Repository<T: protocol<Filterable, DataObject>, U: NSManagedObject> {
   ///- parameter type: RepositoryFilterType value on which to filter.
   ///- parameter values: Set of values to match against. Only the one matching the filter type will be used.
   ///- returns: list of values matching filter criteria
-  func fetchBy(type: RepositoryFilterType, values: FilterValues)->[T]{
+  func fetchBy(_ type: RepositoryFilterType, values: FilterValues)->[T]{
       let fetchRequest = newFetchRequest()
       fetchRequest.predicate = predicateByType(type, value: values)
-      if let results = (try? context!.executeFetchRequest(fetchRequest)) as? [U]{
+      if let results = (try? context!.fetch(fetchRequest)) as? [U]{
         let data = dataFromEntities(results)
         return data
       }
     return [T]()
   }
   
-  func deleteItemMatching(values filter: protocol<Filterable, DataObject>){
+  func deleteItemMatching(values filter: Filterable & DataObject){
     var toDelete: NSManagedObject?
     if filter.id != nil {
-      toDelete = try? context!.existingObjectWithID(filter.id!)
+      toDelete = try? context!.existingObject(with: filter.id!)
     } else {
       NSLog("%@", "Cannot delete object with nil id")
     }
     if toDelete != nil {
-      context!.deleteObject(toDelete!)
+      context!.delete(toDelete!)
     }
     save()
   }
   
-  func add(item: T){
+  func add(_ item: T){
     let _ = item.toEntity(inContext: context!)
     save()
   }
   
-  func addWithoutSave(item: T){
+  func addWithoutSave(_ item: T){
     let _ = item.toEntity(inContext: context!)
   }
 }

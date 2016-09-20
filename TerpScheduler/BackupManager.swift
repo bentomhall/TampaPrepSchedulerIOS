@@ -9,27 +9,27 @@
 import Foundation
 
 class BackupManager {
-  private let taskRepository: TaskRepository
-  private let fileManager: NSFileManager
-  private let documentDirectory: NSURL
-  private let backupBaseName = "TerpSchedulerBackup"
-  private let backupWriter: JsonBackupWriter
-  private let backupReader: JsonBackupReader
+  fileprivate let taskRepository: TaskRepository
+  fileprivate let fileManager: FileManager
+  fileprivate let documentDirectory: URL
+  fileprivate let backupBaseName = "TerpSchedulerBackup"
+  fileprivate let backupWriter: JsonBackupWriter
+  fileprivate let backupReader: JsonBackupReader
   
   init(repository: TaskRepository){
     taskRepository = repository
-    fileManager = NSFileManager.defaultManager()
-    documentDirectory = try! fileManager.URLForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true)
-    backupWriter = JsonBackupWriter(filePath: documentDirectory.URLByAppendingPathComponent(backupBaseName))
-    backupReader = JsonBackupReader(filePath: documentDirectory.URLByAppendingPathComponent(backupBaseName))
+    fileManager = FileManager.default
+    documentDirectory = try! fileManager.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
+    backupWriter = JsonBackupWriter(filePath: documentDirectory.appendingPathComponent(backupBaseName))
+    backupReader = JsonBackupReader(filePath: documentDirectory.appendingPathComponent(backupBaseName))
   }
   
-  private func shouldMakeBackup()->Bool{
-    let path = documentDirectory.URLByAppendingPathComponent(backupBaseName).path!
-    let oneDayAgo = NSCalendar.currentCalendar().dateByAddingUnit(.Day, value: -1, toDate: NSDate(), options: [])
-    if let attributes = try? fileManager.attributesOfItemAtPath(path) {
-      let lastModified = attributes[NSFileCreationDate]! as! NSDate
-      if lastModified.compare(oneDayAgo!) == NSComparisonResult.OrderedAscending {
+  fileprivate func shouldMakeBackup()->Bool{
+    let path = documentDirectory.appendingPathComponent(backupBaseName).path
+    let oneDayAgo = (Calendar.current as NSCalendar).date(byAdding: .day, value: -1, to: Date(), options: [])
+    if let attributes = try? fileManager.attributesOfItem(atPath: path) {
+      let lastModified = attributes[FileAttributeKey.creationDate]! as! Date
+      if lastModified.compare(oneDayAgo!) == ComparisonResult.orderedAscending {
         return true
       } else {
         return false
@@ -39,7 +39,7 @@ class BackupManager {
     }
   }
   
-  private func gatherDataForBackup()-> [[String: AnyObject]]{
+  fileprivate func gatherDataForBackup()-> [[String: AnyObject]]{
     //let allTasks = taskRepository.allTasks()
     let output = [[String: AnyObject]]()
     //for task in allTasks {
@@ -51,7 +51,7 @@ class BackupManager {
   ///Creates a backup of all tasks to JSON file if force parameter is true, or if the last backup was more than a day ago. Note, if no backup exists a new one will be made.
   ///
   ///- parameter force: Indicates the backup should be done regardless of last backup date.
-  func makeBackup(force: Bool){
+  func makeBackup(_ force: Bool){
     if force || shouldMakeBackup() {
       let data = gatherDataForBackup()
       if data.count == 1 {
@@ -63,11 +63,11 @@ class BackupManager {
     }
   }
   
-  private func shouldReadBackup(force: Bool)->Bool{
+  fileprivate func shouldReadBackup(_ force: Bool)->Bool{
     let repositoryCount = taskRepository.countAllTasks()
-    let path = documentDirectory.URLByAppendingPathComponent(backupBaseName).path!
+    let path = documentDirectory.appendingPathComponent(backupBaseName).path
     if force || repositoryCount == 0 {
-      if fileManager.isReadableFileAtPath(path){
+      if fileManager.isReadableFile(atPath: path){
         return true
       } else {
         return false
@@ -77,10 +77,10 @@ class BackupManager {
     }
   }
   
-  private func createTaskFrom(dictionary: [String: AnyObject])->DailyTask{
-    let dateFormatter = NSDateFormatter()
+  fileprivate func createTaskFrom(_ dictionary: [String: AnyObject])->DailyTask{
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MM/dd/yyyy"
-    let date = dateFormatter.dateFromString(dictionary["date"]! as! String)!
+    let date = dateFormatter.date(from: dictionary["date"]! as! String)!
     let period = dictionary["period"] as! Int
     let shortTitle = dictionary["shortTitle"]! as! String
     let details = dictionary["details"]! as! String
@@ -92,7 +92,7 @@ class BackupManager {
     return DailyTask(date: date, period: period, shortTitle: shortTitle, details: details, isHaiku: isHaikuAssignment, completion: isCompleted, priority: priority, notify: shouldNotify)
   }
   
-  private func loadDataFromBackup()-> [DailyTask]{
+  fileprivate func loadDataFromBackup()-> [DailyTask]{
     var deserializedData = [DailyTask]()
     if let data = backupReader.deserializeBackup() {
       for dict in data {
@@ -102,7 +102,7 @@ class BackupManager {
     return deserializedData
   }
   
-  func readBackup(force: Bool){
+  func readBackup(_ force: Bool){
     if shouldReadBackup(force){
       let tasks = loadDataFromBackup()
       taskRepository.persistTasks(tasks)

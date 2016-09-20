@@ -14,24 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"]
-    NSUserDefaults.standardUserDefaults().registerDefaults(defaultValues)
+    let defaultValues = ["isDataInitialized": false, "isMiddleStudent":false, "shouldShadeStudyHall":true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"] as [String : Any]
+    Foundation.UserDefaults.standard.register(defaults: defaultValues)
     if let context = managedObjectContext{
       let files = ["schedule"]
       let loader = SemesterScheduleLoader(context: context)
       loader.loadSchedule(fromFiles: files)
     }
-    if launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] == nil  && application.applicationIconBadgeNumber != 0{
-      //application was launched from home screen with badge set, so clear the badge.
-      //application.cancelAllLocalNotifications()
-      application.applicationIconBadgeNumber = 0
-    }
+    application.applicationIconBadgeNumber = 0;
     
     let categories = setupNotification() as? Set<UIUserNotificationCategory>
-    let types: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Sound, UIUserNotificationType.Alert]
-    application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: types, categories: categories))
+    let types: UIUserNotificationType = [UIUserNotificationType.badge, UIUserNotificationType.sound, UIUserNotificationType.alert]
+    application.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: categories))
     userColors = UserColors(defaults: userDefaults)
     return true
   }
@@ -40,30 +36,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let justInformAction = UIMutableUserNotificationAction()
     justInformAction.identifier = "justInform"
     justInformAction.title = "OK"
-    justInformAction.activationMode = UIUserNotificationActivationMode.Foreground
-    justInformAction.destructive = false
-    justInformAction.authenticationRequired = true
+    justInformAction.activationMode = UIUserNotificationActivationMode.foreground
+    justInformAction.isDestructive = false
+    justInformAction.isAuthenticationRequired = true
     
     let ignoreAction = UIMutableUserNotificationAction()
     ignoreAction.identifier = "ignore"
     ignoreAction.title = "Ignore"
-    ignoreAction.activationMode = UIUserNotificationActivationMode.Background
-    ignoreAction.destructive = false
-    ignoreAction.authenticationRequired = false
+    ignoreAction.activationMode = UIUserNotificationActivationMode.background
+    ignoreAction.isDestructive = false
+    ignoreAction.isAuthenticationRequired = false
     
     let actionsArray = [justInformAction, ignoreAction]
     let category = UIMutableUserNotificationCategory()
     category.identifier = "taskReminderCategory"
-    category.setActions(actionsArray, forContext: UIUserNotificationActionContext.Default)
-    category.setActions(actionsArray, forContext: UIUserNotificationActionContext.Minimal)
+    category.setActions(actionsArray, for: UIUserNotificationActionContext.default)
+    category.setActions(actionsArray, for: UIUserNotificationActionContext.minimal)
     return Set<NSObject>(arrayLiteral: [category])
   }
   
-  func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+  func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
     renumberBadge()
   }
   
-  func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+  func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
     if identifier != "ignore" {
       application.cancelAllLocalNotifications()
       application.applicationIconBadgeNumber = 0
@@ -77,28 +73,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   lazy var dataManager = DataManager()
   var userColors: UserColors?
   
-  func applicationWillResignActive(application: UIApplication) {
+  func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
   }
   
-  func applicationDidEnterBackground(application: UIApplication) {
+  func applicationDidEnterBackground(_ application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     self.saveContext()
   }
   
-  func applicationWillEnterForeground(application: UIApplication) {
+  func applicationWillEnterForeground(_ application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
   }
   
-  func applicationDidBecomeActive(application: UIApplication) {
+  func applicationDidBecomeActive(_ application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     //application.applicationIconBadgeNumber = 0
     
   }
   
-  func applicationWillTerminate(application: UIApplication) {
+  func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     self.saveContext()
@@ -108,33 +104,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   // MARK: - Core Data stack
   
-  lazy var applicationDocumentsDirectory: NSURL = {
+  lazy var applicationDocumentsDirectory: URL = {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "com.tampaprep.TerpScheduler" in the application's documents Application Support directory.
-    let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return urls[urls.count-1] 
     }()
   
   lazy var managedObjectModel: NSManagedObjectModel = {
     // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-    let modelURL = NSBundle.mainBundle().URLForResource("TerpScheduler", withExtension: "momd")!
-    return NSManagedObjectModel(contentsOfURL: modelURL)!
+    let modelURL = Bundle.main.url(forResource: "TerpScheduler", withExtension: "momd")!
+    return NSManagedObjectModel(contentsOf: modelURL)!
     }()
   
   lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
     // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
     // Create the coordinator and store
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("TerpScheduler.sqlite")
+    let url = self.applicationDocumentsDirectory.appendingPathComponent("TerpScheduler.sqlite")
     var configuration = [String: AnyObject]()
-    configuration[NSMigratePersistentStoresAutomaticallyOption] = true
-    configuration[NSInferMappingModelAutomaticallyOption] = true
+    configuration[NSMigratePersistentStoresAutomaticallyOption] = true as AnyObject?
+    configuration[NSInferMappingModelAutomaticallyOption] = true as AnyObject?
     var failureReason = "There was an error creating or loading the application's saved data."
     do {
-      try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: configuration)
+      try coordinator!.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: configuration)
     } catch var error as NSError {
       coordinator = nil
       // Report any error we got.
-      var dict = [NSObject: AnyObject]()
+      var dict = [AnyHashable: Any]()
       dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
       dict[NSLocalizedFailureReasonErrorKey] = failureReason
       dict[NSUnderlyingErrorKey] = error
@@ -155,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if coordinator == nil {
       return nil
     }
-    var managedObjectContext = NSManagedObjectContext.init(concurrencyType: .MainQueueConcurrencyType)
+    var managedObjectContext = NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
     managedObjectContext.persistentStoreCoordinator = coordinator
     return managedObjectContext
     }()

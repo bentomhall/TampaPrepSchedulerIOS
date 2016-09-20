@@ -9,73 +9,73 @@
 import Foundation
 import UIKit
 
-extension NSUserDefaults {
-  func colorForKey(key: String)->UIColor?{
+extension Foundation.UserDefaults {
+  func colorForKey(_ key: String)->UIColor?{
     var color: UIColor?
-    if let data = dataForKey(key){
-      color = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? UIColor
+    if let data = data(forKey: key){
+      color = NSKeyedUnarchiver.unarchiveObject(with: data) as? UIColor
     }
     return color
   }
   
-  func setColor(color: UIColor?, forKey key: String){
-    var colorData: NSData?
+  func setColor(_ color: UIColor?, forKey key: String){
+    var colorData: Data?
     if let color = color {
-      colorData = NSKeyedArchiver.archivedDataWithRootObject(color)
+      colorData = NSKeyedArchiver.archivedData(withRootObject: color)
     }
     setValue(colorData, forKey: key)
   }
 }
 
 class UserDefaults {
-  private var defaults = NSUserDefaults.standardUserDefaults()
+  fileprivate var defaults = Foundation.UserDefaults.standard
   
   var isDataInitialized: Bool {
-    get { return defaults.boolForKey("isDataInitialized") }
-    set(value) { defaults.setBool(value, forKey: "isDataInitialized") }
+    get { return defaults.bool(forKey: "isDataInitialized") }
+    set(value) { defaults.set(value, forKey: "isDataInitialized") }
   }
   
   var isMiddleStudent: Bool {
-    get { return defaults.boolForKey("isMiddleSchool") }
-    set(value) { defaults.setBool(value, forKey: "isMiddleSchool") }
+    get { return defaults.bool(forKey: "isMiddleSchool") }
+    set(value) { defaults.set(value, forKey: "isMiddleSchool") }
   }
   
   var shouldShadeStudyHall: Bool {
-    get { return defaults.boolForKey("shouldShadeStudyHall") }
-    set (value) { defaults.setBool(value, forKey: "shouldShadeStudyHall") }
+    get { return defaults.bool(forKey: "shouldShadeStudyHall") }
+    set (value) { defaults.set(value, forKey: "shouldShadeStudyHall") }
   }
   
   var shouldDisplayExtraRow: Bool {
-    get { return defaults.boolForKey("shouldShowExtraRow") }
-    set (value) { defaults.setBool(value, forKey: "shouldShowExtraRow") }
+    get { return defaults.bool(forKey: "shouldShowExtraRow") }
+    set (value) { defaults.set(value, forKey: "shouldShowExtraRow") }
   }
   
   var shouldNotifyWhen: NotificationTimes {
     get {
-      switch(defaults.stringForKey("shouldNotifyWhen")!){
+      switch(defaults.string(forKey: "shouldNotifyWhen")!){
       case "Morning":
-        return NotificationTimes.Morning
+        return NotificationTimes.morning
       case "Afternoon":
-        return NotificationTimes.Afternoon
+        return NotificationTimes.afternoon
       case "Evening":
-        return NotificationTimes.Evening
+        return NotificationTimes.evening
       default:
-        return NotificationTimes.Testing
+        return NotificationTimes.testing
       }
     }
     set (value) {
       var stringValue = ""
       switch(value){
-      case .Morning:
+      case .morning:
         stringValue = "Morning"
         break
-      case .Afternoon:
+      case .afternoon:
         stringValue = "Afternoon"
         break
-      case .Evening:
+      case .evening:
         stringValue = "Evening"
         break
-      case .Testing:
+      case .testing:
         break
       }
       defaults.setValue(stringValue, forKey: "shouldNotifyWhen")
@@ -110,15 +110,15 @@ class UserDefaults {
   }
   
   func isFirstLaunchForCurrentVersion()->Bool{
-    let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String
+    let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     
     //test for nill, if it passes we can safely cast later
-    if defaults.valueForKey("version") == nil {
+    if defaults.value(forKey: "version") == nil {
       defaults.setValue(currentVersion, forKey: "version")
       return true
     }
     
-    if (defaults.valueForKey("version") as! String) == currentVersion {
+    if (defaults.value(forKey: "version") as! String) == currentVersion {
       return false
     } else {
       //defaults.setValue(currentVersion, forKey: "version")
@@ -126,17 +126,17 @@ class UserDefaults {
     }
   }
   
-  func setFirstLaunch(value: Bool){
-    let currentVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String
+  func setFirstLaunch(_ value: Bool){
+    let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     if (value){
-      defaults.removeObjectForKey(currentVersion)
+      defaults.removeObject(forKey: currentVersion)
     } else {
       defaults.setValue(currentVersion, forKey: "version")
     }
     
   }
   
-  func onSettingsChange(notification: NSNotification){
+  func onSettingsChange(_ notification: Notification){
     readDefaults()
   }
   
