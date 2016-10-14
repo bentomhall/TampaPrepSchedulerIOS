@@ -105,11 +105,11 @@ extension DailyTask: DataObject{
     let managedEntity = DailyTaskEntity(entity: entity!, insertInto: context) as DailyTaskEntity
     managedEntity.details = details
     managedEntity.shortTitle = shortTitle
-    managedEntity.forPeriod = NSNumber(period)
+    managedEntity.forPeriod = NSNumber(value: period)
     managedEntity.dateDue = date
     managedEntity.isCompleted = isCompleted as NSNumber
     managedEntity.isHaikuAssignment = isHaikuAssignment as NSNumber
-    managedEntity.priority = NSNumber(priority.rawValue)
+    managedEntity.priority = NSNumber(value: priority.rawValue)
     managedEntity.hasNotification = shouldNotify
     return managedEntity as NSManagedObject
   }

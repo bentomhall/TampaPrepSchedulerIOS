@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
   
   fileprivate var shadedRowIndexes = [1:false, 2:false, 3:false, 4:false, 5:false, 6:false, 7:false, 8:false]
   fileprivate var appDelegate : AppDelegate?
-  var delegate: TaskSummaryDelegate & DateInformationDelegate
+  var delegate: TaskSummaryDelegate & DateInformationDelegate?
   fileprivate var contentOffset = CGPoint.zero
   fileprivate var deviceOrientationisPortrait = false
   
@@ -34,10 +34,10 @@ class MainViewController: UIViewController {
     switch (direction)
     {
       case UISwipeGestureRecognizerDirection.right:
-        delegate.loadWeek(-1)
+        delegate!.loadWeek(-1)
         break
       case UISwipeGestureRecognizerDirection.left:
-        delegate.loadWeek(1)
+        delegate!.loadWeek(1)
         break
       default:
         //do nothing
@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
   }
   
   @IBAction func TodayButtonTapped(_ sender: UIButton){
-    delegate.loadWeek(true)
+    delegate!.loadWeek(true)
   }
   
   var taskSummaries : [TaskSummary]?
@@ -67,8 +67,8 @@ class MainViewController: UIViewController {
     appDelegate = UIApplication.shared.delegate as? AppDelegate
     classRepository = SchoolClassesRepository(context: appDelegate!.managedObjectContext!)
     delegate = appDelegate!.dataManager
-    delegate.summaryViewController = self
-    taskSummaries = delegate.summariesForWeek()
+    delegate!.summaryViewController = self
+    taskSummaries = delegate!.summariesForWeek()
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.primaryHidden
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +79,7 @@ class MainViewController: UIViewController {
   }
   
   func onDefaultsChanged(_ notification: Notification){
-    delegate.refreshDefaults()
+    delegate!.refreshDefaults()
     reloadCollectionView(true)
   }
   
@@ -98,14 +98,14 @@ class MainViewController: UIViewController {
   func performShading(){
     for (index, period) in (classPeriods!).enumerated(){
       var classData: SchoolClass
-      if delegate.isMiddleSchool && index == 6{
+      if delegate!.isMiddleSchool && index == 6{
         classData = classRepository!.getMiddleSchoolSports()
       } else {
         classData = classRepository!.getClassDataByPeriod(index)
       }
       period.classData = classData
       if classData.isStudyHall {
-        shouldShadeRow(delegate.shouldShadeStudyHall, forPeriod: index+1)
+        shouldShadeRow(delegate!.shouldShadeStudyHall, forPeriod: index+1)
       }
     }
   }
@@ -136,7 +136,7 @@ class MainViewController: UIViewController {
       receivingController.modalPresentationStyle = .popover
       receivingController.delegate = self
       receivingController.index = index!
-      let dateInformation = delegate.datesForWeek[index!]
+      let dateInformation = delegate!.datesForWeek[index!]
       receivingController.previousSchedule = dateInformation.Schedule
     } else if segue.identifier! == "WebView"{
       let url = sender as! URL
@@ -144,7 +144,7 @@ class MainViewController: UIViewController {
       receivingController.initialURL = url
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
       let receivingController = segue.destination as! TaskDetailViewController
-      delegate.detailViewController = receivingController
+      delegate!.detailViewController = receivingController
     }
     super.prepare(for: segue, sender: sender)
   }
@@ -183,8 +183,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     detailIndex = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
-    let date = delegate.datesForWeek[detailIndex.day].Date
-    delegate.willDisplaySplitViewFor(date, period: detailIndex.period)
+    let date = delegate!.datesForWeek[detailIndex.day].Date
+    delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
     self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
   }
   
@@ -193,12 +193,12 @@ extension MainViewController: UICollectionViewDelegate {
   }
   
   func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-    if action == #selector(cut){
+    if action == #selector(UIResponderStandardEditActions.cut(_:)){
       return true
-    } else if action == #selector(NSObject.copy(_:)){
+    } else if action == #selector(UIResponderStandardEditActions.copy(_:)){
       return true
-    } else if action == #selector(NSObject.paste(_:)){
-      return delegate.hasCopiedTasks()
+    } else if action == #selector(UIResponderStandardEditActions.paste(_:)){
+      return delegate!.hasCopiedTasks()
     } else {
       return false
     }
@@ -207,13 +207,13 @@ extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     //WARN Incomplete implementation
     let dayAndPeriod = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
-    if action == #selector(NSObject.copy(_:)){
-      delegate.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
-    } else if action == #selector(NSObject.paste(_:)){
-      delegate.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
-    } else if action == #selector(NSObject.cut(_:)){
-      delegate.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
-      delegate.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
+    if action == #selector(UIResponderStandardEditActions.copy(_:)){
+      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+    } else if action == #selector(UIResponderStandardEditActions.paste(_:)){
+      delegate!.pasteTasksTo(dayAndPeriod.day, period: dayAndPeriod.period)
+    } else if action == #selector(UIResponderStandardEditActions.cut(_:)){
+      delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)
+      delegate!.deleteAllTasksFrom(dayAndPeriod.day, period: dayAndPeriod.period)
     }
     return
   }
@@ -238,7 +238,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if delegate.shouldDisplayExtraRow {
+    if delegate!.shouldDisplayExtraRow {
       return 40
     } else {
       return 35
@@ -249,14 +249,12 @@ extension MainViewController: UICollectionViewDataSource {
     let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "ClassPeriodTaskSummary", for: indexPath) as! DailyTaskSmallView
     var shadingType: CellShadingType = .noShading
     let selectedDayIndexes = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
-    if delegate.isMiddleSchool && (selectedDayIndexes.period == 7){
+    if delegate!.isMiddleSchool && (selectedDayIndexes.period == 7){
       shadingType = .noShading
-    } else if (shadedRowIndexes[selectedDayIndexes.period]! && delegate.shouldShadeStudyHall){
+    } else if (shadedRowIndexes[selectedDayIndexes.period]! && delegate!.shouldShadeStudyHall){
       shadingType = .studyHall
-    } else if let missedClasses = delegate.missedClassesForDayByIndex(selectedDayIndexes.day){
-      if missedClasses.contains(selectedDayIndexes.period){
-        shadingType = .noClass
-      }
+    } else if delegate!.missedClassesForDayByIndex(selectedDayIndexes.day).contains(selectedDayIndexes.period){
+      shadingType = .noClass
     }
     cell.shouldShadeCell(shadingType)
     let summary = taskSummaries![(indexPath as NSIndexPath).row]
@@ -272,7 +270,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   func reloadCollectionView(_ settingsDidChange: Bool=false){
-    taskSummaries = delegate.summariesForWeek()
+    taskSummaries = delegate!.summariesForWeek()
     if settingsDidChange { performShading() }
     collectionView!.reloadData()
   }
@@ -318,7 +316,7 @@ extension MainViewController: ClassPeriodDataSource {
 
 extension MainViewController: ScheduleOverrideDelegate{
   func updateScheduleForIndex(_ index: Int, withSchedule schedule: String){
-    delegate.didSetDateByIndex(index, withData: schedule)
+    delegate!.didSetDateByIndex(index, withData: schedule)
     reloadCollectionView()
   }
 }

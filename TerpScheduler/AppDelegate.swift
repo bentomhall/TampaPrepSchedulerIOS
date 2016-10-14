@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     category.identifier = "taskReminderCategory"
     category.setActions(actionsArray, for: UIUserNotificationActionContext.default)
     category.setActions(actionsArray, for: UIUserNotificationActionContext.minimal)
-    return Set<NSObject>(arrayLiteral: [category])
+    return Set<NSObject>(arrayLiteral: category)
   }
   
   func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     completionHandler()
   }
   
-  lazy var userDefaults = UserDefaults()
+  lazy var userDefaults = CustomUserDefaults()
   lazy var dataManager = DataManager()
   var userColors: UserColors?
   

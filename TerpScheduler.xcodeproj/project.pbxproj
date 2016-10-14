@@ -37,7 +37,7 @@
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D48291D51A9640A0000AFBD1 /* Settings.bundle */; };
-		D48291D81A964384000AFBD1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48291D71A964384000AFBD1 /* UserDefaults.swift */; };
+		D48291D81A964384000AFBD1 /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48291D71A964384000AFBD1 /* CustomUserDefaults.swift */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
 		D497C4411A6EBD56008F5B34 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
@@ -81,7 +81,7 @@
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D48291D51A9640A0000AFBD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		D48291D71A964384000AFBD1 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = ../UserDefaults.swift; sourceTree = "<group>"; };
+		D48291D71A964384000AFBD1 /* CustomUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUserDefaults.swift; path = ../CustomUserDefaults.swift; sourceTree = "<group>"; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D497C4401A6EBD56008F5B34 /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		D49CDF6F1A5E19E600AEB36B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D48291D71A964384000AFBD1 /* UserDefaults.swift */,
+				D48291D71A964384000AFBD1 /* CustomUserDefaults.swift */,
 				D416C71C1A704FE300AC2AEE /* Entities */,
 				D416C7171A7039B700AC2AEE /* Repositories */,
 				D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */,
@@ -240,7 +240,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Tampa Preparatory School";
 				TargetAttributes = {
 					D408FD711A432E45004F0B83 = {
@@ -291,7 +291,7 @@
 				D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */,
 				D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */,
 				D408FD9B1A432EF3004F0B83 /* DailyTaskEntity.swift in Sources */,
-				D48291D81A964384000AFBD1 /* UserDefaults.swift in Sources */,
+				D48291D81A964384000AFBD1 /* CustomUserDefaults.swift in Sources */,
 				D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */,
@@ -352,8 +352,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -363,6 +365,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -398,8 +401,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -408,6 +413,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -418,6 +424,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

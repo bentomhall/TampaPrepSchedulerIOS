@@ -39,9 +39,9 @@ class BackupManager {
     }
   }
   
-  fileprivate func gatherDataForBackup()-> [[String: AnyObject]]{
+  fileprivate func gatherDataForBackup()-> [String: AnyObject]{
     //let allTasks = taskRepository.allTasks()
-    let output = [[String: AnyObject]]()
+    let output = [String: AnyObject]()
     //for task in allTasks {
       //output.append(task.contentsAsDictionary())
     //}
@@ -84,10 +84,10 @@ class BackupManager {
     let period = dictionary["period"] as! Int
     let shortTitle = dictionary["shortTitle"]! as! String
     let details = dictionary["details"]! as! String
-    let isCompleted = Bool(dictionary["isCompleted"]! as! Int)
-    let isHaikuAssignment = Bool(dictionary["isHaikuAssignment"]! as! Int)
+    let isCompleted = dictionary["isCompleted"]! as! Bool
+    let isHaikuAssignment = dictionary["isHaikuAssignment"]! as! Bool
     let priority = Priorities(rawValue: dictionary["priority"]! as! Int)!
-    let shouldNotify = Bool(dictionary["shouldNotify"]! as! Int)
+    let shouldNotify = dictionary["shouldNotify"]! as! Bool
     
     return DailyTask(date: date, period: period, shortTitle: shortTitle, details: details, isHaiku: isHaikuAssignment, completion: isCompleted, priority: priority, notify: shouldNotify)
   }

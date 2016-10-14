@@ -64,7 +64,7 @@ extension SchoolClass: DataObject{
       let entity = NSEntityDescription.entity(forEntityName: "SchoolClasses", in: context)
       managedObject = (NSManagedObject(entity: entity!, insertInto: context) as! SchoolClassesEntity)
     }
-    managedObject!.classPeriod = NSNumber(period)
+    managedObject!.classPeriod = NSNumber(value: period)
     managedObject!.teacherName = teacherName
     managedObject!.haikuURL = haikuURL != nil ? haikuURL!.absoluteString : ""
     managedObject!.isStudyHall = isStudyHall

@@ -68,7 +68,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     backupManager = BackupManager(repository: taskRepository)
   }
   
-  fileprivate var defaults: UserDefaults?
+  fileprivate var defaults: CustomUserDefaults?
   fileprivate var managedObjectContext: NSManagedObjectContext
   fileprivate var taskRepository: TaskRepository
   fileprivate var dateRepository: DateRepository
@@ -248,7 +248,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     {
       return //notification already exists
     }
-    notification.scheduleNotification(atTime: time)
+    let _ = notification.scheduleNotification(atTime: time)
   }
   
   func cancelNotificationMatching(_ task: DailyTask){

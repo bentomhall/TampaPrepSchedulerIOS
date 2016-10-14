@@ -12,7 +12,7 @@ import CoreData
 class SemesterScheduleLoader{
   var context : NSManagedObjectContext
   let appDelegate = UIApplication.shared.delegate! as! AppDelegate
-  var userDefaults: UserDefaults
+  var userDefaults: CustomUserDefaults
   var formatter = DateFormatter()
   
   init(context: NSManagedObjectContext){
@@ -54,9 +54,9 @@ class SemesterScheduleLoader{
         let entity = NSEntityDescription.entity(forEntityName: "Week", in: self.context)
         let managedWeek = WeekEntity(entity: entity!, insertInto: context)
         managedWeek.weekSchedules = serializeSchedule(weekSchedule)
-        managedWeek.weekID = Int(weekLabel)!
+        managedWeek.weekID = NumberFormatter().number(from: weekLabel)!
         managedWeek.firstWeekDay = dateFromString(firstDay)
-        managedWeek.schoolYear = getSchoolYear(managedWeek.firstWeekDay)
+        managedWeek.schoolYear = NSNumber(value: getSchoolYear(managedWeek.firstWeekDay))
         weeks.append(managedWeek)
       }
       

@@ -27,7 +27,7 @@ extension Foundation.UserDefaults {
   }
 }
 
-class UserDefaults {
+class CustomUserDefaults {
   fileprivate var defaults = Foundation.UserDefaults.standard
   
   var isDataInitialized: Bool {

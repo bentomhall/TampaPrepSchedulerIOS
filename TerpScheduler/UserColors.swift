@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class UserColors {
-  let defaults: UserDefaults
-  init(defaults: UserDefaults){
+  let defaults: CustomUserDefaults
+  init(defaults: CustomUserDefaults){
     self.defaults = defaults
   }
   

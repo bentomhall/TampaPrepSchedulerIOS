@@ -71,7 +71,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
     self.context = context
   }
   
-  fileprivate func newFetchRequest()->NSFetchRequest<AnyObject>{
+  fileprivate func newFetchRequest()->NSFetchRequest<NSFetchRequestResult>{
     return NSFetchRequest(entityName: entityName)
   }
   

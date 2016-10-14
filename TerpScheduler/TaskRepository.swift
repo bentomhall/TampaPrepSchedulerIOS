@@ -26,9 +26,9 @@ class TaskRepository {
   fileprivate var summaries: [TaskSummary] = []
   
   fileprivate func fetchOrLoadDefaultTask()->DailyTask{
-    let fetchRequest = NSFetchRequest(entityName: "DailyTask")
+    let fetchRequest: NSFetchRequest<DailyTaskEntity> = NSFetchRequest(entityName: "DailyTask")
     fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", -1)
-    let results = (try! context.fetch(fetchRequest)) as! [DailyTaskEntity]
+    let results = (try! context.fetch(fetchRequest))
     if results.count == 0 {
       //the default task isn't created yet, so add it and return it
       let entityDescription = NSEntityDescription.entity(forEntityName: "DailyTask", in: context)
@@ -131,9 +131,16 @@ class TaskRepository {
   }
   
   func countAllTasks()->Int {
-    let fetchRequest = NSFetchRequest(entityName: "DailyTask")
+    let fetchRequest: NSFetchRequest<DailyTaskEntity> = NSFetchRequest(entityName: "DailyTask")
     fetchRequest.predicate = NSPredicate(value: true)
-    return context.count(for: fetchRequest, error: nil)
+    var output = 0
+    do {
+      try output = context.count(for: fetchRequest)
+    } catch (_)
+    {
+      
+    }
+    return output
   }
   
   func persistTasks(_ tasks: [DailyTask]){

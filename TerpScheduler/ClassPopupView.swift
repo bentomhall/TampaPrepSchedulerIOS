@@ -68,10 +68,10 @@ class ClassPopupView: UIView {
       subjectNameInput!.text! = data.subject
     }
     if let url = data.haikuURL {
-      haikuURLInput!.text! = url.absoluteString!
+      haikuURLInput!.text = url.absoluteString
     }
     else {
-      haikuURLInput!.text! = ""
+      haikuURLInput!.text = ""
     }
     isLocked = data.isLocked
     classLockSwitch!.setOn(isLocked, animated: false)

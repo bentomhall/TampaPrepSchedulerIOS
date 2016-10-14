@@ -73,7 +73,7 @@ class PDFReporter {
     let currentContext = UIGraphicsGetCurrentContext()
     currentContext!.textMatrix = CGAffineTransform.identity
     let framePath = CGMutablePath()
-    CGPathAddRect(framePath, nil, frame)
+    framePath.addRect(frame)
     
     let frameRef = CTFramesetterCreateFrame(formatter, currentRange, framePath, nil)
     //invert the context so it draws from top-left down (instead up bottom-left up)

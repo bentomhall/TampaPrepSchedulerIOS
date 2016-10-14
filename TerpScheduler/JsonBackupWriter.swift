@@ -34,16 +34,16 @@ class JsonBackupWriter {
   }
   
   //Needs error handling
-  func makeBackupFrom(_ data: [AnyObject])->Bool{
+  func makeBackupFrom(_ data: [String: AnyObject])->Bool{
     let count = data.count
-    var backupData = [String: AnyObject]()
+    var backupData = data
     backupData["created"] = dateFormatter.string(from: Date()) as AnyObject?
     backupData["count"] = count as AnyObject?
     backupData["data"] = data as AnyObject?
     
     if let jsonData = serialize(backupData as AnyObject) {
-      let dispach_priority = DispatchQueue.GlobalQueuePriority.default
-      DispatchQueue.global(priority: dispach_priority).async
+      let queue = DispatchQueue(label: "com.terpscheduler.background", qos: .background, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
+      queue.async
         {
           self.writeToFile(jsonData)
         }

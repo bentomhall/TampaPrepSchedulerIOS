@@ -63,7 +63,7 @@ class DateRepository {
     dates = loadCurrentWeek()
   }
   
-  fileprivate let fetchRequest: NSFetchRequest<AnyObject>
+  fileprivate let fetchRequest: NSFetchRequest<WeekEntity>
   fileprivate let entity: NSEntityDescription
   fileprivate let context: NSManagedObjectContext
   fileprivate var schoolYear: Int //the school year associated with the date in view
@@ -73,13 +73,12 @@ class DateRepository {
   fileprivate var weekID = -1
   
   fileprivate func persistDates(){
-    if let results = (try? context.fetch(fetchRequest)) as? [WeekEntity]{
-      var schedules:[String] = []
-      for day in dates{
-        schedules.append(day.Schedule)
-      }
-      results[0].weekSchedules = schedules.joined(separator: " ")
-      do {
+    let results = (try! context.fetch(fetchRequest))
+    var schedules:[String] = []
+    for day in dates{
+      schedules.append(day.Schedule)
+    results[0].weekSchedules = schedules.joined(separator: " ")
+    do {
         try context.save()
       } catch _ {
       }
@@ -134,7 +133,7 @@ class DateRepository {
   }
   
   func isCurrentYear(_ week: WeekEntity)->Bool {
-    let testYear = week.schoolYear
+    let testYear = week.schoolYear as Int
     return testYear == self.schoolYear
   }
   
@@ -144,14 +143,13 @@ class DateRepository {
   func loadCurrentWeek()->[SchoolDate]{
     var dates: [SchoolDate] = []
     fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
-    if let results = (try? context.fetch(fetchRequest)) as? [WeekEntity]{
-      var weekData = results.filter(isCurrentYear)
-      let firstDay = weekData[0].firstWeekDay
-      let schedule = weekData[0].weekSchedules.components(separatedBy: " ")
-      for (index, schedule) in schedule.enumerated() {
-        let date = getDateByOffset(firstDay, byOffset: index)
-        dates.append(SchoolDate(Date: date, Schedule: schedule))
-      }
+    let results = (try! context.fetch(fetchRequest))
+    var weekData = results.filter(isCurrentYear)
+    let firstDay = weekData[0].firstWeekDay
+    let schedule = weekData[0].weekSchedules.components(separatedBy: " ")
+    for (index, schedule) in schedule.enumerated() {
+      let date = getDateByOffset(firstDay, byOffset: index)
+      dates.append(SchoolDate(Date: date, Schedule: schedule))
     }
     return dates
   }

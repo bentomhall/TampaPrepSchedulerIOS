@@ -12,7 +12,7 @@ import CoreData
 
 class SchoolClassesRepository: NSObject {
   fileprivate var managedContext : NSManagedObjectContext
-  fileprivate let fetchRequest = NSFetchRequest(entityName: "SchoolClasses")
+  fileprivate let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SchoolClasses")
   
   init(context: NSManagedObjectContext){
     managedContext = context
