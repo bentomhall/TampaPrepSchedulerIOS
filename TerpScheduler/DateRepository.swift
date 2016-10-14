@@ -112,12 +112,11 @@ class DateRepository {
   func loadNextWeek(){
     if weekID == 52 {
       weekID = 1
-    } else if weekID == 22 {
-      if schoolYear == currentSchoolYear {
-        return //don't go off the end of the current year.
+    } else if weekID == 21 {
+      if schoolYear != currentSchoolYear {
+        schoolYear += 1
+        weekID += 1 //don't go off the end of the current school-year.
       }
-      schoolYear += 1
-      weekID += 1
     } else {
       weekID += 1
     }
