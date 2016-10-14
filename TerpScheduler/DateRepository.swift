@@ -113,6 +113,9 @@ class DateRepository {
     if weekID == 52 {
       weekID = 1
     } else if weekID == 22 {
+      if schoolYear == currentSchoolYear {
+        return //don't go off the end of the current year.
+      }
       schoolYear += 1
       weekID += 1
     } else {
