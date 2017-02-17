@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-func ==(lhs: DailyTask, rhs: DailyTask)->Bool {
+func == (lhs: DailyTask, rhs: DailyTask) -> Bool {
   let isTitleSame = lhs.shortTitle == rhs.shortTitle
   let isDetailsSame = lhs.details == rhs.details
   let isPrioritySame = lhs.priority == rhs.priority
@@ -32,14 +32,14 @@ struct DailyTask: Filterable, Equatable {
   var id: NSManagedObjectID?
   let date: Date
   let period: Int
-  var shortTitle : String
-  var details : String
-  var isHaikuAssignment : Bool
-  var isCompleted : Bool
-  var priority : Priorities
+  var shortTitle: String
+  var details: String
+  var isHaikuAssignment: Bool
+  var isCompleted: Bool
+  var priority: Priorities
   var shouldNotify: Bool
-  
-  init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool){
+
+  init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool) {
     self.date = date
     self.period = period
     self.shortTitle = shortTitle
@@ -51,19 +51,22 @@ struct DailyTask: Filterable, Equatable {
   }
 }
 
-extension DailyTask{
-  func dateIsBefore(_ other: DailyTask)->Bool{
+extension DailyTask {
+  func dateIsBefore(_ other: DailyTask) -> Bool {
     return (date.compare(other.date) == ComparisonResult.orderedAscending)
   }
-  
-  func periodIsBefore(_ other: DailyTask)->Bool{
+
+  func periodIsBefore(_ other: DailyTask) -> Bool {
     return period < other.period
   }
 }
 
-extension DailyTask: DataObject{
-  init(entity: NSManagedObject){
-    let model = entity as! DailyTaskEntity
+extension DailyTask: DataObject {
+  init(entity: NSManagedObject) {
+    guard let model = entity as? DailyTaskEntity else {
+      //if this happens, the whole thing is borked
+      abort()
+    }
     let context = model.managedObjectContext!
     do {
       try context.save()
@@ -79,13 +82,14 @@ extension DailyTask: DataObject{
     period = Int(model.forPeriod)
     shouldNotify = model.hasNotification
   }
-  
-  ///returns managed entity associated with this data in the provided context. Only creates new if no entity with this id already exists.
+
+  ///returns managed entity associated with this data in the provided context. 
+  //Only creates new if no entity with this id already exists.
   ///
   ///- parameter inContext: The NSManagedObjectContext to put the entity in.
   ///- returns: A NSManagedObject containing the data from self.
-  func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject{
-    if self.id != nil{
+  func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject {
+    if self.id != nil {
       // If a entity with this id already exists, return it.
       var error: NSError?
       let existingEntity: NSManagedObject?

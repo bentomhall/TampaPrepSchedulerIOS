@@ -9,10 +9,10 @@
 import UIKit
 import CoreData
 
-func dateRange(_ start: Date, stop: Date)->[Date]{
+func dateRange(_ start: Date, stop: Date) -> [Date] {
   var dates: [Date] = []
   var currentDate = start
-  while currentDate.compare(stop) != ComparisonResult.orderedDescending{
+  while currentDate.compare(stop) != ComparisonResult.orderedDescending {
     dates.append(currentDate)
     currentDate = (Calendar.current as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: 1, to: currentDate, options: NSCalendar.Options())!
   }
@@ -38,14 +38,14 @@ struct FilterValues: Filterable {
 }
 
 extension FilterValues {
-  init(fromFilterable: Filterable){
+  init(fromFilterable: Filterable) {
     self.date = fromFilterable.date
     self.id = fromFilterable.id
     self.period = fromFilterable.period
     self.shortTitle = fromFilterable.shortTitle
   }
-  
-  init(optDate: Date?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?){
+
+  init(optDate: Date?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?) {
     self.date = optDate ?? Date()
     self.id = optID ?? NSManagedObjectID()
     self.period = optPeriod ?? -1
@@ -60,34 +60,34 @@ protocol Filterable {
   var shortTitle: String { get }
 }
 
-protocol DataObject {
+protocol DataObject: class {
   init(entity: NSManagedObject)
-  func toEntity(inContext context: NSManagedObjectContext)->NSManagedObject
+  func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject
 }
 
 class Repository<T: Filterable & DataObject, U: NSManagedObject> {
-  init(entityName: String, withContext context: NSManagedObjectContext){
+  init(entityName: String, withContext context: NSManagedObjectContext) {
     self.entityName = entityName
     self.context = context
   }
-  
-  fileprivate func newFetchRequest()->NSFetchRequest<NSFetchRequestResult>{
+
+  fileprivate func newFetchRequest()->NSFetchRequest<NSFetchRequestResult> {
     return NSFetchRequest(entityName: entityName)
   }
-  
-  fileprivate func dataFromEntities(_ entities: [U])->[T]{
+
+  fileprivate func dataFromEntities(_ entities: [U]) -> [T] {
     var answer = [T]()
-    for item in entities{
+    for item in entities {
       answer.append(T(entity: item))
     }
     return answer
   }
-  
+
   fileprivate let entityName: String
   fileprivate var context: NSManagedObjectContext?
-  fileprivate func predicateByType(_ type: RepositoryFilterType, value: FilterValues)->NSPredicate {
+  fileprivate func predicateByType(_ type: RepositoryFilterType, value: FilterValues) -> NSPredicate {
     var p: NSPredicate?
-    switch(type){
+    switch type {
     case .byDate:
       p = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       break
@@ -115,16 +115,20 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
     }
     return p!
   }
-  
-  func fetchAll()->[T]{
+
+  func fetchAll() -> [T] {
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
-    let results = (try! context!.fetch(fetchRequest)) as! [U]
-    let data = dataFromEntities(results)
-    return data
+    let results = (try? context!.fetch(fetchRequest)) as? [U]
+    if results != nil {
+      let data = dataFromEntities(results!)
+      return data
+    } else {
+      return [T]()
+    }
   }
-  
-  func save(){
+
+  func save() {
     var error: NSError?
     do {
       try context!.save()
@@ -141,17 +145,17 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
   ///- parameter type: RepositoryFilterType value on which to filter.
   ///- parameter values: Set of values to match against. Only the one matching the filter type will be used.
   ///- returns: list of values matching filter criteria
-  func fetchBy(_ type: RepositoryFilterType, values: FilterValues)->[T]{
+  func fetchBy(_ type: RepositoryFilterType, values: FilterValues) -> [T] {
       let fetchRequest = newFetchRequest()
       fetchRequest.predicate = predicateByType(type, value: values)
-      if let results = (try? context!.fetch(fetchRequest)) as? [U]{
+      if let results = (try? context!.fetch(fetchRequest)) as? [U] {
         let data = dataFromEntities(results)
         return data
       }
     return [T]()
   }
-  
-  func deleteItemMatching(values filter: Filterable & DataObject){
+
+  func deleteItemMatching(values filter: Filterable & DataObject) {
     var toDelete: NSManagedObject?
     if filter.id != nil {
       toDelete = try? context!.existingObject(with: filter.id!)
@@ -163,13 +167,13 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
     }
     save()
   }
-  
-  func add(_ item: T){
+
+  func add(_ item: T) {
     let _ = item.toEntity(inContext: context!)
     save()
   }
-  
-  func addWithoutSave(_ item: T){
+
+  func addWithoutSave(_ item: T) {
     let _ = item.toEntity(inContext: context!)
   }
 }

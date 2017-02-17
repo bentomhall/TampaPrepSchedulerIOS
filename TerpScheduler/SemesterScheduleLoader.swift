@@ -23,7 +23,7 @@ class SemesterScheduleLoader{
   func loadSchedule(fromFiles files: [String]){
     if !isScheduleLoaded(){
       for file in files {
-        loadScheduleDataFromJSON(file)
+        _ = loadScheduleDataFromJSON(file)
         do {
           try context.save()
         } catch let error as NSError {

@@ -16,17 +16,17 @@ enum CellShadingType {
 
 @IBDesignable
 class DailyTaskSmallView: UICollectionViewCell {
-  
-  @IBOutlet weak var topTaskLabel : UILabel?
-  @IBOutlet weak var remainingTasksLabel : UILabel?
-  
+
+  @IBOutlet weak var topTaskLabel: UILabel?
+  @IBOutlet weak var remainingTasksLabel: UILabel?
+
   override func prepareForReuse() {
     topTaskLabel!.text = ""
     remainingTasksLabel!.text = ""
     remainingTasksLabel!.isHidden = false
   }
-  
-  func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool){
+
+  func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool) {
     if completion {
       topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSStrikethroughStyleAttributeName: 2])
       topTaskLabel!.isEnabled = false
@@ -35,29 +35,30 @@ class DailyTaskSmallView: UICollectionViewCell {
       topTaskLabel!.isEnabled = true
     }
   }
-  
-  func setRemainingTasksLabel(tasksRemaining remaining: Int){
+
+  func setRemainingTasksLabel(tasksRemaining remaining: Int) {
     if remaining > 0 {
       remainingTasksLabel?.isHidden = false
       let text = "+ \(remaining) others"
       remainingTasksLabel!.text! = text
       if remaining > 1 {
         remainingTasksLabel!.textColor = UIColor.red
-      }
-      else if remaining == 1{
+      } else if remaining == 1 {
         remainingTasksLabel!.text = "+ 1 other"
         remainingTasksLabel!.textColor = UIColor.blue
       }
     } else {
       remainingTasksLabel?.isHidden = true
     }
-    
+
   }
-  
-  func shouldShadeCell(_ shadingType: CellShadingType){
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+  func shouldShadeCell(_ shadingType: CellShadingType) {
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      return
+    }
     let colors = appDelegate.userColors!
-    switch(shadingType){
+    switch shadingType {
     case .noClass:
       self.backgroundColor = colors.NoClassColor
       break

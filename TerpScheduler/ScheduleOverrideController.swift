@@ -25,63 +25,60 @@ struct ScheduleTypes {
     "Y*": "1, 2, 3, 4",
     "Y**": "5, 6, 7"
   ]
-  
+
   var count: Int {
-    get { return schedules.count }
+    return schedules.count
   }
-  
-  var types: [String]{
-    get {
-      var letters : [String] = []
-      for key in Array(schedules.keys).sorted(by: <){
+
+  var types: [String] {
+      var letters: [String] = []
+      for key in Array(schedules.keys).sorted(by: <) {
         letters.append(key)
       }
       return letters
-    }
   }
-  
-  func indexForLetter(_ letter: String)->Int?{
+
+  func indexForLetter(_ letter: String) -> Int? {
     return types.index(of: letter)
   }
-  
-  func scheduleForLetter(_ letter: String)->String?{
+
+  func scheduleForLetter(_ letter: String) -> String? {
     return schedules[letter]
   }
-  
-  func scheduleForIndex(_ index: Int)->String{
+
+  func scheduleForIndex(_ index: Int) -> String {
     let key = types[index]
     return key
   }
 }
 
-protocol ScheduleOverrideDelegate{
+protocol ScheduleOverrideDelegate: class {
   func updateScheduleForIndex(_ index: Int, withSchedule schedule: String)
 }
 
 @IBDesignable
 class ScheduleOverrideController: UITableViewController {
-  var delegate: ScheduleOverrideDelegate?
+  weak var delegate: ScheduleOverrideDelegate?
   var index: Int = 0
   var schedule = ""
   var previousSchedule = ""
   var date = ""
   let scheduleTypes = ScheduleTypes()
-  
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
   }
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let letter = scheduleTypes.scheduleForIndex((indexPath as NSIndexPath).row)
     let classes = scheduleTypes.scheduleForLetter(letter)
@@ -94,19 +91,19 @@ class ScheduleOverrideController: UITableViewController {
     if previousSchedule == letter {
       cell!.accessoryType = UITableViewCellAccessoryType.checkmark
     } else {
-      
+
     }
     return cell!
   }
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return scheduleTypes.count
   }
-  
+
   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
     return false
   }
-  
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let letter = scheduleTypes.scheduleForIndex((indexPath as NSIndexPath).row)
     let cell = self.tableView(tableView, cellForRowAt: indexPath)
@@ -115,4 +112,3 @@ class ScheduleOverrideController: UITableViewController {
     self.dismiss(animated: false, completion: nil)
   }
 }
-

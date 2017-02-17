@@ -10,23 +10,22 @@ import UIKit
 
 @IBDesignable
 class ClassPopupView: UIView {
-  @IBOutlet var titleLabel : UILabel?
-  @IBOutlet var isStudyHall : UISwitch?
-  @IBOutlet var teacherNameInput : UITextField?
-  @IBOutlet var subjectNameInput : UITextField?
-  @IBOutlet var haikuURLInput : UITextField?
+  @IBOutlet var titleLabel: UILabel?
+  @IBOutlet var isStudyHall: UISwitch?
+  @IBOutlet var teacherNameInput: UITextField?
+  @IBOutlet var subjectNameInput: UITextField?
+  @IBOutlet var haikuURLInput: UITextField?
   @IBOutlet var classLockSwitch: UISwitch?
   @IBOutlet weak var haikuButton: UIButton?
-  
-  @IBAction func toggleStudyHall(_ sender : UIView){
+
+  @IBAction func toggleStudyHall(_ sender: UIView) {
     if let s = sender as? UISwitch {
       if s.isOn {
         teacherNameInput!.isEnabled = false
         subjectNameInput!.text! = "Study Hall"
         subjectNameInput!.isEnabled = false
         teacherNameInput!.text = ""
-      }
-      else {
+      } else {
         teacherNameInput!.isEnabled = true
         subjectNameInput!.isEnabled = true
         teacherNameInput!.text! = ""
@@ -34,8 +33,8 @@ class ClassPopupView: UIView {
       }
     }
   }
-  
-  @IBAction func toggleLock(_ sender: UISwitch){
+
+  @IBAction func toggleLock(_ sender: UISwitch) {
     if sender.isOn {
       teacherNameInput!.isEnabled = false
       subjectNameInput!.isEnabled = false
@@ -47,12 +46,12 @@ class ClassPopupView: UIView {
     }
     isLocked = sender.isOn
   }
-  
+
   var classPeriod = -1
   var isLocked: Bool = false
   var receivedData: SchoolClass?
-  
-  func setContent(_ data: SchoolClass){
+
+  func setContent(_ data: SchoolClass) {
     receivedData = data
     classPeriod = data.period
     titleLabel!.text! = "Period \(classPeriod)"
@@ -61,16 +60,14 @@ class ClassPopupView: UIView {
       teacherNameInput!.isEnabled = false
       subjectNameInput!.text! = "Study Hall"
       subjectNameInput!.isEnabled = false
-    }
-    else {
+    } else {
       isStudyHall!.setOn(false, animated: false)
       teacherNameInput!.text! = data.teacherName
       subjectNameInput!.text! = data.subject
     }
     if let url = data.haikuURL {
       haikuURLInput!.text = url.absoluteString
-    }
-    else {
+    } else {
       haikuURLInput!.text = ""
     }
     isLocked = data.isLocked
@@ -79,9 +76,9 @@ class ClassPopupView: UIView {
       toggleLock(classLockSwitch!)
     }
   }
-  
-  func getContent()->SchoolClass{
-    var haikuURL : URL?
+
+  func getContent() -> SchoolClass {
+    var haikuURL: URL?
     let teacher = teacherNameInput!.text ?? ""
     let subject = subjectNameInput!.text ?? ""
     let studyHall = isStudyHall!.isOn

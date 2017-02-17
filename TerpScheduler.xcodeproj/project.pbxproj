@@ -26,6 +26,7 @@
 		D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */; };
 		D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
+		D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D45E83721E577861002FAB52 /* .swiftlint.yml */; };
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
 		D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */; };
@@ -70,6 +71,7 @@
 		D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupReader.swift; sourceTree = "<group>"; };
 		D43FAB5C1AF12D6800A1C55E /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
+		D45E83721E577861002FAB52 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
 		D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterScheduleLoader.swift; sourceTree = "<group>"; };
 		D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */,
 				D48291D51A9640A0000AFBD1 /* Settings.bundle */,
 				D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */,
+				D45E83721E577861002FAB52 /* .swiftlint.yml */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D408FD941A432E45004F0B83 /* Build configuration list for PBXNativeTarget "TerpScheduler" */;
 			buildPhases = (
+				D45E83711E575862002FAB52 /* ShellScript */,
 				D408FD6E1A432E45004F0B83 /* Sources */,
 				D408FD6F1A432E45004F0B83 /* Frameworks */,
 				D408FD701A432E45004F0B83 /* Resources */,
@@ -273,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */,
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */,
@@ -281,6 +286,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D45E83711E575862002FAB52 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "~/source/swiftlint";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D408FD6E1A432E45004F0B83 /* Sources */ = {

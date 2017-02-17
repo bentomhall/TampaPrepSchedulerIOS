@@ -12,19 +12,18 @@ import UIKit
 @IBDesignable
 class DailyTasksTableViewController: UITableViewController, UITableViewDelegate,
     UITableViewDataSource {
-    
-    var _tasks : [DailyTaskData] = []
-    var tasksForPeriodRepository : DailyTasksForPeriod?
-    
+
+    var savedTasks: [DailyTaskData] = []
+    var tasksForPeriodRepository: DailyTasksForPeriod?
+
     override func viewWillAppear(animated: Bool) {
         //
     }
-    
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _tasks.count
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("TaskDetail") as UITableViewCell
         let task = _tasks[indexPath.row]
@@ -32,21 +31,19 @@ class DailyTasksTableViewController: UITableViewController, UITableViewDelegate,
         cell.detailTextLabel!.text = task.details
         if task.isCompleted {
             cell.backgroundColor = UIColor.lightGrayColor()
-        }
-        else if (task.priority == Priorities.Highest || task.priority == Priorities.High){
+        } else if task.priority == Priorities.Highest || task.priority == Priorities.High {
             cell.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        }
-        else if (task.priority == Priorities.Low || task.priority == Priorities.Lowest){
+        } else if task.priority == Priorities.Low || task.priority == Priorities.Lowest {
             cell.backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
         }
         return cell
     }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+
     }
-    
-    func ReloadModel(dateString : String) {
+
+    func ReloadModel(dateString: String) {
         return
     }
 }

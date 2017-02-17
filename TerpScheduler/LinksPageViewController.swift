@@ -15,16 +15,16 @@ class LinksPageViewController: UIViewController {
   @IBOutlet weak var haikuLearningButton: UIButton?
   @IBOutlet weak var googleDriveButton: UIButton?
   @IBOutlet weak var backButton: UIButton?
-  
+
   let tampaPrepURL = URL(string: "http://www.tampaprep.org")!
   let myBackPackURL = URL(string: "https://tampaprep.seniormbp.com/SeniorApps")!
   let haikuAppURL = URL(string: "haikulearning://")!
   let haikuURL = URL(string: "https://tampaprep.haikulearning.com")!
   let googleDriveAppURL = URL(string: "googledrive://")!
-  
-  @IBAction func linkButtonPressed(_ sender: UIButton){
+
+  @IBAction func linkButtonPressed(_ sender: UIButton) {
     var url: URL
-    switch(sender.titleLabel!.text!){
+    switch sender.titleLabel!.text! {
     case "Tampa Prep":
       url = tampaPrepURL
       break
@@ -32,7 +32,7 @@ class LinksPageViewController: UIViewController {
       url = myBackPackURL
       break
     case "Haiku Learning":
-      if UIApplication.shared.canOpenURL(haikuAppURL){
+      if UIApplication.shared.canOpenURL(haikuAppURL) {
         url = haikuAppURL
       } else {
         url = haikuURL
@@ -51,11 +51,11 @@ class LinksPageViewController: UIViewController {
     }
     UIApplication.shared.openURL(url)
   }
-  
-  @IBAction func closeView(_ sender: UIButton){
+
+  @IBAction func closeView(_ sender: UIButton) {
     dismiss(animated: true, completion: nil)
   }
-  
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,12 +66,13 @@ class LinksPageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "ExportTasks"{
-      let receivingController = segue.destination as! ExportViewController
+      if let receivingController = segue.destination as? ExportViewController {
       receivingController.modalPresentationStyle = .popover
       receivingController.preferredContentSize = CGSize(width: 300, height: 300)
+      }
     }
   }
 }

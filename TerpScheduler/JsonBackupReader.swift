@@ -7,7 +7,7 @@
 //
 
 import Foundation
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -18,7 +18,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -27,27 +27,26 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 class JsonBackupReader {
   let path: URL
   let dateFormatter = DateFormatter()
   var itemCount: Int?
   var dateCreated: Date?
-  
-  init(filePath: URL){
+
+  init(filePath: URL) {
     path = filePath
     dateFormatter.dateStyle = DateFormatter.Style.short
   }
-  
-  func deserializeBackup()->[[String: AnyObject]]?{
+
+  func deserializeBackup() -> [[String: AnyObject]]? {
     if let inputStream = InputStream(url: path) {
-      let fileContents = (try! JSONSerialization.jsonObject(with: inputStream, options: [])) as! [String: AnyObject]
-      
-      dateCreated = dateFormatter.date(from: fileContents["created"]! as! String)
-      itemCount = fileContents["count"] as? Int
-      
+      let fileContents = (try? JSONSerialization.jsonObject(with: inputStream, options: [])) as? [String: AnyObject]
+
+      dateCreated = dateFormatter.date(from: (fileContents!["created"]! as? String)!)
+      itemCount = fileContents!["count"] as? Int
+
       if itemCount > 0 {
-        return fileContents["data"] as? [[String: AnyObject]]
+        return fileContents!["data"] as? [[String: AnyObject]]
       } else {
         return nil
       }
@@ -55,6 +54,4 @@ class JsonBackupReader {
       return nil
     }
   }
-  
-  
 }

@@ -10,15 +10,14 @@ import Foundation
 import UIKit
 
 extension Foundation.UserDefaults {
-  func colorForKey(_ key: String)->UIColor?{
+  func colorForKey(_ key: String) -> UIColor? {
     var color: UIColor?
-    if let data = data(forKey: key){
+    if let data = data(forKey: key) {
       color = NSKeyedUnarchiver.unarchiveObject(with: data) as? UIColor
     }
     return color
   }
-  
-  func setColor(_ color: UIColor?, forKey key: String){
+  func setColor(_ color: UIColor?, forKey key: String) {
     var colorData: Data?
     if let color = color {
       colorData = NSKeyedArchiver.archivedData(withRootObject: color)
@@ -29,30 +28,25 @@ extension Foundation.UserDefaults {
 
 class CustomUserDefaults {
   fileprivate var defaults = Foundation.UserDefaults.standard
-  
   var isDataInitialized: Bool {
     get { return defaults.bool(forKey: "isDataInitialized") }
     set(value) { defaults.set(value, forKey: "isDataInitialized") }
   }
-  
   var isMiddleStudent: Bool {
     get { return defaults.bool(forKey: "isMiddleSchool") }
     set(value) { defaults.set(value, forKey: "isMiddleSchool") }
   }
-  
   var shouldShadeStudyHall: Bool {
     get { return defaults.bool(forKey: "shouldShadeStudyHall") }
     set (value) { defaults.set(value, forKey: "shouldShadeStudyHall") }
   }
-  
   var shouldDisplayExtraRow: Bool {
     get { return defaults.bool(forKey: "shouldShowExtraRow") }
     set (value) { defaults.set(value, forKey: "shouldShowExtraRow") }
   }
-  
   var shouldNotifyWhen: NotificationTimes {
     get {
-      switch(defaults.string(forKey: "shouldNotifyWhen")!){
+      switch defaults.string(forKey: "shouldNotifyWhen")! {
       case "Morning":
         return NotificationTimes.morning
       case "Afternoon":
@@ -65,7 +59,7 @@ class CustomUserDefaults {
     }
     set (value) {
       var stringValue = ""
-      switch(value){
+      switch value {
       case .morning:
         stringValue = "Morning"
         break
@@ -81,7 +75,6 @@ class CustomUserDefaults {
       defaults.setValue(stringValue, forKey: "shouldNotifyWhen")
     }
   }
-  
   var noClassColor: UIColor? {
     get {
       return defaults.colorForKey("NoClassColor")
@@ -90,7 +83,6 @@ class CustomUserDefaults {
       defaults.setColor(value, forKey: "NoClassColor")
     }
   }
-  
   var studyHallColor: UIColor? {
     get {
       return defaults.colorForKey("StudyHallColor")
@@ -99,49 +91,46 @@ class CustomUserDefaults {
       defaults.setColor(value, forKey: "StudyHallColor")
     }
   }
-  
   var primaryThemeColor: UIColor? {
     get {
       return defaults.colorForKey("PrimaryThemeColor")
     }
-    set(value){
+    set(value) {
       defaults.setColor(value, forKey: "PrimaryThemeColor")
     }
   }
-  
-  func isFirstLaunchForCurrentVersion()->Bool{
-    let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-    
+  func isFirstLaunchForCurrentVersion() -> Bool {
+    guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+      return true
+    }
     //test for nill, if it passes we can safely cast later
     if defaults.value(forKey: "version") == nil {
       defaults.setValue(currentVersion, forKey: "version")
       return true
     }
-    
-    if (defaults.value(forKey: "version") as! String) == currentVersion {
+    guard let savedVersion = defaults.value(forKey: "version") as? String else {
+      return true
+    }
+    if savedVersion == currentVersion {
       return false
     } else {
-      //defaults.setValue(currentVersion, forKey: "version")
       return true
     }
   }
-  
-  func setFirstLaunch(_ value: Bool){
-    let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-    if (value){
+  func setFirstLaunch(_ value: Bool) {
+    guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+      return
+    }
+    if value {
       defaults.removeObject(forKey: currentVersion)
     } else {
       defaults.setValue(currentVersion, forKey: "version")
     }
-    
   }
-  
-  func onSettingsChange(_ notification: Notification){
+  func onSettingsChange(_ notification: Notification) {
     readDefaults()
   }
-  
-  func readDefaults(){
+  func readDefaults() {
     defaults.synchronize()
   }
-  
 }
