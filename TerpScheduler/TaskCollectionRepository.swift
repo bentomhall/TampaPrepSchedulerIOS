@@ -10,25 +10,25 @@ import UIKit
 import CoreData
 
 struct TaskSummaryData {
-    let shortTitle : String
-    let remainingTasks : Int
-    let priority : Priorities
+    let shortTitle: String
+    let remainingTasks: Int
+    let priority: Priorities
 }
 
 class TaskCollectionRepository: NSObject {
-  let context : NSManagedObjectContext
-  
-  init(context: NSManagedObjectContext){
+  let context: NSManagedObjectContext
+
+  init(context: NSManagedObjectContext) {
     self.context = context
   }
-  
-  func taskSummariesForDates(startDate: NSDate, stopDate : NSDate) -> [TaskSummaryData]{
-    var answer : [TaskSummaryData] = []
-    for period in 1...7{
+
+  func taskSummariesForDates(startDate: NSDate, stopDate: NSDate) -> [TaskSummaryData] {
+    var answer: [TaskSummaryData] = []
+    for period in 1...7 {
       var currentDate = startDate
-      while (currentDate.compare(stopDate) == NSComparisonResult.OrderedAscending ||
-        currentDate.compare(stopDate) == NSComparisonResult.OrderedSame){
-          if let summary = taskSummariesForDateAndPeriod(startDate, period: period){
+      while currentDate.compare(stopDate) == NSComparisonResult.OrderedAscending ||
+        currentDate.compare(stopDate) == NSComparisonResult.OrderedSame {
+          if let summary = taskSummariesForDateAndPeriod(startDate, period: period) {
             answer.append(summary)
           }
           currentDate = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, toDate: currentDate, options: NSCalendarOptions.allZeros)!
@@ -36,14 +36,13 @@ class TaskCollectionRepository: NSObject {
     }
     return answer
   }
-  
-  func taskSummariesForDateAndPeriod(date: NSDate, period: Int) -> TaskSummaryData?{
-    var answer : TaskSummaryData?
-    if let result = fetchEntity("TaskSummary", withDate: date, andPeriod: period) as? [TaskSummaryEntity]{
-      if result.count == 0{
+
+  func taskSummariesForDateAndPeriod(date: NSDate, period: Int) -> TaskSummaryData? {
+    var answer: TaskSummaryData?
+    if let result = fetchEntity("TaskSummary", withDate: date, andPeriod: period) as? [TaskSummaryEntity] {
+      if result.count == 0 {
         answer = TaskSummaryData(shortTitle: "No Tasks!", remainingTasks: 0, priority: Priorities.Completed)
-      }
-      else {
+      } else {
         let model = result[0]
         let shortTitle = model.shortTitle
         let remaining = Int(model.remainingTasks)
@@ -55,10 +54,10 @@ class TaskCollectionRepository: NSObject {
     }
     return answer
   }
-  
-  func tasksForDateAndPeriod(date: NSDate, period: Int) -> [DailyTaskData]{
+
+  func tasksForDateAndPeriod(date: NSDate, period: Int) -> [DailyTaskData] {
     var answer: [DailyTaskData] = []
-    if let results = fetchEntity("DailyTask", withDate: date, andPeriod: period) as? [DailyTask]{
+    if let results = fetchEntity("DailyTask", withDate: date, andPeriod: period) as? [DailyTask] {
       if results.count != 0 {
         for task in results {
           answer.append(DailyTaskData(model: task))
@@ -67,8 +66,8 @@ class TaskCollectionRepository: NSObject {
     }
     return answer
   }
-  
-  func fetchEntity(entity: String, withDate date: NSDate, andPeriod period: Int, optionalPredicate pred:NSPredicate? = nil)->[AnyObject]?{
+
+  func fetchEntity(entity: String, withDate date: NSDate, andPeriod period: Int, optionalPredicate pred: NSPredicate? = nil) -> [AnyObject]? {
     let fetchRequest = NSFetchRequest(entityName: entity)
     let sortByPriority = NSSortDescriptor(key: "priority", ascending: true)
     fetchRequest.sortDescriptors = [sortByPriority]
@@ -81,18 +80,18 @@ class TaskCollectionRepository: NSObject {
     }
     var error: NSError?
     let answer = context.executeFetchRequest(fetchRequest, error: &error)
-    return error == nil ? answer : nil
+    return error == nil ? answer: nil
   }
-  
-  func modelFromData(data: DailyTaskData, forPeriod period: Int){
+
+  func modelFromData(data: DailyTaskData, forPeriod period: Int) {
     var model: DailyTask?
-    func newModel()->DailyTask?{
+    func newModel() -> DailyTask? {
       let entity = NSEntityDescription.entityForName("DailyTask", inManagedObjectContext: context)
       let newModel = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context) as? DailyTask
       return newModel
     }
     let optionalPredicate = NSPredicate(format: "id = %@", data.id)
-    if let results = fetchEntity("DailyTask", withDate: data.due, andPeriod: period, optionalPredicate: optionalPredicate){
+    if let results = fetchEntity("DailyTask", withDate: data.due, andPeriod: period, optionalPredicate: optionalPredicate) {
       if results.count > 0 {
         model = results[0] as? DailyTask
       } else {
@@ -109,6 +108,4 @@ class TaskCollectionRepository: NSObject {
     model!.details = data.details
     context.save(nil)
   }
-
-    
 }

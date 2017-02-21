@@ -11,10 +11,10 @@ import UIKit
 
 class UserColors {
   let defaults: CustomUserDefaults
-  init(defaults: CustomUserDefaults){
+  init(defaults: CustomUserDefaults) {
     self.defaults = defaults
   }
-  
+
    var NoClassColor: UIColor {
     get {
       if let color = defaults.noClassColor {
@@ -23,12 +23,12 @@ class UserColors {
         return UIColor(white: 0, alpha: 0.1)
       }
     }
-    
+
     set(value) {
       defaults.noClassColor = value
     }
   }
-  
+
   var StudyHallColor: UIColor {
     get {
       if let color = defaults.studyHallColor {
@@ -41,14 +41,12 @@ class UserColors {
       defaults.studyHallColor = value
     }
   }
-  
+
   var primaryThemeColor: UIColor {
-    get {
-      if let color = defaults.primaryThemeColor {
-        return color
-      } else {
-        return UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
-      }
+    if let color = defaults.primaryThemeColor {
+      return color
+    } else {
+      return UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
     }
   }
 }

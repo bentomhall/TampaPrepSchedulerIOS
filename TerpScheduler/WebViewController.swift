@@ -8,10 +8,10 @@
 
 import UIKit
 
-class WebViewController: UIViewController, UIWebViewDelegate{
+class WebViewController: UIViewController, UIWebViewDelegate {
   @IBOutlet weak var webView: UIWebView?
   var initialURL: URL?
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     var request: URLRequest?

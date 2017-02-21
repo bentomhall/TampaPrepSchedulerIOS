@@ -10,25 +10,25 @@ import UIKit
 
 @IBDesignable
 class SchoolClassView: UIView {
-  
-  @IBOutlet weak var classPeriodLabel : UILabel?
-  @IBOutlet weak var classNameLabel : UILabel?
-  @IBOutlet weak var teacherNameLabel : UILabel?
-  
-  var _classData : SchoolClass?
-  var classData : SchoolClass {
+
+  @IBOutlet weak var classPeriodLabel: UILabel?
+  @IBOutlet weak var classNameLabel: UILabel?
+  @IBOutlet weak var teacherNameLabel: UILabel?
+
+  var _classData: SchoolClass?
+  var classData: SchoolClass {
     get { return _classData! }
     set(data) {
       _classData = data
       setContentLabels(data)
     }
   }
-  
-  var haikuURL : URL?
-  
-  func setContentLabels(_ data: SchoolClass){
+
+  var haikuURL: URL?
+
+  func setContentLabels(_ data: SchoolClass) {
     classNameLabel!.text! = data.subject.uppercased()
     teacherNameLabel!.text! = data.teacherName
     haikuURL = data.haikuURL as URL?
-  }  
+  }
 }

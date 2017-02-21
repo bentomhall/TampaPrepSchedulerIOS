@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TaskDataSource{
+protocol TaskDataSource {
   var date: NSDate { get }
   var period: Int { get }
   var repository: TaskCollectionRepository? { get set }
@@ -19,15 +19,14 @@ class TaskSplitViewController: UISplitViewController, TaskDataSource {
   var period = 0
   var repository: TaskCollectionRepository?
   var tasks: [DailyTaskData] = []
-  
+
   override func viewDidLoad() {
     if repository != nil {
       tasks = repository!.tasksForDateAndPeriod(date, period: period)
     }
   }
-  
-  func setTableViewData(){
+
+  func setTableViewData() {
     let master = viewControllers[0] as UINavigationController
   }
-  
 }

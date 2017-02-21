@@ -34,14 +34,12 @@ enum NotificationTimes: Int {
 
 class TaskNotification {
   fileprivate let task: DailyTask
-  
   let UUID = Foundation.UUID()
-  
-  init(task: DailyTask){
+  init(task: DailyTask) {
     self.task = task
   }
-  
-  fileprivate func notificationTime(fromCategory time: NotificationTimes)->Date{
+
+  fileprivate func notificationTime(fromCategory time: NotificationTimes) -> Date {
     let calendar = Calendar.current
     if time != .testing {
     let dueDate = (calendar as NSCalendar).date(bySettingHour: 0, minute: 0, second: 0, of: task.date as Date, options: NSCalendar.Options())
@@ -53,11 +51,10 @@ class TaskNotification {
       return (calendar as NSCalendar).date(byAdding: .minute, value: 1, to: dueDate, options: [])!
     }
   }
-  
+
   func scheduleNotification(atTime time: NotificationTimes)->Foundation.UUID? {
     let notificationDate = notificationTime(fromCategory: time)
     let nextBadgeNumber = UIApplication.shared.scheduledLocalNotifications!.count + 1
-    
     let notification = UILocalNotification()
     notification.alertBody = task.shortTitle
     notification.applicationIconBadgeNumber = nextBadgeNumber
@@ -66,7 +63,6 @@ class TaskNotification {
     notification.soundName = UILocalNotificationDefaultSoundName
     notification.userInfo = ["taskID": "\(task.shortTitle)\(task.period)"]
     notification.category = "taskReminderCategory"
-    
     UIApplication.shared.scheduleLocalNotification(notification)
     return UUID
   }

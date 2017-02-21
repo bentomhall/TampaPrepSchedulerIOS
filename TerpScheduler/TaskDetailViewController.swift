@@ -17,14 +17,14 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var isCompleted: UISwitch?
   @IBOutlet weak var shouldNotify: UISwitch?
   @IBOutlet weak var dateLabel: UILabel?
-  
+
   @IBAction func clearData(_ sender: UIBarButtonItem) {
     shouldSave = false
     splitViewController!.preferredDisplayMode = .primaryHidden
     navigationController!.popToRootViewController(animated: false)
     clear()
   }
-  
+
   @IBAction func addItem(_ sender: UIBarButtonItem) {
     saveData()
     clear()
@@ -32,34 +32,33 @@ class TaskDetailViewController: UIViewController {
     shouldSave = true
     delegate!.addItemToTableView()
   }
-  
+
   fileprivate var shouldSave: Bool = true
   fileprivate var taskIsPersisted: Bool = false
-  
-  var delegate: TaskDetailDelegate?
+
+  weak var delegate: TaskDetailDelegate?
   var previousTaskData: DailyTask? {
     willSet(value) {
       if value == delegate!.defaultTask {
         return
       }
-      if date == nil && value != nil{
+      if date == nil && value != nil {
         date = value!.date as Date
         period = value!.period
       }
     }
   }
-  
+
   var date: Date?
   var period: Int?
-  
-  func stringFromDate(_ date: Date)->String
-  {
+
+  func stringFromDate(_ date: Date) -> String {
     let formatter = DateFormatter()
     formatter.dateFormat = "MM/dd/YYYY"
     return formatter.string(from: date)
   }
-  
-  func clear(){
+
+  func clear() {
     titleField!.text = ""
     detailsTextView!.text = ""
     prioritySelector!.selectedSegmentIndex = 2
@@ -69,34 +68,36 @@ class TaskDetailViewController: UIViewController {
     previousTaskData = delegate!.defaultTask
     taskIsPersisted = false
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.setHidesBackButton(true, animated: false)
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+      // can't happen
+      return
+    }
     self.dateLabel!.text = stringFromDate(date ?? Date()) + ": period \(period!)"
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setSubviewContentsFromTaskData(previousTaskData)
   }
-  
+
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     if shouldSave {
       saveData()
     }
   }
-  
-  @IBAction func notificationStatusChanged(_ sender: UISwitch)
-  {
+
+  @IBAction func notificationStatusChanged(_ sender: UISwitch) {
     if previousTaskData == nil {
       return
     }
@@ -108,7 +109,7 @@ class TaskDetailViewController: UIViewController {
       }
     }
   }
-  
+
   func saveData() {
     if titleField!.text != "" {
       let shortTitle = titleField!.text
@@ -120,7 +121,7 @@ class TaskDetailViewController: UIViewController {
       if completion {
         priority = Priorities.completed
       }
-      
+
       let newTaskData = DailyTask(date: date!, period: period!, shortTitle: shortTitle!, details: details!, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification)
       if newTaskData != previousTaskData! {
         delegate!.updateTask(newTaskData, withPreviousTask: previousTaskData!)
@@ -129,8 +130,8 @@ class TaskDetailViewController: UIViewController {
       taskIsPersisted = true
     }
   }
-  
-  func setSubviewContentsFromTaskData(_ data: DailyTask?){
+
+  func setSubviewContentsFromTaskData(_ data: DailyTask?) {
     if data != nil {
       titleField!.text = data!.shortTitle
       detailsTextView!.text = data!.details
@@ -148,7 +149,7 @@ extension TaskDetailViewController: UITextFieldDelegate {
     textField.resignFirstResponder()
     return true
   }
-  
+
   func textFieldDidEndEditing(_ textField: UITextField) {
     delegate!.didUpdateTitle(textField.text!)
   }

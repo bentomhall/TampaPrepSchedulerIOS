@@ -60,7 +60,7 @@ protocol Filterable {
   var shortTitle: String { get }
 }
 
-protocol DataObject: class {
+protocol DataObject {
   init(entity: NSManagedObject)
   func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject
 }

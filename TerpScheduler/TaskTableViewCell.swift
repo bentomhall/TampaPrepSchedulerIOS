@@ -11,7 +11,6 @@ import UIKit
 class TaskTableViewCell: UITableViewCell {
 
   @IBOutlet weak var title: UILabel?
-  
   override func awakeFromNib() {
     super.awakeFromNib()
       // Initialization code
@@ -20,8 +19,8 @@ class TaskTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
-  
-  func setTitleText(_ text: String, taskIsComplete: Bool){
+
+  func setTitleText(_ text: String, taskIsComplete: Bool) {
     title!.text = text
     if taskIsComplete {
       title!.textColor = UIColor.lightText
