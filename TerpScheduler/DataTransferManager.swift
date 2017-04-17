@@ -1,5 +1,5 @@
 //
-//  BusinessModel.swift
+//  DataManager.swift
 //  TerpScheduler
 //
 //  Created by Ben Hall on 1/21/15.
@@ -67,7 +67,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     taskRepository = TaskRepository(context: managedObjectContext)
     dateRepository = DateRepository(context: managedObjectContext)
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
-    backupManager = BackupManager(repository: taskRepository)
   }
 
   fileprivate var defaults: CustomUserDefaults?
@@ -78,7 +77,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   fileprivate var selectedDate = Date()
   fileprivate var selectedPeriod = 1
   fileprivate var copiedTasks = [DailyTask]()
-  let backupManager: BackupManager
 
   var isMiddleSchool: Bool {
       defaults!.readDefaults()

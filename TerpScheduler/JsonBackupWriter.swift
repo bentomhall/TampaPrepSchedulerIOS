@@ -33,6 +33,15 @@ class JsonBackupWriter {
     }
   }
 
+  func makeStringBackupFrom(_ data: [String: AnyObject]) -> Data? {
+    let count = data.count
+    var backupData = data
+    backupData["created"] = dateFormatter.string(from: Date()) as AnyObject?
+    backupData["count"] = count as AnyObject?
+    backupData["data"] = data as AnyObject?
+    return serialize(backupData as AnyObject)
+  }
+
   //Needs error handling
   func makeBackupFrom(_ data: [String: AnyObject]) -> Bool {
     let count = data.count

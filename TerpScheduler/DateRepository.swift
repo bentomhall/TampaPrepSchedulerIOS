@@ -131,8 +131,8 @@ class DateRepository {
   }
 
   func isCurrentYear(_ week: WeekEntity) -> Bool {
-    let testYear = week.schoolYear as Int
-    return testYear == self.schoolYear
+    //let testYear = week.schoolYear as Int
+    return (week.schoolYear as? Int) == self.schoolYear
   }
 
   ///fetches the currently selected week's schedule.
