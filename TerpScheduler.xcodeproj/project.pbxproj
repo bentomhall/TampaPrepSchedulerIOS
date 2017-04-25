@@ -44,6 +44,7 @@
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
 		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
 		D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */; };
+		D4CC8FB61EAF7244002DAFEA /* JumpToDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */; };
 		D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */; };
 		D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
 		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
 		D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassView.swift; sourceTree = "<group>"; };
+		D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpToDateViewController.swift; sourceTree = "<group>"; };
 		D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateHeaderView.swift; sourceTree = "<group>"; };
 		D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 				D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */,
 				D475812B1AA739170059BF3C /* ExportViewController.swift */,
 				D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */,
+				D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
 				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
+				D4CC8FB61EAF7244002DAFEA /* JumpToDateViewController.swift in Sources */,
 				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
 				D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */,
 				D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */,

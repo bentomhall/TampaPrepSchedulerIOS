@@ -45,7 +45,8 @@ class MainViewController: UIViewController {
   }
 
   @IBAction func TodayButtonTapped(_ sender: UIButton) {
-    delegate!.loadWeek(true)
+    let today = Date()
+    delegate!.loadWeek(today)
   }
 
   var taskSummaries: [TaskSummary]?
