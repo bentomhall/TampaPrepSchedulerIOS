@@ -145,9 +145,13 @@ class MainViewController: UIViewController {
           receivingController.initialURL = url
         }
       }
-    } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail"{
+    } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail" {
       if let receivingController = segue.destination as? TaskDetailViewController {
         delegate!.detailViewController = receivingController
+      }
+    } else if segue.identifier! == "JumpToDate" {
+      if let receivingController = segue.destination as? JumpToDateViewController {
+        receivingController.dataManager = delegate!
       }
     }
     super.prepare(for: segue, sender: sender)

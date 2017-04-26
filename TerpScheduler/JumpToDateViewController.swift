@@ -11,14 +11,13 @@ import UIKit
 @IBDesignable
 class JumpToDateViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
-  func initialize(dataManager: DataManager)
-  {
+  func initialize(dataManager: DataManager) {
     self.dataManager = dataManager
     self.popoverPresentationController?.delegate = self
   }
-  
+
   @IBOutlet weak var datePicker: UIDatePicker?
-  var dataManager: DataManager? = nil
+  var dataManager: (TaskSummaryDelegate & DateInformationDelegate)?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +28,6 @@ class JumpToDateViewController: UIViewController, UIPopoverPresentationControlle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-  
 
   func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
     let selectedDate = datePicker!.date

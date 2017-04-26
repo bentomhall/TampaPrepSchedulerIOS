@@ -188,7 +188,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     summaryViewController!.taskSummaries = summariesForWeek()
     summaryViewController!.reloadCollectionView()
   }
-  
+
   func loadWeek(_ date: Date) {
     dateRepository.loadWeekForDay(date)
     summaryViewController!.taskSummaries = summariesForWeek()
