@@ -29,6 +29,11 @@ class JumpToDateViewController: UIViewController, UIPopoverPresentationControlle
         // Dispose of any resources that can be recreated.
     }
 
+  override func viewWillDisappear(_ animated: Bool) {
+    let selectedDate = datePicker!.date
+    dataManager!.loadWeek(selectedDate)
+  }
+
   func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
     let selectedDate = datePicker!.date
     dataManager!.loadWeek(selectedDate)

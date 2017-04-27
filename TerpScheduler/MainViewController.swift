@@ -120,7 +120,7 @@ class MainViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-
+  //swiftlint:disable cyclomatic_complexity
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier!.hasPrefix("ClassDetail") {
       let index = Int(segue.identifier!.components(separatedBy: "_")[1])
@@ -156,6 +156,7 @@ class MainViewController: UIViewController {
     }
     super.prepare(for: segue, sender: sender)
   }
+  //swiftlint:enable cyclomatic_complexity
 
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)

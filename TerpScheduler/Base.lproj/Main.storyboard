@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="-1387" y="-635"/>
         </scene>
-        <!--View Controller-->
+        <!--Jump To Date View Controller-->
         <scene sceneID="fdD-yz-4w2">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="U9h-tA-bX9" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="U9h-tA-bX9" customClass="JumpToDateViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g0Z-ug-zPa"/>
                         <viewControllerLayoutGuide type="bottom" id="cCe-NS-EPI"/>
@@ -302,7 +302,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0VG-Vi-ulJ">
-                                <rect key="frame" x="30" y="114" width="320" height="216"/>
+                                <rect key="frame" x="30" y="69" width="320" height="261"/>
                                 <date key="date" timeIntervalSinceReferenceDate="514814136.691688">
                                     <!--2017-04-25 11:55:36 +0000-->
                                 </date>
@@ -326,12 +326,16 @@
                             <constraint firstItem="0VG-Vi-ulJ" firstAttribute="leading" secondItem="qCD-AA-RW2" secondAttribute="leadingMargin" constant="14" id="BPR-Pk-VKD"/>
                             <constraint firstItem="vEQ-kB-Tqu" firstAttribute="centerX" secondItem="qCD-AA-RW2" secondAttribute="centerX" id="D1o-CS-5T9"/>
                             <constraint firstItem="0VG-Vi-ulJ" firstAttribute="centerX" secondItem="qCD-AA-RW2" secondAttribute="centerX" id="Ue3-bp-zBz"/>
+                            <constraint firstItem="0VG-Vi-ulJ" firstAttribute="top" secondItem="vEQ-kB-Tqu" secondAttribute="bottom" constant="20" id="VjN-OZ-MiS"/>
                             <constraint firstItem="cCe-NS-EPI" firstAttribute="top" secondItem="0VG-Vi-ulJ" secondAttribute="bottom" constant="20" id="ZAX-kp-633"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0VG-Vi-ulJ" secondAttribute="trailing" constant="14" id="fhp-tE-ZNl"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="380" height="350"/>
+                    <connections>
+                        <outlet property="datePicker" destination="0VG-Vi-ulJ" id="EOi-4v-d9s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usH-SJ-da6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1103,12 +1107,12 @@
                                     <rect key="frame" x="514" y="7" width="170" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Jump To Date"/>
+                                    <connections>
+                                        <segue destination="U9h-tA-bX9" kind="popoverPresentation" identifier="JumpToDate" popoverAnchorView="xDa-6B-cdR" id="fGf-K8-ilG">
+                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        </segue>
+                                    </connections>
                                 </button>
-                                <connections>
-                                    <segue destination="U9h-tA-bX9" kind="popoverPresentation" identifier="JumpToDate" popoverAnchorBarButtonItem="58O-Rh-f49" id="7rr-fk-dVI">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
