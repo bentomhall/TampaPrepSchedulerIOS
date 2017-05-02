@@ -20,7 +20,7 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
     self.context = context
     userDefaults = appDelegate!.userDefaults
   }
-  
+
   func scheduleDidUpdateFromNetwork(newSchedule: [String : Any]) {
     _ = extractScheduleFrom(dict: newSchedule)
     do {
@@ -54,14 +54,13 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
         data = nil
         NSLog("%@", error)
       }
-      if let jsonData: [String: Any] = (try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String : Any]) {
-        return extractScheduleFrom(dict: jsonData)
+      if let jsonData = try? JSONSerialization.jsonObject(with: data!, options: [.allowFragments]) as? [String : Any] {
+        return extractScheduleFrom(dict: jsonData!)
       }
     }
     return nil
   }
-  
-  func extractScheduleFrom(dict: [String: Any])-> [NSManagedObject] {
+  func extractScheduleFrom(dict: [String: Any]) -> [NSManagedObject] {
     var weeks = [] as [NSManagedObject]
     for (key, value) in dict {
       let weekLabel = key

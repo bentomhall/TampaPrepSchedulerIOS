@@ -127,7 +127,7 @@ class CustomUserDefaults {
       defaults.setValue(currentVersion, forKey: "version")
     }
   }
-  
+
   var lastScheduleUpdate: String {
     get {
       return defaults.string(forKey: "lastScheduleUpdate") ?? "01/01/1970"
@@ -136,7 +136,7 @@ class CustomUserDefaults {
       defaults.setValue(newValue, forKey: "lastScheduleUpdate")
     }
   }
-  
+
   var scheduleUpdateFrequency: Int {
     get {
       if let stored = defaults.value(forKey: "scheduleUpdateFrequency") {
@@ -150,7 +150,7 @@ class CustomUserDefaults {
       defaults.set(newValue, forKey: "scheduleUpdateFrequency")
     }
   }
-  
+
   func onSettingsChange(_ notification: Notification) {
     readDefaults()
   }
