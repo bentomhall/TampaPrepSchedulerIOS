@@ -103,7 +103,7 @@ class CustomUserDefaults {
     guard let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
       return true
     }
-    //test for nill, if it passes we can safely cast later
+    //test for nil, if it passes we can safely cast later
     if defaults.value(forKey: "version") == nil {
       defaults.setValue(currentVersion, forKey: "version")
       return true
@@ -127,6 +127,30 @@ class CustomUserDefaults {
       defaults.setValue(currentVersion, forKey: "version")
     }
   }
+  
+  var lastScheduleUpdate: String {
+    get {
+      return defaults.string(forKey: "lastScheduleUpdate") ?? "01/01/1970"
+    }
+    set {
+      defaults.setValue(newValue, forKey: "lastScheduleUpdate")
+    }
+  }
+  
+  var scheduleUpdateFrequency: Int {
+    get {
+      if let stored = defaults.value(forKey: "scheduleUpdateFrequency") {
+        return stored as? Int ?? 60
+      } else {
+        return 60
+      }
+
+    }
+    set {
+      defaults.set(newValue, forKey: "scheduleUpdateFrequency")
+    }
+  }
+  
   func onSettingsChange(_ notification: Notification) {
     readDefaults()
   }

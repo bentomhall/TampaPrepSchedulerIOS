@@ -19,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let context = managedObjectContext {
       let files = ["schedule"]
       let loader = SemesterScheduleLoader(context: context)
-      loader.loadSchedule(fromFiles: files)
+      let networkLoader = NetworkScheduleUpdater(defaults: userDefaults, delegate: loader)
+      if networkLoader.shouldUpdateFromNetwork() {
+        networkLoader.retrieveScheduleFromNetwork(withDefinitions: false, forYear: Calendar.autoupdatingCurrent.dateComponents([.year], from: Date()).year!)
+      } else {
+          loader.loadSchedule(fromFiles: files)
+      }
+      
     }
     application.applicationIconBadgeNumber = 0
     let categories = setupNotification() as? Set<UIUserNotificationCategory>

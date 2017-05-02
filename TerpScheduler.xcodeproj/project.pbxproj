@@ -45,6 +45,7 @@
 		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
 		D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */; };
 		D4CC8FB61EAF7244002DAFEA /* JumpToDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */; };
+		D4CC8FB81EB22C06002DAFEA /* NetworkScheduleUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */; };
 		D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */; };
 		D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
 		D4A9DE7C1A5B454400E3AE9E /* SchoolClassView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassView.swift; sourceTree = "<group>"; };
 		D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JumpToDateViewController.swift; sourceTree = "<group>"; };
+		D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkScheduleUpdater.swift; sourceTree = "<group>"; };
 		D4E9B3FF1A632C3500C46B29 /* dateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateHeaderView.swift; sourceTree = "<group>"; };
 		D4E9B4031A63374E00C46B29 /* SchoolClassesRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 				D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */,
 				D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */,
 				D47453801B7E1F67005741B6 /* UserColors.swift */,
+				D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				D47453811B7E1F67005741B6 /* UserColors.swift in Sources */,
 				D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */,
 				D47B684B1B5C82550061C835 /* TaskNotification.swift in Sources */,
+				D4CC8FB81EB22C06002DAFEA /* NetworkScheduleUpdater.swift in Sources */,
 				D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */,
 				D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,

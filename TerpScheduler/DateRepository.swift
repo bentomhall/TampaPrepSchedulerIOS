@@ -9,6 +9,14 @@
 import Foundation
 import CoreData
 
+func dateFromString(_ string: String) -> Date {
+  let formatter = DateFormatter()
+  formatter.dateStyle = .short
+  formatter.locale = Locale(identifier: "en_US")
+  let date = formatter.date(from: string)!
+  return date
+}
+
 ///global-ish mapping from schedule types to a list of periods that DO NOT meet that day.
 let possibleSchedules: [String:[Int]] = ["A": [6], "B": [5, 7], "C": [4],
   "D": [2], "E": [1, 3],
