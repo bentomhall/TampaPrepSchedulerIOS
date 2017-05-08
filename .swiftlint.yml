@@ -2,3 +2,4 @@ disabled_rules:
   - line_length
   - variable_name
   - type_name
+  - trailing_whitespace

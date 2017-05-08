@@ -10,6 +10,12 @@ import Foundation
 
 protocol ScheduleUpdateDelegate: class {
   func scheduleDidUpdateFromNetwork(newSchedule: [String: Any])
+  func networkScheduleUpdateFailed(error: Error)
+}
+
+enum ScheduleUpdateError: Error {
+  case NetworkFailure(String)
+  case ImproperResponse(String)
 }
 
 class NetworkScheduleUpdater {
@@ -25,35 +31,38 @@ class NetworkScheduleUpdater {
   func shouldUpdateFromNetwork() -> Bool {
     let lastUpdate = dateFromString(defaults.lastScheduleUpdate)
     let now = Date()
-    return false //network side of things not active currently
-    //return (Calendar.current.dateComponents([.day], from: lastUpdate, to: now).day ?? 0) > defaults.scheduleUpdateFrequency
+    //return false //network side of things not active currently
+    return (Calendar.current.dateComponents([.day], from: lastUpdate, to: now).day ?? 0) > defaults.scheduleUpdateFrequency
   }
 
   func retrieveScheduleFromNetwork(withDefinitions: Bool, forDate: Date = Date()) {
     let schoolYear = getSchoolYear(forDate)
-    let url = URL(string: "http://teaching.admiralbenbo.org/schedules.php?\(schoolYear)")!
-    let config = URLSessionConfiguration.default
+    let url = URL(string: "https://teaching.admiralbenbo.org/schedule/\(schoolYear)")!
+    let config = URLSessionConfiguration.ephemeral
     let session = URLSession(configuration: config)
-    let task = session.dataTask(with: url, completionHandler: { (data, _, error) in
-      if error != nil {
-        print(error!.localizedDescription)
-      } else {
-        do {
-          if let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
-            guard json.count > 1 else {
-              NSLog("Error retrieving schedule with message \(json["message"] ?? "Server Error")")
-              return
-            }
-            self.delegate!.scheduleDidUpdateFromNetwork(newSchedule: json)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            self.defaults.lastScheduleUpdate = dateFormatter.string(from: Date())
-          }
-        } catch {
-          print("error in JSONSerialization")
-        }
-      }
-    })
+    let task = session.dataTask(with: url, completionHandler: onResponseReceived)
     task.resume()
+  }
+
+  func onResponseReceived(data: Data?, response: URLResponse?, error: Error? ) {
+//    guard delegate == nil else {
+//      NSLog("No delegate found for NetworkScheduleUpdater")
+//      return
+//    }
+    guard error == nil else {
+      delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
+      return
+    }
+    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      guard json!.count > 1 else {
+        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
+        return
+      }
+
+      self.delegate!.scheduleDidUpdateFromNetwork(newSchedule: json!)
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = .medium
+      self.defaults.lastScheduleUpdate = dateFormatter.string(from: Date())
+    }
   }
 }

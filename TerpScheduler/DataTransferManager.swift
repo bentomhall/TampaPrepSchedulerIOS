@@ -55,6 +55,7 @@ protocol DateInformationDelegate: class {
   func loadWeek(_ direction: Int)
   func loadWeek(_ date: Date)
   func missedClassesForDayByIndex(_ index: Int) -> [Int]
+  func didUpdateSchedulesForWeekInView()
 }
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
@@ -177,6 +178,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
 
   func didSetDateByIndex(_ index: Int, withData data: String) {
     dateRepository.setScheduleForDateByIndex(index, newSchedule: data)
+  }
+  
+  func didUpdateSchedulesForWeekInView() {
+    summaryViewController!.reloadCollectionView(true) //change shading
   }
 
   func loadWeek(_ direction: Int) {

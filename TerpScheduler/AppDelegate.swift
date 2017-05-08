@@ -16,16 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     let defaultValues = ["isDataInitialized": false, "isMiddleStudent": false, "shouldShadeStudyHall": true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"] as [String : Any]
     Foundation.UserDefaults.standard.register(defaults: defaultValues)
-    if let context = managedObjectContext {
-      let files = ["schedule"]
-      let loader = SemesterScheduleLoader(context: context)
-      let networkLoader = NetworkScheduleUpdater(defaults: userDefaults, delegate: loader)
-      if networkLoader.shouldUpdateFromNetwork() {
-        networkLoader.retrieveScheduleFromNetwork(withDefinitions: false)
-      } else {
-          loader.loadSchedule(fromFiles: files)
-      }
-
+    if !DateRepository.isScheduleLoadedFor(schoolYear: getSchoolYear(Date()), inContext: managedObjectContext!) {
+      scheduleLoader.loadSchedule(fromFiles: ["schedule"])
     }
     application.applicationIconBadgeNumber = 0
     let categories = setupNotification() as? Set<UIUserNotificationCategory>
@@ -34,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     userColors = UserColors(defaults: userDefaults)
     return true
   }
+  
+  lazy var scheduleLoader: SemesterScheduleLoader = SemesterScheduleLoader(context: self.managedObjectContext!)
 
   func setupNotification()->Set<NSObject> {
     let justInformAction = UIMutableUserNotificationAction()

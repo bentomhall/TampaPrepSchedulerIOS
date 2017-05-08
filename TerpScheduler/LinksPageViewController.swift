@@ -15,12 +15,14 @@ class LinksPageViewController: UIViewController {
   @IBOutlet weak var haikuLearningButton: UIButton?
   @IBOutlet weak var googleDriveButton: UIButton?
   @IBOutlet weak var backButton: UIButton?
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 
   let tampaPrepURL = URL(string: "http://www.tampaprep.org")!
   let myBackPackURL = URL(string: "https://tampaprep.seniormbp.com/SeniorApps")!
   let haikuAppURL = URL(string: "haikulearning://")!
   let haikuURL = URL(string: "https://tampaprep.haikulearning.com")!
   let googleDriveAppURL = URL(string: "googledrive://")!
+  var updateController: ScheduleUpdateController?
 
   @IBAction func linkButtonPressed(_ sender: UIButton) {
     var url: URL
@@ -51,14 +53,19 @@ class LinksPageViewController: UIViewController {
     }
     UIApplication.shared.openURL(url)
   }
+  
+  @IBAction func doNetworkUpdate(_ sender: UIButton) {
+    updateController = ScheduleUpdateController(activity: activityIndicator!)
+    updateController!.willUpdateFromNetwork()
+  }
 
   @IBAction func closeView(_ sender: UIButton) {
     dismiss(animated: true, completion: nil)
   }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+      super.viewDidLoad()
+      activityIndicator!.hidesWhenStopped = true
         // Do any additional setup after loading the view.
     }
 

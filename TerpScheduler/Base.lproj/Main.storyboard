@@ -1529,6 +1529,18 @@
                                     <constraint firstAttribute="width" constant="1" id="9co-kd-Pqc"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRh-KE-GHT">
+                                <rect key="frame" x="319" y="207" width="131" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update Schedule"/>
+                                <connections>
+                                    <action selector="doNetworkUpdate:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="4C5-OF-I6D"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Ry-Dlj">
+                                <rect key="frame" x="458" y="212" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1554,6 +1566,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5UB-8C-nhd"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="mEs-Ry-Dlj" id="EYW-3z-BTe"/>
                         <outlet property="backButton" destination="b9z-MH-jmH" id="2hl-gT-jtD"/>
                         <outlet property="googleDriveButton" destination="ncS-KC-gDZ" id="HzN-Lg-bl5"/>
                         <outlet property="haikuLearningButton" destination="ebm-gD-Eqj" id="HY3-07-cee"/>
@@ -1563,7 +1576,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229" y="265"/>
+            <point key="canvasLocation" x="228.90625" y="264.84375"/>
         </scene>
         <!--Scheduled Notifications Table View Controller-->
         <scene sceneID="Ei4-kk-ezc">

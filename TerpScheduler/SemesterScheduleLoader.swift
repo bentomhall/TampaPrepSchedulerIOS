@@ -22,29 +22,28 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
   }
 
   func scheduleDidUpdateFromNetwork(newSchedule: [String : Any]) {
+    clearSchedule()
     _ = extractScheduleFrom(dict: newSchedule)
-    do {
-      try context.save()
-    } catch let error as NSError {
-      NSLog("%@", error)
-    }
-    setScheduleLoaded()
+    saveContext()
   }
 
   func loadSchedule(fromFiles files: [String]) {
-    if !isScheduleLoaded() {
-      for file in files {
-        _ = loadScheduleDataFromJSON(file)
-        do {
-          try context.save()
-        } catch let error as NSError {
-          NSLog("%@", error)
-        }
-      }
-      setScheduleLoaded()
+    for file in files {
+      _ = loadScheduleDataFromJSON(file)
+
     }
+      saveContext()
   }
 
+  func saveContext() {
+    do {
+      try context.save()
+      setScheduleLoaded()
+    } catch let error as NSError {
+      NSLog("%@", error)
+    }
+  }
+  
   func loadScheduleDataFromJSON(_ jsonFileName: String) -> [NSManagedObject]? {
     if let path = Bundle.main.path(forResource: jsonFileName, ofType: "json") {
       let data: Data?
@@ -77,14 +76,20 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
     }
     return weeks
   }
+  
+  func clearSchedule() {
+    let fetchRequest = NSFetchRequest<WeekEntity>(entityName: "Week")
+    let results = try? context.fetch(fetchRequest)
+    if results != nil {
+      for entity in results! {
+        context.delete(entity)
+      }
+      saveContext()
+    }
+  }
 
   func isScheduleLoaded() -> Bool {
-    userDefaults.setFirstLaunch(true) //temporary
-    if userDefaults.isFirstLaunchForCurrentVersion() {
-      return false
-    } else {
-      return userDefaults.isDataInitialized
-    }
+    return !userDefaults.isDataInitialized
   }
 
   func setScheduleLoaded() {
@@ -94,5 +99,9 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
 
   func serializeSchedule(_ schedule: [String]) -> String {
     return schedule.joined(separator: " ")
+  }
+  
+  func networkScheduleUpdateFailed(error: Error) {
+    //do stuff
   }
 }

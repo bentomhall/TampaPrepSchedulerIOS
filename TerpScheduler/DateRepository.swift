@@ -175,4 +175,14 @@ class DateRepository {
     dates = loadCurrentWeek()
     schoolYear = getSchoolYear(date)
   }
+  
+  static func isScheduleLoadedFor(schoolYear: Int, inContext: NSManagedObjectContext) -> Bool {
+    let fetchRequest = NSFetchRequest<WeekEntity>(entityName: "Week")
+    let results = try? inContext.fetch(fetchRequest)
+    if results != nil && results!.count != 0 {
+      return true
+    } else {
+      return false
+    }
+  }
 }
