@@ -11,6 +11,7 @@ import Foundation
 protocol ScheduleUpdateDelegate: class {
   func scheduleDidUpdateFromNetwork(newSchedule: [String: Any])
   func networkScheduleUpdateFailed(error: Error)
+  func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String: Any])
 }
 
 enum ScheduleUpdateError: Error {
@@ -42,6 +43,29 @@ class NetworkScheduleUpdater {
     let session = URLSession(configuration: config)
     let task = session.dataTask(with: url, completionHandler: onResponseReceived)
     task.resume()
+  }
+  
+  func retrieveScheduleTypesFromNetwork(forDate: Date = Date()) {
+    let schoolYear = getSchoolYear(forDate)
+    let url = URL(string: "https://teaching.admiralbenbo.org/definitions/\(schoolYear)")!
+    let config = URLSessionConfiguration.ephemeral
+    let session = URLSession(configuration: config)
+    let task = session.dataTask(with: url, completionHandler: scheduleTypesDidUpdate)
+    task.resume()
+  }
+  
+  func scheduleTypesDidUpdate(data: Data?, response: URLResponse?, error: Error?) {
+    guard error == nil else {
+      delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
+      return
+    }
+    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      guard json!.count > 1 else {
+        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
+        return
+      }
+      self.delegate!.scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: json!)
+    }
   }
 
   func onResponseReceived(data: Data?, response: URLResponse?, error: Error? ) {

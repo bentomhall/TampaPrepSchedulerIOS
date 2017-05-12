@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Foundation.UserDefaults.standard.register(defaults: defaultValues)
     if !DateRepository.isScheduleLoadedFor(schoolYear: getSchoolYear(Date()), inContext: managedObjectContext!) {
       scheduleLoader.loadSchedule(fromFiles: ["schedule"])
+      
+    }
+    do {
+      try scheduleTypes = scheduleLoader.loadScheduleTypesFromDisk()
+    } catch let error as NSError {
+      NSLog("Error Loading default schedule types: %@. Installation Corrupted", error)
+      abort()
     }
     application.applicationIconBadgeNumber = 0
     let categories = setupNotification() as? Set<UIUserNotificationCategory>
@@ -28,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   lazy var scheduleLoader: SemesterScheduleLoader = SemesterScheduleLoader(context: self.managedObjectContext!)
+  
+  var scheduleTypes: ScheduleTypeData?
 
   func setupNotification()->Set<NSObject> {
     let justInformAction = UIMutableUserNotificationAction()

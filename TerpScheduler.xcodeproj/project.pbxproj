@@ -20,6 +20,8 @@
 		D416C71B1A704E6B00AC2AEE /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */; };
 		D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71D1A706B2600AC2AEE /* DateRepository.swift */; };
 		D416C7201A706EFA00AC2AEE /* DataTransferManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */; };
+		D41823F61EC5EB15002C5FF7 /* ScheduleTypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */; };
+		D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */; };
 		D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */; };
 		D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */; };
 		D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */; };
@@ -68,6 +70,9 @@
 		D416C71A1A704E6B00AC2AEE /* TaskRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		D416C71D1A706B2600AC2AEE /* DateRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRepository.swift; sourceTree = "<group>"; };
 		D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTransferManager.swift; sourceTree = "<group>"; };
+		D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTypeData.swift; sourceTree = "<group>"; };
+		D41823FA1EC5EEE3002C5FF7 /* TerpScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TerpScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
+		D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scheduleTypes.json; sourceTree = "<group>"; };
 		D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationsTableViewController.swift; sourceTree = "<group>"; };
 		D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupWriter.swift; sourceTree = "<group>"; };
 		D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 		D408FD691A432E45004F0B83 = {
 			isa = PBXGroup;
 			children = (
+				D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */,
 				D43FAB5C1AF12D6800A1C55E /* schedule.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
 				D408FD731A432E45004F0B83 /* Products */,
@@ -220,6 +226,7 @@
 				D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */,
 				D47453801B7E1F67005741B6 /* UserColors.swift */,
 				D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */,
+				D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -288,6 +295,7 @@
 			files = (
 				D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */,
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
+				D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,
@@ -337,6 +345,7 @@
 				D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */,
 				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
 				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
+				D41823F61EC5EB15002C5FF7 /* ScheduleTypeData.swift in Sources */,
 				D4D5DF391EBCAAFE00A1373D /* ScheduleUpdateViewController.swift in Sources */,
 				D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */,
 				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
@@ -541,6 +550,7 @@
 		D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D41823FA1EC5EEE3002C5FF7 /* TerpScheduler 3.xcdatamodel */,
 				D40275B81CF739600089CFA1 /* TerpScheduler 2.xcdatamodel */,
 				D408FD7A1A432E45004F0B83 /* TerpScheduler.xcdatamodel */,
 			);

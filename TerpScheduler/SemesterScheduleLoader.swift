@@ -26,6 +26,32 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
     _ = extractScheduleFrom(dict: newSchedule)
     saveContext()
   }
+  
+  func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String : Any]) {
+    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions)
+    do {
+      try saveScheduleTypesToDisk(data: newTypeDefinitions)
+    } catch let error as NSError {
+      NSLog("Error saving schedule types to disk: %@. Is the disk full?", error)
+    }
+  }
+  
+  func loadScheduleTypesFromDisk() throws -> ScheduleTypeData? {
+    if let path = Bundle.main.path(forResource: "scheduleTypes", ofType: "json") {
+      let data = try Data(contentsOf: URL(fileURLWithPath: path))
+      if let jsonData = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
+        return ScheduleTypeData(data: jsonData!)
+      }
+    }
+    return nil
+  }
+  
+  func saveScheduleTypesToDisk(data: [String: Any]) throws {
+    if let path = Bundle.main.path(forResource: "scheduleTypes", ofType: "json") {
+      let textData = try JSONSerialization.data(withJSONObject: data, options: [])
+      try textData.write(to: URL(fileURLWithPath: path))
+    }
+  }
 
   func loadSchedule(fromFiles files: [String]) {
     for file in files {

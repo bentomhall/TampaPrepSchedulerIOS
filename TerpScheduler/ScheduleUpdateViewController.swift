@@ -9,11 +9,21 @@
 import UIKit
 
 class ScheduleUpdateController: ScheduleUpdateDelegate {
+  
+  func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String : Any]) {
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions)
+    do {
+      try scheduleLoader!.saveScheduleTypesToDisk(data: newTypeDefinitions)
+    } catch let error as NSError {
+      NSLog("Error saving schedule types to disk: %@. Is the disk full?", error)
+    }
+  }
 
   weak var delegate: DateInformationDelegate?
   var networkLoader: NetworkScheduleUpdater?
   var userDefaults: CustomUserDefaults?
-  var scheduleLoader: ScheduleUpdateDelegate?
+  var scheduleLoader: SemesterScheduleLoader?
   var isUpdating: Bool = true
   weak var activityIndicator: UIActivityIndicatorView?
   
