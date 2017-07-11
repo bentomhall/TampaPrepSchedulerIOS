@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rsH-ps-hLA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rsH-ps-hLA">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,11 +24,11 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txc-ZT-fs2" id="4Ka-fc-Ac3">
-                                    <rect key="frame" x="0.0" y="0.0" width="273" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="272" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bay-KL-vMg">
-                                            <rect key="frame" x="15" y="0.0" width="258" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="256" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -306,11 +306,11 @@
                                 <date key="date" timeIntervalSinceReferenceDate="514814136.691688">
                                     <!--2017-04-25 11:55:36 +0000-->
                                 </date>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="491738400">
-                                    <!--2016-08-01 10:00:00 +0000-->
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="520596000">
+                                    <!--2017-07-01 10:00:00 +0000-->
                                 </date>
-                                <date key="maximumDate" timeIntervalSinceReferenceDate="517917600">
-                                    <!--2017-05-31 10:00:00 +0000-->
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="552045600">
+                                    <!--2018-06-30 10:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vEQ-kB-Tqu">
@@ -1529,31 +1529,34 @@
                                     <constraint firstAttribute="width" constant="1" id="9co-kd-Pqc"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRh-KE-GHT">
-                                <rect key="frame" x="319" y="207" width="131" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRh-KE-GHT">
+                                <rect key="frame" x="318" y="205" width="132" height="30"/>
                                 <state key="normal" title="Update Schedule"/>
                                 <connections>
                                     <action selector="doNetworkUpdate:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="4C5-OF-I6D"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Ry-Dlj">
-                                <rect key="frame" x="458" y="212" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Ry-Dlj">
+                                <rect key="frame" x="458" y="210" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="8Yd-JZ-xN1" secondAttribute="trailing" constant="73" id="2j4-Mw-bKb"/>
                             <constraint firstItem="xGO-yk-7EJ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="3OL-Cu-vGH"/>
+                            <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="7.5" id="3yU-Kf-gOQ"/>
                             <constraint firstAttribute="centerX" secondItem="b9z-MH-jmH" secondAttribute="centerX" id="73x-Dv-KXn"/>
+                            <constraint firstItem="PRh-KE-GHT" firstAttribute="centerX" secondItem="DY1-L2-Sr7" secondAttribute="centerX" id="AfU-li-ZBj"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="top" secondItem="DY1-L2-Sr7" secondAttribute="topMargin" id="B7a-Mq-hRa"/>
+                            <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="7.5" id="BHd-bW-F92"/>
+                            <constraint firstItem="mEs-Ry-Dlj" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="190" id="Gmp-zS-QXX"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="H2c-B9-Jyv"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="ebm-gD-Eqj" secondAttribute="trailing" constant="73" id="HhL-0w-c3B"/>
                             <constraint firstAttribute="bottomMargin" secondItem="APx-sI-Sxv" secondAttribute="bottom" id="ML9-d0-qgP"/>
                             <constraint firstAttribute="centerX" secondItem="APx-sI-Sxv" secondAttribute="centerX" id="MZh-we-hcQ"/>
                             <constraint firstItem="VNX-gp-MDZ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="OCK-nA-epr"/>
                             <constraint firstItem="VNX-gp-MDZ" firstAttribute="top" secondItem="xGO-yk-7EJ" secondAttribute="bottom" constant="8" id="SUi-Re-CPK"/>
+                            <constraint firstItem="mEs-Ry-Dlj" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="8" id="T3D-Sw-jNd"/>
                             <constraint firstItem="ebm-gD-Eqj" firstAttribute="top" secondItem="30E-u1-ucH" secondAttribute="bottom" constant="8" id="TJu-6D-8Bm"/>
                             <constraint firstAttribute="centerY" secondItem="APx-sI-Sxv" secondAttribute="centerY" id="UhU-xG-8DL"/>
                             <constraint firstItem="8Yd-JZ-xN1" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="auQ-I6-u1h"/>
@@ -1561,6 +1564,7 @@
                             <constraint firstItem="xGO-yk-7EJ" firstAttribute="top" secondItem="ncS-KC-gDZ" secondAttribute="bottom" constant="8" id="iuH-gI-7q6"/>
                             <constraint firstItem="30E-u1-ucH" firstAttribute="top" secondItem="8Yd-JZ-xN1" secondAttribute="bottom" constant="8" id="k1h-8h-J8U"/>
                             <constraint firstItem="b9z-MH-jmH" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="572" id="piq-Ol-KsE"/>
+                            <constraint firstItem="PRh-KE-GHT" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="185" id="t9E-xU-xuR"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="30E-u1-ucH" secondAttribute="trailing" constant="73" id="xg9-zx-0IZ"/>
                         </constraints>
                     </view>

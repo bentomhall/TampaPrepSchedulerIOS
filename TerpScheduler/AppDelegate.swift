@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    let defaultValues = ["isDataInitialized": false, "isMiddleStudent": false, "shouldShadeStudyHall": true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening"] as [String : Any]
+    let defaultValues = ["isDataInitialized": false, "isMiddleStudent": false, "shouldShadeStudyHall": true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening", "lastUpdate": 0.0] as [String : Any]
     Foundation.UserDefaults.standard.register(defaults: defaultValues)
     if !DateRepository.isScheduleLoadedFor(schoolYear: getSchoolYear(Date()), inContext: managedObjectContext!) {
       scheduleLoader.loadSchedule(fromFiles: ["schedule"])

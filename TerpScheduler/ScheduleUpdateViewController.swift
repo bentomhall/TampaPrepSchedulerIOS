@@ -40,6 +40,7 @@ class ScheduleUpdateController: ScheduleUpdateDelegate {
     //if networkLoader!.shouldUpdateFromNetwork() {
       activityIndicator!.startAnimating()
       networkLoader!.retrieveScheduleFromNetwork(withDefinitions: false)
+    networkLoader!.retrieveScheduleTypesFromNetwork()
     //}
   }
   

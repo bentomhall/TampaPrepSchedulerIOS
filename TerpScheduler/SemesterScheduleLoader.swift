@@ -88,6 +88,9 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
   func extractScheduleFrom(dict: [String: Any]) -> [NSManagedObject] {
     var weeks = [] as [NSManagedObject]
     for (key, value) in dict {
+      if key == "lastUpdated" {
+        continue
+      }
       let weekLabel = key
       let weekInformation = value as? NSArray
       let weekSchedule = weekInformation![0] as? [String]

@@ -30,15 +30,14 @@ class NetworkScheduleUpdater {
   }
 
   func shouldUpdateFromNetwork() -> Bool {
-    let lastUpdate = dateFromString(defaults.lastScheduleUpdate)
-    let now = Date()
-    //return false //network side of things not active currently
-    return (Calendar.current.dateComponents([.day], from: lastUpdate, to: now).day ?? 0) > defaults.scheduleUpdateFrequency
+    let updateDelta = Date(timeIntervalSince1970: defaults.lastScheduleUpdate).timeIntervalSinceNow //this is negative
+    return updateDelta.isLessThanOrEqualTo(-15780000.0) //six months
   }
 
   func retrieveScheduleFromNetwork(withDefinitions: Bool, forDate: Date = Date()) {
     let schoolYear = getSchoolYear(forDate)
-    let url = URL(string: "https://teaching.admiralbenbo.org/schedule/\(schoolYear)")!
+    let lastUpdate = defaults.lastScheduleUpdate
+    let url = URL(string: "https://teaching.admiralbenbo.org/api/schedule/\(schoolYear)?update=\(lastUpdate)")!
     let config = URLSessionConfiguration.ephemeral
     let session = URLSession(configuration: config)
     let task = session.dataTask(with: url, completionHandler: onResponseReceived)
@@ -47,7 +46,7 @@ class NetworkScheduleUpdater {
   
   func retrieveScheduleTypesFromNetwork(forDate: Date = Date()) {
     let schoolYear = getSchoolYear(forDate)
-    let url = URL(string: "https://teaching.admiralbenbo.org/definitions/\(schoolYear)")!
+    let url = URL(string: "https://teaching.admiralbenbo.org/api/definitions/\(schoolYear)")!
     let config = URLSessionConfiguration.ephemeral
     let session = URLSession(configuration: config)
     let task = session.dataTask(with: url, completionHandler: scheduleTypesDidUpdate)
@@ -84,9 +83,7 @@ class NetworkScheduleUpdater {
       }
 
       self.delegate!.scheduleDidUpdateFromNetwork(newSchedule: json!)
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateStyle = .medium
-      self.defaults.lastScheduleUpdate = dateFormatter.string(from: Date())
+      self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
     }
   }
 }

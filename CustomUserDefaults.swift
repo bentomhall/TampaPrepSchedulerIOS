@@ -128,9 +128,9 @@ class CustomUserDefaults {
     }
   }
 
-  var lastScheduleUpdate: String {
+  var lastScheduleUpdate: Double {
     get {
-      return defaults.string(forKey: "lastScheduleUpdate") ?? "01/01/1970"
+      return defaults.double(forKey: "lastScheduleUpdate")
     }
     set {
       defaults.setValue(newValue, forKey: "lastScheduleUpdate")

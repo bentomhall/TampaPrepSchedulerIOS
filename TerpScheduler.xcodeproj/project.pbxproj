@@ -26,13 +26,14 @@
 		D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */; };
 		D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */; };
 		D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */; };
-		D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.json */; };
+		D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
 		D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D45E83721E577861002FAB52 /* .swiftlint.yml */; };
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
 		D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */; };
 		D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */; };
+		D4711DC41F14FE6600E49022 /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = D4711DC31F14FE6600E49022 /* schedule.json */; };
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D47453811B7E1F67005741B6 /* UserColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47453801B7E1F67005741B6 /* UserColors.swift */; };
 		D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475812B1AA739170059BF3C /* ExportViewController.swift */; };
@@ -77,13 +78,14 @@
 		D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupWriter.swift; sourceTree = "<group>"; };
 		D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupReader.swift; sourceTree = "<group>"; };
-		D43FAB5C1AF12D6800A1C55E /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
+		D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.bak.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
 		D45E83721E577861002FAB52 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
 		D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterScheduleLoader.swift; sourceTree = "<group>"; };
 		D46941FD1A6EFCF3008D0CDF /* TaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfReportWriter.swift; sourceTree = "<group>"; };
+		D4711DC31F14FE6600E49022 /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D47453801B7E1F67005741B6 /* UserColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserColors.swift; sourceTree = "<group>"; };
 		D475812B1AA739170059BF3C /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
@@ -119,7 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */,
-				D43FAB5C1AF12D6800A1C55E /* schedule.json */,
+				D4711DC31F14FE6600E49022 /* schedule.json */,
+				D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */,
 				D408FD741A432E45004F0B83 /* TerpScheduler */,
 				D408FD731A432E45004F0B83 /* Products */,
 			);
@@ -297,7 +300,8 @@
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
-				D43FAB5D1AF12D6800A1C55E /* schedule.json in Resources */,
+				D4711DC41F14FE6600E49022 /* schedule.json in Resources */,
+				D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
