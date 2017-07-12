@@ -133,4 +133,8 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
   func networkScheduleUpdateFailed(error: Error) {
     //do stuff
   }
+  
+  func scheduleUpdateUnnecessary() {
+    //nothing to do
+  }
 }

@@ -38,9 +38,9 @@ class ScheduleUpdateController: ScheduleUpdateDelegate {
   
   func willUpdateFromNetwork() {
     //if networkLoader!.shouldUpdateFromNetwork() {
-      activityIndicator!.startAnimating()
-      networkLoader!.retrieveScheduleFromNetwork(withDefinitions: false)
-    networkLoader!.retrieveScheduleTypesFromNetwork()
+    activityIndicator!.startAnimating()
+    networkLoader!.retrieveScheduleFromNetwork(withDefinitions: false)
+    //networkLoader!.retrieveScheduleTypesFromNetwork()
     //}
   }
   
@@ -54,5 +54,8 @@ class ScheduleUpdateController: ScheduleUpdateDelegate {
   func networkScheduleUpdateFailed(error: Error) {
     NSLog("%@", error.localizedDescription)
   }
-
+  
+  func scheduleUpdateUnnecessary() {
+    activityIndicator!.stopAnimating()
+  }
 }

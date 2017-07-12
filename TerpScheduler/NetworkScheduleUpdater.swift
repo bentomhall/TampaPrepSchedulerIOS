@@ -12,6 +12,7 @@ protocol ScheduleUpdateDelegate: class {
   func scheduleDidUpdateFromNetwork(newSchedule: [String: Any])
   func networkScheduleUpdateFailed(error: Error)
   func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String: Any])
+  func scheduleUpdateUnnecessary()
 }
 
 enum ScheduleUpdateError: Error {
@@ -59,6 +60,10 @@ class NetworkScheduleUpdater {
       return
     }
     if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      if json!.count == 0 {
+        self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
+        return
+      }
       guard json!.count > 1 else {
         delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
         return
@@ -77,6 +82,10 @@ class NetworkScheduleUpdater {
       return
     }
     if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      if json!.count == 0 {
+        self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
+        return
+      }
       guard json!.count > 1 else {
         delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
         return
