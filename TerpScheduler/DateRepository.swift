@@ -166,11 +166,27 @@ class DateRepository {
     persistDates()
     return
   }
+  
+  func createDefaultSchedule() {
+    var startDate = DateComponents()
+    startDate.calendar = Calendar.current
+    startDate.weekOfYear = weekID
+    startDate.weekday = 1
+    startDate.year = weekID < 30 ? schoolYear - 1 : schoolYear
+    for index in 0...4 {
+      let date = getDateByOffset(startDate.date!, byOffset: index)
+      dates.append(SchoolDate(Date: date, Schedule: "Y"))
+    }
+    
+  }
 
   func loadWeekForDay(_ date: Date) {
     weekID = fetchWeekID(date)
-    dates = loadCurrentWeek()
     schoolYear = getSchoolYear(date)
+    dates = loadCurrentWeek()
+    if dates.count == 0 {
+      createDefaultSchedule()
+    }
   }
   
   static func isScheduleLoadedFor(schoolYear: Int, inContext: NSManagedObjectContext) -> Bool {
