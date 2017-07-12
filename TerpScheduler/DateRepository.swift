@@ -145,9 +145,9 @@ class DateRepository {
   ///- returns: [SchoolDate] for all dates in the week.
   func loadCurrentWeek() -> [SchoolDate] {
     var dates: [SchoolDate] = []
-    fetchRequest.predicate = NSPredicate(format: "weekID = %i", weekID)
+    fetchRequest.predicate = NSPredicate(format: "weekID = %i AND schoolYear = %i", weekID, schoolYear)
     let results = try? context.fetch(fetchRequest)
-    if results != nil {
+    if results != nil && results!.count > 0 {
       var weekData = results!.filter(isCurrentYear)
       let firstDay = weekData[0].firstWeekDay
       let schedule = weekData[0].weekSchedules.components(separatedBy: " ")
@@ -157,7 +157,7 @@ class DateRepository {
       }
       return dates
     } else {
-      return [SchoolDate]()
+      return createDefaultSchedule()
     }
   }
 
@@ -167,16 +167,18 @@ class DateRepository {
     return
   }
   
-  func createDefaultSchedule() {
+  func createDefaultSchedule() -> [SchoolDate] {
+    var _dates = [SchoolDate]()
     var startDate = DateComponents()
     startDate.calendar = Calendar.current
     startDate.weekOfYear = weekID
     startDate.weekday = 1
-    startDate.year = weekID < 30 ? schoolYear - 1 : schoolYear
+    startDate.year = weekID < 23 ? schoolYear - 1 : schoolYear
     for index in 0...4 {
       let date = getDateByOffset(startDate.date!, byOffset: index)
-      dates.append(SchoolDate(Date: date, Schedule: "Y"))
+      _dates.append(SchoolDate(Date: date, Schedule: "Y"))
     }
+    return _dates
     
   }
 
@@ -184,9 +186,6 @@ class DateRepository {
     weekID = fetchWeekID(date)
     schoolYear = getSchoolYear(date)
     dates = loadCurrentWeek()
-    if dates.count == 0 {
-      createDefaultSchedule()
-    }
   }
   
   static func isScheduleLoadedFor(schoolYear: Int, inContext: NSManagedObjectContext) -> Bool {
