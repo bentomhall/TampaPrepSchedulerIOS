@@ -10,20 +10,18 @@ import Foundation
 import UIKit
 
 enum Theme: String {
-  case Light = "Light"
-  case Dark = "Dark"
+  case Light
+  case Dark
 }
 
 class UserColors {
   let defaults: CustomUserDefaults
-  var theme: Theme
   init(defaults: CustomUserDefaults) {
     self.defaults = defaults
-    theme = defaults.colorTheme
   }
 
    var NoClassColor: UIColor {
-    switch self.theme {
+    switch defaults.colorTheme {
     case .Light:
       return UIColor(white: 0, alpha: 0.1)
     case .Dark:
@@ -32,7 +30,7 @@ class UserColors {
   }
 
   var StudyHallColor: UIColor {
-    switch self.theme {
+    switch defaults.colorTheme {
     case .Light:
       return UIColor(white: 0, alpha: 0.05)
     case .Dark:
@@ -45,7 +43,7 @@ class UserColors {
   }
   
   var backgroundColor: UIColor {
-    switch self.theme {
+    switch defaults.colorTheme {
     case .Light:
       return UIColor.groupTableViewBackground
     case .Dark:
@@ -54,7 +52,7 @@ class UserColors {
   }
   
   var cellColor: UIColor {
-    switch self.theme {
+    switch defaults.colorTheme {
     case .Light:
       return UIColor.white
     case .Dark:
@@ -63,7 +61,7 @@ class UserColors {
   }
   
   var textColor: UIColor {
-    switch self.theme {
+    switch defaults.colorTheme {
     case .Light:
       return UIColor.black
     case .Dark:

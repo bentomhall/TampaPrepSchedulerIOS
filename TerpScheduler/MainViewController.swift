@@ -75,10 +75,7 @@ class MainViewController: UIViewController {
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
-    self.view.backgroundColor = colors!.backgroundColor
-    for period in classPeriods! {
-      period.setColors(themeColors: colors!)
-    }
+
     NotificationCenter.default.addObserver(self, selector: #selector(onDefaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
   }
 
@@ -94,12 +91,17 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     performShading()
+
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
     super.viewDidAppear(animated)
   }
 
   func performShading() {
+    self.view.backgroundColor = colors!.backgroundColor
+    for period in classPeriods! {
+      period.setColors(themeColors: colors!)
+    }
     for (index, period) in (classPeriods!).enumerated() {
       var classData: SchoolClass
       if delegate!.isMiddleSchool && index == 6 {
