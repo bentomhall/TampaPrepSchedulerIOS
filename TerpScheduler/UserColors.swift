@@ -9,44 +9,65 @@
 import Foundation
 import UIKit
 
+enum Theme: String {
+  case Light = "Light"
+  case Dark = "Dark"
+}
+
 class UserColors {
   let defaults: CustomUserDefaults
+  var theme: Theme
   init(defaults: CustomUserDefaults) {
     self.defaults = defaults
+    theme = defaults.colorTheme
   }
 
    var NoClassColor: UIColor {
-    get {
-      if let color = defaults.noClassColor {
-        return color
-      } else {
-        return UIColor(white: 0, alpha: 0.1)
-      }
-    }
-
-    set(value) {
-      defaults.noClassColor = value
+    switch self.theme {
+    case .Light:
+      return UIColor(white: 0, alpha: 0.1)
+    case .Dark:
+      return UIColor(white: 1, alpha: 0.9)
     }
   }
 
   var StudyHallColor: UIColor {
-    get {
-      if let color = defaults.studyHallColor {
-        return color
-      } else {
-        return UIColor(white: 0, alpha: 0.05)
-      }
-    }
-    set(value) {
-      defaults.studyHallColor = value
+    switch self.theme {
+    case .Light:
+      return UIColor(white: 0, alpha: 0.05)
+    case .Dark:
+      return UIColor(white: 1, alpha: 0.95)
     }
   }
 
   var primaryThemeColor: UIColor {
-    if let color = defaults.primaryThemeColor {
-      return color
-    } else {
-      return UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
+    return UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
+  }
+  
+  var backgroundColor: UIColor {
+    switch self.theme {
+    case .Light:
+      return UIColor.groupTableViewBackground
+    case .Dark:
+      return UIColor(white: 0, alpha: 0.9)
+    }
+  }
+  
+  var cellColor: UIColor {
+    switch self.theme {
+    case .Light:
+      return UIColor.white
+    case .Dark:
+      return UIColor(white: 0, alpha: 0.8)
+    }
+  }
+  
+  var textColor: UIColor {
+    switch self.theme {
+    case .Light:
+      return UIColor.black
+    case .Dark:
+      return UIColor.white
     }
   }
 }

@@ -19,6 +19,8 @@ class DailyTaskSmallView: UICollectionViewCell {
 
   @IBOutlet weak var topTaskLabel: UILabel?
   @IBOutlet weak var remainingTasksLabel: UILabel?
+  
+  weak var colors: UserColors?
 
   override func prepareForReuse() {
     topTaskLabel!.text = ""
@@ -54,19 +56,17 @@ class DailyTaskSmallView: UICollectionViewCell {
   }
 
   func shouldShadeCell(_ shadingType: CellShadingType) {
-    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-      return
-    }
-    let colors = appDelegate.userColors!
+    topTaskLabel!.textColor = colors!.textColor
+    remainingTasksLabel!.textColor = colors!.textColor
     switch shadingType {
     case .noClass:
-      self.backgroundColor = colors.NoClassColor
+      self.backgroundColor = colors!.NoClassColor
       break
     case .studyHall:
-      self.backgroundColor = colors.StudyHallColor
+      self.backgroundColor = colors!.StudyHallColor
       break
     case .noShading:
-      self.backgroundColor = UIColor.white
+      self.backgroundColor = colors!.cellColor
     }
   }
 }

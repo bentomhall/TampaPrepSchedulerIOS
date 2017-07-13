@@ -31,4 +31,10 @@ class SchoolClassView: UIView {
     teacherNameLabel!.text! = data.teacherName
     haikuURL = data.haikuURL as URL?
   }
+  
+  func setColors(themeColors: UserColors) {
+    self.backgroundColor = themeColors.cellColor
+    self.teacherNameLabel!.textColor = themeColors.textColor
+    self.classNameLabel!.textColor = themeColors.primaryThemeColor
+  }
 }

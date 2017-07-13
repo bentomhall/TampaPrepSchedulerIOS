@@ -6,6 +6,21 @@
 	<array>
 		<dict>
 			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>Light</string>
+				<string>Dark</string>
+			</array>
+			<key>Title</key>
+			<string>Color Theme</string>
+			<key>Key</key>
+			<string>colorTheme</string>
+			<key>DefaultValue</key>
+			<string>Light</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
 			<string>Version:</string>

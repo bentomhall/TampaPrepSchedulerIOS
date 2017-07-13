@@ -150,6 +150,19 @@ class CustomUserDefaults {
       defaults.set(newValue, forKey: "scheduleUpdateFrequency")
     }
   }
+  
+  var colorTheme: Theme {
+    get {
+      if let stored = defaults.string(forKey: "colorTheme") {
+        return Theme(rawValue: stored) ?? Theme.Light
+      } else {
+        return Theme.Light
+      }
+    }
+    set {
+      defaults.set(newValue.rawValue, forKey: "colorTheme")
+    }
+  }
 
   func onSettingsChange(_ notification: Notification) {
     readDefaults()
@@ -157,4 +170,5 @@ class CustomUserDefaults {
   func readDefaults() {
     defaults.synchronize()
   }
+  
 }

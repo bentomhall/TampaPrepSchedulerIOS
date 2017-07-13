@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
   weak var delegate: (TaskSummaryDelegate & DateInformationDelegate)?
   fileprivate var contentOffset = CGPoint.zero
   fileprivate var deviceOrientationisPortrait = false
+  fileprivate var colors: UserColors?
 
   @IBOutlet weak var contentView: UIView?
   @IBOutlet weak var scrollView: UIScrollView?
@@ -65,6 +66,7 @@ class MainViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     appDelegate = UIApplication.shared.delegate as? AppDelegate
+    colors = appDelegate!.userColors
     classRepository = SchoolClassesRepository(context: appDelegate!.managedObjectContext!)
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
@@ -73,7 +75,10 @@ class MainViewController: UIViewController {
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
-
+    self.view.backgroundColor = colors!.backgroundColor
+    for period in classPeriods! {
+      period.setColors(themeColors: colors!)
+    }
     NotificationCenter.default.addObserver(self, selector: #selector(onDefaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
   }
 
@@ -258,6 +263,7 @@ extension MainViewController: UICollectionViewDataSource {
     guard let cell = self.collectionView!.dequeueReusableCell(withReuseIdentifier: "ClassPeriodTaskSummary", for: indexPath) as? DailyTaskSmallView else {
       return UICollectionViewCell()
     }
+    cell.colors = self.colors
     var shadingType: CellShadingType = .noShading
     let selectedDayIndexes = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
     if delegate!.isMiddleSchool && (selectedDayIndexes.period == 7) {
