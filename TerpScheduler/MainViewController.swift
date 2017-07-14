@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
   }
 
   func performShading() {
-    self.view.backgroundColor = colors!.backgroundColor
+    self.scrollView!.backgroundColor = colors!.backgroundColor
     for period in classPeriods! {
       period.setColors(themeColors: colors!)
     }
