@@ -16,6 +16,9 @@ class LinksPageViewController: UIViewController {
   @IBOutlet weak var googleDriveButton: UIButton?
   @IBOutlet weak var backButton: UIButton?
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+  @IBOutlet weak var updateScheduleButton: UIButton?
+  
+  weak var colors: UserColors?
 
   let tampaPrepURL = URL(string: "http://www.tampaprep.org")!
   let myBackPackURL = URL(string: "https://tampaprep.seniormbp.com/SeniorApps")!
@@ -66,8 +69,20 @@ class LinksPageViewController: UIViewController {
     override func viewDidLoad() {
       super.viewDidLoad()
       activityIndicator!.hidesWhenStopped = true
+      setColorScheme()
         // Do any additional setup after loading the view.
     }
+  
+  func setColorScheme() {
+    self.view.backgroundColor = colors!.backgroundColor
+    tampaPrepButton!.tintColor = colors!.secondaryThemeColor
+    myBackPackButton!.tintColor = colors!.secondaryThemeColor
+    haikuLearningButton!.tintColor = colors!.secondaryThemeColor
+    googleDriveButton!.tintColor = colors!.secondaryThemeColor
+    backButton!.tintColor = colors!.primaryThemeColor
+    updateScheduleButton!.tintColor = colors!.secondaryThemeColor
+    activityIndicator!.color = colors!.primaryThemeColor
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

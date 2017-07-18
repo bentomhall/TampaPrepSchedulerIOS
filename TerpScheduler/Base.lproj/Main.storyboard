@@ -17,7 +17,7 @@
                     <tableView key="view" clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Trz-fd-Dhf">
                         <rect key="frame" x="0.0" y="64" width="320" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="TaskListView" textLabel="Bay-KL-vMg" style="IBUITableViewCellStyleDefault" id="Txc-ZT-fs2" customClass="TaskTableViewCell" customModule="TerpScheduler" customModuleProvider="target">
@@ -237,6 +237,13 @@
                         <outlet property="prioritySelector" destination="qct-QA-SiQ" id="H2P-tH-8VL"/>
                         <outlet property="shouldNotify" destination="quF-6g-BFD" id="msF-2H-GRE"/>
                         <outlet property="titleField" destination="NWO-HA-38y" id="qJE-br-oJB"/>
+                        <outletCollection property="textLabels" destination="Yey-AX-BpI" collectionClass="NSMutableArray" id="9xB-uE-uO0"/>
+                        <outletCollection property="textLabels" destination="4MG-2V-QKp" collectionClass="NSMutableArray" id="Qir-sK-QW1"/>
+                        <outletCollection property="textLabels" destination="vyM-8d-Ynv" collectionClass="NSMutableArray" id="nHy-8g-gah"/>
+                        <outletCollection property="textLabels" destination="7K8-cS-doK" collectionClass="NSMutableArray" id="QCP-fP-VXb"/>
+                        <outletCollection property="textLabels" destination="bV3-Si-e0W" collectionClass="NSMutableArray" id="vA7-Kn-z13"/>
+                        <outletCollection property="textLabels" destination="ihF-0r-IjV" collectionClass="NSMutableArray" id="U8l-a4-jjK"/>
+                        <outletCollection property="textLabels" destination="1fJ-rp-lWV" collectionClass="NSMutableArray" id="D4J-eF-XBz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZfY-lo-o1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -353,10 +360,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnl-UB-eKj">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnl-UB-eKj">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-rw-alB">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-rw-alB">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="1100"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxU-1t-vuA">
@@ -970,7 +977,6 @@
                                                 </connections>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.9656146764755249" green="0.96785283088684082" blue="0.89271491765975952" alpha="0.32000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="AeQ-6S-9El" firstAttribute="trailing" secondItem="hBd-2P-ddL" secondAttribute="trailing" id="0Lz-fo-8D6"/>
                                             <constraint firstItem="6RZ-mE-XAJ" firstAttribute="trailing" secondItem="3QQ-OE-Yn3" secondAttribute="trailing" id="5JM-8i-vmt"/>
@@ -1576,6 +1582,7 @@
                         <outlet property="haikuLearningButton" destination="ebm-gD-Eqj" id="HY3-07-cee"/>
                         <outlet property="myBackPackButton" destination="30E-u1-ucH" id="xh7-rn-kqu"/>
                         <outlet property="tampaPrepButton" destination="8Yd-JZ-xN1" id="geK-Dl-q2z"/>
+                        <outlet property="updateScheduleButton" destination="PRh-KE-GHT" id="ycG-Du-f0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpR-cK-zJi" userLabel="First Responder" sceneMemberID="firstResponder"/>

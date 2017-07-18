@@ -44,10 +44,10 @@ class DailyTaskSmallView: UICollectionViewCell {
       let text = "+ \(remaining) others"
       remainingTasksLabel!.text! = text
       if remaining > 1 {
-        remainingTasksLabel!.textColor = UIColor.red
+        remainingTasksLabel!.textColor = colors!.primaryThemeColor
       } else if remaining == 1 {
         remainingTasksLabel!.text = "+ 1 other"
-        remainingTasksLabel!.textColor = UIColor.blue
+        remainingTasksLabel!.textColor = colors!.secondaryThemeColor
       }
     } else {
       remainingTasksLabel?.isHidden = true
@@ -57,7 +57,6 @@ class DailyTaskSmallView: UICollectionViewCell {
 
   func shouldShadeCell(_ shadingType: CellShadingType) {
     topTaskLabel!.textColor = colors!.textColor
-    remainingTasksLabel!.textColor = colors!.textColor
     switch shadingType {
     case .noClass:
       self.backgroundColor = colors!.NoClassColor

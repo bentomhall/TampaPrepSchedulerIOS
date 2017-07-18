@@ -20,10 +20,15 @@ class TaskTableViewCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
 
-  func setTitleText(_ text: String, taskIsComplete: Bool) {
+  func setTitleText(_ text: String, taskIsComplete: Bool, colors: UserColors) {
+    selectedBackgroundView = UIView()
+    selectedBackgroundView!.backgroundColor = colors.NoClassColor
     title!.text = text
+    
     if taskIsComplete {
       title!.textColor = UIColor.lightText
+    } else {
+      title!.textColor = colors.textColor
     }
   }
 }

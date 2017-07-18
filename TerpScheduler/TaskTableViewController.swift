@@ -30,6 +30,7 @@ class TaskTableViewController: UITableViewController {
   var dirtyCellTitles = [Int: String]()
   var selectedTask: DailyTask?
   var selectedRow = IndexPath(row: 0, section: 0)
+  weak var colors: UserColors?
 
   func reload() {
     tableView.reloadData()
@@ -53,16 +54,34 @@ class TaskTableViewController: UITableViewController {
     selectedRow = indexPath
     self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
   }
+  
+  func userColorsDidChange() {
+    tableView.backgroundView?.backgroundColor = colors!.backgroundColor
+    tableView.tableFooterView!.backgroundColor = colors!.backgroundColor
+  }
 
   override func viewDidLoad() {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     self.delegate = appDelegate!.dataManager
     self.delegate!.tableViewController = self
+    colors = appDelegate!.userColors
+    tableView.tableFooterView = UIView()
+    tableView.backgroundView = UIView()
+    userColorsDidChange()
+    NotificationCenter.default.addObserver(self, selector: #selector(self.userColorsDidChange), name: UserDefaults.didChangeNotification, object: nil)
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    tableView.reloadData()
-  }
+//  override func viewDidAppear(_ animated: Bool) {
+//    tableView.backgroundView?.backgroundColor = colors!.backgroundColor
+//    tableView.tableFooterView!.backgroundColor = colors!.backgroundColor
+//    tableView.reloadData()
+//  }
+//  
+//  override func viewWillAppear(_ animated: Bool) {
+//    tableView.backgroundView?.backgroundColor = colors!.backgroundColor
+//    tableView.tableFooterView!.backgroundColor = colors!.backgroundColor
+//    tableView.reloadData()
+//  }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -72,12 +91,18 @@ class TaskTableViewController: UITableViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     dirtyCellTitles = [Int: String]()
+    NotificationCenter.default.removeObserver(self, name: UserDefaults.didChangeNotification, object: nil)
   }
 
   // MARK: - Table view data source
   override func numberOfSections(in tableView: UITableView) -> Int {
     // Return the number of sections.
     return 1
+  }
+  
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = colors!.backgroundColor
+    cell.tintColor = colors?.primaryThemeColor
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,13 +116,13 @@ class TaskTableViewController: UITableViewController {
     let title = task.shortTitle
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskListView", for: indexPath) as? TaskTableViewCell else {
       let defaultCell = TaskTableViewCell()
-      defaultCell.setTitleText(title, taskIsComplete: task.isCompleted)
+      defaultCell.setTitleText(title, taskIsComplete: task.isCompleted, colors: colors!)
       return defaultCell
     }
     if !dirtyCellTitles.keys.contains((indexPath as NSIndexPath).row) {
-      cell.setTitleText(title, taskIsComplete: task.isCompleted)
+      cell.setTitleText(title, taskIsComplete: task.isCompleted, colors: colors!)
     } else {
-      cell.setTitleText(dirtyCellTitles[(indexPath as NSIndexPath).row]!, taskIsComplete: false)
+      cell.setTitleText(dirtyCellTitles[(indexPath as NSIndexPath).row]!, taskIsComplete: false, colors: colors!)
     }
     return cell
   }

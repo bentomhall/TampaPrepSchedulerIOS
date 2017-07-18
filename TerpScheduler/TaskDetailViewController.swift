@@ -17,6 +17,7 @@ class TaskDetailViewController: UIViewController {
   @IBOutlet weak var isCompleted: UISwitch?
   @IBOutlet weak var shouldNotify: UISwitch?
   @IBOutlet weak var dateLabel: UILabel?
+  @IBOutlet var textLabels: [UILabel]?
 
   @IBAction func clearData(_ sender: UIBarButtonItem) {
     shouldSave = false
@@ -37,6 +38,7 @@ class TaskDetailViewController: UIViewController {
   fileprivate var taskIsPersisted: Bool = false
 
   weak var delegate: TaskDetailDelegate?
+  weak var colors: UserColors?
   var previousTaskData: DailyTask? {
     willSet(value) {
       if value == delegate!.defaultTask {
@@ -79,6 +81,7 @@ class TaskDetailViewController: UIViewController {
     self.dateLabel!.text = stringFromDate(date ?? Date()) + ": period \(period!)"
     self.delegate = appDelegate.dataManager
     delegate!.detailViewController = self
+    colors = appDelegate.userColors!
   }
 
   override func didReceiveMemoryWarning() {
@@ -87,6 +90,7 @@ class TaskDetailViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    setColorScheme()
     setSubviewContentsFromTaskData(previousTaskData)
   }
 
@@ -95,6 +99,14 @@ class TaskDetailViewController: UIViewController {
     if shouldSave {
       saveData()
     }
+  }
+  
+  func setColorScheme() {
+    self.view.backgroundColor = colors!.backgroundColor
+    for label in textLabels! {
+      label.textColor = colors!.textColor
+    }
+    prioritySelector!.tintColor = colors!.textColor
   }
 
   @IBAction func notificationStatusChanged(_ sender: UISwitch) {

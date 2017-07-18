@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let types: UIUserNotificationType = [UIUserNotificationType.badge, UIUserNotificationType.sound, UIUserNotificationType.alert]
     application.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: categories))
     userColors = UserColors(defaults: userDefaults)
+    UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
     return true
   }
   

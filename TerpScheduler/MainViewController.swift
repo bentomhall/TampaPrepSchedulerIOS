@@ -82,6 +82,7 @@ class MainViewController: UIViewController {
   func onDefaultsChanged(_ notification: Notification) {
     delegate!.refreshDefaults()
     reloadCollectionView(true)
+    performShading()
   }
 
   override func viewDidLayoutSubviews() {
@@ -91,14 +92,14 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     performShading()
-
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
     super.viewDidAppear(animated)
   }
 
   func performShading() {
-    self.scrollView!.backgroundColor = colors!.backgroundColor
+    self.view!.backgroundColor = colors!.backgroundColor
+    UINavigationBar.appearance().barTintColor = colors!.navigationBarTint
     for period in classPeriods! {
       period.setColors(themeColors: colors!)
     }
@@ -159,6 +160,10 @@ class MainViewController: UIViewController {
     } else if segue.identifier! == "JumpToDate" {
       if let receivingController = segue.destination as? JumpToDateViewController {
         receivingController.dataManager = delegate!
+      }
+    } else if segue.identifier! == "LinksPage" {
+      if let receivingController = segue.destination as? LinksPageViewController {
+        receivingController.colors = colors
       }
     }
     super.prepare(for: segue, sender: sender)
