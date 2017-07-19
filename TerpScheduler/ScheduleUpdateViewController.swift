@@ -25,37 +25,33 @@ class ScheduleUpdateController: ScheduleUpdateDelegate {
   var userDefaults: CustomUserDefaults?
   var scheduleLoader: SemesterScheduleLoader?
   var isUpdating: Bool = true
-  weak var activityIndicator: UIActivityIndicatorView?
+  weak var notificationDelegate: UpdateNotificationDelegate?
   
-  init(activity: UIActivityIndicatorView) {
-    activityIndicator = activity
+  init(notificationDelegate: UpdateNotificationDelegate) {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     userDefaults = appDelegate!.userDefaults
     delegate = appDelegate!.dataManager
     scheduleLoader = appDelegate!.scheduleLoader
+    self.notificationDelegate = notificationDelegate
     networkLoader = NetworkScheduleUpdater(defaults: userDefaults!, delegate: self)
   }
   
   func willUpdateFromNetwork() {
-    //if networkLoader!.shouldUpdateFromNetwork() {
-    activityIndicator!.startAnimating()
     networkLoader!.retrieveScheduleFromNetwork(withDefinitions: false)
-    //networkLoader!.retrieveScheduleTypesFromNetwork()
-    //}
   }
   
   func scheduleDidUpdateFromNetwork(newSchedule: [String : Any]) {
-    //pop up notification
     scheduleLoader!.scheduleDidUpdateFromNetwork(newSchedule: newSchedule)
-    activityIndicator!.stopAnimating()
+    notificationDelegate!.scheduleUpdateDidComplete(status: .NewScheduleDownloaded)
     delegate!.didUpdateSchedulesForWeekInView()
   }
   
   func networkScheduleUpdateFailed(error: Error) {
     NSLog("%@", error.localizedDescription)
+    notificationDelegate!.scheduleUpdateDidComplete(status: .Error(text: error.localizedDescription))
   }
   
   func scheduleUpdateUnnecessary() {
-    activityIndicator!.stopAnimating()
+    notificationDelegate!.scheduleUpdateDidComplete(status: .UpToDate)
   }
 }

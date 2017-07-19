@@ -8,7 +8,25 @@
 
 import UIKit
 
-class LinksPageViewController: UIViewController {
+protocol UpdateNotificationDelegate: class {
+  func scheduleUpdateDidComplete(status: scheduleUpdateStatus)
+  func scheduleUpdateCheckWillBegin()
+}
+
+enum scheduleUpdateStatus {
+  case NewScheduleDownloaded
+  case UpToDate
+  case Error(text: String)
+}
+
+func standardStringFromDate(date: Date) -> String {
+  let formatter = DateFormatter()
+  formatter.dateStyle = .medium
+  formatter.timeStyle = .none
+  return formatter.string(from: date)
+}
+
+class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
 
   @IBOutlet weak var tampaPrepButton: UIButton?
   @IBOutlet weak var myBackPackButton: UIButton?
@@ -17,6 +35,7 @@ class LinksPageViewController: UIViewController {
   @IBOutlet weak var backButton: UIButton?
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView?
   @IBOutlet weak var updateScheduleButton: UIButton?
+  @IBOutlet weak var updateResultLabel: UILabel?
   
   weak var colors: UserColors?
 
@@ -58,8 +77,9 @@ class LinksPageViewController: UIViewController {
   }
   
   @IBAction func doNetworkUpdate(_ sender: UIButton) {
-    updateController = ScheduleUpdateController(activity: activityIndicator!)
+    updateController = ScheduleUpdateController(notificationDelegate: self)
     updateController!.willUpdateFromNetwork()
+    scheduleUpdateCheckWillBegin()
   }
 
   @IBAction func closeView(_ sender: UIButton) {
@@ -82,6 +102,29 @@ class LinksPageViewController: UIViewController {
     backButton!.tintColor = colors!.primaryThemeColor
     updateScheduleButton!.tintColor = colors!.secondaryThemeColor
     activityIndicator!.color = colors!.primaryThemeColor
+    updateResultLabel?.textColor = colors!.textColor
+  }
+  
+  func scheduleUpdateDidComplete(status: scheduleUpdateStatus) {
+    DispatchQueue.main.async {
+      switch status {
+      case .NewScheduleDownloaded:
+        self.updateResultLabel!.text = "Schedule updated"
+        break
+      case .UpToDate:
+        self.updateResultLabel!.text = "Schedule up to date"
+        break
+      case .Error(let errorText):
+        self.updateResultLabel!.text = "An error occurred: \(errorText)"
+        break
+      }
+      self.updateResultLabel!.textAlignment = .center
+      self.activityIndicator!.stopAnimating()
+    }
+  }
+  
+  func scheduleUpdateCheckWillBegin() {
+    activityIndicator!.startAnimating()
   }
 
     override func didReceiveMemoryWarning() {

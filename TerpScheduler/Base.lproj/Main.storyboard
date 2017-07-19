@@ -1545,9 +1545,15 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mEs-Ry-Dlj">
                                 <rect key="frame" x="458" y="210" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEG-Xv-mfp">
+                                <rect key="frame" x="8" y="197" width="752" height="0.0"/>
+                                <attributedString key="attributedText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BEG-Xv-mfp" secondAttribute="trailing" constant="8" id="1M1-er-S5U"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="8Yd-JZ-xN1" secondAttribute="trailing" constant="73" id="2j4-Mw-bKb"/>
                             <constraint firstItem="xGO-yk-7EJ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="3OL-Cu-vGH"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="7.5" id="3yU-Kf-gOQ"/>
@@ -1558,6 +1564,7 @@
                             <constraint firstItem="mEs-Ry-Dlj" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="190" id="Gmp-zS-QXX"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="H2c-B9-Jyv"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="ebm-gD-Eqj" secondAttribute="trailing" constant="73" id="HhL-0w-c3B"/>
+                            <constraint firstItem="BEG-Xv-mfp" firstAttribute="centerX" secondItem="DY1-L2-Sr7" secondAttribute="centerX" id="Isv-zo-M6h"/>
                             <constraint firstAttribute="bottomMargin" secondItem="APx-sI-Sxv" secondAttribute="bottom" id="ML9-d0-qgP"/>
                             <constraint firstAttribute="centerX" secondItem="APx-sI-Sxv" secondAttribute="centerX" id="MZh-we-hcQ"/>
                             <constraint firstItem="VNX-gp-MDZ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="OCK-nA-epr"/>
@@ -1568,8 +1575,10 @@
                             <constraint firstItem="8Yd-JZ-xN1" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="auQ-I6-u1h"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="gR3-kw-eie"/>
                             <constraint firstItem="xGO-yk-7EJ" firstAttribute="top" secondItem="ncS-KC-gDZ" secondAttribute="bottom" constant="8" id="iuH-gI-7q6"/>
+                            <constraint firstItem="PRh-KE-GHT" firstAttribute="top" secondItem="BEG-Xv-mfp" secondAttribute="bottom" constant="8" id="jJZ-Zx-FSD"/>
                             <constraint firstItem="30E-u1-ucH" firstAttribute="top" secondItem="8Yd-JZ-xN1" secondAttribute="bottom" constant="8" id="k1h-8h-J8U"/>
                             <constraint firstItem="b9z-MH-jmH" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="572" id="piq-Ol-KsE"/>
+                            <constraint firstItem="BEG-Xv-mfp" firstAttribute="leading" secondItem="DY1-L2-Sr7" secondAttribute="leading" constant="8" id="qqy-BY-yha"/>
                             <constraint firstItem="PRh-KE-GHT" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="185" id="t9E-xU-xuR"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="30E-u1-ucH" secondAttribute="trailing" constant="73" id="xg9-zx-0IZ"/>
                         </constraints>
@@ -1582,6 +1591,7 @@
                         <outlet property="haikuLearningButton" destination="ebm-gD-Eqj" id="HY3-07-cee"/>
                         <outlet property="myBackPackButton" destination="30E-u1-ucH" id="xh7-rn-kqu"/>
                         <outlet property="tampaPrepButton" destination="8Yd-JZ-xN1" id="geK-Dl-q2z"/>
+                        <outlet property="updateResultLabel" destination="BEG-Xv-mfp" id="HiV-yh-b4I"/>
                         <outlet property="updateScheduleButton" destination="PRh-KE-GHT" id="ycG-Du-f0I"/>
                     </connections>
                 </viewController>

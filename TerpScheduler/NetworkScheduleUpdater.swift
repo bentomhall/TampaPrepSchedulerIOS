@@ -84,6 +84,7 @@ class NetworkScheduleUpdater {
     if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
       if json!.count == 0 {
         self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
+        self.delegate!.scheduleUpdateUnnecessary()
         return
       }
       guard json!.count > 1 else {
