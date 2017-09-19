@@ -26,6 +26,7 @@
 		D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */; };
 		D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */; };
 		D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */; };
+		D4373DC01F71A5A60050562F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4373DBF1F71A5A60050562F /* NotificationManager.swift */; };
 		D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
 		D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D45E83721E577861002FAB52 /* .swiftlint.yml */; };
@@ -78,6 +79,7 @@
 		D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupWriter.swift; sourceTree = "<group>"; };
 		D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupReader.swift; sourceTree = "<group>"; };
+		D4373DBF1F71A5A60050562F /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.bak.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
 		D45E83721E577861002FAB52 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
@@ -230,6 +232,7 @@
 				D47453801B7E1F67005741B6 /* UserColors.swift */,
 				D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */,
 				D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */,
+				D4373DBF1F71A5A60050562F /* NotificationManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				D408FD9B1A432EF3004F0B83 /* DailyTaskEntity.swift in Sources */,
 				D48291D81A964384000AFBD1 /* CustomUserDefaults.swift in Sources */,
 				D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */,
+				D4373DC01F71A5A60050562F /* NotificationManager.swift in Sources */,
 				D408FD7D1A432E45004F0B83 /* MainViewController.swift in Sources */,
 				D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */,
 				D47453811B7E1F67005741B6 /* UserColors.swift in Sources */,
