@@ -73,7 +73,7 @@ class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
       url = URL(string: "http://www.google.com")!
       break
     }
-    UIApplication.shared.open(url, options: nil, completionHandler: nil)
+    UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
   
   @IBAction func doNetworkUpdate(_ sender: UIButton) {
