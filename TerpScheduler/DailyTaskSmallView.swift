@@ -29,11 +29,17 @@ class DailyTaskSmallView: UICollectionViewCell {
   }
 
   func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool) {
+    let nTitle = taskTitle as NSString
     if completion {
       topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSStrikethroughStyleAttributeName: 2])
       topTaskLabel!.isEnabled = false
     } else {
-      topTaskLabel!.attributedText = NSAttributedString(string: taskTitle)
+      let text = NSMutableAttributedString(string: taskTitle)
+      if taskTitle.lowercased().contains("test") || taskTitle.lowercased().contains("quiz") {
+        let range = NSMakeRange(0, nTitle.length)
+        text.addAttribute(NSUnderlineStyleAttributeName, value: 1, range: range)
+      }
+      topTaskLabel!.attributedText = text
       topTaskLabel!.isEnabled = true
     }
   }
