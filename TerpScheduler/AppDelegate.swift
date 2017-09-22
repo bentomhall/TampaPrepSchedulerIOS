@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,53 +28,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       abort()
     }
     application.applicationIconBadgeNumber = 0
-    let categories = setupNotification() as? Set<UIUserNotificationCategory>
-    let types: UIUserNotificationType = [UIUserNotificationType.badge, UIUserNotificationType.sound, UIUserNotificationType.alert]
-    application.registerUserNotificationSettings(UIUserNotificationSettings(types: types, categories: categories))
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: self.renumberBadge)
     userColors = UserColors(defaults: userDefaults)
     UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
     return true
   }
   
+  func setupNotificationCategories() {
+  }
+  
+  func renumberBadge(granted: Bool, error: Error?) {
+    
+  }
+  
   lazy var scheduleLoader: SemesterScheduleLoader = SemesterScheduleLoader(context: self.managedObjectContext!)
   
   var scheduleTypes: ScheduleTypeData?
-
-  func setupNotification()->Set<NSObject> {
-    let justInformAction = UIMutableUserNotificationAction()
-    justInformAction.identifier = "justInform"
-    justInformAction.title = "OK"
-    justInformAction.activationMode = UIUserNotificationActivationMode.foreground
-    justInformAction.isDestructive = false
-    justInformAction.isAuthenticationRequired = true
-    let ignoreAction = UIMutableUserNotificationAction()
-    ignoreAction.identifier = "ignore"
-    ignoreAction.title = "Ignore"
-    ignoreAction.activationMode = UIUserNotificationActivationMode.background
-    ignoreAction.isDestructive = false
-    ignoreAction.isAuthenticationRequired = false
-
-    let actionsArray = [justInformAction, ignoreAction]
-    let category = UIMutableUserNotificationCategory()
-    category.identifier = "taskReminderCategory"
-    category.setActions(actionsArray, for: UIUserNotificationActionContext.default)
-    category.setActions(actionsArray, for: UIUserNotificationActionContext.minimal)
-    return Set<NSObject>(arrayLiteral: category)
-  }
-
-  func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-    renumberBadge()
-  }
-
-  func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
-    if identifier != "ignore" {
-      application.cancelAllLocalNotifications()
-      application.applicationIconBadgeNumber = 0
-    } else {
-      renumberBadge()
-    }
-    completionHandler()
-  }
 
   lazy var userDefaults = CustomUserDefaults()
   lazy var dataManager = DataManager()

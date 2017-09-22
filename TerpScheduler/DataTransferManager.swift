@@ -70,6 +70,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
   }
 
+  fileprivate var notificationManager = NotificationManager()
   fileprivate var defaults: CustomUserDefaults?
   fileprivate var managedObjectContext: NSManagedObjectContext
   fileprivate var taskRepository: TaskRepository
@@ -233,36 +234,13 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return schoolClassRepository.getClassDataByPeriod(period)
   }
 
-  fileprivate func notificationsEqual(_ n1: UILocalNotification, n2: UILocalNotification) -> Bool {
-    if let taskID1 = n1.userInfo!["taskID"]! as? String {
-      if let taskID2 = n2.userInfo!["taskID"]! as? String {
-        return taskID1 == taskID2
-      }
-    }
-    return false
-  }
-
   func postNotification(forTask task: DailyTask) {
-    let notification = TaskNotification(task: task)
-    let time = defaults!.shouldNotifyWhen
-    if UIApplication.shared.scheduledLocalNotifications!.contains(where: {
-      $0.userInfo!["taskID"]! as? String == "\(task.shortTitle)\(task.period)"
-    }) {
-      return //notification already exists
-    }
-    let _ = notification.scheduleNotification(atTime: time)
+    let notificationDate = self.notificationManager.getDateForNotification(task: task, time: defaults!.shouldNotifyWhen)
+    self.notificationManager.scheduleNotification(task: task, date: notificationDate)
   }
 
   func cancelNotificationMatching(_ task: DailyTask) {
-    for notification in UIApplication.shared.scheduledLocalNotifications! {
-      if let taskID = notification.userInfo!["taskID"]! as? String {
-        if taskID == "\(task.shortTitle)\(task.period)" {
-          UIApplication.shared.cancelLocalNotification(notification)
-          break
-        }
-      }
-
-    }
+    //do nothing
   }
 
   func copyTasksFor(_ dateIndex: Int, period: Int) {

@@ -9,21 +9,6 @@
 import Foundation
 import CoreData
 
-func renumberBadge() {
-  let application = UIApplication.shared
-  application.applicationIconBadgeNumber = 0
-  let pendingNotifications = application.scheduledLocalNotifications!
-  if pendingNotifications.count != 0 {
-    application.cancelAllLocalNotifications()
-    var badgeNumber = 1
-    for notification in pendingNotifications {
-      notification.applicationIconBadgeNumber = badgeNumber
-      badgeNumber += 1
-      application.scheduleLocalNotification(notification)
-    }
-  }
-}
-
 enum NotificationTimes: Int {
   //raw values are hours in 24-hr format
   case evening = 19 //7PM
@@ -53,6 +38,7 @@ class TaskNotification {
   }
 
   func scheduleNotification(atTime time: NotificationTimes)->Foundation.UUID? {
+    /*
     let notificationDate = notificationTime(fromCategory: time)
     let nextBadgeNumber = UIApplication.shared.scheduledLocalNotifications!.count + 1
     let notification = UILocalNotification()
@@ -64,6 +50,7 @@ class TaskNotification {
     notification.userInfo = ["taskID": "\(task.shortTitle)\(task.period)"]
     notification.category = "taskReminderCategory"
     UIApplication.shared.scheduleLocalNotification(notification)
-    return UUID
+    return UUID*/
+    return Foundation.UUID()
   }
 }
