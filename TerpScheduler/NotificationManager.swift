@@ -9,15 +9,16 @@
 import Foundation
 import UserNotifications
 
-class NotificationManager {
+class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
   private var notificationCenter: UNUserNotificationCenter
   
-  init() {
+  override init() {
     notificationCenter = UNUserNotificationCenter.current()
+    super.init()
   }
   
   func getDateForNotification(task: DailyTask, time: NotificationTimes) -> Date {
-    let calendar = Calendar.current
+    let calendar = Calendar.autoupdatingCurrent
     if time != .testing {
       let dueDate = (calendar as NSCalendar).date(bySettingHour: 0, minute: 0, second: 0, of: task.date as Date, options: NSCalendar.Options())
       let notificationDate = (calendar as NSCalendar).date(byAdding: .day, value: -1, to: dueDate!, options: [])
@@ -25,8 +26,11 @@ class NotificationManager {
     } else {
       //Testing should set the notification for one minute from creation time
       let dueDate = Date()
-      return (calendar as NSCalendar).date(byAdding: .minute, value: 1, to: dueDate, options: [])!
+      var components = DateComponents()
+      components.minute = 1
+      return calendar.date(byAdding: components, to: dueDate)!
     }
+    
   }
   
   func scheduleNotification(task: DailyTask, date: Date) {
@@ -50,5 +54,9 @@ class NotificationManager {
     } else {
       self.notificationCenter.removePendingNotificationRequests(withIdentifiers: matching)
     }
+  }
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    completionHandler(.alert)
   }
 }

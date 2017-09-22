@@ -59,10 +59,11 @@ protocol DateInformationDelegate: class {
 }
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
-  init() {
+  init(notificationHelper: NotificationManager) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       abort() //everything borked if not true
     }
+    notificationManager = notificationHelper
     defaults = appDelegate.userDefaults
     managedObjectContext = appDelegate.managedObjectContext!
     taskRepository = TaskRepository(context: managedObjectContext)
@@ -70,7 +71,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     schoolClassRepository = SchoolClassesRepository(context: managedObjectContext)
   }
 
-  fileprivate var notificationManager = NotificationManager()
+  fileprivate var notificationManager: NotificationManager
   fileprivate var defaults: CustomUserDefaults?
   fileprivate var managedObjectContext: NSManagedObjectContext
   fileprivate var taskRepository: TaskRepository

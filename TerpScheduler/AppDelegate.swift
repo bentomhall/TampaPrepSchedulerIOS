@@ -29,8 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     application.applicationIconBadgeNumber = 0
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: self.renumberBadge)
+    let notificationManager = NotificationManager()
+    UNUserNotificationCenter.current().delegate = notificationManager
+    dataManager = DataManager(notificationManager)
     userColors = UserColors(defaults: userDefaults)
     UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
+    
     return true
   }
   
@@ -46,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var scheduleTypes: ScheduleTypeData?
 
   lazy var userDefaults = CustomUserDefaults()
-  lazy var dataManager = DataManager()
+  var dataManager: DataManager?
   var userColors: UserColors?
 
   func applicationWillResignActive(_ application: UIApplication) {
