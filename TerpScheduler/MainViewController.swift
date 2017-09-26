@@ -282,7 +282,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     cell.shouldShadeCell(shadingType)
     let summary = taskSummaries![(indexPath as NSIndexPath).row]
-    cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion)
+    cell.setTopTaskLabel(summary.title, isTaskCompleted: summary.completion, decorationType: appDelegate!.userDefaults.decorationType)
     cell.setRemainingTasksLabel(tasksRemaining: summary.remainingTasks)
     return cell
   }

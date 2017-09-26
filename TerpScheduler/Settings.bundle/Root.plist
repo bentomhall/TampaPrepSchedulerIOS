@@ -86,6 +86,23 @@
 				<string>Evening (7PM)</string>
 			</array>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Extra Visibility for Tests and Quizzes</string>
+			<key>Key</key>
+			<string>assessmentDecorationType</string>
+			<key>DefaultValue</key>
+			<string>None</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Underline</string>
+				<string>Highlight</string>
+				<string>All Caps</string>
+			</array>
+		</dict>
 	</array>
 	<key>Title</key>
 	<dict>

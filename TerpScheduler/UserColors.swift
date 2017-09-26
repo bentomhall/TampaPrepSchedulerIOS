@@ -100,4 +100,13 @@ class UserColors {
       return self.NoClassColor //#c8c8c8
     }
   }
+  
+  var textHighlightColor: UIColor {
+    switch defaults.colorTheme {
+    case .Light:
+      return UIColor.green
+    case .Dark:
+      return UIColor.cyan
+    }
+  }
 }

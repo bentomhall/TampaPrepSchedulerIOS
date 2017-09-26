@@ -163,6 +163,23 @@ class CustomUserDefaults {
       defaults.set(newValue.rawValue, forKey: "colorTheme")
     }
   }
+  
+  var decorationType: AssessmentDecorationType {
+    if let stored = defaults.string(forKey: "assessmentDecorationType") {
+      if stored == "None" {
+        return AssessmentDecorationType.None
+      } else if stored == "Highlight" {
+        return AssessmentDecorationType.TextColor
+      } else if stored == "Underline" {
+        return AssessmentDecorationType.Underline
+      } else if stored == "All Caps" {
+        return AssessmentDecorationType.AllCaps
+      } else {
+        return AssessmentDecorationType.None
+      }
+    }
+    return AssessmentDecorationType.None
+  }
 
   func onSettingsChange(_ notification: Notification) {
     readDefaults()

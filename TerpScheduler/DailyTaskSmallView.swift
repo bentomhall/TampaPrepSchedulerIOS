@@ -14,6 +14,13 @@ enum CellShadingType {
   case noShading
 }
 
+enum AssessmentDecorationType {
+  case None
+  case Underline
+  case TextColor
+  case AllCaps
+}
+
 @IBDesignable
 class DailyTaskSmallView: UICollectionViewCell {
 
@@ -28,20 +35,35 @@ class DailyTaskSmallView: UICollectionViewCell {
     remainingTasksLabel!.isHidden = false
   }
 
-  func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool) {
-    let nTitle = taskTitle as NSString
+  func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool, decorationType: AssessmentDecorationType) {
     if completion {
       topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSAttributedStringKey.strikethroughStyle: 2])
       topTaskLabel!.isEnabled = false
     } else {
-      let text = NSMutableAttributedString(string: taskTitle)
-      if taskTitle.lowercased().contains("test") || taskTitle.lowercased().contains("quiz") {
-        let range = NSMakeRange(0, nTitle.length)
-        text.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: range)
-      }
+      let text = decorateText(text: taskTitle, decorationType: decorationType)
       topTaskLabel!.attributedText = text
       topTaskLabel!.isEnabled = true
     }
+  }
+  
+  func decorateText(text: String, decorationType: AssessmentDecorationType) -> NSMutableAttributedString {
+    let attributed = NSMutableAttributedString(string: text)
+    if text.lowercased().contains("test") || text.lowercased().contains("quiz") {
+      let range = NSMakeRange(0, (text as NSString).length)
+      switch decorationType {
+      case .None:
+        break
+      case .AllCaps:
+        return NSMutableAttributedString(string: text.uppercased())
+      case .TextColor:
+        attributed.addAttribute(NSAttributedStringKey.backgroundColor, value: colors!.textHighlightColor, range: range)
+        break
+      case .Underline:
+        attributed.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: range)
+        break
+      }
+    }
+    return attributed
   }
 
   func setRemainingTasksLabel(tasksRemaining remaining: Int) {
