@@ -9,13 +9,6 @@ import CoreData
 import Foundation
 import UIKit
 
-protocol PopOverPresentable: class {
-  var delegate: AnyObject { get set }
-  var preferredContentSize: CGSize { get set }
-  var modalPresentationStyle: UIModalPresentationStyle { get set }
-  var index: Int { get set }
-}
-
 @IBDesignable
 class MainViewController: UIViewController {
 
@@ -226,7 +219,6 @@ extension MainViewController: UICollectionViewDelegate {
   }
 
   func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    //WARN Incomplete implementation
     let dayAndPeriod = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
     if action == #selector(UIResponderStandardEditActions.copy(_:)) {
       delegate!.copyTasksFor(dayAndPeriod.day, period: dayAndPeriod.period)

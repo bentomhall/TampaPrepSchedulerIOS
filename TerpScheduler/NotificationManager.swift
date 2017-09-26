@@ -59,6 +59,24 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
   }
   
+  func cancelNotification(matching: DailyTask) {
+    if let id = getNotificationIdentifierFor(task: matching) {
+      self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
+    }
+  }
+  
+  func getNotificationIdentifierFor(task: DailyTask) -> String? {
+    var matched: String?
+    notificationCenter.getPendingNotificationRequests(completionHandler: {requests in
+      for request in requests {
+        if request.content.body.contains(task.shortTitle) {
+          matched = request.identifier
+        }
+      }
+    })
+    return matched
+  }
+  
   func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     completionHandler([.alert])
   }

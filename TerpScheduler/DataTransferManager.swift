@@ -241,7 +241,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
 
   func cancelNotificationMatching(_ task: DailyTask) {
-    //do nothing
+    self.notificationManager.cancelNotification(matching: task)
   }
 
   func copyTasksFor(_ dateIndex: Int, period: Int) {
