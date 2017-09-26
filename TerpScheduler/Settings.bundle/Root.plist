@@ -95,6 +95,13 @@
 			<string>assessmentDecorationType</string>
 			<key>DefaultValue</key>
 			<string>None</string>
+			<key>Values</key>
+			<array>
+				<string>None</string>
+				<string>Underline</string>
+				<string>Highlight</string>
+				<string>All Caps</string>
+			</array>
 			<key>Titles</key>
 			<array>
 				<string>None</string>

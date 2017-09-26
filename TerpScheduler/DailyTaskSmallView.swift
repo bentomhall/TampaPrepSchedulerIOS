@@ -56,7 +56,7 @@ class DailyTaskSmallView: UICollectionViewCell {
       case .AllCaps:
         return NSMutableAttributedString(string: text.uppercased())
       case .TextColor:
-        attributed.addAttribute(NSAttributedStringKey.backgroundColor, value: colors!.textHighlightColor, range: range)
+        attributed.addAttribute(NSAttributedStringKey.foregroundColor, value: colors!.primaryThemeColor, range: range)
         break
       case .Underline:
         attributed.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: range)
