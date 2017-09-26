@@ -28,21 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       abort()
     }
     application.applicationIconBadgeNumber = 0
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: self.renumberBadge)
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: self.permissions)
     let notificationManager = NotificationManager()
     UNUserNotificationCenter.current().delegate = notificationManager
     dataManager = DataManager(notificationHelper: notificationManager)
     userColors = UserColors(defaults: userDefaults)
     UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
-    
     return true
   }
-  
-  func setupNotificationCategories() {
-  }
-  
-  func renumberBadge(granted: Bool, error: Error?) {
-    
+
+  func permissions(granted: Bool, error: Error?) {
+    userDefaults.notificationPermissionGranted = granted
   }
   
   lazy var scheduleLoader: SemesterScheduleLoader = SemesterScheduleLoader(context: self.managedObjectContext!)
@@ -77,7 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidBecomeActive(_ application: UIApplication) {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. 
     //If the application was previously in the background, optionally refresh the user interface.
-    //application.applicationIconBadgeNumber = 0
   }
 
   func applicationWillTerminate(_ application: UIApplication) {

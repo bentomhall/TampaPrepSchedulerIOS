@@ -180,6 +180,11 @@ class CustomUserDefaults {
     }
     return AssessmentDecorationType.None
   }
+  
+  var notificationPermissionGranted: Bool {
+    get { return defaults.bool(forKey: "canNotify")}
+    set { defaults.set(newValue, forKey: "canNotify")}
+  }
 
   func onSettingsChange(_ notification: Notification) {
     readDefaults()

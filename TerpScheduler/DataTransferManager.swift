@@ -236,6 +236,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
 
   func postNotification(forTask task: DailyTask) {
+    guard !defaults!.notificationPermissionGranted else { return }
     let notificationDate = self.notificationManager.getDateForNotification(task: task, time: defaults!.shouldNotifyWhen)
     self.notificationManager.scheduleNotification(task: task, date: notificationDate)
   }
