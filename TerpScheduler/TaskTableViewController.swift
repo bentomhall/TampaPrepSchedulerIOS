@@ -55,7 +55,7 @@ class TaskTableViewController: UITableViewController {
     self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
   }
   
-  func userColorsDidChange() {
+  @objc func userColorsDidChange() {
     tableView.backgroundView?.backgroundColor = colors!.backgroundColor
     tableView.tableFooterView!.backgroundColor = colors!.backgroundColor
   }

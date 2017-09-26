@@ -3,3 +3,4 @@ disabled_rules:
   - variable_name
   - type_name
   - trailing_whitespace
+  - legacy_constructor

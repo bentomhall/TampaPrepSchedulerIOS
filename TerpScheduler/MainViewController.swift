@@ -79,7 +79,7 @@ class MainViewController: UIViewController {
     NotificationCenter.default.addObserver(self, selector: #selector(onDefaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
   }
 
-  func onDefaultsChanged(_ notification: Notification) {
+  @objc func onDefaultsChanged(_ notification: Notification) {
     delegate!.refreshDefaults()
     reloadCollectionView(true)
     performShading()

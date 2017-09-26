@@ -76,10 +76,10 @@ extension DailyTask: DataObject {
     date = model.dateDue
     shortTitle = model.shortTitle
     details = model.details
-    isHaikuAssignment = Bool(model.isHaikuAssignment)
-    isCompleted = Bool(model.isCompleted)
-    priority = Priorities(rawValue: Int(model.priority))!
-    period = Int(model.forPeriod)
+    isHaikuAssignment = Bool(truncating: model.isHaikuAssignment)
+    isCompleted = Bool(truncating: model.isCompleted)
+    priority = Priorities(rawValue: Int(truncating: model.priority))!
+    period = Int(truncating: model.forPeriod)
     shouldNotify = model.hasNotification
   }
 
