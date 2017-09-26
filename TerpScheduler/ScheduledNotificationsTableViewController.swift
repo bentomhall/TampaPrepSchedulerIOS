@@ -19,6 +19,7 @@ class ScheduledNotificationsTableViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    notifications.removeAll()
     notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
       for request in requests {
         self.notifications.append(request)

@@ -19,21 +19,24 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
   
   func getDateForNotification(task: DailyTask, time: NotificationTimes) -> Date {
     let calendar = Calendar.autoupdatingCurrent
-    if time != .testing {
-      let dueDate = (calendar as NSCalendar).date(bySettingHour: 0, minute: 0, second: 0, of: task.date as Date, options: NSCalendar.Options())
-      let notificationDate = (calendar as NSCalendar).date(byAdding: .day, value: -1, to: dueDate!, options: [])
-      return (calendar as NSCalendar).date(bySettingHour: time.rawValue, minute: 0, second: 0, of: notificationDate!, options: [])!
-    } else {
-      //Testing should set the notification for one minute from creation time
+    #if DEBUG
       let dueDate = Date()
       var components = DateComponents()
       components.minute = 1
       return calendar.date(byAdding: components, to: dueDate)!
-    }
-    
+    #else
+      let dueDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: task.date)!
+      let notificationDate = calendar.date(byAdding: .day, value: -1, to: dueDate)!
+      var components = DateComponents()
+      components.hour = time.rawValue
+      return calendar.date(byAdding: components, to: notificationDate)!
+    #endif
   }
   
   func scheduleNotification(task: DailyTask, date: Date) {
+    if task.shortTitle == "" {
+      return //fake call
+    }
     let identifier = UUID().uuidString
     let message = "Task \(task.shortTitle) is due tomorrow!"
     let components = Calendar.autoupdatingCurrent.dateComponents(Set([.day, .hour, .minute]), from: date)
@@ -57,6 +60,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
   }
   
   func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    completionHandler(.alert)
+    completionHandler([.alert])
   }
 }

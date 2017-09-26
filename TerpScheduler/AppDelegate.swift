@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: self.renumberBadge)
     let notificationManager = NotificationManager()
     UNUserNotificationCenter.current().delegate = notificationManager
-    dataManager = DataManager(notificationManager)
+    dataManager = DataManager(notificationHelper: notificationManager)
     userColors = UserColors(defaults: userDefaults)
     UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
     
