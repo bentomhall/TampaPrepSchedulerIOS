@@ -33,12 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UNUserNotificationCenter.current().delegate = notificationManager
     dataManager = DataManager(notificationHelper: notificationManager)
     userColors = UserColors(defaults: userDefaults)
-    UINavigationBar.appearance().barTintColor = userColors!.navigationBarTint
+    setNavBarColor(color: userColors!.navigationBarTint)
     return true
   }
 
   func permissions(granted: Bool, error: Error?) {
     userDefaults.notificationPermissionGranted = granted
+  }
+  
+  func setNavBarColor(color: UIColor) {
+    UINavigationBar.appearance().barTintColor = color
   }
   
   lazy var scheduleLoader: SemesterScheduleLoader = SemesterScheduleLoader(context: self.managedObjectContext!)

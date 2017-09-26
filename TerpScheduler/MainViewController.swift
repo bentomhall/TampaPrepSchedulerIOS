@@ -75,6 +75,7 @@ class MainViewController: UIViewController {
   @objc func onDefaultsChanged(_ notification: Notification) {
     delegate!.refreshDefaults()
     reloadCollectionView(true)
+    appDelegate!.setNavBarColor(color: colors!.navigationBarTint)
     performShading()
   }
 
