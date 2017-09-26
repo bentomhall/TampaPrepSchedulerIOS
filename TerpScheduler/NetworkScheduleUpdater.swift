@@ -73,10 +73,6 @@ class NetworkScheduleUpdater {
   }
 
   func onResponseReceived(data: Data?, response: URLResponse?, error: Error? ) {
-//    guard delegate == nil else {
-//      NSLog("No delegate found for NetworkScheduleUpdater")
-//      return
-//    }
     guard error == nil else {
       delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
       return

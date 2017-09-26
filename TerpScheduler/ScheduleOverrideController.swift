@@ -6,55 +6,8 @@
 //  Copyright (c) 2015 Tampa Preparatory School. All rights reserved.
 //
 
-//= [
-//"A": "1, 2, 3, 4, 5, 7",
-//"B": "1, 2, 3, 4, 6",
-//"C": "1, 2, 3, 5, 6, 7",
-//"C*": "1, 2, 3",
-//"C**": "5, 6, 7",
-//"C***": "1, 3, 5",
-//"D": "1, 3, 4, 5, 6, 7",
-//"D*": "1, 3, 4",
-//"D**": "5, 6, 7",
-//"E": "2, 4, 5, 6, 7",
-//"Y": "1, 2, 3, 4, 5, 6, 7",
-//"X": "",
-//"Y*": "1, 2, 3",
-//"Y**": "4, 5, 6, 7"
-//]
 
 import UIKit
-
-//struct ScheduleTypes {
-//  init() {
-//
-//  }
-//  let schedules: ScheduleTypeData?
-//  var count: Int {
-//    return schedules.count
-//  }
-//
-//  var types: [String] {
-//      var letters: [String] = []
-//      for key in Array(schedules.keys).sorted(by: <) {
-//        letters.append(key)
-//      }
-//      return letters
-//  }
-//
-//  func indexForLetter(_ letter: String) -> Int? {
-//    return types.index(of: letter)
-//  }
-//
-//  func scheduleForLetter(_ letter: String) -> String? {
-//    return schedules[letter]
-//  }
-//
-//  func scheduleForIndex(_ index: Int) -> String {
-//    let key = types[index]
-//    return key
-//  }
-//}
 
 protocol ScheduleOverrideDelegate: class {
   func updateScheduleForIndex(_ index: Int, withSchedule schedule: String)
