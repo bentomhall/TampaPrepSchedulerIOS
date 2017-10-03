@@ -87,6 +87,12 @@
       "idiom" : "ipad",
       "filename" : "TP_seal_167.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "marketing.png",
+      "scale" : "1x"
     }
   ],
   "info" : {
