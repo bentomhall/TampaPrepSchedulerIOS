@@ -56,8 +56,11 @@ class TaskTableViewController: UITableViewController {
   }
   
   @objc func userColorsDidChange() {
-    tableView.backgroundView?.backgroundColor = colors!.backgroundColor
-    tableView.tableFooterView!.backgroundColor = colors!.backgroundColor
+    DispatchQueue.main.async {
+        self.tableView.backgroundView?.backgroundColor = self.colors!.backgroundColor
+        self.tableView.tableFooterView!.backgroundColor = self.colors!.backgroundColor
+    }
+    
   }
 
   override func viewDidLoad() {

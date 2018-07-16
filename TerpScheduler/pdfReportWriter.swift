@@ -65,7 +65,7 @@ class PDFReporter {
     let header = formatHeader()
     let body = formatBody()
     let complete = [header, body].joined(separator: "\n")
-    return CFAttributedStringCreate(nil, complete as CFString!, nil)
+    return CFAttributedStringCreate(nil, complete as CFString, nil)
   }
 
   fileprivate func renderFrame(textRange currentRange: CFRange, andFormatter formatter: CTFramesetter) -> CFRange {
