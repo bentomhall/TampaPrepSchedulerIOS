@@ -92,7 +92,9 @@ class MainViewController: UIViewController {
   }
 
   func performShading() {
-    self.view!.backgroundColor = colors!.backgroundColor
+    DispatchQueue.main.async {
+      self.view!.backgroundColor = self.colors!.backgroundColor
+    }
     UINavigationBar.appearance().barTintColor = colors!.navigationBarTint
     for period in classPeriods! {
       period.setColors(themeColors: colors!)
@@ -293,7 +295,10 @@ extension MainViewController: UICollectionViewDataSource {
   func reloadCollectionView(_ settingsDidChange: Bool=false) {
     taskSummaries = delegate!.summariesForWeek()
     if settingsDidChange { performShading() }
-    collectionView!.reloadData()
+    DispatchQueue.main.async {
+      self.collectionView!.reloadData()
+    }
+    
   }
 }
 
@@ -320,8 +325,11 @@ extension MainViewController: ClassPeriodDataSource {
   func setCellColor(_ index: Int, toColor color: UIColor) {
     for indx in 0...4 {
       let row = indx + (index-1)*5
-      let cell = collectionView!.cellForItem(at: IndexPath(item: row, section: 0))
-      cell!.backgroundColor = color
+      DispatchQueue.main.async {
+        let cell = self.collectionView!.cellForItem(at: IndexPath(item: row, section: 0))
+        cell!.backgroundColor = color
+      }
+      
     }
   }
 

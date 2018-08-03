@@ -35,9 +35,10 @@ class SchoolClassView: UIView {
   func setColors(themeColors: UserColors) {
     self.backgroundColor = themeColors.cellColor
     DispatchQueue.main.async {
-        self.teacherNameLabel!.textColor = themeColors.textColor
+      self.teacherNameLabel!.textColor = themeColors.textColor
+      self.classNameLabel!.textColor = themeColors.primaryThemeColor
     }
     
-    self.classNameLabel!.textColor = themeColors.primaryThemeColor
+    
   }
 }
