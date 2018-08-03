@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController, UIWebViewDelegate {
-  @IBOutlet weak var webView: UIWebView?
+  @IBOutlet weak var webView: WKWebView?
   var initialURL: URL?
 
   override func viewWillAppear(_ animated: Bool) {
@@ -18,6 +19,6 @@ class WebViewController: UIViewController, UIWebViewDelegate {
     if initialURL != nil {
       request = URLRequest(url: initialURL!)
     }
-    webView!.loadRequest(request!)
+    webView!.load(request!)
   }
 }
