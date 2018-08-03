@@ -1469,34 +1469,6 @@
                                     <action selector="linkButtonPressed:" destination="bBa-Wo-07Y" eventType="touchUpInside" id="abT-pS-0js"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGO-yk-7EJ">
-                                <rect key="frame" x="457.5" y="333" width="164" height="118"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="118" id="zOD-Il-6Ys"/>
-                                </constraints>
-                                <state key="normal" title="Export">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6M1-DS-K2o" kind="popoverPresentation" identifier="ExportTasks" popoverAnchorView="xGO-yk-7EJ" id="aTf-t3-beO">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
-                                <rect key="frame" x="457.5" y="459" width="164" height="118"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="118" id="Mtb-FV-Ok4"/>
-                                </constraints>
-                                <state key="normal" title="Scheduled Notifications">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="oI0-FA-wNL" kind="popoverPresentation" identifier="ShowScheduledNotifications" popoverAnchorView="VNX-gp-MDZ" id="tfH-22-fGN">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9z-MH-jmH">
                                 <rect key="frame" x="367" y="592" width="34" height="94"/>
                                 <constraints>
@@ -1544,11 +1516,24 @@
                                 <attributedString key="attributedText"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VNX-gp-MDZ">
+                                <rect key="frame" x="458" y="333" width="164" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="Mtb-FV-Ok4"/>
+                                </constraints>
+                                <state key="normal" title="Scheduled Notifications">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="oI0-FA-wNL" kind="popoverPresentation" identifier="ShowScheduledNotifications" popoverAnchorView="VNX-gp-MDZ" id="tfH-22-fGN">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="8Yd-JZ-xN1" secondAttribute="trailing" constant="73" id="2j4-Mw-bKb"/>
-                            <constraint firstItem="xGO-yk-7EJ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="3OL-Cu-vGH"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="7.5" id="3yU-Kf-gOQ"/>
                             <constraint firstAttribute="centerX" secondItem="b9z-MH-jmH" secondAttribute="centerX" id="73x-Dv-KXn"/>
                             <constraint firstItem="PRh-KE-GHT" firstAttribute="centerX" secondItem="DY1-L2-Sr7" secondAttribute="centerX" id="AfU-li-ZBj"/>
@@ -1558,20 +1543,18 @@
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="H2c-B9-Jyv"/>
                             <constraint firstItem="APx-sI-Sxv" firstAttribute="leading" secondItem="ebm-gD-Eqj" secondAttribute="trailing" constant="73" id="HhL-0w-c3B"/>
                             <constraint firstItem="BEG-Xv-mfp" firstAttribute="centerX" secondItem="DY1-L2-Sr7" secondAttribute="centerX" id="Isv-zo-M6h"/>
+                            <constraint firstItem="VNX-gp-MDZ" firstAttribute="top" secondItem="ncS-KC-gDZ" secondAttribute="bottom" constant="8" id="JQl-PM-0yE"/>
                             <constraint firstAttribute="bottomMargin" secondItem="APx-sI-Sxv" secondAttribute="bottom" id="ML9-d0-qgP"/>
                             <constraint firstAttribute="centerX" secondItem="APx-sI-Sxv" secondAttribute="centerX" id="MZh-we-hcQ"/>
                             <constraint firstItem="VNX-gp-MDZ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="OCK-nA-epr"/>
-                            <constraint firstItem="VNX-gp-MDZ" firstAttribute="top" secondItem="xGO-yk-7EJ" secondAttribute="bottom" constant="8" id="SUi-Re-CPK"/>
                             <constraint firstItem="mEs-Ry-Dlj" firstAttribute="leading" secondItem="PRh-KE-GHT" secondAttribute="trailing" constant="8" id="T3D-Sw-jNd"/>
                             <constraint firstItem="ebm-gD-Eqj" firstAttribute="top" secondItem="30E-u1-ucH" secondAttribute="bottom" constant="8" id="TJu-6D-8Bm"/>
                             <constraint firstItem="30E-u1-ucH" firstAttribute="centerX" secondItem="8Yd-JZ-xN1" secondAttribute="centerX" id="VQW-Lc-W3R"/>
                             <constraint firstItem="8Yd-JZ-xN1" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="187" id="auQ-I6-u1h"/>
                             <constraint firstItem="ncS-KC-gDZ" firstAttribute="leading" secondItem="APx-sI-Sxv" secondAttribute="trailing" constant="73" id="gR3-kw-eie"/>
                             <constraint firstItem="VNX-gp-MDZ" firstAttribute="centerX" secondItem="ncS-KC-gDZ" secondAttribute="centerX" id="hPD-jr-fDE"/>
-                            <constraint firstItem="xGO-yk-7EJ" firstAttribute="top" secondItem="ncS-KC-gDZ" secondAttribute="bottom" constant="8" id="iuH-gI-7q6"/>
                             <constraint firstItem="PRh-KE-GHT" firstAttribute="top" secondItem="BEG-Xv-mfp" secondAttribute="bottom" constant="8" id="jJZ-Zx-FSD"/>
                             <constraint firstItem="30E-u1-ucH" firstAttribute="top" secondItem="8Yd-JZ-xN1" secondAttribute="bottom" constant="8" id="k1h-8h-J8U"/>
-                            <constraint firstItem="xGO-yk-7EJ" firstAttribute="centerX" secondItem="ncS-KC-gDZ" secondAttribute="centerX" id="mEX-yg-jTw"/>
                             <constraint firstItem="ebm-gD-Eqj" firstAttribute="centerX" secondItem="8Yd-JZ-xN1" secondAttribute="centerX" id="oOy-c3-ors"/>
                             <constraint firstItem="b9z-MH-jmH" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="572" id="piq-Ol-KsE"/>
                             <constraint firstItem="PRh-KE-GHT" firstAttribute="top" secondItem="kp2-16-CnB" secondAttribute="bottom" constant="185" id="t9E-xU-xuR"/>
@@ -1647,85 +1630,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvM-Gr-Tuy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="502"/>
-        </scene>
-        <!--Export View Controller-->
-        <scene sceneID="0tD-xV-Al7">
-            <objects>
-                <viewController modalPresentationStyle="formSheet" id="6M1-DS-K2o" customClass="ExportViewController" customModule="TerpScheduler" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e76-uj-ACO"/>
-                        <viewControllerLayoutGuide type="bottom" id="XVe-kk-r1N"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iEd-MS-LG6">
-                        <rect key="frame" x="0.0" y="0.0" width="748" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Export all tasks for period" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-3p-kqx">
-                                <rect key="frame" x="276.5" y="8" width="195" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLr-Tw-4Ya">
-                                <rect key="frame" x="330" y="117" width="88" height="30"/>
-                                <state key="normal" title="Export Tasks">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="doExport:" destination="6M1-DS-K2o" eventType="touchDown" id="Ux3-Av-hOG"/>
-                                </connections>
-                            </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-S6-Max">
-                                <rect key="frame" x="290.5" y="39" width="167" height="29"/>
-                                <segments>
-                                    <segment title="1"/>
-                                    <segment title="2"/>
-                                    <segment title="3"/>
-                                    <segment title="4"/>
-                                    <segment title="5"/>
-                                    <segment title="6"/>
-                                    <segment title="7"/>
-                                </segments>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zw-l2-vt6">
-                                <rect key="frame" x="355.5" y="167" width="37" height="30"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="qsi-Xr-gPB" kind="unwind" unwindAction="closeView:" id="iPx-sU-orB"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="gnd-S6-Max" firstAttribute="top" secondItem="vNf-3p-kqx" secondAttribute="bottom" constant="10" id="5hN-Ar-6dJ"/>
-                            <constraint firstItem="5Zw-l2-vt6" firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="60w-OY-X4W"/>
-                            <constraint firstItem="5Zw-l2-vt6" firstAttribute="top" secondItem="MLr-Tw-4Ya" secondAttribute="bottom" constant="20" id="Aga-W4-Uxv"/>
-                            <constraint firstItem="MLr-Tw-4Ya" firstAttribute="top" secondItem="gnd-S6-Max" secondAttribute="bottom" constant="50" id="QIr-rp-8jx"/>
-                            <constraint firstAttribute="centerX" secondItem="vNf-3p-kqx" secondAttribute="centerX" id="asd-0S-U9n"/>
-                            <constraint firstAttribute="centerX" secondItem="gnd-S6-Max" secondAttribute="centerX" id="c1N-I0-w2D"/>
-                            <constraint firstAttribute="centerY" secondItem="5Zw-l2-vt6" secondAttribute="centerY" id="gE4-iW-gtH"/>
-                            <constraint firstItem="vNf-3p-kqx" firstAttribute="top" secondItem="e76-uj-ACO" secondAttribute="bottom" constant="8" id="gQN-66-MFX"/>
-                            <constraint firstAttribute="centerX" secondItem="MLr-Tw-4Ya" secondAttribute="centerX" id="rE5-YK-Bst"/>
-                            <constraint firstAttribute="centerX" secondItem="5Zw-l2-vt6" secondAttribute="centerX" id="tb4-Kb-OUj"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="gE4-iW-gtH"/>
-                                <exclude reference="tb4-Kb-OUj"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="768" height="768"/>
-                    <connections>
-                        <outlet property="periodSelector" destination="gnd-S6-Max" id="IUo-8Q-jXS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qhu-vA-okF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="qsi-Xr-gPB" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1127" y="-372"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="DV3-ec-J1W">
