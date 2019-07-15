@@ -59,7 +59,7 @@ class NetworkScheduleUpdater {
       delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
       return
     }
-    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+    if let json = ((try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]) as [String : Any]??) {
       if json!.count == 0 {
         self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
         return
@@ -77,7 +77,7 @@ class NetworkScheduleUpdater {
       delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
       return
     }
-    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+    if let json = ((try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]) as [String : Any]??) {
       if json!.count == 0 {
         self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
         self.delegate!.scheduleUpdateUnnecessary()

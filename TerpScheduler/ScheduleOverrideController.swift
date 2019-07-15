@@ -48,7 +48,7 @@ class ScheduleOverrideController: UITableViewController {
       cell!.textLabel!.text = "Schedule \(letter): Periods \(classes!) meet"
     }
     if previousSchedule == letter {
-      cell!.accessoryType = UITableViewCellAccessoryType.checkmark
+      cell!.accessoryType = UITableViewCell.AccessoryType.checkmark
     } else {
 
     }

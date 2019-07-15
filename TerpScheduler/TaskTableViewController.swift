@@ -11,7 +11,7 @@ import UIKit
 class TaskTableViewController: UITableViewController {
   @IBAction func hideTableView(_ recognizer: UISwipeGestureRecognizer) {
     delegate!.willDisappear()
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.primaryHidden
+    self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.primaryHidden
   }
 
   @IBAction func doneButton(_ sender: UIBarButtonItem) {
@@ -143,7 +143,7 @@ class TaskTableViewController: UITableViewController {
   }
 
   // Override to support editing the table view.
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       // Delete the row from the data source
       let item = tasks[(indexPath as NSIndexPath).row]

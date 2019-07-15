@@ -26,10 +26,10 @@ class MainViewController: UIViewController {
   @IBAction func SwipeRecognizer(_ recognizer: UISwipeGestureRecognizer) {
     let direction = recognizer.direction
     switch direction {
-      case UISwipeGestureRecognizerDirection.right:
+      case UISwipeGestureRecognizer.Direction.right:
         delegate!.loadWeek(-1)
         break
-      case UISwipeGestureRecognizerDirection.left:
+      case UISwipeGestureRecognizer.Direction.left:
         delegate!.loadWeek(1)
         break
       default:
@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
     taskSummaries = delegate!.summariesForWeek()
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.primaryHidden
+    self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.primaryHidden
     splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
@@ -181,7 +181,7 @@ class MainViewController: UIViewController {
   }
 
   func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-    if gestureRecognizer.state != UIGestureRecognizerState.ended {
+    if gestureRecognizer.state != UIGestureRecognizer.State.ended {
       return
     }
     let p = gestureRecognizer.location(in: self.collectionView)
@@ -202,7 +202,7 @@ extension MainViewController: UICollectionViewDelegate {
     detailIndex = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
     let date = delegate!.datesForWeek[detailIndex.day].Date
     delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
-    self.splitViewController!.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
+    self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
   }
 
   func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
@@ -283,7 +283,7 @@ extension MainViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    guard let header = self.collectionView?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", for: indexPath) as? DateHeaderView else {
+    guard let header = self.collectionView?.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "dateHeaderBlock", for: indexPath) as? DateHeaderView else {
       let defaultHeader = DateHeaderView()
       defaultHeader.SetDates(delegate!.datesForWeek)
       return defaultHeader

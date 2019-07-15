@@ -37,7 +37,7 @@ class DailyTaskSmallView: UICollectionViewCell {
 
   func setTopTaskLabel(_ taskTitle: String, isTaskCompleted completion: Bool, decorationType: AssessmentDecorationType) {
     if completion {
-      topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSAttributedStringKey.strikethroughStyle: 2])
+      topTaskLabel!.attributedText = NSAttributedString(string: taskTitle, attributes: [NSAttributedString.Key.strikethroughStyle: 2])
       topTaskLabel!.isEnabled = false
     } else {
       let text = decorateText(text: taskTitle, decorationType: decorationType)
@@ -56,10 +56,10 @@ class DailyTaskSmallView: UICollectionViewCell {
       case .AllCaps:
         return NSMutableAttributedString(string: text.uppercased())
       case .TextColor:
-        attributed.addAttribute(NSAttributedStringKey.foregroundColor, value: colors!.primaryThemeColor, range: range)
+        attributed.addAttribute(NSAttributedString.Key.foregroundColor, value: colors!.primaryThemeColor, range: range)
         break
       case .Underline:
-        attributed.addAttribute(NSAttributedStringKey.underlineStyle, value: 1, range: range)
+        attributed.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: range)
         break
       }
     }
