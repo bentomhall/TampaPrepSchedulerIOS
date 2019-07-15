@@ -280,10 +280,9 @@
 			};
 			buildConfigurationList = D408FD6D1A432E45004F0B83 /* Build configuration list for PBXProject "TerpScheduler" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
