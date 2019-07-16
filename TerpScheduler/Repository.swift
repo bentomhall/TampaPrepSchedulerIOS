@@ -119,7 +119,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
   func fetchAll() -> [T] {
     let fetchRequest = newFetchRequest()
     fetchRequest.predicate = NSPredicate(value: true)
-    let results = (try? context!.fetch(fetchRequest)) as? [U]
+    let results = try? context!.fetch(fetchRequest) as? [U]
     if results != nil {
       let data = dataFromEntities(results!)
       return data
@@ -148,7 +148,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
   func fetchBy(_ type: RepositoryFilterType, values: FilterValues) -> [T] {
       let fetchRequest = newFetchRequest()
       fetchRequest.predicate = predicateByType(type, value: values)
-      if let results = (try? context!.fetch(fetchRequest)) as? [U] {
+      if let results = try? context!.fetch(fetchRequest) as? [U] {
         let data = dataFromEntities(results)
         return data
       }

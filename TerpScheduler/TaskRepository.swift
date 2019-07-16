@@ -28,7 +28,7 @@ class TaskRepository {
   fileprivate func fetchOrLoadDefaultTask() -> DailyTask {
     let fetchRequest: NSFetchRequest<DailyTaskEntity> = NSFetchRequest(entityName: "DailyTask")
     fetchRequest.predicate = NSPredicate(format: "forPeriod = %i", -1)
-    let results = (try? context.fetch(fetchRequest))
+    let results = try? context.fetch(fetchRequest)
     if results!.count == 0 {
       //the default task isn't created yet, so add it and return it
       let entityDescription = NSEntityDescription.entity(forEntityName: "DailyTask", in: context)

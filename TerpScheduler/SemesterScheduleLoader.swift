@@ -39,8 +39,8 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
   func loadScheduleTypesFromDisk() throws -> ScheduleTypeData? {
     if let path = Bundle.main.path(forResource: "scheduleTypes", ofType: "json") {
       let data = try Data(contentsOf: URL(fileURLWithPath: path))
-      if let jsonData = ((try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any]) as [String : Any]??) {
-        return ScheduleTypeData(data: jsonData!)
+      if let jsonData = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
+        return ScheduleTypeData(data: jsonData)
       }
     }
     return nil
@@ -76,11 +76,11 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
       do {
         data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions())
       } catch let error as NSError {
-        data = nil
         NSLog("%@", error)
+        return nil
       }
-      if let jsonData = ((try? JSONSerialization.jsonObject(with: data!, options: [.allowFragments]) as? [String : Any]) as [String : Any]??) {
-        return extractScheduleFrom(dict: jsonData!)
+      if let jsonData = try? JSONSerialization.jsonObject(with: data!, options: [.allowFragments]) as? [String : Any]  {
+        return extractScheduleFrom(dict: jsonData)
       }
     }
     return nil
