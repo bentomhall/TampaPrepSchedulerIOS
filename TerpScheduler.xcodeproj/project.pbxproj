@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */; };
+		D4040FDC22DE072300DE7850 /* schedule.2019.json in Resources */ = {isa = PBXBuildFile; fileRef = D4040FDB22DE072300DE7850 /* schedule.2019.json */; };
 		D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4079CA91A47C31100BC333C /* DayLabel.swift */; };
 		D408FD781A432E45004F0B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D408FD771A432E45004F0B83 /* AppDelegate.swift */; };
 		D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinksPageViewController.swift; sourceTree = "<group>"; };
 		D40275B81CF739600089CFA1 /* TerpScheduler 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TerpScheduler 2.xcdatamodel"; sourceTree = "<group>"; };
+		D4040FDB22DE072300DE7850 /* schedule.2019.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.2019.json; sourceTree = "<group>"; };
 		D4079CA91A47C31100BC333C /* DayLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		D408FD721A432E45004F0B83 /* TerpScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerpScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D408FD761A432E45004F0B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */,
+				D4040FDB22DE072300DE7850 /* schedule.2019.json */,
 				D4711DC31F14FE6600E49022 /* schedule.2017.json */,
 				D45167F620FCDE0A00440B0F /* schedule.2018.json */,
 				D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */,
@@ -305,6 +308,7 @@
 				D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */,
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */,
+				D4040FDC22DE072300DE7850 /* schedule.2019.json in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4711DC41F14FE6600E49022 /* schedule.2017.json in Resources */,
 				D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */,

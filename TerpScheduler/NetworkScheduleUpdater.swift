@@ -59,16 +59,16 @@ class NetworkScheduleUpdater {
       delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
       return
     }
-    if let json = ((try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]) as [String : Any]??) {
-      if json!.count == 0 {
+    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      if json.count == 0 {
         self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
         return
       }
-      guard json!.count > 1 else {
-        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
+      guard json.count > 1 else {
+        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json["message"] ?? "Year Not recognized")"))
         return
       }
-      self.delegate!.scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: json!)
+      self.delegate!.scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: json)
     }
   }
 
@@ -77,18 +77,18 @@ class NetworkScheduleUpdater {
       delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.NetworkFailure(error!.localizedDescription))
       return
     }
-    if let json = ((try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]) as [String : Any]??) {
-      if json!.count == 0 {
+    if let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+      if json.count == 0 {
         self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
         self.delegate!.scheduleUpdateUnnecessary()
         return
       }
-      guard json!.count > 1 else {
-        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json!["message"] ?? "Year Not recognized")"))
+      guard json.count > 1 else {
+        delegate!.networkScheduleUpdateFailed(error: ScheduleUpdateError.ImproperResponse("Server Error: \(json["message"] ?? "Year Not recognized")"))
         return
       }
 
-      self.delegate!.scheduleDidUpdateFromNetwork(newSchedule: json!)
+      self.delegate!.scheduleDidUpdateFromNetwork(newSchedule: json)
       self.defaults.lastScheduleUpdate = Date().timeIntervalSince1970
     }
   }
