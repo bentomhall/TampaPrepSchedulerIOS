@@ -174,7 +174,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
     
     func dateBounds() -> (Date, Date) {
-        return (dateRepository.firstDate, dateRepository.lastDate);
+        return (dateRepository.firstDateForYear, dateRepository.lastDateForYear);
     }
 
   func summariesForWeek() -> [TaskSummary] {

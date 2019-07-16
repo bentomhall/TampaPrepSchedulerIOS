@@ -101,6 +101,22 @@ class DateRepository {
   var lastDate: Date {
     return dates[dates.count - 1 ].Date
   }
+    
+    var firstDateForYear: Date {
+        var dateComponents = DateComponents()
+        dateComponents.year = schoolYear
+        dateComponents.month = 6 // TerpScheduler starts its school year in June
+        dateComponents.day = 1
+        return Calendar.current.date(from: dateComponents)!
+    }
+    
+    var lastDateForYear: Date {
+        var dateComponents = DateComponents()
+        dateComponents.year = schoolYear + 1
+        dateComponents.month = 5 // TerpScheduler starts its school year in June
+        dateComponents.day = 31
+        return Calendar.current.date(from: dateComponents)!
+    }
 
   func missedClassesForDay(_ index: Int) -> [Int] {
     return dates[index].ClassesMissed
