@@ -172,7 +172,7 @@ class DateRepository {
     var startDate = DateComponents()
     startDate.calendar = Calendar.current
     startDate.weekOfYear = weekID
-    startDate.weekday = 1
+    startDate.weekday = 2
     startDate.year = weekID < 23 ? schoolYear - 1 : schoolYear
     for index in 0...4 {
       let date = getDateByOffset(startDate.date!, byOffset: index)

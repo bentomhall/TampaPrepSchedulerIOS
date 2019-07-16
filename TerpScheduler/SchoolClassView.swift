@@ -27,14 +27,17 @@ class SchoolClassView: UIView {
   var haikuURL: URL?
 
   func setContentLabels(_ data: SchoolClass) {
-    classNameLabel!.text! = data.subject.uppercased()
-    teacherNameLabel!.text! = data.teacherName
-    haikuURL = data.haikuURL as URL?
+    DispatchQueue.main.async {
+        self.classNameLabel!.text! = data.subject.uppercased()
+        self.teacherNameLabel!.text! = data.teacherName
+        self.haikuURL = data.haikuURL as URL?
+    }
+    
   }
   
   func setColors(themeColors: UserColors) {
-    self.backgroundColor = themeColors.cellColor
     DispatchQueue.main.async {
+      self.backgroundColor = themeColors.cellColor
       self.teacherNameLabel!.textColor = themeColors.textColor
       self.classNameLabel!.textColor = themeColors.primaryThemeColor
     }
