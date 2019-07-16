@@ -56,6 +56,7 @@ protocol DateInformationDelegate: class {
   func loadWeek(_ date: Date)
   func missedClassesForDayByIndex(_ index: Int) -> [Int]
   func didUpdateSchedulesForWeekInView()
+  func dateBounds() -> (Date, Date)
 }
 
 class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
@@ -171,6 +172,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     detailViewController!.previousTaskData = selectedTask
     return
   }
+    
+    func dateBounds() -> (Date, Date) {
+        return (dateRepository.firstDate, dateRepository.lastDate);
+    }
 
   func summariesForWeek() -> [TaskSummary] {
     let startDate = dateRepository.firstDate

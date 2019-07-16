@@ -20,8 +20,10 @@ class JumpToDateViewController: UIViewController, UIPopoverPresentationControlle
   var dataManager: (TaskSummaryDelegate & DateInformationDelegate)?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        let bounds = dataManager!.dateBounds()
+        datePicker!.minimumDate = bounds.0
+        datePicker!.maximumDate = bounds.1
     }
 
     override func didReceiveMemoryWarning() {
