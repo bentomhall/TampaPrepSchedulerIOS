@@ -73,25 +73,25 @@
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "TP_seal_64.png",
+      "filename" : "hexapin_76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "TP_seal_home_icon.png",
+      "filename" : "hexapin_152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "TP_seal_167.png",
+      "filename" : "hexapin_167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "marketing.png",
+      "filename" : "hexapin_1024.png",
       "scale" : "1x"
     }
   ],
