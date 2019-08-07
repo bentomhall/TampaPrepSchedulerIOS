@@ -55,7 +55,7 @@ class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
     case "My Backpack":
       url = myBackPackURL
       break
-    case "Haiku Learning":
+    case "Powerschool Learning":
       if UIApplication.shared.canOpenURL(haikuAppURL) {
         url = haikuAppURL
       } else {

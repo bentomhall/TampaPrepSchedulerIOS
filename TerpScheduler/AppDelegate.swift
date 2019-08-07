@@ -17,12 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     let defaultValues = ["isDataInitialized": false, "isMiddleStudent": false, "shouldShadeStudyHall": true, "shouldShowExtraRow": true, "shouldNotifyWhen": "Evening", "lastUpdate": 0.0] as [String : Any]
     Foundation.UserDefaults.standard.register(defaults: defaultValues)
-    if !DateRepository.isScheduleLoadedFor(schoolYear: getSchoolYear(Date()), inContext: managedObjectContext!) {
-      scheduleLoader.loadSchedule(fromFiles: ["schedule"])
+    let schoolYear = getSchoolYear(Date())
+    if !DateRepository.isScheduleLoadedFor(schoolYear: schoolYear, inContext: managedObjectContext!) {
+        let filename = "schedule." + String(schoolYear)
+      scheduleLoader.loadSchedule(fromFiles: [filename])
       
     }
     do {
-      try scheduleTypes = scheduleLoader.loadScheduleTypesFromDisk()
+        try scheduleTypes = scheduleLoader.loadScheduleTypesFromDisk(defaults: userDefaults)
     } catch let error as NSError {
       NSLog("Error Loading default schedule types: %@. Installation Corrupted", error)
       abort()

@@ -28,7 +28,7 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
   }
   
   func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String : Any]) {
-    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions)
+    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions, userPreferences: appDelegate!.userDefaults)
     do {
       try saveScheduleTypesToDisk(data: newTypeDefinitions)
     } catch let error as NSError {
@@ -36,11 +36,11 @@ class SemesterScheduleLoader: ScheduleUpdateDelegate {
     }
   }
   
-  func loadScheduleTypesFromDisk() throws -> ScheduleTypeData? {
+    func loadScheduleTypesFromDisk(defaults: CustomUserDefaults) throws -> ScheduleTypeData? {
     if let path = Bundle.main.path(forResource: "scheduleTypes", ofType: "json") {
       let data = try Data(contentsOf: URL(fileURLWithPath: path))
       if let jsonData = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] {
-        return ScheduleTypeData(data: jsonData)
+        return ScheduleTypeData(data: jsonData, userPreferences: defaults)
       }
     }
     return nil

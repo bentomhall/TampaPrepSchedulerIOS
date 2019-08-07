@@ -17,19 +17,6 @@ func dateFromString(_ string: String) -> Date {
   return date
 }
 
-/////global-ish mapping from schedule types to a list of periods that DO NOT meet that day.
-//let possibleSchedules: [String:[Int]] = ["A": [6], "B": [5, 7], "C": [4],
-//  "D": [2], "E": [1, 3],
-//  "X": [1, 2, 3, 4, 5, 6, 7],
-//  "Y": [], "D*": [2, 5, 6, 7],
-//  "D**": [1, 2, 3, 4],
-//  "Y*": [4, 5, 6, 7],
-//  "Y**": [1, 2, 3 ],
-//  "C**": [1, 2, 3, 4],
-//  "C*": [4, 5, 6, 7],
-//  "C***": [2, 4, 6, 7]
-//]
-
 struct SchoolDate {
   var Date: Foundation.Date
   var Schedule: String

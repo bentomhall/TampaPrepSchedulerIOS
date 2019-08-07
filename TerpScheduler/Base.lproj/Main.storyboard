@@ -1426,7 +1426,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yd-JZ-xN1">
-                                <rect key="frame" x="207.5" y="207" width="103" height="118"/>
+                                <rect key="frame" x="159.5" y="207" width="151" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="9RA-zk-Fun"/>
                                 </constraints>
@@ -1438,7 +1438,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30E-u1-ucH">
-                                <rect key="frame" x="207.5" y="333" width="103" height="118"/>
+                                <rect key="frame" x="159.5" y="333" width="151" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="rg9-HX-ogz"/>
                                 </constraints>
@@ -1450,11 +1450,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebm-gD-Eqj">
-                                <rect key="frame" x="207.5" y="459" width="103" height="118"/>
+                                <rect key="frame" x="159.5" y="459" width="151" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="DEz-Wh-mgp"/>
                                 </constraints>
-                                <state key="normal" title="Haiku Learning">
+                                <state key="normal" title="Powerschool Learning">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>

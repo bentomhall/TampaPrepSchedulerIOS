@@ -12,7 +12,7 @@ class ScheduleUpdateController: ScheduleUpdateDelegate {
   
   func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String : Any]) {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions)
+    appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions, userPreferences: appDelegate!.userDefaults)
     do {
       try scheduleLoader!.saveScheduleTypesToDisk(data: newTypeDefinitions)
     } catch let error as NSError {
