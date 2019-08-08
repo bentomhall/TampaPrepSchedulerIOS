@@ -163,7 +163,9 @@ extension TaskDetailViewController: UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    delegate!.didUpdateTitle(textField.text!)
+    if textField == titleField! {
+        delegate!.didUpdateTitle(textField.text!)
+    }
   }
 }
 

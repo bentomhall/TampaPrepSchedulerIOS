@@ -26,7 +26,7 @@ class TaskTableViewCell: UITableViewCell {
     title!.text = text
     
     if taskIsComplete {
-      title!.textColor = UIColor.lightText
+      title!.textColor = colors.completedTaskTextColor
     } else {
       title!.textColor = colors.textColor
     }

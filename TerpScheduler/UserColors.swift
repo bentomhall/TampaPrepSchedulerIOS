@@ -109,4 +109,13 @@ class UserColors {
       return UIColor.cyan
     }
   }
+    
+    var completedTaskTextColor: UIColor {
+        switch defaults.colorTheme {
+        case .Light:
+            return UIColor(white: 0.2, alpha: 1)
+        case .Dark:
+            return UIColor(white: 0.7, alpha: 1)
+        }
+    }
 }
