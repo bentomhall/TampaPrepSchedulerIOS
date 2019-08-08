@@ -21,6 +21,7 @@ protocol TaskDetailDelegate: class {
 
 protocol TaskTableDelegate: class {
   func willDisplayDetailForTask(_ task: DailyTask)
+    func tasksFor(day: Date, period: Int) -> [DailyTask]
   var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(_ task: DailyTask)
@@ -32,7 +33,7 @@ protocol TaskSummaryDelegate: class {
   var isMiddleSchool: Bool { get }
   var shouldShadeStudyHall: Bool { get }
   var shouldDisplayExtraRow: Bool { get }
-  func willDisplaySplitViewFor(_ date: Date, period: Int)
+    func willDisplaySplitViewFor(_ date: Date, period: Int, viewController: TaskEditViewController)
   func summariesForWeek() -> [TaskSummary]
   var summaryViewController: MainViewController? { get set }
   var detailViewController: TaskDetailViewController? { get set }
@@ -150,26 +151,17 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     }
     return
   }
+    
+    func tasksFor(day: Date, period: Int) -> [DailyTask] {
+        return taskRepository.tasksForDateAndPeriod(day, period: period)
+    }
 
-  func willDisplaySplitViewFor(_ date: Date, period: Int) {
+    func willDisplaySplitViewFor(_ date: Date, period: Int, viewController: TaskEditViewController) {
     selectedDate = date
     selectedPeriod = period
     let tasks = taskRepository.tasksForDateAndPeriod(date, period: period)
-    tableViewController!.tasks = tasks
-    tableViewController!.reload()
-    if tasks.count > 0 {
-      selectedTask = tasks[0]
-      tableViewController!.addAndSelectItem(nil, forIndex: 0)
-    } else {
-      selectedTask = defaultTask
-      tableViewController!.addAndSelectItem(selectedTask!, forIndex: -1)
-    }
-    if detailViewController!.delegate == nil {
-      detailViewController!.delegate = self
-    }
-    detailViewController!.date = selectedDate
-    detailViewController!.period = selectedPeriod
-    detailViewController!.previousTaskData = selectedTask
+    viewController.setData(date: date, period: period)
+    
     return
   }
     

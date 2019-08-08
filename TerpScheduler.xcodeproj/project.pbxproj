@@ -28,6 +28,8 @@
 		D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */; };
 		D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */; };
 		D4373DC01F71A5A60050562F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4373DBF1F71A5A60050562F /* NotificationManager.swift */; };
+		D439CD7122FC671F00E96D35 /* TaskEditStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */; };
+		D439CD7322FC6B5900E96D35 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439CD7222FC6B5900E96D35 /* TaskEditViewController.swift */; };
 		D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */ = {isa = PBXBuildFile; fileRef = D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */; };
 		D45167F720FCDE0A00440B0F /* schedule.2018.json in Resources */ = {isa = PBXBuildFile; fileRef = D45167F620FCDE0A00440B0F /* schedule.2018.json */; };
 		D45ABCBA1A6C6B300083F681 /* ScheduleOverrideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */; };
@@ -83,6 +85,8 @@
 		D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
 		D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupReader.swift; sourceTree = "<group>"; };
 		D4373DBF1F71A5A60050562F /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskEditStoryboard.storyboard; sourceTree = "<group>"; };
+		D439CD7222FC6B5900E96D35 /* TaskEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
 		D43FAB5C1AF12D6800A1C55E /* schedule.bak.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.bak.json; sourceTree = "<group>"; };
 		D45167F620FCDE0A00440B0F /* schedule.2018.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.2018.json; sourceTree = "<group>"; };
 		D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOverrideController.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				D49CDF6D1A5E19A000AEB36B /* Views */,
 				D408FD771A432E45004F0B83 /* AppDelegate.swift */,
 				D408FD7E1A432E45004F0B83 /* Main.storyboard */,
+				D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */,
 				D408FD811A432E45004F0B83 /* Images.xcassets */,
 				D408FD791A432E45004F0B83 /* TerpScheduler.xcdatamodeld */,
 				D408FD751A432E45004F0B83 /* Supporting Files */,
@@ -221,6 +226,7 @@
 				D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */,
 				D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */,
 				D4D5DF381EBCAAFE00A1373D /* ScheduleUpdateViewController.swift */,
+				D439CD7222FC6B5900E96D35 /* TaskEditViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 			files = (
 				D45167F720FCDE0A00440B0F /* schedule.2018.json in Resources */,
 				D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */,
+				D439CD7122FC671F00E96D35 /* TaskEditStoryboard.storyboard in Resources */,
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */,
 				D4040FDC22DE072300DE7850 /* schedule.2019.json in Resources */,
@@ -362,6 +369,7 @@
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,
 				D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */,
+				D439CD7322FC6B5900E96D35 /* TaskEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

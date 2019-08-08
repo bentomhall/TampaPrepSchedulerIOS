@@ -64,8 +64,8 @@ class MainViewController: UIViewController {
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
     taskSummaries = delegate!.summariesForWeek()
-    self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.primaryHidden
-    splitViewController!.presentsWithGesture = false
+    //self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.primaryHidden
+    //splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
 
@@ -150,8 +150,13 @@ class MainViewController: UIViewController {
         }
       }
     } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail" {
-      if let receivingController = segue.destination as? TaskDetailViewController {
-        delegate!.detailViewController = receivingController
+      if let receivingController = segue.destination as? TaskEditViewController {
+        //delegate!.detailViewController = receivingController
+        receivingController.taskDelegate = appDelegate!.dataManager!
+        let index = collectionView!.indexPathsForSelectedItems![0]
+        let selectedIndex = dayAndPeriodFromIndexPath(index.row)
+        receivingController.setData(date: delegate!.datesForWeek[selectedIndex.day].Date, period: selectedIndex.period)
+        receivingController.colors = colors
       }
     } else if segue.identifier! == "JumpToDate" {
       if let receivingController = segue.destination as? JumpToDateViewController {
@@ -200,9 +205,10 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     detailIndex = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
-    let date = delegate!.datesForWeek[detailIndex.day].Date
-    delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
-    self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
+    //let date = delegate!.datesForWeek[detailIndex.day]
+    //let date = delegate!.datesForWeek[detailIndex.day].Date
+    //delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
+    //self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
   }
 
   func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
