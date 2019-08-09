@@ -97,7 +97,7 @@ class BackupManager {
     let priority = Priorities(rawValue: (dictionary["priority"]! as? Int)!)!
     let shouldNotify = dictionary["shouldNotify"]! as? Bool
 
-    return DailyTask(date: date, period: period!, shortTitle: shortTitle!, details: details!, isHaiku: isHaikuAssignment!, completion: isCompleted!, priority: priority, notify: shouldNotify!)
+    return DailyTask(date: date, period: period!, shortTitle: shortTitle!, details: details!, isHaiku: isHaikuAssignment!, completion: isCompleted!, priority: priority, notify: shouldNotify!, guid: UUID())
   }
 
   fileprivate func loadDataFromBackup() -> [DailyTask] {

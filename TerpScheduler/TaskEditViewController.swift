@@ -17,6 +17,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var isCompletedSwitch: UISwitch?
     @IBOutlet weak var isHaikuTaskSwitch: UISwitch?
     @IBOutlet weak var shouldRemindSwitch: UISwitch?
+    @IBOutlet var textLabels: [UILabel]?
     
     weak var taskDelegate: (TaskDetailDelegate & TaskTableDelegate)?
     private var tasks = [DailyTask]()
@@ -26,8 +27,19 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     private var period: Int = -1
     private var previousTask: DailyTask?
     
+    @IBAction func didUpdateData(_ sender: Any) {
+        save(index: selectedIndex.row)
+        
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         addTask()
+    }
+    
+    @IBAction func didChangeTaskCompletion(_ sender: UISwitch) {
+        save(index: selectedIndex.row)
+        
+        //detailTableView!.reloadRows(at: [index], with: .none)
     }
     
     func setData(date: Date, period: Int) {
@@ -43,7 +55,8 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         tasks = taskDelegate!.tasksFor(day: date!, period: period)
         //detailTableView!.reloadData()
         //clear()
-        //detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +67,10 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         tasks = taskDelegate!.tasksFor(day: date!, period: period)
         detailTableView!.reloadData()
         clear()
-        detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        //detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        setColorScheme()
+        previousTask = taskDelegate!.defaultTask
+        super.viewWillAppear(animated)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,9 +92,35 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         return true
     }
     
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let index = detailTableView!.indexPathForSelectedRow?.row {
+            save(index: index)
+        }
+        return indexPath
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        save()
+        selectedIndex = indexPath
         displayDetail(for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let item = tasks[(indexPath as NSIndexPath).row]
+            tasks.remove(at: (indexPath as NSIndexPath).row)
+            taskDelegate!.didDeleteTask(item)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    private func setColorScheme() {
+        self.view.backgroundColor = colors!.backgroundColor
+        
+        for label in textLabels! {
+            label.textColor = colors!.textColor
+        }
+        priorityView!.tintColor = colors!.textColor
     }
     
     private func displayDetail(for indexPath: IndexPath) {
@@ -89,6 +131,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         isCompletedSwitch?.isOn = task.isCompleted
         isHaikuTaskSwitch?.isOn = task.isHaikuAssignment
         shouldRemindSwitch?.isOn = task.shouldNotify
+        previousTask = task
     }
     
     private func clear() {
@@ -99,7 +142,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         isHaikuTaskSwitch?.isOn = false
     }
     
-    private func save() {
+    private func save(index: Int) {
         if titleView!.text != "" {
             let shortTitle = titleView!.text
             let details = detailView!.text
@@ -112,19 +155,40 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
             }
             
             let newTaskData = DailyTask(date: date!, period: period, shortTitle: shortTitle!, details: details!, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification)
-            if newTaskData != previousTask && previousTask != nil {
-                taskDelegate!.updateTask(newTaskData, withPreviousTask: previousTask!)
-                previousTask = newTaskData
+            if newTaskData != previousTask {
+                let newTask = taskDelegate!.updateTask(newTaskData, withPreviousTask: previousTask!)
+                if tasks.count == 0 {
+                    tasks.append(newTask)
+                }
+                else {
+                    tasks[index] = newTask
+                }
+                previousTask = newTask
+                detailTableView!.reloadData()
+                detailTableView!.selectRow(at: selectedIndex, animated: false, scrollPosition: .none)
             }
         }
     }
     
     private func addTask() {
-        //let nextIndex = tasks.count
-        let task = DailyTask(date: date!, period: period, shortTitle: "", details: "", isHaiku: false, completion: false, priority: Priorities.medium, notify: false)
+        let nextIndex = tasks.count - 1
+        let task = taskDelegate!.defaultTask
         tasks.append(task)
+        previousTask = task
         detailTableView!.reloadData()
-        //detailTableView!.selectRow(at: IndexPath(row: nextIndex, section: 0), animated: true, scrollPosition: .middle)
+        detailTableView!.selectRow(at: IndexPath(row: nextIndex, section: 0), animated: true, scrollPosition: .middle)
     }
     
+}
+
+extension TaskEditViewController : UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        save(index: selectedIndex.row)
+    }
+}
+
+extension TaskEditViewController : UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        save(index: selectedIndex.row)
+    }
 }

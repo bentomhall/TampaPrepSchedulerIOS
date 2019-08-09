@@ -583,7 +583,7 @@
 				D40275B81CF739600089CFA1 /* TerpScheduler 2.xcdatamodel */,
 				D408FD7A1A432E45004F0B83 /* TerpScheduler.xcdatamodel */,
 			);
-			currentVersion = D40275B81CF739600089CFA1 /* TerpScheduler 2.xcdatamodel */;
+			currentVersion = D41823FA1EC5EEE3002C5FF7 /* TerpScheduler 3.xcdatamodel */;
 			path = TerpScheduler.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -143,15 +143,7 @@ class TaskTableViewController: UITableViewController {
   }
 
   // Override to support editing the table view.
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-      // Delete the row from the data source
-      let item = tasks[(indexPath as NSIndexPath).row]
-      tasks.remove(at: (indexPath as NSIndexPath).row)
-      delegate!.didDeleteTask(item)
-      tableView.deleteRows(at: [indexPath], with: .fade)
-    }
-  }
+
 
   func updateTitleOfSelectedCell(_ title: String) {
     dirtyCellTitles[(selectedRow as NSIndexPath).row] = title

@@ -24,11 +24,15 @@ class TaskTableViewCell: UITableViewCell {
     selectedBackgroundView = UIView()
     selectedBackgroundView!.backgroundColor = colors.NoClassColor
     title!.text = text
-    
-    if taskIsComplete {
-      title!.textColor = colors.completedTaskTextColor
-    } else {
-      title!.textColor = colors.textColor
-    }
+    changeCompletionStatus(completion: taskIsComplete, colors: colors)
+
   }
+    
+    func changeCompletionStatus(completion: Bool, colors: UserColors) {
+        if completion {
+            textLabel!.textColor = colors.completedTaskTextColor
+        } else {
+            textLabel!.textColor = colors.textColor
+        }
+    }
 }

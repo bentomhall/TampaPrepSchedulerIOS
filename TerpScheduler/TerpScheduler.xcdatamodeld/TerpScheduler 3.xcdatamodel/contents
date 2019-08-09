@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G87" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AppData" representedClassName="TerpScheduler.AppDataEntity" syncable="YES">
         <attribute name="isScheduleLoaded" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
     </entity>
@@ -7,6 +7,7 @@
         <attribute name="dateDue" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="details" attributeType="String" syncable="YES"/>
         <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="guid" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="hasNotification" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isHaikuAssignment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
@@ -32,9 +33,9 @@
     </entity>
     <elements>
         <element name="AppData" positionX="-450" positionY="-213" width="128" height="60"/>
-        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="165"/>
+        <element name="DailyTask" positionX="-191" positionY="-90" width="128" height="180"/>
+        <element name="ScheduleTypeData" positionX="-324" positionY="-90" width="128" height="60"/>
         <element name="SchoolClasses" positionX="-425" positionY="-72" width="128" height="135"/>
         <element name="Week" positionX="-288" positionY="-216" width="128" height="105"/>
-        <element name="ScheduleTypeData" positionX="-324" positionY="-90" width="128" height="60"/>
     </elements>
 </model>

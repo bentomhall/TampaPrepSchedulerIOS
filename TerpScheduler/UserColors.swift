@@ -113,9 +113,9 @@ class UserColors {
     var completedTaskTextColor: UIColor {
         switch defaults.colorTheme {
         case .Light:
-            return UIColor(white: 0.2, alpha: 1)
+            return UIColor(red: 1, green: 0, blue: 0, alpha: 1)
         case .Dark:
-            return UIColor(white: 0.7, alpha: 1)
+            return UIColor(red: 1, green: 0, blue: 0, alpha: 1)
         }
     }
 }

@@ -37,6 +37,7 @@ class TaskRepository {
       task.forPeriod = -1
       task.details = ""
       task.dateDue = Date()
+        task.guid = UUID()
       var error: NSError?
       do {
         try context.save()
@@ -58,14 +59,20 @@ class TaskRepository {
   ///
   ///- parameter data: New data to be saved
   ///- parameter withMergeFromTask: Old data to overwrite. Nil implies it's a new task.
-  func persistData(_ data: DailyTask, withMergeFromTask oldTask: DailyTask?) {
+  func persistData(_ data: DailyTask, withMergeFromTask oldTask: DailyTask?) -> DailyTask {
     if oldTask != nil {
-      let newTask = DailyTask(date: oldTask!.date, period: oldTask!.period, shortTitle: data.shortTitle, details: data.details, isHaiku: data.isHaikuAssignment, completion: data.isCompleted, priority: data.priority, notify: data.shouldNotify)
-      repository.add(newTask)
-      repository.deleteItemMatching(values: oldTask!)
+        if let task = repository.fetchForUpdate(byGUID: oldTask!.GUID) {
+            task.update(taskData: data)
+            repository.save()
+        }
+         else {
+            //shouldn't hit here, but...
+            repository.add(data)
+        }
     } else {
-      repository.add(data)
+        repository.add(data)
     }
+    return data
   }
 
   ///Fetches all tasks associated with both given date and period (1 indexed).
@@ -74,7 +81,7 @@ class TaskRepository {
   ///- parameter period: 1-indexed integer for the class period.
   ///- returns: A list of DailyTasks, sorted by priority
   func tasksForDateAndPeriod(_ date: Date, period: Int) -> [DailyTask] {
-    let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(optDate: date, optID: nil, optPeriod: period, optTitle: nil))
+    let tasks = repository.fetchBy(taskListFilterType, values: FilterValues(optDate: date, optID: nil, optPeriod: period, optTitle: nil, optGUID: nil))
     let sortedTasks = tasks.sorted(by: {$0.priority.rawValue < $1.priority.rawValue})
     return sortedTasks
   }
@@ -113,13 +120,13 @@ class TaskRepository {
   }
 
   func allTasksForPeriod(_ period: Int) -> [DailyTask] {
-    let filter = FilterValues(optDate: nil, optID: nil, optPeriod: period, optTitle: nil)
+    let filter = FilterValues(optDate: nil, optID: nil, optPeriod: period, optTitle: nil, optGUID: nil)
     let tasks = repository.fetchBy(.byPeriod, values: filter)
     return tasks
   }
 
   func allTasksForDate(_ date: Date) -> [DailyTask] {
-    let filter = FilterValues(optDate: date, optID: nil, optPeriod: nil, optTitle: nil)
+    let filter = FilterValues(optDate: date, optID: nil, optPeriod: nil, optTitle: nil, optGUID: nil)
     let tasks = repository.fetchBy(.byDate, values: filter)
     return tasks
   }

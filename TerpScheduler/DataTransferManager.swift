@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol TaskDetailDelegate: class {
-  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask)
+  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) -> DailyTask
   var detailViewController: TaskDetailViewController? {get set}
   var defaultTask: DailyTask { get }
   func addItemToTableView()
@@ -110,11 +110,12 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return taskRepository.defaultTask!
   }
 
-  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) {
+  func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) -> DailyTask {
+    var updatedTask : DailyTask
     if oldTask.period != -1 {
-      taskRepository.persistData(task, withMergeFromTask: oldTask)
+      updatedTask = taskRepository.persistData(task, withMergeFromTask: oldTask)
     } else {
-     self.taskRepository.persistData(task, withMergeFromTask: nil)
+     updatedTask = self.taskRepository.persistData(task, withMergeFromTask: nil)
     }
     if task.shouldNotify {
       postNotification(forTask: task)
@@ -122,10 +123,10 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     if task.isCompleted {
       cancelNotificationMatching(task)
     }
-    tableViewController!.replaceItem(-1, withTask: task)
-    tableViewController!.clearDirtyRows()
-    summaryViewController!.reloadCollectionView()
-    return
+    //tableViewController!.replaceItem(-1, withTask: task)
+    //tableViewController!.clearDirtyRows()
+    //summaryViewController!.reloadCollectionView()
+    return updatedTask
   }
 
   func addItemToTableView() {
@@ -256,7 +257,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     var newTasks = [DailyTask]()
 
     for task in copiedTasks {
-      let newTask = DailyTask(date: date, period: period, shortTitle: task.shortTitle, details: task.details, isHaiku: task.isHaikuAssignment, completion: task.isCompleted, priority: task.priority, notify: task.shouldNotify)
+      let newTask = DailyTask(date: date, period: period, shortTitle: task.shortTitle, details: task.details, isHaiku: task.isHaikuAssignment, completion: task.isCompleted, priority: task.priority, notify: task.shouldNotify, guid: task.GUID)
       newTasks.append(newTask)
     }
     taskRepository.persistTasks(newTasks)

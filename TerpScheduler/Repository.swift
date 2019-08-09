@@ -35,6 +35,7 @@ struct FilterValues: Filterable {
   var id: NSManagedObjectID?
   var stopDate: Date?
   var shortTitle: String
+    var GUID: UUID
 }
 
 extension FilterValues {
@@ -43,13 +44,15 @@ extension FilterValues {
     self.id = fromFilterable.id
     self.period = fromFilterable.period
     self.shortTitle = fromFilterable.shortTitle
+    self.GUID = fromFilterable.GUID
   }
 
-  init(optDate: Date?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?) {
+    init(optDate: Date?, optID: NSManagedObjectID?, optPeriod: Int?, optTitle: String?, optGUID: UUID?) {
     self.date = optDate ?? Date()
     self.id = optID ?? NSManagedObjectID()
     self.period = optPeriod ?? -1
     self.shortTitle = optTitle ?? "_"
+    self.GUID = optGUID ?? UUID()
   }
 }
 
@@ -57,6 +60,7 @@ protocol Filterable {
   var date: Date { get }
   var period: Int { get }
   var id: NSManagedObjectID? { get }
+    var GUID: UUID { get }
   var shortTitle: String { get }
 }
 
@@ -92,7 +96,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
       p = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       break
     case .byID:
-      p = NSPredicate(format: "id = %@", value.id!)
+        p = NSPredicate(format: "guid = %@", value.GUID as CVarArg)
       break
     case .byPeriod:
       p = NSPredicate(format: "forPeriod = %i", value.period)
@@ -105,7 +109,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
     case .byDateAndPeriodAndID:
       let p1 = NSPredicate(format: "dateDue = %@", value.date as CVarArg)
       let p2 = NSPredicate(format: "forPeriod = %i", value.period)
-      let p3 = NSPredicate(format: "id = %@", value.id!)
+      let p3 = NSPredicate(format: "guid = %@", value.GUID as CVarArg)
       p = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [p1, p2, p3])
       break
     case .byDateBetween:
@@ -127,6 +131,18 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
       return [T]()
     }
   }
+    
+    func fetchForUpdate(byGUID: UUID) -> U? {
+        let fetchRequest = newFetchRequest()
+        fetchRequest.predicate = predicateByType(.byID, value: FilterValues(optDate: nil, optID: nil, optPeriod: nil, optTitle: nil, optGUID: byGUID))
+        
+        if let results = try? context!.fetch(fetchRequest) as? [U] {
+            if results.count > 0 {
+                return results[0]
+            }
+        }
+        return nil
+    }
 
   func save() {
     var error: NSError?
@@ -157,11 +173,7 @@ class Repository<T: Filterable & DataObject, U: NSManagedObject> {
 
   func deleteItemMatching(values filter: Filterable & DataObject) {
     var toDelete: NSManagedObject?
-    if filter.id != nil {
-      toDelete = try? context!.existingObject(with: filter.id!)
-    } else {
-      NSLog("%@", "Cannot delete object with nil id")
-    }
+    toDelete = try? context!.existingObject(with: filter.id!)
     if toDelete != nil {
       context!.delete(toDelete!)
     }
