@@ -193,7 +193,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
             let newTaskData = DailyTask(date: date!, period: period, shortTitle: shortTitle!, details: details!, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification, guid: oldTask.GUID)
     
             if newTaskData != oldTask {
-                let newTask = taskDelegate!.updateTask(newTaskData, withPreviousTask: oldTask)
+                let _ = taskDelegate!.updateTask(newTaskData, withPreviousTask: oldTask)
                 reload()
                 detailTableView!.selectRow(at: selectedIndex, animated: false, scrollPosition: .none)
             }

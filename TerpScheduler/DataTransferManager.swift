@@ -11,22 +11,20 @@ import CoreData
 
 protocol TaskDetailDelegate: class {
   func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) -> DailyTask
-  var detailViewController: TaskDetailViewController? {get set}
   var defaultTask: DailyTask { get }
-  func addItemToTableView()
-  func didUpdateTitle(_ title: String)
+  //func addItemToTableView()
+  //func didUpdateTitle(_ title: String)
   func postNotification(forTask task: DailyTask)
   func cancelNotificationMatching(_ task: DailyTask)
 }
 
 protocol TaskTableDelegate: class {
-  func willDisplayDetailForTask(_ task: DailyTask)
+  //func willDisplayDetailForTask(_ task: DailyTask)
     func tasksFor(day: Date, period: Int) -> [DailyTask]
-  var tableViewController: TaskTableViewController? { get set }
   var defaultTask: DailyTask { get }
   func didDeleteTask(_ task: DailyTask)
-  func willDisappear()
-  func addItemToTableView()
+  //func willDisappear()
+  //func addItemToTableView()
 }
 
 protocol TaskSummaryDelegate: class {
@@ -36,7 +34,6 @@ protocol TaskSummaryDelegate: class {
     func willDisplaySplitViewFor(_ date: Date, period: Int, viewController: TaskEditViewController)
   func summariesForWeek() -> [TaskSummary]
   var summaryViewController: MainViewController? { get set }
-  var detailViewController: TaskDetailViewController? { get set }
   func copyTasksFor(_ dateIndex: Int, period: Int)
   func pasteTasksTo(_ dateIndex: Int, period: Int)
   func deleteAllTasksFrom(_ dateIndex: Int, period: Int)
@@ -99,9 +96,7 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   }
 
   var selectedTask: DailyTask?
-  var detailViewController: TaskDetailViewController?
   var summaryViewController: MainViewController?
-  var tableViewController: TaskTableViewController?
   var datesForWeek: [SchoolDate] {
     return dateRepository.dates
   }
@@ -129,29 +124,29 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     return updatedTask
   }
 
-  func addItemToTableView() {
-    if detailViewController != nil {
-      detailViewController!.saveData()
-      detailViewController!.clear()
-    }
-    tableViewController!.addAndSelectItem(defaultTask, forIndex: -1)
-  }
-
-  func willDisplayDetailForTask(_ task: DailyTask) {
-    if task != selectedTask! && detailViewController != nil {
-      detailViewController!.saveData()
-    }
-    selectedTask = task
-    if detailViewController != nil {
-      detailViewController!.clear()
-      detailViewController!.previousTaskData = selectedTask!
-      detailViewController!.setSubviewContentsFromTaskData(task)
-    } else {
-      summaryViewController!.performSegue(withIdentifier: "ShowDetail", sender: self)
-      summaryViewController?.splitViewController!.preferredDisplayMode = .allVisible
-    }
-    return
-  }
+//  func addItemToTableView() {
+//    if detailViewController != nil {
+//      detailViewController!.saveData()
+//      detailViewController!.clear()
+//    }
+//    tableViewController!.addAndSelectItem(defaultTask, forIndex: -1)
+//  }
+//
+//  func willDisplayDetailForTask(_ task: DailyTask) {
+//    if task != selectedTask! && detailViewController != nil {
+//      detailViewController!.saveData()
+//    }
+//    selectedTask = task
+//    if detailViewController != nil {
+//      detailViewController!.clear()
+//      detailViewController!.previousTaskData = selectedTask!
+//      detailViewController!.setSubviewContentsFromTaskData(task)
+//    } else {
+//      summaryViewController!.performSegue(withIdentifier: "ShowDetail", sender: self)
+//      summaryViewController?.splitViewController!.preferredDisplayMode = .allVisible
+//    }
+//    return
+//  }
     
     func tasksFor(day: Date, period: Int) -> [DailyTask] {
         return taskRepository.tasksForDateAndPeriod(day, period: period)
@@ -206,17 +201,16 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
   func didDeleteTask(_ task: DailyTask) {
     taskRepository.deleteItem(task)
     summaryViewController?.reloadCollectionView()
-    detailViewController?.clear()
     cancelNotificationMatching(task)
   }
 
   func willDisappear() {
     //detailViewController!.clear()
-    detailViewController!.navigationController!.popToRootViewController(animated: true)
+    //detailViewController!.navigationController!.popToRootViewController(animated: true)
   }
 
   func didUpdateTitle(_ title: String) {
-    tableViewController!.updateTitleOfSelectedCell(title)
+    //tableViewController!.updateTitleOfSelectedCell(title)
   }
 
   func getTasks(_ period: Int) -> [DailyTask] {
