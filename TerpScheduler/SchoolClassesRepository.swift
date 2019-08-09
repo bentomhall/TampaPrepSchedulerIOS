@@ -64,7 +64,7 @@ class SchoolClassesRepository: NSObject {
 
   func persistData(_ classData: SchoolClass) {
     removeAllFor(classData.period) //ensure there can only be one (the most recent)
-    guard let _ = classData.toEntity(inContext: managedContext) as? SchoolClassesEntity else {
+    guard let _ = classData.toEntity(inContext: managedContext, isNew: true) as? SchoolClassesEntity else {
       NSLog("World consistency violation: class data cannot convert to entity")
       abort()
     }

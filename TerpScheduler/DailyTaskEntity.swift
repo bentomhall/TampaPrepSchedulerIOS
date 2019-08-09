@@ -30,7 +30,7 @@ enum Priorities: Int {
 
 class DailyTask: Filterable, Equatable, DataObject {
   var id: NSManagedObjectID?
-    var GUID = UUID()
+    var GUID: String?
   let date: Date
   let period: Int
   var shortTitle: String
@@ -40,7 +40,7 @@ class DailyTask: Filterable, Equatable, DataObject {
   var priority: Priorities
   var shouldNotify: Bool
 
-    init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool, guid: UUID = UUID()) {
+    init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool, guid: String?) {
     self.date = date
     self.period = period
     self.shortTitle = shortTitle
@@ -62,13 +62,6 @@ class DailyTask: Filterable, Equatable, DataObject {
             try context.save()
         } catch _ {
         }
-        let mirror = Mirror(reflecting: model)
-        if mirror.children.contains(where: {$0.label == "guid"}) {
-            GUID = model.guid
-        }
-        else {
-            GUID = UUID()
-        }
         
         id = model.objectID
         date = model.dateDue
@@ -79,6 +72,10 @@ class DailyTask: Filterable, Equatable, DataObject {
         priority = Priorities(rawValue: Int(truncating: model.priority))!
         period = Int(truncating: model.forPeriod)
         shouldNotify = model.hasNotification
+        GUID = model.guid
+        if GUID == nil {
+            print("uh oh")
+        }
     }
     
     ///returns managed entity associated with this data in the provided context.
@@ -86,7 +83,7 @@ class DailyTask: Filterable, Equatable, DataObject {
     ///
     ///- parameter inContext: The NSManagedObjectContext to put the entity in.
     ///- returns: A NSManagedObject containing the data from self.
-    func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject {
+    func toEntity(inContext context: NSManagedObjectContext, isNew: Bool) -> NSManagedObject {
         if self.id != nil {
             // If a entity with this id already exists, return it.
             var error: NSError?
@@ -113,7 +110,12 @@ class DailyTask: Filterable, Equatable, DataObject {
         managedEntity.isHaikuAssignment = isHaikuAssignment as NSNumber
         managedEntity.priority = NSNumber(value: priority.rawValue)
         managedEntity.hasNotification = shouldNotify
-        managedEntity.guid = UUID()
+        if isNew {
+            managedEntity.guid = UUID().uuidString
+        } else {
+            managedEntity.guid = GUID
+        }
+        
         return managedEntity as NSManagedObject
     }
 }
@@ -144,7 +146,7 @@ class DailyTaskEntity: NSManagedObject {
   @NSManaged var isCompleted: NSNumber
   @NSManaged var priority: NSNumber
   @NSManaged var hasNotification: Bool
-    @NSManaged var guid: UUID
+    @NSManaged var guid: String?
     
     func update(taskData: DailyTask) {
         self.shortTitle = taskData.shortTitle

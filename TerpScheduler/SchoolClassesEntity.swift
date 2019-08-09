@@ -47,7 +47,7 @@ extension SchoolClass: DataObject {
     id = entity.objectID
   }
 
-  func toEntity(inContext context: NSManagedObjectContext) -> NSManagedObject {
+    func toEntity(inContext context: NSManagedObjectContext, isNew: Bool) -> NSManagedObject {
     var managedObject: SchoolClassesEntity?
     var alreadyExists = false
     if self.id != nil {

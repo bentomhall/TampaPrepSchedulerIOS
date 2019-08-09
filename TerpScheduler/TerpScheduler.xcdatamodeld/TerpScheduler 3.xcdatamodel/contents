@@ -7,7 +7,7 @@
         <attribute name="dateDue" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="details" attributeType="String" syncable="YES"/>
         <attribute name="forPeriod" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
-        <attribute name="guid" optional="YES" attributeType="UUID" defaultValueString="55B8C76F-1A07-4F15-A9CE-129CDDC99203" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hasNotification" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isHaikuAssignment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>

@@ -53,9 +53,14 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         //let sDate = formatter.string(from: date ?? Date())
         //self.dateAndPeriodLabel!.text = sDate + ": period \(period)"
         tasks = taskDelegate!.tasksFor(day: date!, period: period)
+        if tasks.count == 0 {
+            tasks.append(taskDelegate!.defaultTask)
+        }
         //detailTableView!.reloadData()
         //clear()
         detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        selectedIndex = IndexPath(row: 0, section: 0)
+        displayDetail(for: selectedIndex)
         super.viewDidLoad()
     }
     
@@ -67,7 +72,9 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         tasks = taskDelegate!.tasksFor(day: date!, period: period)
         detailTableView!.reloadData()
         clear()
-        //detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
+        selectedIndex = IndexPath(row: 0, section: 0)
+        displayDetail(for: selectedIndex)
+        detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
         setColorScheme()
         previousTask = taskDelegate!.defaultTask
         super.viewWillAppear(animated)
@@ -124,6 +131,9 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func displayDetail(for indexPath: IndexPath) {
+        if tasks.count == 0 {
+            return
+        }
         let task = tasks[indexPath.row]
         titleView?.text = task.shortTitle
         detailView?.text = task.details
@@ -131,7 +141,6 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         isCompletedSwitch?.isOn = task.isCompleted
         isHaikuTaskSwitch?.isOn = task.isHaikuAssignment
         shouldRemindSwitch?.isOn = task.shouldNotify
-        previousTask = task
     }
     
     private func clear() {
@@ -144,6 +153,12 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func save(index: Int) {
         if titleView!.text != "" {
+            var oldTask: DailyTask
+            if index > tasks.count - 1 {
+                oldTask = taskDelegate!.defaultTask
+            } else {
+                oldTask = tasks[index]
+            }
             let shortTitle = titleView!.text
             let details = detailView!.text
             var priority = Priorities(rawValue: priorityView!.selectedSegmentIndex)
@@ -154,29 +169,34 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
                 priority = Priorities.completed
             }
             
-            let newTaskData = DailyTask(date: date!, period: period, shortTitle: shortTitle!, details: details!, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification)
-            if newTaskData != previousTask {
-                let newTask = taskDelegate!.updateTask(newTaskData, withPreviousTask: previousTask!)
-                if tasks.count == 0 {
-                    tasks.append(newTask)
-                }
-                else {
-                    tasks[index] = newTask
-                }
-                previousTask = newTask
-                detailTableView!.reloadData()
+            let newTaskData = DailyTask(date: date!, period: period, shortTitle: shortTitle!, details: details!, isHaiku: isHaiku, completion: completion, priority: priority!, notify: notification, guid: oldTask.GUID)
+    
+            if newTaskData != oldTask {
+                let newTask = taskDelegate!.updateTask(newTaskData, withPreviousTask: oldTask)
+                reload()
                 detailTableView!.selectRow(at: selectedIndex, animated: false, scrollPosition: .none)
             }
         }
     }
     
     private func addTask() {
-        let nextIndex = tasks.count - 1
+        let nextIndex = tasks.count
+        let path = IndexPath(row: nextIndex, section: 0)
         let task = taskDelegate!.defaultTask
         tasks.append(task)
-        previousTask = task
-        detailTableView!.reloadData()
+        print(nextIndex)
+        detailTableView!.beginUpdates()
+        detailTableView!.insertRows(at: [IndexPath(row: nextIndex, section: 0)], with: .none)
+        detailTableView!.endUpdates()
+        //reload()
+        displayDetail(for: path)
+        selectedIndex = path
         detailTableView!.selectRow(at: IndexPath(row: nextIndex, section: 0), animated: true, scrollPosition: .middle)
+    }
+    
+    private func reload() {
+        tasks = taskDelegate!.tasksFor(day: date!, period: period)
+        detailTableView!.reloadData()
     }
     
 }

@@ -89,13 +89,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEh-XX-3P2">
-                                <rect key="frame" x="260" y="292.5" width="55" height="21"/>
+                                <rect key="frame" x="260" y="342.5" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="Lvs-bO-vtb">
-                                <rect key="frame" x="341.5" y="289" width="336" height="29"/>
+                                <rect key="frame" x="341.5" y="339" width="336" height="29"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.27000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="336" id="Mhl-ch-IyI"/>
@@ -112,31 +112,31 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haiku-based assignment?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RrB-mr-onL">
-                                <rect key="frame" x="260" y="362" width="199" height="21"/>
+                                <rect key="frame" x="260" y="412" width="199" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assignment is Completed?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVn-6G-UTp">
-                                <rect key="frame" x="260" y="401" width="204" height="21"/>
+                                <rect key="frame" x="260" y="451" width="204" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-e5-Glq">
-                                <rect key="frame" x="485" y="396" width="51" height="31"/>
+                                <rect key="frame" x="485" y="446" width="51" height="31"/>
                                 <connections>
                                     <action selector="didChangeTaskCompletion:" destination="E4e-Wx-KOv" eventType="valueChanged" id="VXC-9d-uZO"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Rh-Nh-Q3E">
-                                <rect key="frame" x="485" y="435" width="51" height="31"/>
+                                <rect key="frame" x="485" y="485" width="51" height="31"/>
                                 <connections>
                                     <action selector="didUpdateData:" destination="E4e-Wx-KOv" eventType="valueChanged" id="Do4-aQ-gJm"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me about this?" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zn-bI-P9i">
-                                <rect key="frame" x="260" y="440" width="204" height="21"/>
+                                <rect key="frame" x="260" y="490" width="204" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="204" id="bzw-S1-82k"/>
                                 </constraints>
@@ -151,7 +151,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YpR-hS-1bb">
-                                <rect key="frame" x="485" y="357" width="51" height="31"/>
+                                <rect key="frame" x="485" y="407" width="51" height="31"/>
                                 <connections>
                                     <action selector="didUpdateData:" destination="E4e-Wx-KOv" eventType="valueChanged" id="S2j-mR-Kr2"/>
                                 </connections>
@@ -176,7 +176,7 @@
                             <constraint firstItem="Bgn-e5-Glq" firstAttribute="centerY" secondItem="aVn-6G-UTp" secondAttribute="centerY" id="4zB-tn-CKN"/>
                             <constraint firstItem="P7d-4i-aHl" firstAttribute="top" secondItem="HSq-1E-sJS" secondAttribute="top" id="5iv-Xn-NWL"/>
                             <constraint firstItem="Lvs-bO-vtb" firstAttribute="centerY" secondItem="HEh-XX-3P2" secondAttribute="centerY" id="7EI-dt-q8K"/>
-                            <constraint firstItem="Lvs-bO-vtb" firstAttribute="top" secondItem="glL-QN-Xbj" secondAttribute="bottom" constant="169" id="88O-3p-CKu"/>
+                            <constraint firstItem="Lvs-bO-vtb" firstAttribute="top" secondItem="Yyu-xC-alE" secondAttribute="bottom" constant="25" id="88O-3p-CKu"/>
                             <constraint firstItem="Zf6-GP-KqB" firstAttribute="top" secondItem="HSq-1E-sJS" secondAttribute="top" id="AZL-ZF-uJ7"/>
                             <constraint firstItem="glL-QN-Xbj" firstAttribute="centerY" secondItem="hIX-4q-Y3x" secondAttribute="centerY" id="Etk-p4-zgS"/>
                             <constraint firstItem="Zf6-GP-KqB" firstAttribute="leading" secondItem="P7d-4i-aHl" secondAttribute="trailing" constant="20" id="FH2-zm-S8v"/>

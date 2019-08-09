@@ -37,7 +37,7 @@ class TaskRepository {
       task.forPeriod = -1
       task.details = ""
       task.dateDue = Date()
-        task.guid = UUID()
+        task.guid = UUID().uuidString
       var error: NSError?
       do {
         try context.save()
@@ -61,16 +61,21 @@ class TaskRepository {
   ///- parameter withMergeFromTask: Old data to overwrite. Nil implies it's a new task.
   func persistData(_ data: DailyTask, withMergeFromTask oldTask: DailyTask?) -> DailyTask {
     if oldTask != nil {
-        if let task = repository.fetchForUpdate(byGUID: oldTask!.GUID) {
-            task.update(taskData: data)
-            repository.save()
+        if oldTask!.GUID != nil {
+            if let task = repository.fetchForUpdate(byGUID: oldTask!.GUID) {
+                task.update(taskData: data)
+                repository.save()
+        }
+
         }
          else {
             //shouldn't hit here, but...
             repository.add(data)
         }
     } else {
+        
         repository.add(data)
+        
     }
     return data
   }
