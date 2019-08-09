@@ -13,14 +13,14 @@ extension Foundation.UserDefaults {
   func colorForKey(_ key: String) -> UIColor? {
     var color: UIColor?
     if let data = data(forKey: key) {
-      color = NSKeyedUnarchiver.unarchiveObject(with: data) as? UIColor
+        try? color = NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor
     }
     return color
   }
   func setColor(_ color: UIColor?, forKey key: String) {
     var colorData: Data?
     if let color = color {
-      colorData = NSKeyedArchiver.archivedData(withRootObject: color)
+      try? colorData = NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: false)
     }
     setValue(colorData, forKey: key)
   }
