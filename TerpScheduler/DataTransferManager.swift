@@ -3,7 +3,7 @@
 //  TerpScheduler
 //
 //  Created by Ben Hall on 1/21/15.
-//  Copyright (c) 2015 Tampa Preparatory School. All rights reserved.
+//  Copyright (c) 2019 Tampa Preparatory School. All rights reserved.
 //
 
 import UIKit
@@ -12,19 +12,14 @@ import CoreData
 protocol TaskDetailDelegate: class {
   func updateTask(_ task: DailyTask, withPreviousTask oldTask: DailyTask) -> DailyTask
   var defaultTask: DailyTask { get }
-  //func addItemToTableView()
-  //func didUpdateTitle(_ title: String)
   func postNotification(forTask task: DailyTask)
   func cancelNotificationMatching(_ task: DailyTask)
 }
 
 protocol TaskTableDelegate: class {
-  //func willDisplayDetailForTask(_ task: DailyTask)
     func tasksFor(day: Date, period: Int) -> [DailyTask]
   var defaultTask: DailyTask { get }
   func didDeleteTask(_ task: DailyTask)
-  //func willDisappear()
-  //func addItemToTableView()
 }
 
 protocol TaskSummaryDelegate: class {
@@ -118,35 +113,8 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     if task.isCompleted {
       cancelNotificationMatching(task)
     }
-    //tableViewController!.replaceItem(-1, withTask: task)
-    //tableViewController!.clearDirtyRows()
-    //summaryViewController!.reloadCollectionView()
     return updatedTask
   }
-
-//  func addItemToTableView() {
-//    if detailViewController != nil {
-//      detailViewController!.saveData()
-//      detailViewController!.clear()
-//    }
-//    tableViewController!.addAndSelectItem(defaultTask, forIndex: -1)
-//  }
-//
-//  func willDisplayDetailForTask(_ task: DailyTask) {
-//    if task != selectedTask! && detailViewController != nil {
-//      detailViewController!.saveData()
-//    }
-//    selectedTask = task
-//    if detailViewController != nil {
-//      detailViewController!.clear()
-//      detailViewController!.previousTaskData = selectedTask!
-//      detailViewController!.setSubviewContentsFromTaskData(task)
-//    } else {
-//      summaryViewController!.performSegue(withIdentifier: "ShowDetail", sender: self)
-//      summaryViewController?.splitViewController!.preferredDisplayMode = .allVisible
-//    }
-//    return
-//  }
     
     func tasksFor(day: Date, period: Int) -> [DailyTask] {
         return taskRepository.tasksForDateAndPeriod(day, period: period)
@@ -202,15 +170,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     taskRepository.deleteItem(task)
     summaryViewController?.reloadCollectionView()
     cancelNotificationMatching(task)
-  }
-
-  func willDisappear() {
-    //detailViewController!.clear()
-    //detailViewController!.navigationController!.popToRootViewController(animated: true)
-  }
-
-  func didUpdateTitle(_ title: String) {
-    //tableViewController!.updateTitleOfSelectedCell(title)
   }
 
   func getTasks(_ period: Int) -> [DailyTask] {
