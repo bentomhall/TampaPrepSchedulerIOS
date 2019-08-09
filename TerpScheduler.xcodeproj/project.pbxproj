@@ -24,9 +24,6 @@
 		D41823F61EC5EB15002C5FF7 /* ScheduleTypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */; };
 		D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */; };
 		D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */; };
-		D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */; };
-		D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */; };
-		D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */; };
 		D4373DC01F71A5A60050562F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4373DBF1F71A5A60050562F /* NotificationManager.swift */; };
 		D439CD7122FC671F00E96D35 /* TaskEditStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */; };
 		D439CD7322FC6B5900E96D35 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D439CD7222FC6B5900E96D35 /* TaskEditViewController.swift */; };
@@ -81,9 +78,6 @@
 		D41823FA1EC5EEE3002C5FF7 /* TerpScheduler 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TerpScheduler 3.xcdatamodel"; sourceTree = "<group>"; };
 		D41823FB1EC611C2002C5FF7 /* scheduleTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scheduleTypes.json; sourceTree = "<group>"; };
 		D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationsTableViewController.swift; sourceTree = "<group>"; };
-		D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupWriter.swift; sourceTree = "<group>"; };
-		D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupManager.swift; sourceTree = "<group>"; };
-		D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonBackupReader.swift; sourceTree = "<group>"; };
 		D4373DBF1F71A5A60050562F /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskEditStoryboard.storyboard; sourceTree = "<group>"; };
 		D439CD7222FC6B5900E96D35 /* TaskEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
@@ -238,9 +232,6 @@
 				D416C71C1A704FE300AC2AEE /* Entities */,
 				D416C7171A7039B700AC2AEE /* Repositories */,
 				D416C71F1A706EFA00AC2AEE /* DataTransferManager.swift */,
-				D42EBACE1B70F0C200E8F5F0 /* JsonBackupWriter.swift */,
-				D42EBAD01B70FC0100E8F5F0 /* BackupManager.swift */,
-				D42EBAD21B7108D100E8F5F0 /* JsonBackupReader.swift */,
 				D47453801B7E1F67005741B6 /* UserColors.swift */,
 				D4CC8FB71EB22C06002DAFEA /* NetworkScheduleUpdater.swift */,
 				D41823F51EC5EB15002C5FF7 /* ScheduleTypeData.swift */,
@@ -344,11 +335,9 @@
 				D47B684B1B5C82550061C835 /* TaskNotification.swift in Sources */,
 				D4CC8FB81EB22C06002DAFEA /* NetworkScheduleUpdater.swift in Sources */,
 				D46941FE1A6EFCF3008D0CDF /* TaskDetailViewController.swift in Sources */,
-				D42EBACF1B70F0C200E8F5F0 /* JsonBackupWriter.swift in Sources */,
 				D408FD7B1A432E45004F0B83 /* TerpScheduler.xcdatamodeld in Sources */,
 				D4E9B4001A632C3500C46B29 /* dateHeaderView.swift in Sources */,
 				D408FD9D1A43342C004F0B83 /* ClassPeriodViewController.swift in Sources */,
-				D42EBAD31B7108D100E8F5F0 /* JsonBackupReader.swift in Sources */,
 				D4079CAA1A47C31100BC333C /* DayLabel.swift in Sources */,
 				D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */,
 				D41823F61EC5EB15002C5FF7 /* ScheduleTypeData.swift in Sources */,
@@ -368,7 +357,6 @@
 				D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,
-				D42EBAD11B70FC0100E8F5F0 /* BackupManager.swift in Sources */,
 				D439CD7322FC6B5900E96D35 /* TaskEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
