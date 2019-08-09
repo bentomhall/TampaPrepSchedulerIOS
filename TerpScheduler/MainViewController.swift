@@ -88,6 +88,7 @@ class MainViewController: UIViewController {
     performShading()
     self.navigationController?.setNavigationBarHidden(false, animated: false)
     scrollView?.delegate = self
+    reloadCollectionView()
     super.viewDidAppear(animated)
   }
 

@@ -62,8 +62,15 @@ class DailyTask: Filterable, Equatable, DataObject {
             try context.save()
         } catch _ {
         }
+        let mirror = Mirror(reflecting: model)
+        if mirror.children.contains(where: {$0.label == "guid"}) {
+            GUID = model.guid
+        }
+        else {
+            GUID = UUID()
+        }
+        
         id = model.objectID
-        GUID = model.guid
         date = model.dateDue
         shortTitle = model.shortTitle
         details = model.details

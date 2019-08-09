@@ -160,7 +160,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     func willDisplaySplitViewFor(_ date: Date, period: Int, viewController: TaskEditViewController) {
     selectedDate = date
     selectedPeriod = period
-    let tasks = taskRepository.tasksForDateAndPeriod(date, period: period)
     viewController.setData(date: date, period: period)
     
     return
