@@ -37,7 +37,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     if task.shortTitle == "" {
       return //fake call
     }
-    let identifier = UUID().uuidString
+    if getNotificationIdentifierFor(task: task) != nil {
+        return
+    }
+    let identifier = task.GUID ?? UUID().uuidString
     let message = "Task \(task.shortTitle) is due tomorrow!"
     let components = Calendar.autoupdatingCurrent.dateComponents(Set([.day, .hour, .minute]), from: date)
     scheduleNotification(identifier: identifier, message: message, dateComponents: components)

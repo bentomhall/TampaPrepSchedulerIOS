@@ -132,7 +132,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Rh-Nh-Q3E">
                                 <rect key="frame" x="485" y="485" width="51" height="31"/>
                                 <connections>
-                                    <action selector="didUpdateData:" destination="E4e-Wx-KOv" eventType="valueChanged" id="Do4-aQ-gJm"/>
+                                    <action selector="didChangeNotificationStatus:" destination="E4e-Wx-KOv" eventType="valueChanged" id="2FU-pT-Fju"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me about this?" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Zn-bI-P9i">

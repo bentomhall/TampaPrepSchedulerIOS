@@ -42,6 +42,16 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         //detailTableView!.reloadRows(at: [index], with: .none)
     }
     
+    @IBAction func didChangeNotificationStatus(_ sender: UISwitch) {
+        save(index: selectedIndex.row)
+        let taskData = tasks[selectedIndex.row]
+        if sender.isOn {
+            taskDelegate!.postNotification(forTask: taskData)
+        } else {
+            taskDelegate!.cancelNotificationMatching(taskData)
+        }
+    }
+    
     func setData(date: Date, period: Int) {
         self.date = date
         self.period = period
