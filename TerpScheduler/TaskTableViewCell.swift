@@ -18,11 +18,15 @@ class TaskTableViewCell: UITableViewCell {
 
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
+
   }
 
   func setTitleText(_ text: String, taskIsComplete: Bool, colors: UserColors) {
+    backgroundColor = colors.backgroundColor
+    backgroundView?.backgroundColor = colors.backgroundColor
     selectedBackgroundView = UIView()
-    selectedBackgroundView!.backgroundColor = colors.NoClassColor
+    selectedBackgroundView!.backgroundColor = colors.cellColor
+    
     title!.text = text
     changeCompletionStatus(completion: taskIsComplete, colors: colors)
 

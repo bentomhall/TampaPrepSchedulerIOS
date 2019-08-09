@@ -47,11 +47,22 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         self.period = period
     }
     
+    @objc func userColorsDidChange() {
+        DispatchQueue.main.async {
+            self.detailTableView!.backgroundView?.backgroundColor = self.colors!.backgroundColor
+            //self.detailTableView!.tableFooterView!.backgroundColor = self.colors!.backgroundColor
+        }
+        
+    }
+    
     override func viewDidLoad() {
         //let formatter = DateFormatter()
         //formatter.dateFormat = "MM/dd/YYYY"
         //let sDate = formatter.string(from: date ?? Date())
         //self.dateAndPeriodLabel!.text = sDate + ": period \(period)"
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userColorsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+        setColorScheme()
         tasks = taskDelegate!.tasksFor(day: date!, period: period)
         if tasks.count == 0 {
             tasks.append(taskDelegate!.defaultTask)
@@ -61,7 +72,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
         detailTableView!.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .none)
         selectedIndex = IndexPath(row: 0, section: 0)
         displayDetail(for: selectedIndex)
-        super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +134,7 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     
     private func setColorScheme() {
         self.view.backgroundColor = colors!.backgroundColor
-        
+        self.detailTableView!.backgroundColor = colors!.backgroundColor
         for label in textLabels! {
             label.textColor = colors!.textColor
         }
