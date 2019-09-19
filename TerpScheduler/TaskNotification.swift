@@ -17,6 +17,7 @@ enum NotificationTimes: Int {
   case testing = -1 //for testing, set the time to 1 minute from now
 }
 
+/// Contains the necessary information and methods to send/store a notification about a `DailyTask`.
 class TaskNotification {
   fileprivate let task: DailyTask
   let UUID = Foundation.UUID()
@@ -38,19 +39,6 @@ class TaskNotification {
   }
 
   func scheduleNotification(atTime time: NotificationTimes)->Foundation.UUID? {
-    /*
-    let notificationDate = notificationTime(fromCategory: time)
-    let nextBadgeNumber = UIApplication.shared.scheduledLocalNotifications!.count + 1
-    let notification = UILocalNotification()
-    notification.alertBody = task.shortTitle
-    notification.applicationIconBadgeNumber = nextBadgeNumber
-    notification.alertAction = "view tasks"
-    notification.fireDate = notificationDate
-    notification.soundName = UILocalNotificationDefaultSoundName
-    notification.userInfo = ["taskID": "\(task.shortTitle)\(task.period)"]
-    notification.category = "taskReminderCategory"
-    UIApplication.shared.scheduleLocalNotification(notification)
-    return UUID*/
     return Foundation.UUID()
   }
 }

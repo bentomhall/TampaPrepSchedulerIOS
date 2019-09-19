@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 
+/// Data structure for handling the information about the assigned classes.
 struct SchoolClass {
-  let period: Int
+  let period: Int //1-indexed.
   let teacherName: String
   let haikuURL: URL?
   let isStudyHall: Bool
@@ -18,11 +19,19 @@ struct SchoolClass {
   let isLocked: Bool
   let id: NSManagedObjectID?
 
+  /// Generates a default, empty object for the specified period.
+  ///
+  /// - Parameter period: The class period to generate for. 0-indexed.
+  /// - Returns: A new, empty `SchoolClass` instance with the period set appropriately.
   static func defaultForPeriod(_ period: Int) -> SchoolClass {
     //sometimes there's a disconnect and a 0-indexed period gets passed in. Sigh. Hack.
     return SchoolClass(period: period+1, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "", isLocked: false, id: nil)
   }
 
+    
+  /// Handles the case of a middle-school student for 7th period, which shows "sports" and is locked.
+  ///
+  /// - Returns: the value for middle school sports.
   static func middleSchoolSports() -> SchoolClass {
     return SchoolClass(period: 7, teacherName: "", haikuURL: nil, isStudyHall: false, subject: "Sports", isLocked: true, id: nil)
   }
@@ -47,6 +56,12 @@ extension SchoolClass: DataObject {
     id = entity.objectID
   }
 
+    /// Converts a `SchoolClass` into a `SchoolClassEntity` with the same data.
+    ///
+    /// - Parameters:
+    ///   - context: `NSManagedObjectContext` for the entry.
+    ///   - isNew: `true` if a new object (not already stored)
+    /// - Returns: A `SchoolClassEntity` with the appropriate data.
     func toEntity(inContext context: NSManagedObjectContext, isNew: Bool) -> NSManagedObject {
     var managedObject: SchoolClassesEntity?
     var alreadyExists = false
@@ -77,6 +92,7 @@ extension SchoolClass: DataObject {
   }
 }
 
+/// The managed entity for school class data.
 class SchoolClassesEntity: NSManagedObject {
   @NSManaged var classPeriod: NSNumber
   @NSManaged var teacherName: String
