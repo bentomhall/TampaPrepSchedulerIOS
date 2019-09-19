@@ -9,6 +9,10 @@
 import Foundation
 import CoreData
 
+/// Helper to convert a `String` into a `Date`. Locale-fixed to `en_US`.
+///
+/// - Parameter string: The MM/dd/yyyy date string.
+/// - Returns: the `Date` object corresponding to the input string.
 func dateFromString(_ string: String) -> Date {
   let formatter = DateFormatter()
   formatter.dateStyle = .short
@@ -21,13 +25,15 @@ struct SchoolDate {
   var Date: Foundation.Date
   var Schedule: String
   let formatter = DateFormatter()
-  var ClassesMissed: [Int] {
+  /// extracts a list of the classes that *don't* meet that day.
+    var ClassesMissed: [Int] {
     if let appDelegate = UIApplication.shared.delegate! as? AppDelegate {
       return appDelegate.scheduleTypes!.getMissingClasses(type: Schedule)
     }
     return [Int]()
   }
   
+  /// Display string in MM/dd format.
   var dateString: String? {
     formatter.dateFormat = "MM/dd"
     return formatter.string(from: Date)
@@ -81,14 +87,18 @@ class DateRepository {
   }
 
   var dates: [SchoolDate] = []
+    
+  /// The first day **in the week currently in view**
   var firstDate: Date {
     return dates[0].Date
   }
 
+  /// The last day **in the week currently in view**
   var lastDate: Date {
     return dates[dates.count - 1 ].Date
   }
     
+    /// The first date for the *school* year, June 1 YEAR.
     var firstDateForYear: Date {
         var dateComponents = DateComponents()
         dateComponents.year = schoolYear
@@ -97,6 +107,7 @@ class DateRepository {
         return Calendar.current.date(from: dateComponents)!
     }
     
+    /// The last date for the *school* year, May 31 YEAR+1.
     var lastDateForYear: Date {
         var dateComponents = DateComponents()
         dateComponents.year = schoolYear + 1
@@ -105,15 +116,25 @@ class DateRepository {
         return Calendar.current.date(from: dateComponents)!
     }
 
+    
+  /// Get the classes that do not meet (and should be shaded as such) for a particular week-day (by index)
+  ///
+  /// - Parameter index: The day of the week (starting with Sunday = 1)
+  /// - Returns: The class periods (1-indexed) that are missed.
   func missedClassesForDay(_ index: Int) -> [Int] {
     return dates[index].ClassesMissed
   }
 
+  /// Gets the ISO week number for the indicated date.
+  ///
+  /// - Parameter today: The date in question. Usually the current date.
+  /// - Returns: The ISO week number.
   func fetchWeekID(_ today: Date) -> Int {
     let components = (calendar as NSCalendar).components(NSCalendar.Unit.weekOfYear, from: today)
     return components.weekOfYear!
   }
 
+  /// Sets the currently-active week (week in view) to the next week, stopping at the end of the school year.
   func loadNextWeek() {
     if weekID == 52 {
       weekID = 1
@@ -129,6 +150,7 @@ class DateRepository {
     return
   }
 
+  /// Sets the currently-active week (week in view) to the previous week, stopping at the beginning of the school year.
   func loadPreviousWeek() {
     if weekID == 23 {
       schoolYear -= 1
@@ -139,13 +161,17 @@ class DateRepository {
     dates = loadCurrentWeek()
   }
 
+  /// Tests if the given week in the current school year.
+  ///
+  /// - Parameter week: The `WeekEntity` of interest.
+  /// - Returns: `true` if the school year matches the current one.
   func isCurrentYear(_ week: WeekEntity) -> Bool {
     return (week.schoolYear as? Int) == self.schoolYear
   }
 
   ///fetches the currently selected week's schedule.
   ///
-  ///- returns: [SchoolDate] for all dates in the week.
+  ///- Returns: [SchoolDate] for all dates in the week.
   func loadCurrentWeek() -> [SchoolDate] {
     var dates: [SchoolDate] = []
     fetchRequest.predicate = NSPredicate(format: "weekID = %i AND schoolYear = %i", weekID, schoolYear)
@@ -164,12 +190,20 @@ class DateRepository {
     }
   }
 
+  /// Changes the schedule (letter) of the indicated day for the week in view.
+  ///
+  /// - Parameters:
+  ///   - index: The day to change (indexed with 1 == sunday)
+  ///   - newSchedule: The new letter (from ScheduleTypes.json) for the day.
   func setScheduleForDateByIndex(_ index: Int, newSchedule: String) {
     dates[index].Schedule = newSchedule
     persistDates()
     return
   }
   
+  /// Generates a default schedule around the current week, setting all letters to Y (all classes meet).
+  ///
+  /// - Returns: A set of `SchoolDate` objects for the current week, with all schedules set to Y.
   func createDefaultSchedule() -> [SchoolDate] {
     var _dates = [SchoolDate]()
     var startDate = DateComponents()
@@ -185,12 +219,21 @@ class DateRepository {
     
   }
 
+  /// Set current week to the week matching the given date.
+  ///
+  /// - Parameter date: the desired date.
   func loadWeekForDay(_ date: Date) {
     weekID = fetchWeekID(date)
     schoolYear = getSchoolYear(date)
     dates = loadCurrentWeek()
   }
   
+  /// Test if there is a valid schedule stored in the repository for the given school year. False on first load.
+  ///
+  /// - Parameters:
+  ///   - schoolYear: The school year to test.
+  ///   - inContext: `NSManagedObjectContext` for the repository
+  /// - Returns: `true` if at least one result is fetched. `false` if zero are fetched.
   static func isScheduleLoadedFor(schoolYear: Int, inContext: NSManagedObjectContext) -> Bool {
     let fetchRequest = NSFetchRequest<WeekEntity>(entityName: "Week")
     let results = try? inContext.fetch(fetchRequest)

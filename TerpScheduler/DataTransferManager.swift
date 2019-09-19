@@ -172,6 +172,11 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     cancelNotificationMatching(task)
   }
 
+    
+  /// Deprecated/Unused. Retrieve all tasks for a given class period for export.
+  ///
+  /// - Parameter period: Class period.
+  /// - Returns: All tasks, regardless of date.
   func getTasks(_ period: Int) -> [DailyTask] {
     let tasks = taskRepository.allTasksForPeriod(period)
     return tasks

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+/// The repository for the class data.
 class SchoolClassesRepository: NSObject {
   fileprivate var managedContext: NSManagedObjectContext
   fileprivate let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "SchoolClasses")
@@ -34,6 +35,10 @@ class SchoolClassesRepository: NSObject {
     return nil
   }
 
+  /// Fetch the data for the indicated class period.
+  ///
+  /// - Parameter classPeriod: 1-indexed class period (1-8)
+  /// - Returns: The stored class data.
   func getClassDataByPeriod(_ classPeriod: Int) -> SchoolClass {
     if let classEntity = fetchEntity(classPeriod + 1) {
       let newClass = SchoolClass(entity: classEntity as NSManagedObject)
@@ -42,6 +47,10 @@ class SchoolClassesRepository: NSObject {
     return SchoolClass.defaultForPeriod(classPeriod)
   }
 
+  /// Deletes all data for a given period.
+  ///
+  /// - Parameter period: 1-indexed class period (1-8)
+    /// TODO: clean up.
   func removeAllFor(_ period: Int) {
     let predicate = NSPredicate(format: "classPeriod = %i", period)
     fetchRequest.predicate = predicate
@@ -62,6 +71,9 @@ class SchoolClassesRepository: NSObject {
     }
   }
 
+  /// Replaces the stored data with the new data.
+  ///
+  /// - Parameter classData: The new class data.
   func persistData(_ classData: SchoolClass) {
     removeAllFor(classData.period) //ensure there can only be one (the most recent)
     guard let _ = classData.toEntity(inContext: managedContext, isNew: true) as? SchoolClassesEntity else {
@@ -76,6 +88,9 @@ class SchoolClassesRepository: NSObject {
 
   }
 
+  /// Wrapper to get the fixed middle-school sports `SchoolClass`
+  ///
+  /// - Returns: A fixed value for middle-school sports.
   func getMiddleSchoolSports() -> SchoolClass {
     return SchoolClass.middleSchoolSports()
   }
