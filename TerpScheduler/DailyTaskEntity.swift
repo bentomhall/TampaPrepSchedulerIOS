@@ -40,6 +40,19 @@ class DailyTask: Filterable, Equatable, DataObject {
   var priority: Priorities
   var shouldNotify: Bool
 
+    /// Data object for each task as entered.
+    ///
+    /// This is the core entity in the app. All user data is stored ultimately in DailyTasks.
+    /// - Parameters:
+    ///   - date: The date for which the task was entered. The tasks are displayed based on this date.
+    ///   - period: The class period (1-8) to which the task is related.
+    ///   - shortTitle: The title to be displayed for the task. Cannot be empty
+    ///   - details: Long-form details if entered. May be empty.
+    ///   - isHaiku: True if the task should be turned in on PSL/Haiku.
+    ///   - completion: True if the task is already marked as completed.
+    ///   - priority: The  priority level of tasks, used for sorting.
+    ///   - notify: Should the user be notified of this task
+    ///   - guid: A system-assigned GUID.
     init(date: Date, period: Int, shortTitle: String, details: String, isHaiku: Bool, completion: Bool, priority: Priorities, notify: Bool, guid: String?) {
     self.date = date
     self.period = period
@@ -78,11 +91,11 @@ class DailyTask: Filterable, Equatable, DataObject {
         }
     }
     
-    ///returns managed entity associated with this data in the provided context.
-    //Only creates new if no entity with this id already exists.
+    ///creates managed entity associated with this data in the provided context.
+    ///Only creates new if no entity with this id already exists.
     ///
-    ///- parameter inContext: The NSManagedObjectContext to put the entity in.
-    ///- returns: A NSManagedObject containing the data from self.
+    /// Parameter inContext: The NSManagedObjectContext to put the entity in.
+    /// Returns: A NSManagedObject containing the data from self.
     func toEntity(inContext context: NSManagedObjectContext, isNew: Bool) -> NSManagedObject {
         if self.id != nil {
             // If a entity with this id already exists, return it.
@@ -121,10 +134,18 @@ class DailyTask: Filterable, Equatable, DataObject {
 }
 
 extension DailyTask {
+  /// Compares dates of assignments, returns true if this task is before the previous one.
+  ///
+  /// - Parameter other: The other DailyTask to which to compare.
+  /// - Returns: True if before, False if after.
   func dateIsBefore(_ other: DailyTask) -> Bool {
     return (date.compare(other.date) == ComparisonResult.orderedAscending)
   }
 
+  /// Compares the school class periods assigned to this DailyTask and another.
+  ///
+  /// - Parameter other: The other DailyTask to which to compare.
+  /// - Returns: True if before, False if after.
   func periodIsBefore(_ other: DailyTask) -> Bool {
     return period < other.period
   }
@@ -148,6 +169,9 @@ class DailyTaskEntity: NSManagedObject {
   @NSManaged var hasNotification: Bool
     @NSManaged var guid: String?
     
+    /// Updates the data that can change from a new DailyTask entity (for storage).
+    ///
+    /// - Parameter taskData: The DailyTask containing the new data.
     func update(taskData: DailyTask) {
         self.shortTitle = taskData.shortTitle
         self.details = taskData.details
