@@ -37,7 +37,6 @@
 		D4711DC41F14FE6600E49022 /* schedule.2017.json in Resources */ = {isa = PBXBuildFile; fileRef = D4711DC31F14FE6600E49022 /* schedule.2017.json */; };
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D47453811B7E1F67005741B6 /* UserColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47453801B7E1F67005741B6 /* UserColors.swift */; };
-		D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D475812B1AA739170059BF3C /* ExportViewController.swift */; };
 		D47B684B1B5C82550061C835 /* TaskNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B684A1B5C82550061C835 /* TaskNotification.swift */; };
 		D481CCCD1A65809000648CFE /* AppDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCC1A65809000648CFE /* AppDataEntity.swift */; };
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
@@ -90,7 +89,6 @@
 		D4711DC31F14FE6600E49022 /* schedule.2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.2017.json; sourceTree = "<group>"; };
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D47453801B7E1F67005741B6 /* UserColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserColors.swift; sourceTree = "<group>"; };
-		D475812B1AA739170059BF3C /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		D47B684A1B5C82550061C835 /* TaskNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskNotification.swift; sourceTree = "<group>"; };
 		D481CCCC1A65809000648CFE /* AppDataEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDataEntity.swift; sourceTree = "<group>"; };
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
@@ -213,7 +211,6 @@
 				D45ABCB91A6C6B300083F681 /* ScheduleOverrideController.swift */,
 				D47239C11A7451DB00DBEFAD /* WebViewController.swift */,
 				D4014B7D1A75BC28002688EE /* LinksPageViewController.swift */,
-				D475812B1AA739170059BF3C /* ExportViewController.swift */,
 				D42EBACC1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift */,
 				D4CC8FB51EAF7244002DAFEA /* JumpToDateViewController.swift */,
 				D4D5DF381EBCAAFE00A1373D /* ScheduleUpdateViewController.swift */,
@@ -342,7 +339,6 @@
 				D4014B7E1A75BC28002688EE /* LinksPageViewController.swift in Sources */,
 				D4CC8FB61EAF7244002DAFEA /* JumpToDateViewController.swift in Sources */,
 				D416C7191A7039E800AC2AEE /* Repository.swift in Sources */,
-				D475812C1AA739170059BF3C /* ExportViewController.swift in Sources */,
 				D42EBACD1B6AA1D600E8F5F0 /* ScheduledNotificationsTableViewController.swift in Sources */,
 				D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */,
 				D4A9DE7D1A5B454400E3AE9E /* SchoolClassView.swift in Sources */,

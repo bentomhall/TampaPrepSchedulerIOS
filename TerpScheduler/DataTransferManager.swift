@@ -36,12 +36,6 @@ protocol TaskSummaryDelegate: class {
   func refreshDefaults()
 }
 
-protocol ExportDelegate: class {
-  func getTasks(_ period: Int) -> [DailyTask]
-  func getTasks(_ weekID: Int, andExcludePeriods: [Int]) -> [DailyTask]
-  func getClassInformation(_ period: Int) -> SchoolClass
-}
-
 protocol DateInformationDelegate: class {
   var datesForWeek: [SchoolDate] { get }
   func didSetDateByIndex(_ index: Int, withData data: String)
@@ -52,7 +46,7 @@ protocol DateInformationDelegate: class {
   func dateBounds() -> (Date, Date)
 }
 
-class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, ExportDelegate, DateInformationDelegate {
+class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, DateInformationDelegate {
   init(notificationHelper: NotificationManager) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       abort() //everything borked if not true
@@ -170,20 +164,6 @@ class DataManager: TaskDetailDelegate, TaskTableDelegate, TaskSummaryDelegate, E
     taskRepository.deleteItem(task)
     summaryViewController?.reloadCollectionView()
     cancelNotificationMatching(task)
-  }
-
-    
-  /// Deprecated/Unused. Retrieve all tasks for a given class period for export.
-  ///
-  /// - Parameter period: Class period.
-  /// - Returns: All tasks, regardless of date.
-  func getTasks(_ period: Int) -> [DailyTask] {
-    let tasks = taskRepository.allTasksForPeriod(period)
-    return tasks
-  }
-
-  func getTasks(_ weekID: Int, andExcludePeriods: [Int]) -> [DailyTask] {
-    return [DailyTask]()
   }
 
   func getClassInformation(_ period: Int) -> SchoolClass {

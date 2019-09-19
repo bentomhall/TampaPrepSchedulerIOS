@@ -132,33 +132,6 @@ class TaskRepository {
         repository.deleteItemMatching(values: item)
     }
     
-    /// Deprecated. Fetches all `DailyTask`s for a given class period. Used for export purposes. Not used.
-    ///
-    /// - Parameter period: <#period description#>
-    /// - Returns: <#return value description#>
-    @available(*, deprecated, message: "Export functionality removed.")
-    func allTasksForPeriod(_ period: Int) -> [DailyTask] {
-        let filter = FilterValues(optDate: nil, optID: nil, optPeriod: period, optTitle: nil, optGUID: nil)
-        let tasks = repository.fetchBy(.byPeriod, values: filter)
-        return tasks
-    }
-    
-    @available(*, deprecated, message: "Export functionality removed.")
-    func allTasksForDate(_ date: Date) -> [DailyTask] {
-        let filter = FilterValues(optDate: date, optID: nil, optPeriod: nil, optTitle: nil, optGUID: nil)
-        let tasks = repository.fetchBy(.byDate, values: filter)
-        return tasks
-    }
-    
-    /// Get all `DailyTask`s in the store.
-    ///
-    /// - Returns: Every single `DailyTask` stored.
-    @available(*, deprecated, message: "Unused")
-    func allTasks() -> [DailyTask] {
-        return repository.fetchAll()
-    }
-    
-    
     /// Count all tasks
     ///
     /// - Returns: A total number of stored `DailyTask` entries.

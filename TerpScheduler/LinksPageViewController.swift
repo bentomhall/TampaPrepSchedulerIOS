@@ -133,12 +133,6 @@ class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
     }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ExportTasks"{
-      if let receivingController = segue.destination as? ExportViewController {
-      receivingController.modalPresentationStyle = .popover
-      receivingController.preferredContentSize = CGSize(width: 300, height: 300)
-      }
-    }
   }
 }
 
