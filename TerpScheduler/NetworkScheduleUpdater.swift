@@ -35,6 +35,12 @@ class NetworkScheduleUpdater {
     return updateDelta.isLessThanOrEqualTo(-15780000.0) //six months
   }
 
+    /// Async; sends request for update from API. Format is /api/schedule/<year>?update=<last update>
+  ///
+    /// TODO: change URL to whatever will be used after I'm gone.
+  /// - Parameters:
+  ///   - withDefinitions: unused
+  ///   - forDate: the date (for the school year) to get updates for. Generally this should be today's date.
   func retrieveScheduleFromNetwork(withDefinitions: Bool, forDate: Date = Date()) {
     let schoolYear = getSchoolYear(forDate)
     let lastUpdate = defaults.lastScheduleUpdate
