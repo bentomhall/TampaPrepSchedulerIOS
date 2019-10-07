@@ -16,7 +16,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     notificationCenter = UNUserNotificationCenter.current()
     super.init()
   }
-  
+    
+    /// Determine the appropriate date to notify the user
+    /// - Parameter task: The task of interest
+    /// - Parameter time: From settings, one of morning/afternoon/evening
   func getDateForNotification(task: DailyTask, time: NotificationTimes) -> Date {
     let calendar = Calendar.autoupdatingCurrent
     #if DEBUG
@@ -32,7 +35,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
       return calendar.date(byAdding: components, to: notificationDate)!
     #endif
   }
-  
+    
+    /// Actually post the notification, convenience function. Returns without doing anything if the task does not have a title.
+    /// - Parameter task: The task to notify about
+    /// - Parameter date: The appropriate date.
   func scheduleNotification(task: DailyTask, date: Date) {
     if task.shortTitle == "" {
       return //fake call
@@ -46,14 +52,16 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     scheduleNotification(identifier: identifier, message: message, dateComponents: components)
   }
   
-  func scheduleNotification(identifier: String, message: String, dateComponents: DateComponents) {
+  private func scheduleNotification(identifier: String, message: String, dateComponents: DateComponents) {
     let content = UNMutableNotificationContent()
     content.body = message
     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     let notification = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
     self.notificationCenter.add(notification, withCompletionHandler: nil)
   }
-  
+    
+    /// Cancels a set of notifications based on titles. Removes all if given an empty list.
+    /// - Parameter matching: List of string titles to find and remove.
   func cancelNotifications(matching: [String]) {
     if matching.count == 0 {
       self.notificationCenter.removeAllPendingNotificationRequests()
@@ -61,14 +69,16 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
       self.notificationCenter.removePendingNotificationRequests(withIdentifiers: matching)
     }
   }
-  
+    
+    /// Remove a single notification for a specific task
+    /// - Parameter matching: The task to cancel the notification for.
   func cancelNotification(matching: DailyTask) {
     if let id = getNotificationIdentifierFor(task: matching) {
       self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
     }
   }
   
-  func getNotificationIdentifierFor(task: DailyTask) -> String? {
+  private func getNotificationIdentifierFor(task: DailyTask) -> String? {
     var matched: String?
     notificationCenter.getPendingNotificationRequests(completionHandler: {requests in
       for request in requests {

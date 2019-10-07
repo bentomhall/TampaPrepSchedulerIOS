@@ -93,7 +93,7 @@ class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
         // Do any additional setup after loading the view.
     }
   
-  func setColorScheme() {
+  private func setColorScheme() {
     self.view.backgroundColor = colors!.backgroundColor
     tampaPrepButton!.tintColor = colors!.secondaryThemeColor
     myBackPackButton!.tintColor = colors!.secondaryThemeColor
@@ -132,8 +132,8 @@ class LinksPageViewController: UIViewController, UpdateNotificationDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-  }
+  //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  //}
 }
 
 // Helper function inserted by Swift 4.2 migrator.

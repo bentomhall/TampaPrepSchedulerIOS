@@ -177,7 +177,7 @@ class DateRepository {
     fetchRequest.predicate = NSPredicate(format: "weekID = %i AND schoolYear = %i", weekID, schoolYear)
     let results = try? context.fetch(fetchRequest)
     if results != nil && results!.count > 0 {
-      var weekData = results!.filter(isCurrentYear)
+      let weekData = results!.filter(isCurrentYear)
       let firstDay = weekData[0].firstWeekDay
       let schedule = weekData[0].weekSchedules.components(separatedBy: " ")
       for (index, schedule) in schedule.enumerated() {

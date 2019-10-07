@@ -9,7 +9,9 @@
 import UIKit
 
 class ScheduleUpdateController: ScheduleUpdateDelegate {
-  
+    
+    /// Callback when schedule types (letter definitions) are updated. Not currently used.
+    /// - Parameter newTypeDefinitions: A dictionary of letters -> schedules.
   func scheduleTypesDidUpdateFromNetwork(newTypeDefinitions: [String : Any]) {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     appDelegate!.scheduleTypes = ScheduleTypeData(data: newTypeDefinitions, userPreferences: appDelegate!.userDefaults)

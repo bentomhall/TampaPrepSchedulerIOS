@@ -13,7 +13,8 @@ import UIKit
 class MainViewController: UIViewController {
 
   fileprivate var shadedRowIndexes = [1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false]
-  fileprivate weak var appDelegate: AppDelegate?
+    fileprivate weak var appDelegate: AppDelegate?
+    /// The main "god object" reference.
   weak var delegate: (TaskSummaryDelegate & DateInformationDelegate)?
   fileprivate var contentOffset = CGPoint.zero
   fileprivate var deviceOrientationisPortrait = false
@@ -64,8 +65,6 @@ class MainViewController: UIViewController {
     delegate = appDelegate!.dataManager
     delegate!.summaryViewController = self
     taskSummaries = delegate!.summariesForWeek()
-    //self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.primaryHidden
-    //splitViewController!.presentsWithGesture = false
     scrollView!.translatesAutoresizingMaskIntoConstraints = false
     deviceOrientationisPortrait = appDelegate!.window!.bounds.height > appDelegate!.window!.bounds.width
 
@@ -92,7 +91,7 @@ class MainViewController: UIViewController {
     super.viewDidAppear(animated)
   }
 
-  func performShading() {
+  private func performShading() {
     DispatchQueue.main.async {
       self.view!.backgroundColor = self.colors!.backgroundColor
     }
@@ -127,6 +126,7 @@ class MainViewController: UIViewController {
   }
   //swiftlint:disable cyclomatic_complexity
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // tapped on a class label
     if segue.identifier!.hasPrefix("ClassDetail") {
       let index = Int(segue.identifier!.components(separatedBy: "_")[1])
       if let receivingController = segue.destination as? ClassPeriodViewController {
@@ -135,7 +135,7 @@ class MainViewController: UIViewController {
         receivingController.delegate = self
         receivingController.index = index!
       }
-    } else if segue.identifier!.hasPrefix("Day") {
+    } else if segue.identifier!.hasPrefix("Day") { //overriding a day's schedule
       let index = Int(segue.identifier!.components(separatedBy: "_")[1])
       if let receivingController = segue.destination as? ScheduleOverrideController {
         receivingController.modalPresentationStyle = .popover
@@ -144,26 +144,25 @@ class MainViewController: UIViewController {
         let dateInformation = delegate!.datesForWeek[index!]
         receivingController.previousSchedule = dateInformation.Schedule
       }
-    } else if segue.identifier! == "WebView"{
+    } else if segue.identifier! == "WebView"{ //opening a webview...does this exist?
       if let url = sender as? URL {
         if let receivingController = segue.destination as? WebViewController {
           receivingController.initialURL = url
         }
       }
-    } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail" {
+    } else if segue.identifier! == "ShowDetail" || segue.identifier! == "ReplaceDetail" { //tapped on an individual class period cell
       if let receivingController = segue.destination as? TaskEditViewController {
-        //delegate!.detailViewController = receivingController
         receivingController.taskDelegate = appDelegate!.dataManager!
         let index = collectionView!.indexPathsForSelectedItems![0]
         let selectedIndex = dayAndPeriodFromIndexPath(index.row)
         receivingController.setData(date: delegate!.datesForWeek[selectedIndex.day].Date, period: selectedIndex.period)
         receivingController.colors = colors
       }
-    } else if segue.identifier! == "JumpToDate" {
+    } else if segue.identifier! == "JumpToDate" { //selected a new date in the picker
       if let receivingController = segue.destination as? JumpToDateViewController {
         receivingController.dataManager = delegate!
       }
-    } else if segue.identifier! == "LinksPage" {
+    } else if segue.identifier! == "LinksPage" { //tapped the links page button
       if let receivingController = segue.destination as? LinksPageViewController {
         receivingController.colors = colors
       }
@@ -206,10 +205,6 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     detailIndex = dayAndPeriodFromIndexPath((indexPath as NSIndexPath).row)
-    //let date = delegate!.datesForWeek[detailIndex.day]
-    //let date = delegate!.datesForWeek[detailIndex.day].Date
-    //delegate!.willDisplaySplitViewFor(date, period: detailIndex.period)
-    //self.splitViewController!.preferredDisplayMode = UISplitViewController.DisplayMode.allVisible
   }
 
   func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
@@ -327,17 +322,6 @@ extension MainViewController: ClassPeriodDataSource {
 
   func openWebView(_ url: URL) {
     performSegue(withIdentifier: "WebView", sender: url)
-  }
-
-  func setCellColor(_ index: Int, toColor color: UIColor) {
-    for indx in 0...4 {
-      let row = indx + (index-1)*5
-      DispatchQueue.main.async {
-        let cell = self.collectionView!.cellForItem(at: IndexPath(item: row, section: 0))
-        cell!.backgroundColor = color
-      }
-      
-    }
   }
 
   func shouldShadeRow(_ value: Bool, forPeriod: Int) {

@@ -38,8 +38,6 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func didChangeTaskCompletion(_ sender: UISwitch) {
         save(index: selectedIndex.row)
-        
-        //detailTableView!.reloadRows(at: [index], with: .none)
     }
     
     @IBAction func didChangeNotificationStatus(_ sender: UISwitch) {
@@ -60,16 +58,11 @@ class TaskEditViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func userColorsDidChange() {
         DispatchQueue.main.async {
             self.detailTableView!.backgroundView?.backgroundColor = self.colors!.backgroundColor
-            //self.detailTableView!.tableFooterView!.backgroundColor = self.colors!.backgroundColor
         }
         
     }
     
     override func viewDidLoad() {
-        //let formatter = DateFormatter()
-        //formatter.dateFormat = "MM/dd/YYYY"
-        //let sDate = formatter.string(from: date ?? Date())
-        //self.dateAndPeriodLabel!.text = sDate + ": period \(period)"
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.userColorsDidChange), name: UserDefaults.didChangeNotification, object: nil)
         setColorScheme()
