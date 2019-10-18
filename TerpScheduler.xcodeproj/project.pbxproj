@@ -42,6 +42,7 @@
 		D481CCCF1A65809000648CFE /* WeekEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D481CCCE1A65809000648CFE /* WeekEntity.swift */; };
 		D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D48291D51A9640A0000AFBD1 /* Settings.bundle */; };
 		D48291D81A964384000AFBD1 /* CustomUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48291D71A964384000AFBD1 /* CustomUserDefaults.swift */; };
+		D4930C50235A3D350060F289 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4930C4F235A3D350060F289 /* Launch.storyboard */; };
 		D497C43F1A6EB4D4008F5B34 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */; };
 		D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */; };
 		D49F0EBC1A660AF500BFB92E /* ClassPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */; };
@@ -94,6 +95,7 @@
 		D481CCCE1A65809000648CFE /* WeekEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekEntity.swift; sourceTree = SOURCE_ROOT; };
 		D48291D51A9640A0000AFBD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D48291D71A964384000AFBD1 /* CustomUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomUserDefaults.swift; path = ../CustomUserDefaults.swift; sourceTree = "<group>"; };
+		D4930C4F235A3D350060F289 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		D497C43E1A6EB4D4008F5B34 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D49CDF691A5E068E00AEB36B /* DailyTaskSmallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTaskSmallView.swift; sourceTree = "<group>"; };
 		D49F0EBB1A660AF500BFB92E /* ClassPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassPopupView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				D49CDF6E1A5E19BD00AEB36B /* ViewControllers */,
 				D49CDF6D1A5E19A000AEB36B /* Views */,
 				D408FD771A432E45004F0B83 /* AppDelegate.swift */,
+				D4930C4F235A3D350060F289 /* Launch.storyboard */,
 				D408FD7E1A432E45004F0B83 /* Main.storyboard */,
 				D439CD7022FC671F00E96D35 /* TaskEditStoryboard.storyboard */,
 				D408FD811A432E45004F0B83 /* Images.xcassets */,
@@ -303,6 +306,7 @@
 				D4040FDC22DE072300DE7850 /* schedule.2019.json in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4711DC41F14FE6600E49022 /* schedule.2017.json in Resources */,
+				D4930C50235A3D350060F289 /* Launch.storyboard in Resources */,
 				D43FAB5D1AF12D6800A1C55E /* schedule.bak.json in Resources */,
 				D408FD821A432E45004F0B83 /* Images.xcassets in Resources */,
 			);
