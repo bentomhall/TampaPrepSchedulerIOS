@@ -68,7 +68,7 @@ class UserColors {
   var backgroundColor: UIColor {
     switch defaults.colorTheme {
     case .Light:
-      return UIColor.groupTableViewBackground
+        return UIColor.secondarySystemBackground
     case .Dark:
       return UIColor(red: 0.153, green: 0.169, blue: 0.188, alpha: 1)
     }

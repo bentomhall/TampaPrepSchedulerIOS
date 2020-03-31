@@ -193,10 +193,10 @@ class MainViewController: UIViewController {
     let indexPath = self.collectionView?.indexPathForItem(at: p)
 
     if indexPath != nil {
+        let view = self.collectionView?.cellForItem(at: indexPath!)
       let menuController = UIMenuController.shared
       let selectionRectangle = CGRect(x: p.x, y: p.y, width: 100, height: 100)
-      menuController.setTargetRect(selectionRectangle, in: self.collectionView!)
-      menuController.setMenuVisible(true, animated: true)
+        menuController.showMenu(from: view!, rect: selectionRectangle)
     }
   }
 }
