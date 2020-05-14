@@ -33,7 +33,7 @@
 		D45E83731E577861002FAB52 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D45E83721E577861002FAB52 /* .swiftlint.yml */; };
 		D4605E931A5B162C007406E5 /* SchoolClassesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */; };
 		D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */; };
-		D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */; };
+		D4606917246D779D003AEE9C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D4606916246D779D003AEE9C /* README.md */; };
 		D4711DC41F14FE6600E49022 /* schedule.2017.json in Resources */ = {isa = PBXBuildFile; fileRef = D4711DC31F14FE6600E49022 /* schedule.2017.json */; };
 		D47239C21A7451DB00DBEFAD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47239C11A7451DB00DBEFAD /* WebViewController.swift */; };
 		D47453811B7E1F67005741B6 /* UserColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47453801B7E1F67005741B6 /* UserColors.swift */; };
@@ -86,7 +86,7 @@
 		D45E83721E577861002FAB52 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		D4605E921A5B162C007406E5 /* SchoolClassesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolClassesEntity.swift; sourceTree = "<group>"; };
 		D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterScheduleLoader.swift; sourceTree = "<group>"; };
-		D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfReportWriter.swift; sourceTree = "<group>"; };
+		D4606916246D779D003AEE9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D4711DC31F14FE6600E49022 /* schedule.2017.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.2017.json; sourceTree = "<group>"; };
 		D47239C11A7451DB00DBEFAD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D47453801B7E1F67005741B6 /* UserColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserColors.swift; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 				D408FD751A432E45004F0B83 /* Supporting Files */,
 				D4605E941A5B1A31007406E5 /* SemesterScheduleLoader.swift */,
 				D48291D51A9640A0000AFBD1 /* Settings.bundle */,
-				D46F2ECC1AA238E800F61B69 /* pdfReportWriter.swift */,
 				D45E83721E577861002FAB52 /* .swiftlint.yml */,
+				D4606916246D779D003AEE9C /* README.md */,
 			);
 			path = TerpScheduler;
 			sourceTree = "<group>";
@@ -304,6 +304,7 @@
 				D48291D61A9640A1000AFBD1 /* Settings.bundle in Resources */,
 				D41823FC1EC611C2002C5FF7 /* scheduleTypes.json in Resources */,
 				D4040FDC22DE072300DE7850 /* schedule.2019.json in Resources */,
+				D4606917246D779D003AEE9C /* README.md in Resources */,
 				D408FD801A432E45004F0B83 /* Main.storyboard in Resources */,
 				D4711DC41F14FE6600E49022 /* schedule.2017.json in Resources */,
 				D4930C50235A3D350060F289 /* Launch.storyboard in Resources */,
@@ -350,7 +351,6 @@
 				D4ECAE9D22FDCBB500120011 /* TS2_to_3_mapping.xcmappingmodel in Sources */,
 				D4E9B4041A63374E00C46B29 /* SchoolClassesRepository.swift in Sources */,
 				D416C71E1A706B2600AC2AEE /* DateRepository.swift in Sources */,
-				D46F2ECD1AA238E800F61B69 /* pdfReportWriter.swift in Sources */,
 				D4605E951A5B1A31007406E5 /* SemesterScheduleLoader.swift in Sources */,
 				D49CDF6A1A5E068E00AEB36B /* DailyTaskSmallView.swift in Sources */,
 				D439CD7322FC6B5900E96D35 /* TaskEditViewController.swift in Sources */,
