@@ -51,6 +51,9 @@ class NetworkScheduleUpdater {
     task.resume()
   }
   
+    
+    /// retrieves schedule types (letter codes) from network. Note: URL must be updated. This is currently unused.
+    /// - Parameter forDate: <#forDate description#>
   func retrieveScheduleTypesFromNetwork(forDate: Date = Date()) {
     let schoolYear = getSchoolYear(forDate)
     let url = URL(string: "https://teaching.admiralbenbo.org/api/definitions/\(schoolYear)")!
